@@ -1,6 +1,6 @@
 <template id="pagenotfound">
 <div>
-    <header-component></header-component>
+    <wp-header></wp-header>
     <div class="container">
     <div class="row"> 
         <div class="col-lg-12">
@@ -10,6 +10,6 @@
         </div>
     </div>
     </div><!--end container-->
-    <footer-component></footer-component>
+    <wp-footer></wp-footer>
 <div>
 </template> 

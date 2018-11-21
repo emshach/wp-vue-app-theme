@@ -11,7 +11,7 @@ Vue.component('sidebar',{
     template : "#sidebar"
 })
 
-Vue.component('footer-component',{
+Vue.component('wp-footer',{
     template : "#footer"
 })
 
@@ -19,7 +19,7 @@ Vue.component('nopost',{
     template : "#nopost"
 })
 
-Vue.component('header-component',{  
+Vue.component('wp-header',{  
     template : "#header", 
     data : function(){
         return {

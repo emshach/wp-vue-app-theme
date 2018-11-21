@@ -1,6 +1,5 @@
 <template id="footer">
-<footer class="container-fluid">
-    <p>WP + VueJS  <a href="#">Starter Theme</a></p>
-</footer>
+  <footer class="container-fluid">
+    <p>&copy; Copyright 2018 Best Seat In The House (Jamaica)</p>
+  </footer>
 </template>
- 

@@ -1,6 +1,6 @@
 <template id="archive"> 
 <div>
-    <header-component></header-component>
+    <wp-header></wp-header>
     <div class="container">
     
     
@@ -16,7 +16,7 @@
     </div>
 
     </div><!--end container-->
-    <footer-component></footer-component>
+    <wp-footer></wp-footer>
 </div>
 
 

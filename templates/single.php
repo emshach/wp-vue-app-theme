@@ -1,6 +1,6 @@
 <template id="single">
 <div>
-    <header-component></header-component>
+    <wp-header></wp-header>
     <div class="container">
 
         <div class="row single">
@@ -19,6 +19,6 @@
         </div><!--end single-->
 
     </div><!--end container-->
-    <footer-component></footer-component>
+    <wp-footer></wp-footer>
 </div>
 </template>
