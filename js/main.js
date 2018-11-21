@@ -58,8 +58,7 @@ Vue.component('search-form',{
     }, 
     watch : {
         '$route' : function (to, from) {    
-            var searchTerm = to.query.term 
-                ? to.query.term : ""; 
+            var searchTerm = to.query.term || ""; 
             this.searchTerm = searchTerm;            
         }
     }
