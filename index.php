@@ -38,10 +38,10 @@
     <?php get_template_part('/templates/_comments'); ?>
     <?php get_template_part('/templates/_comment-form'); ?>
     <?php get_template_part('/templates/_nopost'); ?>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"/>
-    <script src="https://unpkg.com/vue/dist/vue.js"/>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"/>
-    <script src="<?php echo get_template_directory_uri(); ?>/js/main.js"/>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="<?php echo $template_dir; ?>/js/main.js"></script>
     <?php wp_footer(); ?>
   </body>
 </html>
