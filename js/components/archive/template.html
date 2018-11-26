@@ -1,0 +1,14 @@
+<div>
+  <wp-header></wp-header>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h1 class="main-title">{{ $route.name }}</h1>
+        <the-loop :posts="posts" :pagers="pagers"></the-loop>
+      </div>
+      <sidebar></sidebar>
+    </div>
+
+  </div><!--end container-->
+  <wp-footer></wp-footer>
+</div>
