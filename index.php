@@ -27,9 +27,6 @@
         </router-view>
       </transition>
     </div><!--app-->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="<?php echo $template_dir; ?>/js/moonraker.js"></script>
     <?php wp_footer(); ?>
   </body>
