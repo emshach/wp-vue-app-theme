@@ -46493,6 +46493,13 @@ module.exports = "<div>\n  <wp-header></wp-header>\n  <div class=\"container\">\
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _axios = __webpack_require__(/*! axios */ "../../../../../../../usr/local/lib/node_modules/axios/index.js");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
   template: __webpack_require__(/*! ./template.html */ "./js/components/comment-form/template.html"),
   methods: {
@@ -46514,7 +46521,7 @@ exports.default = {
       var self = this;
       self.validate();
       if (self.valid) {
-        axios.post('/wp-json/wp/v2/comments', {
+        _axios2.default.post('/wp-json/wp/v2/comments', {
           author_name: self.commenter,
           author_email: self.email,
           content: self.content,
@@ -46927,6 +46934,13 @@ module.exports = "<footer class=\"container-fluid\">\n  <p>&copy; Copyright 2018
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _axios = __webpack_require__(/*! axios */ "../../../../../../../usr/local/lib/node_modules/axios/index.js");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
   template: __webpack_require__(/*! ./template.html */ "./js/components/wp-header/template.html"),
   data: function data() {
@@ -46936,7 +46950,7 @@ exports.default = {
   },
   mounted: function mounted() {
     var _this = this;
-    axios.get('/wp-json/wp/v2/pages?per_page=5').then(function (response) {
+    _axios2.default.get('/wp-json/wp/v2/pages?per_page=5').then(function (response) {
       _this.pages = response.data;
     }).catch(function (error) {
       console.log(error);

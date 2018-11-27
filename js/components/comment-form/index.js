@@ -1,3 +1,4 @@
+import axios from 'axios';
 export default {  
   template: require( './template.html' ),
   methods: {
