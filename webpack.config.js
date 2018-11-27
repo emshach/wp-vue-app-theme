@@ -26,6 +26,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test:   /\.vue$/,
+        loader: "vue-loader"
+      },
+      {
         test:    /\.js$/,
         exclude: /(node_modules|bower_components)/,
         loader:  "babel-loader?presets[]=es2015&comments=false"
@@ -58,8 +62,11 @@ module.exports = {
     ]
   },
   resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    },
     // root: path.join(__dirname, '..'),
-    extensions: [ '.js', '.json' ]
+    extensions: [ '.js', '.vue', '.json' ]
   }
 };
 
