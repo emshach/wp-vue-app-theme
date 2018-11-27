@@ -26,6 +26,7 @@ import Search       from './components/search';
 
 
 Vue.config.devtools = true;
+Vue.use( VueRouter );
 Vue.use( BootstrapVue );
 // init components
 

@@ -47048,6 +47048,7 @@ var _search2 = _interopRequireDefault(_search);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.config.devtools = true;
+_vue2.default.use(_vueRouter2.default);
 _vue2.default.use(_bootstrapVue2.default);
 
 
