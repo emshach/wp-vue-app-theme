@@ -11,8 +11,27 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/filmstrip/template.html"),
-  props: ['title', 'content', 'query', 'more']
-});
+  props: {
+    title: {
+      type: String,
+      default: ""
+    },
+    content: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    query: {
+      type: String,
+      default: ""
+    },
+    more: {
+      type: Boolean,
+      default: false
+    }
+  }
+}); // TODO: add more
 
 /***/ }),
 
