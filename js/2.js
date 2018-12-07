@@ -9,13 +9,37 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var carousels = 0;
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/carousel/template.html"),
-  props: ['topic', 'slides', 'id', 'background', 'interval'],
+  props: {
+    topic: {
+      type: String,
+      default: ""
+    },
+    slides: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    id: {
+      type: String,
+      default: function _default() {
+        return "carusel-" + ++carousels;
+      }
+    },
+    background: {
+      type: String,
+      default: "#000810"
+    },
+    interval: {
+      type: Number,
+      default: 15000
+    }
+  },
   data: function data() {
     return {
-      background: '#00810',
-      interval: 15000,
       loading: true,
       slide: 0,
       sliding: null

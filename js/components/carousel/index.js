@@ -1,10 +1,30 @@
+var carousels = 0;
 export default {
   template: require( './template.html' ),
-  props: [ 'topic', 'slides', 'id', 'background', 'interval' ],
+  props: {
+    topic: {
+      type: String,
+      default: ""
+    },
+    slides: {
+      type: Array,
+      default: () => []
+    },
+    id: {
+      type: String,
+      default: () => "carusel-" + ++carousels
+    },
+    background: {
+      type: String,
+      default: "#000810"
+    },
+    interval: {
+      type: Number,
+      default: 15000
+    }
+  },
   data() {
     return {
-      background: '#00810',
-      interval: 15000,
       loading: true,
       slide: 0,
       sliding: null
