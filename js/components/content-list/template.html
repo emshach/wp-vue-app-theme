@@ -2,7 +2,8 @@
   <h3 class="title" v-if="title">{{ title }}</h3>
   <template v-if="contents.length > 0">
     <ul class="list-unstyled content-list">
-      <b-media v-for="( item, index ) in contents" tag="li" :item="item">
+      <b-media v-for="( item, index ) in contents" tag="li" :item="item"
+               :key="index">
         <b-img slot="aside" blank-color="#abc" width="64" :alt="item.alt" />
         <h5 class="mt-0 mb-1">{{ item.title }}</h5>
         {{ item.desc }}

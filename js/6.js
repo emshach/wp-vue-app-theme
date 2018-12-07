@@ -42,7 +42,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section>\n  <h3 class=\"title\" v-if=\"title\">{{ title }}</h3>\n  <template v-if=\"contents.length > 0\">\n    <ul class=\"list-unstyled content-list\">\n      <b-media v-for=\"( item, index ) in contents\" tag=\"li\" :item=\"item\">\n        <b-img slot=\"aside\" blank-color=\"#abc\" width=\"64\" :alt=\"item.alt\" />\n        <h5 class=\"mt-0 mb-1\">{{ item.title }}</h5>\n        {{ item.desc }}\n      </b-media>\n    </ul>\n    <a v-if=\"query && more\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">more</a>\n  </template>\n  <template v-else>\n    <div class=\"message empty-list\">nothing to show</div>\n    <a v-if=\"query\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">refresh</a>\n  </template>\n</section>\n";
+module.exports = "<section>\n  <h3 class=\"title\" v-if=\"title\">{{ title }}</h3>\n  <template v-if=\"contents.length > 0\">\n    <ul class=\"list-unstyled content-list\">\n      <b-media v-for=\"( item, index ) in contents\" tag=\"li\" :item=\"item\"\n               :key=\"index\">\n        <b-img slot=\"aside\" blank-color=\"#abc\" width=\"64\" :alt=\"item.alt\" />\n        <h5 class=\"mt-0 mb-1\">{{ item.title }}</h5>\n        {{ item.desc }}\n      </b-media>\n    </ul>\n    <a v-if=\"query && more\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">more</a>\n  </template>\n  <template v-else>\n    <div class=\"message empty-list\">nothing to show</div>\n    <a v-if=\"query\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">refresh</a>\n  </template>\n</section>\n";
 
 /***/ })
 
