@@ -40,7 +40,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <div class=\"container-fluid main-header\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-8\">\n          <router-link class=\"blogname\" to=\"/\">{{ siteName }}</router-link>\n        </div>\n        <div class=\"col-lg-2\"></div>\n        <div class=\"col-lg-2 search-wrapper\">\n          <search-form></search-form>\n        </div>\n      </div>\n    </div>\n  </div>\n</header>\n";
+module.exports = "<header>\n  <div class=\"container-fluid main-header\">\n    <div class=\"row\">\n      <div class=\"col-lg-8\">\n        <router-link class=\"blogname\" to=\"/\">{{ siteName }}</router-link>\n      </div>\n      <div class=\"col-lg-2\"></div>\n      <div class=\"col-lg-2 search-wrapper\">\n        <search-form></search-form>\n      </div>\n    </div>\n  </div>\n</header>\n";
 
 /***/ })
 
