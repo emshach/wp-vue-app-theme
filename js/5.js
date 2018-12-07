@@ -1,8 +1,8 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./js/components/episode/index.js":
+/***/ "./js/components/contact/index.js":
 /*!****************************************!*\
-  !*** ./js/components/episode/index.js ***!
+  !*** ./js/components/contact/index.js ***!
   \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -10,14 +10,14 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/episode/template.html")
+  template: __webpack_require__(/*! ./template.html */ "./js/components/contact/template.html")
 });
 
 /***/ }),
 
-/***/ "./js/components/episode/template.html":
+/***/ "./js/components/contact/template.html":
 /*!*********************************************!*\
-  !*** ./js/components/episode/template.html ***!
+  !*** ./js/components/contact/template.html ***!
   \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {

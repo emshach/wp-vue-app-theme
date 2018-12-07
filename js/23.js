@@ -1,45 +1,29 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[23],{
 
-/***/ "./js/components/wp-header/index.js":
-/*!******************************************!*\
-  !*** ./js/components/wp-header/index.js ***!
-  \******************************************/
+/***/ "./js/components/the-loop/index.js":
+/*!*****************************************!*\
+  !*** ./js/components/the-loop/index.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/wp-header/template.html"),
-  data: function data() {
-    return {
-      pages: []
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/wp-json/wp/v2/pages?per_page=5').then(function (response) {
-      _this.pages = response.data;
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
+  template: __webpack_require__(/*! ./template.html */ "./js/components/the-loop/template.html"),
+  props: ['posts', 'pagers']
 });
 
 /***/ }),
 
-/***/ "./js/components/wp-header/template.html":
-/*!***********************************************!*\
-  !*** ./js/components/wp-header/template.html ***!
-  \***********************************************/
+/***/ "./js/components/the-loop/template.html":
+/*!**********************************************!*\
+  !*** ./js/components/the-loop/template.html ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <div class=\"container-fluid top-nav\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <nav class=\"nav\">\n          <router-link class=\"nav-link\" to=\"/\">Home</router-link>\n          <router-link class=\"nav-link\"\n                       :to=\"{path:'/blog/',name:'blog'}\" >Blog</router-link>\n          <router-link class=\"nav-link\"\n                       v-for=\"(page, key, index) in pages\"\n                       :to=\"{ name: 'page', params: { slug: page.slug }}\"\n                       :key=\"key\">\n            {{page.title.rendered}}\n          </router-link>\n        </nav>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid main-header\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-8\">\n          <router-link class=\"blogname\" to=\"/\">{{this.$root.bloginfo.name}}</router-link>\n          <p>{{this.$root.bloginfo.description}}</p>\n        </div>\n        <div class=\"col-lg-2\"></div>\n        <div class=\"col-lg-2 search-wrapper\">\n          <search-form></search-form>\n        </div>\n      </div>\n    </div>\n  </div>\n</header>\n";
+module.exports = "<div><!--div wrapper-->\n  <div v-if=\"posts.length > 0\">\n    <!--loop starts here-->\n    <ul class=\"the-loop\">\n      <li v-for=\"post in posts\">\n        <div class=\"title\">\n          <router-link v-bind:to=\"{ name: 'post', params: { slug: post.slug }}\">\n            {{post.title.rendered}}\n          </router-link>\n        </div>\n        <div class=\"meta\">\n          Categories:\n          <router-link v-for=\"(cat, index) in post.cats\" :key=\"cat.id\"\n                       :to=\"{name:'category', params: { category: cat.slug }}\">\n            {{ cat.name }}<span v-if=\"index < post.cats.length - 1\">,&nbsp;</span>\n          </router-link>\n        </div>\n        <div class=\"excerpt\" v-html=\"post.excerpt.rendered\"></div>\n      </li>\n    </ul>\n    <!--the loop ends-->\n    <!--paging starts here-->\n    <ul v-if=\"pagers.length > 1\" class=\"pagination\">\n      <li v-for=\"(pager,index) in pagers\" class=\"page-item\">\n        <router-link class=\"page-link\"\n                     v-bind:to=\"{path:$route.fullPath, query: {page : pager}}\">\n          {{pager}}\n        </router-link>\n      </li>\n    </ul>\n    <!--paging ends-->\n  </div><!--end v-if-->\n  <div v-else>\n    <nopost></nopost>\n  </div>\n</div><!--end div wrapper-->\n\n";
 
 /***/ })
 

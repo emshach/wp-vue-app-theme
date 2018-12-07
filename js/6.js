@@ -1,29 +1,29 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
-/***/ "./js/components/home/index.js":
-/*!*************************************!*\
-  !*** ./js/components/home/index.js ***!
-  \*************************************/
+/***/ "./js/components/content-list/index.js":
+/*!*********************************************!*\
+  !*** ./js/components/content-list/index.js ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/home/template.html"),
-  props: ['posts', 'pagers']
-});
+  template: __webpack_require__(/*! ./template.html */ "./js/components/content-list/template.html"),
+  props: ['title', 'content', 'query', 'more']
+}); // TODO: add more
 
 /***/ }),
 
-/***/ "./js/components/home/template.html":
-/*!******************************************!*\
-  !*** ./js/components/home/template.html ***!
-  \******************************************/
+/***/ "./js/components/content-list/template.html":
+/*!**************************************************!*\
+  !*** ./js/components/content-list/template.html ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home page\">\n  <wp-header></wp-header>\n  <div class=\"jumbotron\">\n    <div class=\"container\">\n      <carousel id=\"hero\" topic=\"TV\" :slides=\"slides\"></carousel>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"row\">\n      <content-list title=\"latest\" :content=\"latest\"></content-list>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"trending\" :content=\"trending\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"recent activity\" :content=\"recent\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"pull up\" :content=\"history\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"you might like\" :content=\"discovery\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"my faves\" :content=\"favs\"></filmstrip>\n    </div>\n  </div>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<section>\n  <h3 class=\"title\" v-if=\"title\">{{ title }}</h3>\n  <template v-if=\"contents.length > 0\">\n    <ul class=\"list-unstyled content-list\">\n      <b-media v-for=\"( item, index ) in contents\" tag=\"li\" :item=\"item\">\n        <b-img slot=\"aside\" blank-color=\"#abc\" width=\"64\" :alt=\"item.alt\" />\n        <h5 class=\"mt-0 mb-1\">{{ item.title }}</h5>\n        {{ item.desc }}\n      </b-media>\n    </ul>\n    <a v-if=\"query && more\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">more</a>\n  </template>\n  <template v-else>\n    <div class=\"message empty-list\">nothing to show</div>\n    <a v-if=\"query\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">refresh</a>\n  </template>\n</section>\n";
 
 /***/ })
 

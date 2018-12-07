@@ -1,8 +1,8 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[19],{
 
-/***/ "./js/components/single/index.js":
+/***/ "./js/components/search/index.js":
 /*!***************************************!*\
-  !*** ./js/components/single/index.js ***!
+  !*** ./js/components/search/index.js ***!
   \***************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -10,20 +10,20 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/single/template.html"),
-  props: ['post', 'comments']
+  template: __webpack_require__(/*! ./template.html */ "./js/components/search/template.html"),
+  props: ['posts', 'pagers']
 });
 
 /***/ }),
 
-/***/ "./js/components/single/template.html":
+/***/ "./js/components/search/template.html":
 /*!********************************************!*\
-  !*** ./js/components/single/template.html ***!
+  !*** ./js/components/search/template.html ***!
   \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <wp-header></wp-header>\n  <div class=\"container\">\n    <div class=\"row single\">\n      <div class=\"col-lg-8 content-area\">\n        <div v-if=\"post[0]\">\n          <h1 class=\"post-title\">{{ post[0].title.rendered }}</h1>\n          <div class=\"content\" v-html=\"post[0].content.rendered\"></div>\n          <comments :comments=\"comments\"></comments>\n          <comment-form></comment-form>\n        </div><!--end v-if-->\n        <div v-else>\n          <nopost></nopost>\n        </div>\n      </div><!--end content-area-->\n      <sidebar></sidebar>\n    </div><!--end single-->\n  </div><!--end container-->\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div>\n  <wp-header></wp-header>\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <h1 class=\"main-title\">Search Results</h1>\n        <the-loop :posts=\"posts\" :pagers=\"pagers\"></the-loop>\n      </div><!--end col-lg-12-->\n    </div><!--end row-->\n  </div><!--end container-->\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 

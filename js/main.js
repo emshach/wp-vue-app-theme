@@ -21,6 +21,10 @@ const WpHeader    = () => import( './components/wp-header'    );
 const SearchForm  = () => import( './components/search-form'  );
 const CommentForm = () => import( './components/comment-form' );
 const Comments    = () => import( './components/comments'     );
+const Carousel    = () => import( './components/carousel'     );
+const ContentList = () => import( './components/content-list' );
+const Filmstrip   = () => import( './components/filmstrip'    );
+// const             = () => import( './components/'             );
 
 // const components with routes
 const PageNotFound   = () => import( './components/pagenotfound'    );
@@ -48,7 +52,6 @@ Vue.use( BootstrapVue );
 Vue.use( VueAwesomeSwiper );
 
 // init components
-Vue.component( 'flower-spinner', FlowerSpinner );
 Vue.component( 'the-loop',       TheLoop       );
 Vue.component( 'sidebar',        Sidebar       );
 Vue.component( 'wp-footer',      WpFooter      );
@@ -57,6 +60,11 @@ Vue.component( 'wp-header',      WpHeader      );
 Vue.component( 'search-form',    SearchForm    );
 Vue.component( 'comment-form',   CommentForm   );
 Vue.component( 'comments',       Comments      );
+Vue.component( 'flower-spinner', FlowerSpinner );
+Vue.component( 'carousel',       Carousel      );
+Vue.component( 'content-list',   ContentList   );
+Vue.component( 'filmstrip',      Filmstrip     );
+// Vue.component( '',                             );
 
 //components with routes
 const VuePageNotFound   = Vue.component( 'pagenotfound',    PageNotFound   );
