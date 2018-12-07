@@ -9,8 +9,8 @@ module.exports = {
     'moonraker':      './js/main.js'
   },
   output: {
-    path:       path.join( __dirname, 'js' ),
-    publicPath: path.join( __dirname, 'js' ),
+    path:       path.join( __dirname, 'js/' ),
+    publicPath: path.join( __dirname, 'js/' ),
     filename:   '[name].js'
   },
   plugins: [
