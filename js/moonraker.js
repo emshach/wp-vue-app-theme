@@ -837,9 +837,9 @@ var Shop = function Shop() {
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].config.devtools = true;
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(EpicSpinners);
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_6___default.a); // init components
 
+vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('flower-spinner', epic_spinners__WEBPACK_IMPORTED_MODULE_5__["FlowerSpinner"]);
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('the-loop', TheLoop);
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('sidebar', Sidebar);
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('wp-footer', WpFooter);
