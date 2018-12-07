@@ -985,11 +985,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
   created: function created() {
     this.getSiteInfo();
     this.getUserData();
-    this.updateData();
   },
   watch: {},
   methods: {
-    getSiteInfo: function getSiteInfo() {}
+    getSiteInfo: function getSiteInfo() {},
+    getUserData: function getUserData() {}
   }
 }).$mount('#app'); // Now the app has started!
 

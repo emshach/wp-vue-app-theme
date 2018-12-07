@@ -139,12 +139,13 @@ const app = new Vue({
   created() {     
     this.getSiteInfo();
     this.getUserData();
-    this.updateData();
   },    
   watch : {
   }, 
   methods : {
     getSiteInfo() {
+    },
+    getUserData() {
     }
   }
 }).$mount('#app');
