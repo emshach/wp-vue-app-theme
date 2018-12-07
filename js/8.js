@@ -16,7 +16,7 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       default: ""
     },
-    content: {
+    contents: {
       type: Array,
       default: function _default() {
         return [];

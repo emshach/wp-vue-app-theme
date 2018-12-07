@@ -5,7 +5,7 @@ export default {
       type: String,
       default: ""
     },
-    content: {
+    contents: {
       type: Array,
       default: () => []
     },
