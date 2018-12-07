@@ -11,7 +11,36 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/home/template.html"),
-  props: ['posts', 'pagers']
+  props: {
+    slides: {
+      type: Array,
+      default: []
+    },
+    latest: {
+      type: Array,
+      default: []
+    },
+    trending: {
+      type: Array,
+      default: []
+    },
+    recent: {
+      type: Array,
+      default: []
+    },
+    history: {
+      type: Array,
+      default: []
+    },
+    discovery: {
+      type: Array,
+      default: []
+    },
+    favs: {
+      type: Array,
+      default: []
+    }
+  }
 });
 
 /***/ }),
