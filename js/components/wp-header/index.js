@@ -1,11 +1,12 @@
 import axios from 'axios';
 export default {
   template: require( './template.html' ),
-  data() {
-    return {
-      pages : []
-    };
-  }, 
+  props: {
+    siteName: {
+      type: String,
+      default: "My First Wordpress Site"
+    }
+  },
   mounted() {    
     var _this = this;    
     axios.get('/wp-json/wp/v2/pages?per_page=5')
