@@ -3,31 +3,31 @@ export default {
   props: {
     slides: {
       type: Array,
-      default: []
+      default: () => []
     },
     latest: {
       type: Array,
-      default: []
+      default: () => []
     },
     trending: {
       type: Array,
-      default: []
+      default: () => []
     },
     recent: {
       type: Array,
-      default: []
+      default: () => []
     },
     history: {
       type: Array,
-      default: []
+      default: () => []
     },
     discovery: {
       type: Array,
-      default: []
+      default: () => []
     },
     favs: {
       type: Array,
-      default: []
+      default: () => []
     }
   }
 };

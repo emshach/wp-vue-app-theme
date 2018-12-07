@@ -14,31 +14,45 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     slides: {
       type: Array,
-      default: []
+      default: function _default() {
+        return [];
+      }
     },
     latest: {
       type: Array,
-      default: []
+      default: function _default() {
+        return [];
+      }
     },
     trending: {
       type: Array,
-      default: []
+      default: function _default() {
+        return [];
+      }
     },
     recent: {
       type: Array,
-      default: []
+      default: function _default() {
+        return [];
+      }
     },
     history: {
       type: Array,
-      default: []
+      default: function _default() {
+        return [];
+      }
     },
     discovery: {
       type: Array,
-      default: []
+      default: function _default() {
+        return [];
+      }
     },
     favs: {
       type: Array,
-      default: []
+      default: function _default() {
+        return [];
+      }
     }
   }
 });
