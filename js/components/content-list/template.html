@@ -1,0 +1,19 @@
+<section>
+  <h3 class="title" v-if="title">{{ title }}</h3>
+  <template v-if="contents.length > 0">
+    <ul class="list-unstyled content-list">
+      <b-media v-for="( item, index ) in contents" tag="li" :item="item">
+        <b-img slot="aside" blank-color="#abc" width="64" :alt="item.alt" />
+        <h5 class="mt-0 mb-1">{{ item.title }}</h5>
+        {{ item.desc }}
+      </b-media>
+    </ul>
+    <a v-if="query && more" class="loadmore" href="#"
+       @click.prevent="loadMore">more</a>
+  </template>
+  <template v-else>
+    <div class="message empty-list">nothing to show</div>
+    <a v-if="query" class="loadmore" href="#"
+       @click.prevent="loadMore">refresh</a>
+  </template>
+</section>

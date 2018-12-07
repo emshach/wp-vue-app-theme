@@ -1,25 +1,29 @@
-<div class="home">
+<div class="home page">
   <wp-header></wp-header>
   <div class="jumbotron">
     <div class="container">
-      <h1>Home Page</h1>
-      <p class="lead">
-        This is a simple hero unit, a simple jumbotron-style component for
-        calling extra attention to featured content or information.</p>
-      <hr class="my-4">
-      <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-      </p>
+      <carousel id="hero" topic="TV" :slides="slides"></carousel>
     </div>
   </div>
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-8">
-        <h5 class="latest-title">Latest from the <router-link :to="{path:'/blog/',name:'blog'}" >Blog</router-link></h5>
-        <the-loop :posts="posts" :pagers="pagers"></the-loop>
-      </div>
-      <sidebar></sidebar>
+      <content-list title="latest" :content="latest"></content-list>
+    </div>
+    <div class="row">
+      <filmstrip title="trending" :content="trending"></content-list>
+    </div>
+    <div class="row">
+      <filmstrip title="recent activity" :content="recent"></content-list>
+    </div>
+    <div class="row">
+      <filmstrip title="pull up" :content="history"></content-list>
+    </div>
+    <div class="row">
+      <filmstrip title="you might like" :content="discovery"></content-list>
+    </div>
+    <div class="row">
+      <filmstrip title="my faves" :content="favs"></content-list>
     </div>
   </div>
   <wp-footer></wp-footer>

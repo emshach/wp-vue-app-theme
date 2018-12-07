@@ -5,6 +5,8 @@
  * USES THE COMPONENT "PREVIEW"
 */
 
+$VERSION = '0.1.0';
+
 //change preview post links - to match wpvue route
 function new_preview_link() {
   $slug = basename(get_the_ID()); 
@@ -147,4 +149,10 @@ function allow_anonymous_comments() {
 }
 add_filter('rest_allow_anonymous_comments','allow_anonymous_comments');
 
+/**
+ * enqueue oficial wp api rest api js client and our js client
+ */
+wp_enqueue_script( 'wp-api' );
+wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
+                   [ 'wp-api' ], $VERSION, true ); // include in footer
 ?>

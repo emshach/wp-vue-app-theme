@@ -19,15 +19,9 @@
   <body>
     <div id="app">
       <transition name="fade-in">
-        <router-view
-          v-bind:posts="posts"
-          v-bind:post="post"
-          v-bind:comments="comments"
-          v-bind:pagers="pagers">
-        </router-view>
+        <router-view></router-view>
       </transition>
     </div><!--app-->
-    <script src="<?php echo $template_dir; ?>/js/moonraker.js"></script>
     <?php wp_footer(); ?>
   </body>
 </html>

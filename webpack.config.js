@@ -1,6 +1,7 @@
 const webpack = require( 'webpack' );
 const path = require( 'path' );
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   mode: 'development',
@@ -16,12 +17,13 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {
         babel: {
-          presets: [ 'es2015', 'stage-0' ]
+          presets: [ '@babel/env' ]
         }}}),
     new MiniCssExtractPlugin({
       filenme: "[name].css",
       chunkfilename: "[id].css"
-    })
+    }),
+    new VueLoaderPlugin()
   ],
   module: {
     rules: [
@@ -32,7 +34,7 @@ module.exports = {
       {
         test:    /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader:  "babel-loader?presets[]=es2015&comments=false"
+        loader:  "babel-loader"
       },
       {
         test:   /\.html$/,
