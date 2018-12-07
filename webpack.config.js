@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     path:       path.join( __dirname, 'js/' ),
-    publicPath: path.join( __dirname, 'js/' ),
+    publicPath: '/moonraker-theme/js/',
     filename:   '[name].js'
   },
   plugins: [
