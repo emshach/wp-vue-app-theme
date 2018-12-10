@@ -4,6 +4,7 @@ export default {
   data () {
     return {
       sstate: store.state,
+      latest: [],
       trending: [],
       recent: [],
       history: [],

@@ -16,6 +16,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      latest: [],
       trending: [],
       recent: [],
       history: [],
