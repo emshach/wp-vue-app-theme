@@ -6,10 +6,6 @@ export default {
       type: String,
       default: ""
     },
-    slides: {
-      type: Array,
-      default: () => []
-    },
     id: {
       type: String,
       default: () => "carusel-" + ++carousels
@@ -26,9 +22,13 @@ export default {
   data() {
     return {
       loading: true,
+      slides: [],
       slide: 0,
       sliding: null
     };
+  },
+  mounted() {
+    this.getSlides();
   },
   methods: {
     onSlideStart ( slide ) {
@@ -36,6 +36,8 @@ export default {
     },
     onSlideEnd ( slide ) {
       this.sliding = false;
+    },
+    getSlides() {
     }
   }
 };

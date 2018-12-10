@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<footer class=\"container-fluid\">\n  <p>&copy; Copyright 2018 Best Seat In The House (Jamaica)</p>\n</footer>\n";
+module.exports = "<template>\n  <carousel-nav></carousel-nav>\n  <footer class=\"container-fluid\">\n    <p>&copy; Copyright 2018 Best Seat In The House (Jamaica)</p>\n  </footer>\n</template>\n";
 
 /***/ })
 

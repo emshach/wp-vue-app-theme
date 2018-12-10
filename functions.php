@@ -7,6 +7,9 @@
 
 $VERSION = '0.1.0';
 
+//classe
+// require_once 'lib/classes.php';
+
 //change preview post links - to match wpvue route
 function new_preview_link() {
   $slug = basename(get_the_ID()); 
@@ -147,7 +150,7 @@ function rest_api_filter_add_filter_param( $args, $request ) {
 function allow_anonymous_comments() {
   return true;
 }
-add_filter('rest_allow_anonymous_comments','allow_anonymous_comments');
+add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 
 /**
  * enqueue oficial wp api rest api js client and our js client
@@ -155,4 +158,15 @@ add_filter('rest_allow_anonymous_comments','allow_anonymous_comments');
 wp_enqueue_script( 'wp-api' );
 wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
                    [ 'wp-api' ], $VERSION, true ); // include in footer
+$moonraker_local_vars = [
+    'site' => [
+        'title' => get_option('blogname'),
+        'url' => get_site_url(),
+        'description' => get_option('blogdescription'),
+    ],
+    'menus' => [
+        'nav' => wp_get_nav_menu_items( 'nav' )
+    ]
+];
+wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 ?>

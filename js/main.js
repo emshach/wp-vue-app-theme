@@ -1,6 +1,8 @@
 import 'babel-polyfill';
+import 'es6-promise/auto';
 import axios from 'axios';
 import Vue from 'vue';
+import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
@@ -47,6 +49,7 @@ const Shop           = () => import( './components/shop'            );
 
 // directives
 Vue.config.devtools = true;
+Vue.use( Vuex );
 Vue.use( VueRouter );
 Vue.use( BootstrapVue );
 Vue.use( VueAwesomeSwiper );
@@ -83,6 +86,19 @@ const VuePreviewEpisode = Vue.component( 'preview-episode', PreviewEpisode );
 const VueMembers        = Vue.component( 'members',         Members        );
 const VueUpload         = Vue.component( 'upload',          Upload         );
 const VueShop           = Vue.component( 'shop',            Shop           );
+
+// Vuex store
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment( state ) {
+      state.count++;
+    }
+  }
+});
+
 
 // Define some routes
 const routes = [
@@ -137,8 +153,8 @@ router.beforeEach(( to, from, next )  => {
 const app = new Vue({
   router : router, 
   data : {
-    "bloginfo" : {
-      "name" : "", 
+    "site" : {
+      "title" : "", 
       "url" : "",
       "description" : ""
     },
@@ -147,6 +163,14 @@ const app = new Vue({
   created() {     
     this.getSiteInfo();
     this.getUserData();
+    wp.api.loadPromise.done(() => {
+      var settings = new wp.api.models.Settings();
+      settings.fetch().done(( response ) => {
+        this.title = response.title;
+        this.url = response.url;
+        this.description = response.description;
+      });
+    });
   },    
   watch : {
   }, 

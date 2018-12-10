@@ -1,72 +1,48 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[9],{
 
-/***/ "./js/components/home/index.js":
-/*!*************************************!*\
-  !*** ./js/components/home/index.js ***!
-  \*************************************/
+/***/ "./js/components/filmstrip/index.js":
+/*!******************************************!*\
+  !*** ./js/components/filmstrip/index.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/home/template.html"),
+  template: __webpack_require__(/*! ./template.html */ "./js/components/filmstrip/template.html"),
   props: {
-    slides: {
+    title: {
+      type: String,
+      default: ""
+    },
+    contents: {
       type: Array,
       default: function _default() {
         return [];
       }
     },
-    latest: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
+    query: {
+      type: String,
+      default: ""
     },
-    trending: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    recent: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    history: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    discovery: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    favs: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
+    more: {
+      type: Boolean,
+      default: false
     }
   }
-});
+}); // TODO: add more
 
 /***/ }),
 
-/***/ "./js/components/home/template.html":
-/*!******************************************!*\
-  !*** ./js/components/home/template.html ***!
-  \******************************************/
+/***/ "./js/components/filmstrip/template.html":
+/*!***********************************************!*\
+  !*** ./js/components/filmstrip/template.html ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home page\">\n  <wp-header></wp-header>\n  <div class=\"mh-100 mw-100\">\n    <div class=\"container\">\n      <carousel id=\"hero\" topic=\"TV\" :slides=\"slides\"></carousel>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"row\">\n      <content-list title=\"latest\" :content=\"latest\"></content-list>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"trending\" :content=\"trending\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"recent activity\" :content=\"recent\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"pull up\" :content=\"history\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"you might like\" :content=\"discovery\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"my faves\" :content=\"favs\"></filmstrip>\n    </div>\n  </div>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<section>\n  <h3 class=\"title\" v-if=\"title\">{{ title }}</h3>\n  <swiper v-if=\"contents.length > 0\" :options=\"swiperOptions\">\n    <swiper-slide v-for=\"( slide, index ) in contents\" :key=\"index\">\n      <b-card>\n        <h5 class=\"mt-0 mb-1\">{{ item.title }}</h5>\n        <thumbnail :type=\"item.mediatype\" :src=\"item.src\"></thumbnail>\n        <metadata v-if=\"item.metadata\" :stats=\"item.metadata\"></metadata>\n        <p class=\"card-text\">{{ item.desc }}</p>\n      </b-card>\n    </swiper-slide>\n    <div class=\"swiper-button-prev\" slot=\"button-prev\"></div>\n    <div class=\"swiper-button-next\" slot=\"button-next\"></div>\n    <div class=\"swiper-scrollbar\"   slot=\"scrollbar\"></div>\n  </swiper>\n  <template v-else>\n    <div class=\"message empty-list\">nothing to show</div>\n    <a v-if=\"query\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">refresh</a>\n  </template>\n</section>\n";
 
 /***/ })
 
