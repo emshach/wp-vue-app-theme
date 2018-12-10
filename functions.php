@@ -222,7 +222,7 @@ function mrk_register_endpoint () {
 }
 
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
-add_action( 'rest_api_init', mrk_register_endpoint );
+add_action( 'rest_api_init', 'mrk_register_endpoint' );
 
 /**
  * enqueue oficial wp api rest api js client and our js client
