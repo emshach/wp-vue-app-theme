@@ -204,7 +204,7 @@ function mrk_get_current_user_info() {
 */
 function mrk_get_post_for_url( $data ) {
     $postId     = url_to_postid( $data['url'] );
-    error_log( var_dump( $data, true));
+    error_log( var_export( [$data, $data[ 'url' ]], true));
     error_log( $postId );
     $postType   = get_post_type( $postId );
     $controller = new WP_REST_Posts_Controller( $postType );
