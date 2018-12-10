@@ -186,7 +186,9 @@ function mrk_get_current_user_info() {
         'last_name' => $user->user_lastname,
         'display_name' => $user->display_name,
         'email' => $user->user_email,
-        'all'  => (array) $user,
+        'membership' => ( $user->membership_level
+                          ? $user->membership_level->name
+                          : '' )
     ];
 }
 
