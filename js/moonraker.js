@@ -723,10 +723,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var Path = wp.api.models.Post.extend({
-  urlRoot: wpApiSettings.root + '/path'
+  ur: function ur() {
+    return wpApiSettings.root + '/path';
+  }
 });
 var Paths = wp.api.collections.Posts.extend({
-  url: wpApiSettings.root + '/path',
+  ur: function ur() {
+    return wpApiSettings.root + '/paths';
+  },
   model: Path
 });
 wp.api.models.Path = Path;
