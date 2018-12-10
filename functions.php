@@ -161,6 +161,9 @@ function mrk_filter_menu_items( $menu ) {
     foreach( $menu as $item ) {
         if ( $item->post_status != 'publish' )
             continue;
+        if ( get_field( 'content_page', $item->object_id )
+            && get_field( 'free', $item->object_id ))
+            $item->classes[] = 'free';
         $output[] = [
             'id' => $item->ID,
             'classes' => $item->classes,

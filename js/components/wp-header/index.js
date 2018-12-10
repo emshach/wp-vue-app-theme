@@ -1,20 +1,17 @@
-import axios from 'axios';
+import store from '../../lib/store';
 export default {
   template: require( './template.html' ),
-  props: {
-    siteName: {
-      type: String,
-      default: "My First Wordpress Site"
-    }
+  data() {
+    return {
+      sstate: store.state,
+      title: '',
+      slogan: '',
+      logo: ''
+    };
   },
   mounted() {    
-    var _this = this;    
-    axios.get('/wp-json/wp/v2/pages?per_page=5')
-       .then(function (response) {     
-         _this.pages = response.data;
-       })
-       .catch(function (error) {
-         console.log(error);
-       });
+    this.title = this.sstore.state.site.title || '';
+    this.slogan = this.sstore.state.site.description || '';
+    this.logo = this.sstore.state.site.logo || '';
   }
 };
