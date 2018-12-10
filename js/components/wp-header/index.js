@@ -10,8 +10,8 @@ export default {
     };
   },
   mounted() {    
-    this.title = this.sstore.state.site.title || '';
-    this.slogan = this.sstore.state.site.description || '';
-    this.logo = this.sstore.state.site.logo || '';
+    this.title = this.sstore.site.title || '';
+    this.slogan = this.sstore.site.description || '';
+    this.logo = this.sstore.site.logo || '';
   }
 };
