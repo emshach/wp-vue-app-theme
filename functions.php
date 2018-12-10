@@ -155,8 +155,8 @@ function allow_anonymous_comments() {
  * Filter array menu items for js output
  */
 function mrk_filter_menu_items( $menu ) {
-    if ( empty( $menu ))
-        return [];
+    // if ( empty( $menu ))
+    //     return [];
     $output = [];
     foreach( $menu as $item ) {
         if ( $menu_item->status != 'publish' )
