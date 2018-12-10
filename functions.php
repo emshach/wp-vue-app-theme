@@ -202,15 +202,15 @@ function mrk_get_current_user_info() {
 *
 * @return WP_Error|WP_REST_Response
 */
-function mrk_get_post_for_url( $data ) {
-    $postId     = url_to_postid( $data['url'] );
-    error_log( var_export( [$data, $data[ 'url' ]], true));
-    error_log( $postId );
-    $postType   = get_post_type( $postId );
-    $controller = new WP_REST_Posts_Controller( $postType );
-    $request    = new WP_REST_Request('GET', "/wp/v2/{$postType}s/{$postId}");
-    $request->set_url_params([ 'id' => $postId ]);
-    return $controller->get_item( $request );
+function mrk_get_post_by_path( $data ) {
+    $post = get_page_by_path( $data['url'] );
+    if ( empty( $post )) {
+        return new WP_Error( 'mrk_no_suth_post', 'Path not found', [ 'status' => 404 ]);
+    }
+    $request = new WP_REST_Request();
+    $controller = new WP_REST_Posts_Controller( $post->post_type );
+    $prepared = $controller->prepare_item_for_response( $post, $request);
+    return $json_encode( $prepared->data );
 }
 /**
  * make the endpoint for fetching posts/pages by url 
