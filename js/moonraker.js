@@ -920,7 +920,8 @@ var VueShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop
 //     }
 //   }
 // });
-// Define some routes
+
+window.store = _lib_store__WEBPACK_IMPORTED_MODULE_9__["default"]; // Define some routes
 
 var routes = [{
   path: '/',

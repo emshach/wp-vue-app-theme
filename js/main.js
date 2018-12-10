@@ -101,7 +101,7 @@ const VueShop           = Vue.component( 'shop',            Shop           );
 //     }
 //   }
 // });
-
+window.store = store;
 
 // Define some routes
 const routes = [
