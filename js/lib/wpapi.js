@@ -1,11 +1,11 @@
 var Path = wp.api.models.Post.extend({
-  ur() {
+  url() {
     return wpApiSettings.root + '/path';
   }
 });
 
 var Paths = wp.api.collections.Posts.extend({
-  ur() {
+  url() {
     return wpApiSettings.root + '/paths';
   },
   model: Path
