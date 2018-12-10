@@ -729,6 +729,8 @@ var Paths = wp.api.collections.Posts.extend({
   url: wpApiSettings.root + '/path',
   model: Path
 });
+wp.api.models.Path = Path;
+wp.api.collections.Paths = Paths;
 /* harmony default export */ __webpack_exports__["default"] = ({
   Path: Path,
   Paths: Paths
