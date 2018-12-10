@@ -1,12 +1,12 @@
 var Path = wp.api.models.Post.extend({
   url() {
-    return wpApiSettings.root + '/path';
+    return wpApiSettings.root + 'mrk/v1/path';
   }
 });
 
 var Paths = wp.api.collections.Posts.extend({
   url() {
-    return wpApiSettings.root + '/paths';
+    return wpApiSettings.root + 'mrk/v1/paths';
   },
   model: Path
 });
