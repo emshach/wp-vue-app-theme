@@ -168,7 +168,7 @@ function mrk_filter_menu_items( $menu ) {
             'object' => $item->object,
             'object_id' => $item->object_id,
             'url' => $item->url,
-            'status' => $item->status,
+            'status' => $item->post_status,
         ];
     }
     return $output;
