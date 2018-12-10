@@ -198,17 +198,6 @@ function mrk_get_current_user_info() {
 }
 
 /**
- * make the endpoint for fetching posts/pages by url 
- * /wp-json/mrk/v1
- */
-add_action('rest_api_init', function () {
-	$namespace = 'mrk/v1';
-	register_rest_route( $namespace, '/path/(?P<url>.*?)', array(
-		'methods'  => 'GET',
-		'callback' => 'mrk_get_post_for_url',
-	));
-});
-/**
 * Fix the wordpress rest-api so we can just lookup pages by their full * path
 *
 * @return WP_Error|WP_REST_Response
@@ -221,9 +210,12 @@ function get_post_for_url( $data ) {
     $request->set_url_params([ 'id' => $postId ]);
     return $controller->get_item( $request );
 }
+/**
+ * make the endpoint for fetching posts/pages by url 
+ * /wp-json/mrk/v1
+ */
 function mrk_register_endpoint () {
-    $namespace = 'mrk/v1';
-    register_rest_route( $namespace, '/path/(?P<url>.*?)', [
+    register_rest_route( 'mrk/v1', '/path/(?P<url>.*)', [
         'methods'  => 'GET',
 	'callback' => 'mrk_get_post_for_url',
     ]);
