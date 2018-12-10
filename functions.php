@@ -159,8 +159,8 @@ function mrk_filter_menu_items( $menu ) {
         return [];
     $output = [];
     foreach( $menu as $item ) {
-        if ( $item->status != 'publish' )
-            continue;
+        // if ( $item->status != 'publish' )
+        //     continue;
         $output[] = [
             'id' => $item->ID,
             'classes' => $item->classes,
@@ -168,6 +168,7 @@ function mrk_filter_menu_items( $menu ) {
             'object' => $item->object,
             'object_id' => $item->object_id,
             'url' => $item->url,
+            'status' => $item->status,
         ];
     }
     return $output;
