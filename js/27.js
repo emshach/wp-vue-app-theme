@@ -22,9 +22,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.title = this.sstore.site.title || '';
-    this.slogan = this.sstore.site.description || '';
-    this.logo = this.sstore.site.logo || '';
+    this.title = this.sstate.site.title || '';
+    this.slogan = this.sstate.site.description || '';
+    this.logo = this.sstate.site.logo || '';
   }
 });
 
