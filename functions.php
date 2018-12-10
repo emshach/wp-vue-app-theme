@@ -150,6 +150,46 @@ function rest_api_filter_add_filter_param( $args, $request ) {
 function allow_anonymous_comments() {
   return true;
 }
+
+/**
+ * Filter array menu items for js output
+ */
+function mrk_filter_menu_items( $menu ) {
+    if ( empty( $menu ))
+        retuurn [];
+    $output = [];
+    foreach( $menu as $item ) {
+        if ( $menu_item->status != 'publish' )
+            continue;
+        $output[] = [
+            'id' => $item->ID,
+            'classes' => $item->classes,
+            'title' => $item->title,
+            'object' => $item->object,
+            'object_id' => $item->object_id,
+            'url' => $item->url,
+        ];
+    }
+    return $output;
+}
+
+/**
+ * get current user info
+ */
+function mrk_get_current_user_info() {
+    if (! is_user_logged_in()) return '';
+    $user = wp_get_current_user();
+    return [
+        'id' => $user->ID,
+        'name' => $user->user_login,
+        'first_name' => $user->user_firstname,
+        'last_name' => $user->user_lastname,
+        'display_name' => $user->display_name,
+        'email' => $user->user_email,
+        'all'  => (array) $user,
+    ]
+}
+
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 
 /**
@@ -165,8 +205,9 @@ $moonraker_local_vars = [
         'description' => get_option('blogdescription'),
     ],
     'menus' => [
-        'nav' => wp_get_nav_menu_items( 'nav' )
-    ]
+        'nav' => mrk_filter_menu_items( wp_get_nav_menu_items( 'nav' ))
+    ],
+    'user' =>  mrk_get_current_user_info()
 ];
 wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 ?>
