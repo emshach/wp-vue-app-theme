@@ -7,4 +7,7 @@ var Paths = wp.api.collections.Posts.extend({
   model: Path
 });
 
+wp.api.models.Path = Path;
+wp.api.collections.Paths = Paths;
+
 export default { Path, Paths };
