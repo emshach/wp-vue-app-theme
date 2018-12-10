@@ -7,6 +7,7 @@ import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
+import store from './lib/store';
 // import wp from './lib/wpapi';
 
 // styles
@@ -90,16 +91,16 @@ const VueUpload         = Vue.component( 'upload',          Upload         );
 const VueShop           = Vue.component( 'shop',            Shop           );
 
 // Vuex store
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment( state ) {
-      state.count++;
-    }
-  }
-});
+// const store = new Vuex.Store({
+//   state: {
+//     count: 0
+//   },
+//   mutations: {
+//     increment( state ) {
+//       state.count++;
+//     }
+//   }
+// });
 
 
 // Define some routes
@@ -160,6 +161,7 @@ const app = new Vue({
       "url" : "",
       "description" : ""
     },
+    sstate: store.state,
     user: {}
   }, 
   created() {     
