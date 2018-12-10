@@ -164,6 +164,7 @@ function mrk_filter_menu_items( $menu ) {
         if ( get_field( 'content_page', $item->object_id )
             && get_field( 'free', $item->object_id ))
             $item->classes[] = 'free';
+        $img = get_field('menu_thumbnail', $item->object_id);
         $output[] = [
             'id' => $item->ID,
             'classes' => $item->classes,
@@ -171,6 +172,7 @@ function mrk_filter_menu_items( $menu ) {
             'object' => $item->object,
             'object_id' => $item->object_id,
             'url' => $item->url,
+            'thumb' => $img
         ];
     }
     return $output;
@@ -195,11 +197,45 @@ function mrk_get_current_user_info() {
     ];
 }
 
+/**
+ * make the endpoint for fetching posts/pages by url 
+ * /wp-json/mrk/v1
+ */
+add_action('rest_api_init', function () {
+	$namespace = 'mrk/v1';
+	register_rest_route( $namespace, '/path/(?P<url>.*?)', array(
+		'methods'  => 'GET',
+		'callback' => 'mrk_get_post_for_url',
+	));
+});
+/**
+* Fix the wordpress rest-api so we can just lookup pages by their full * path
+*
+* @return WP_Error|WP_REST_Response
+*/
+function get_post_for_url( $data ) {
+    $postId     = url_to_postid( $data['url'] );
+    $postType   = get_post_type( $postId );
+    $controller = new WP_REST_Posts_Controller( $postType );
+    $request    = new WP_REST_Request('GET', "/wp/v2/{$postType}s/{$postId}");
+    $request->set_url_params([ 'id' => $postId ]);
+    return $controller->get_item( $request );
+}
+function mrk_register_endpoint () {
+    $namespace = 'mrk/v1';
+    register_rest_route( $namespace, '/path/(?P<url>.*?)', [
+        'methods'  => 'GET',
+	'callback' => 'mrk_get_post_for_url',
+    ]);
+}
+
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
+add_action( 'rest_api_init', mrk_register_endpoint );
 
 /**
  * enqueue oficial wp api rest api js client and our js client
  */
+
 wp_enqueue_script( 'wp-api' );
 wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
                    [ 'wp-api' ], $VERSION, true ); // include in footer

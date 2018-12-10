@@ -1,8 +1,10 @@
-import WPAPI from 'wpapi';
-var apiRootJSON = require( './rest.json' );
-var site = new WPAPI({
-    endpoint: 'http://my-site.com/wp-json',
-    routes: apiRootJSON.routes
+var Path = wp.api.models.Post.extend({
+  urlRoot: wpApiSettings.root + '/path'
 });
 
-export default site;
+var Paths = wp.api.collections.Posts.extend({
+  url: wpApiSettings.root + '/path',
+  model: Path
+});
+
+export default { Path, Paths };
