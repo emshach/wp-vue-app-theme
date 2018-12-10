@@ -202,7 +202,7 @@ function mrk_get_current_user_info() {
 *
 * @return WP_Error|WP_REST_Response
 */
-function get_post_for_url( $data ) {
+function mrk_get_post_for_url( $data ) {
     $postId     = url_to_postid( $data['url'] );
     $postType   = get_post_type( $postId );
     $controller = new WP_REST_Posts_Controller( $postType );
@@ -215,7 +215,7 @@ function get_post_for_url( $data ) {
  * /wp-json/mrk/v1
  */
 function mrk_register_endpoint () {
-    register_rest_route( 'mrk/v1', '/path/(?P<url>.*)', [
+    register_rest_route( 'mrk/v1', '/path/(?P<url>.+)', [
         'methods'  => 'GET',
 	'callback' => 'mrk_get_post_for_url',
     ]);
