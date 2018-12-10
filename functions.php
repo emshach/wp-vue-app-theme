@@ -207,10 +207,10 @@ function mrk_get_post_by_path( $data ) {
     if ( empty( $post )) {
         return new WP_Error( 'mrk_no_suth_post', 'Path not found', [ 'status' => 404 ]);
     }
-    $request = new WP_REST_Request();
-    $controller = new WP_REST_Posts_Controller( $post->post_type );
-    $prepared = $controller->prepare_item_for_response( $post, $request);
-    return $json_encode( $prepared->data );
+    // $request = new WP_REST_Request();
+    // $controller = new WP_REST_Posts_Controller( $post->post_type );
+    // $prepared = $controller->prepare_item_for_response( $post, $request);
+    return $post;
 }
 /**
  * make the endpoint for fetching posts/pages by url 
