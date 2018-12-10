@@ -204,8 +204,9 @@ function mrk_get_current_user_info() {
 */
 function mrk_get_post_by_path( $data ) {
     $post = get_page_by_path( $data['url'] );
+    error_log( var_export( $post, true ));
     if ( empty( $post )) {
-        return new WP_Error( 'mrk_no_suth_post', 'Path not found', [ 'status' => 404 ]);
+        throw new WP_Error( 'mrk_no_suth_post', 'Path not found', [ 'status' => 404 ]);
     }
     // $request = new WP_REST_Request();
     // $controller = new WP_REST_Posts_Controller( $post->post_type );
