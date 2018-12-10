@@ -26,6 +26,7 @@ const Comments    = () => import( './components/comments'     );
 const Carousel    = () => import( './components/carousel'     );
 const ContentList = () => import( './components/content-list' );
 const Filmstrip   = () => import( './components/filmstrip'    );
+const CarouselNav = () => import( './components/carousel-nav' );
 // const             = () => import( './components/'             );
 
 // const components with routes
@@ -67,6 +68,7 @@ Vue.component( 'flower-spinner', FlowerSpinner );
 Vue.component( 'carousel',       Carousel      );
 Vue.component( 'content-list',   ContentList   );
 Vue.component( 'filmstrip',      Filmstrip     );
+Vue.component( 'carousel-nav',   CarouselNav   );
 // Vue.component( '',                             );
 
 //components with routes
