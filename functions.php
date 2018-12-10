@@ -156,7 +156,7 @@ function allow_anonymous_comments() {
  */
 function mrk_filter_menu_items( $menu ) {
     if ( empty( $menu ))
-        retuurn [];
+        return [];
     $output = [];
     foreach( $menu as $item ) {
         if ( $menu_item->status != 'publish' )
