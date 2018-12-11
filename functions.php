@@ -204,9 +204,26 @@ function mrk_get_current_user_info() {
 */
 function mrk_get_post_by_path( $data ) {
     $post = get_page_by_path( $data['url'] );
-    error_log( var_export( $post, true ));
     if ( empty( $post )) {
-        return new WP_Error( 'mrk_no_suth_post', 'Path not found', [ 'status' => 404 ]);
+        return new WP_Error( 'mrk_no_such_post', 'Path not found', [ 'status' => 404 ]);
+    }
+    $request = new WP_REST_Request();
+    $controller = new WP_REST_Posts_Controller( $post->post_type );
+    $prepared = $controller->prepare_item_for_response( $post, $request);
+    return $prepared->data;
+}
+/**
+ * get the home page post
+ */
+function mrk_get_home_page( $data ) {
+    $post_id = get_option( 'page_on_front');
+    if ( empty( $post_id )) {
+        return new WP_Error( 'mrk_no_home_page', 'Could not get home page',
+                             [ 'status' => 404 ]);
+    }
+    $post = get_post( $post_id );
+    if ( empty( $post )) {
+        return new WP_Error( 'mrk_no_such_post', 'Path not found', [ 'status' => 404 ]);
     }
     $request = new WP_REST_Request();
     $controller = new WP_REST_Posts_Controller( $post->post_type );
@@ -218,7 +235,11 @@ function mrk_get_post_by_path( $data ) {
  * /wp-json/mrk/v1
  */
 function mrk_register_endpoint () {
-    register_rest_route( 'mrk/v1', '/path/(?P<url>.*?)', [
+    register_rest_route( 'mrk/v1', '/path/', [
+        'methods'  => 'GET',
+	'callback' => 'mrk_get_home_page',
+    ]);
+    register_rest_route( 'mrk/v1', '/path/(?P<url>.+)', [
         'methods'  => 'GET',
 	'callback' => 'mrk_get_post_by_path',
     ]);
