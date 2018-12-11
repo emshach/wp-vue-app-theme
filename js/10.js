@@ -26,16 +26,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    wp.api.loadPromise.done(function () {// console.log( 'path object', wp.api.models.Path );
-      // var path = wp.api.models.Path();
-      // console.log( 'path object', path );
-      // path.fetch().done(( rpost ) => {
-      //   console.log( "got home page", rpost );
-      //   rpost.getFeaturedMedia().done(( rmedia ) => {
-      //     consale.log( 'media object', rmedia );
-      //     // this.img = rmedia.source_url;
-      //   });
-      // });
+    wp.api.loadPromise.done(function () {
+      var path = new wp.api.models.Path();
+      console.log('path object', path);
+      path.fetch().done(function (rpost) {
+        console.log("got home page", rpost);
+        rpost.getFeaturedMedia().done(function (rmedia) {
+          consale.log('media object', rmedia); // this.img = rmedia.source_url;
+        });
+      });
     });
   }
 });
