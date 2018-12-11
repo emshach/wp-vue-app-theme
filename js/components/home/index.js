@@ -16,7 +16,7 @@ export default {
   },
   mounted() {
     wp.api.loadPromise.done(() => {
-      var path = wp.api.models.Path();
+      var path = wpapix.Path();
       path.fetch().done(( rpost ) => {
         console.log( "got home page", rpost );
         rpost.getFeaturedMedia().done(( rmedia ) => {
