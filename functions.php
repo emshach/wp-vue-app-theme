@@ -218,7 +218,7 @@ function mrk_get_post_by_path( $data ) {
  * /wp-json/mrk/v1
  */
 function mrk_register_endpoint () {
-    register_rest_route( 'mrk/v1', '/path/(?P<url>.*)', [
+    register_rest_route( 'mrk/v1', '/path/(?P<url>.*?)', [
         'methods'  => 'GET',
 	'callback' => 'mrk_get_post_by_path',
     ]);
