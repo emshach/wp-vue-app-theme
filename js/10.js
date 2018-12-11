@@ -29,17 +29,16 @@ console.log(_lib_wpapi__WEBPACK_IMPORTED_MODULE_1__["default"]);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
     wp.api.loadPromise.done(function () {
+      console.log('path object', wp.api.models.Path);
       var path = wp.api.models.Path();
-      console.log('path object', path);
-      path.fetch().done(function (rpost) {
-        console.log("got home page", rpost);
-        rpost.getFeaturedMedia().done(function (rmedia) {
-          _this.img = rmedia.source_url;
-        });
-      });
+      console.log('path object', path); // path.fetch().done(( rpost ) => {
+      //   console.log( "got home page", rpost );
+      //   rpost.getFeaturedMedia().done(( rmedia ) => {
+      //     consale.log( 'media object', rmedia );
+      //     // this.img = rmedia.source_url;
+      //   });
+      // });
     });
   }
 });
