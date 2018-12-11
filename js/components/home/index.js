@@ -1,5 +1,5 @@
 import store from '../../lib/store';
-import wpapix from './lib/wpapi';
+import wpapix from '../../lib/wpapi';
 export default {
   template: require( './template.html' ),
   data () {

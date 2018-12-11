@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
-!(function webpackMissingModule() { var e = new Error("Cannot find module './lib/wpapi'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/wpapi */ "./js/lib/wpapi.js");
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
