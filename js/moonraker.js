@@ -713,6 +713,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./js/lib/wpapi.js":
+/*!*************************!*\
+  !*** ./js/lib/wpapi.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var Path = wp.api.models.Post.extend({
+  defaults: {
+    path: ""
+  },
+  url: function url() {
+    return wpApiSettings.root + 'mrk/v1/path/' + this.get('path');
+  }
+});
+var Paths = wp.api.collections.Posts.extend({
+  url: function url() {
+    return wpApiSettings.root + 'mrk/v1/paths';
+  },
+  model: Path
+});
+wp.api.models.Path = Path;
+wp.api.collections.Paths = Paths;
+/* harmony default export */ __webpack_exports__["default"] = ({
+  Path: Path,
+  Paths: Paths
+});
+
+/***/ }),
+
 /***/ "./js/main.js":
 /*!********************!*\
   !*** ./js/main.js ***!
@@ -736,7 +768,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-awesome-swiper */ "./node_modules/vue-awesome-swiper/dist/vue-awesome-swiper.js");
 /* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./lib/store */ "./js/lib/store.js");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '.lib/wpapi'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./lib/wpapi */ "./js/lib/wpapi.js");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");

@@ -8,7 +8,7 @@ import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import store from './lib/store';
-import wpapix from '.lib/wpapi';
+import wpapix from './lib/wpapi';
 
 // styles
 import 'bootstrap/dist/css/bootstrap.css';
