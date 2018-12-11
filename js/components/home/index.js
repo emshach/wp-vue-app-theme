@@ -16,13 +16,14 @@ export default {
   },
   mounted() {
     wp.api.loadPromise.done(() => {
-      var path = wpapix.Path();
-      path.fetch().done(( rpost ) => {
-        console.log( "got home page", rpost );
-        rpost.getFeaturedMedia().done(( rmedia ) => {
-          this.img = rmedia.source_url;
-        });
-      });
+      console.log(wpapix.Path);
+      // var path = wpapix.Path();
+      // path.fetch().done(( rpost ) => {
+      //   console.log( "got home page", rpost );
+      //   rpost.getFeaturedMedia().done(( rmedia ) => {
+      //     this.img = rmedia.source_url;
+      //   });
+      // });
     });
   }
 };

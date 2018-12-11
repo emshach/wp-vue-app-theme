@@ -28,16 +28,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
     wp.api.loadPromise.done(function () {
-      var path = _lib_wpapi__WEBPACK_IMPORTED_MODULE_1__["default"].Path();
-      path.fetch().done(function (rpost) {
-        console.log("got home page", rpost);
-        rpost.getFeaturedMedia().done(function (rmedia) {
-          _this.img = rmedia.source_url;
-        });
-      });
+      console.log(_lib_wpapi__WEBPACK_IMPORTED_MODULE_1__["default"].Path); // var path = wpapix.Path();
+      // path.fetch().done(( rpost ) => {
+      //   console.log( "got home page", rpost );
+      //   rpost.getFeaturedMedia().done(( rmedia ) => {
+      //     this.img = rmedia.source_url;
+      //   });
+      // });
     });
   }
 });
