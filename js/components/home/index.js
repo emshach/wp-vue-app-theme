@@ -18,10 +18,10 @@ export default {
       var path = new wp.api.models.Path();
       console.log( 'path object', path );
       path.fetch().done(( rpost ) => {
-        console.log( "got home page", rpost );
+        console.log( 'got home page', rpost );
         path.getFeaturedMedia().done(( rmedia ) => {
           console.log( 'media object', rmedia );
-          // this.img = rmedia.source_url;
+          this.img = rmedia.get( 'source_url' );
         });
       });
     });
