@@ -4,9 +4,11 @@
  */
 
 main {
-  background: white;
   position: relative;
-  top: 100%;
+  box-shadow: 0 0px 15px rgba(0,0,0,0.6);
+  margin: 0;
+  width: 100%;
+  background: url(img/assets/bg-fabric-white-2.jpg) repeat;
   @include breakpoint( $max-phone ) {
     top: 50%;
   }
