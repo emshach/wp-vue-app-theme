@@ -1,0 +1,197 @@
+/**
+ * partials/nav
+ * ---
+ * Menus
+ */
+
+#header-menu {
+  @include breakpoint( $bp-phone ) {
+    z-index: 10;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: url(img/assets/empty.gif);
+    /* stupid ie needs a background value to understand hover area */
+    margin: 0 !important;
+    /* overflow: hidden; */
+    /* opacity: 0; */
+    animation: fadeIn ease-in 1, rise 1;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+  }}
+
+.nav {}
+
+#main-nav {
+  @include breakpoint( $bp-phone ) {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  margin: 40px auto 0;
+  >.container {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.65);
+    border-top: 1px rgba(255,255,255,0.15) solid;
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.5);
+    width: 100%;
+  }}
+  @include breakpoint( $max-phone ) {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  }}
+#bg-nav {
+  @include breakpoint( $bp-phone ) {
+    position: absolute;
+    background: url(img/assets/bg-fancy-5.png) top center repeat-x;
+    height: 250px;
+    left: -400px;
+    top: -19px;
+  }
+}
+#main-nav>.container, #menu-nav, #menu-nav > .menu-item {
+  height: inherit;
+}
+#menu-nav {
+  @include breakpoint( $bp-phone ) {
+    position: relative;
+    left: 0;
+    width: 9999px;
+    padding: 0;
+    margin: 0;
+    max-width: none !important;
+    display: block;
+    > .menu-item {
+      float: left;
+      margin: 5px 0;
+      padding: 0 5px;
+      height: 100%;
+      opacity: 0.8;
+      img {
+        // border: 1px solid rgba(255,255,255,0.5);
+        border: 0 none;
+        display: block;
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.75);
+        position: relative;
+        z-index: 2;
+      }
+      &.current-menu-item img {
+        border: 1px solid rgba(50,205,255,0.2);
+        box-shadow: 0 0 20px rgba(50,205,255,0.5);
+      }
+      &:hover img {
+        box-shadow: 0 100px 70px rgba(255,160,0,0.75);
+        border-bottom: 1px solid rgba(255,180,80,0.5);
+        border-radius: 4px;
+      }
+      a {
+        display: block;
+        padding: 0;
+        position: relative;
+        color: white;
+        font-weight: bold;
+      }
+      &:hover a {
+        padding-bottom: 20px;
+        background-color: rgba(255,215,100,0.12);
+      }
+      .text {
+        display: block;
+        background-color: rgba(0,0,0,0.5);
+        position: absolute;
+        bottom: 0;
+        padding: 3px;
+        border-radius: 2px;
+        opacity: 0;
+        width: 100%;
+        padding: 5px;
+      }}
+    > ul {
+      display: none;
+      height: 0;
+      width: 0;
+    }}
+  @include breakpoint( $max-phone ) {
+    clear: both;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    position: absolute;
+    width: 100%;
+    top: 2.5em;
+    background: white;
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 20;
+    > .menu-item {
+      margin: 0;
+      height: 3em;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      img {
+        // border: 1px solid rgba(255,255,255,0.5);
+        // border: 0 none;
+        // display: block;
+        float: left;
+        height: 1.5em;
+        // box-shadow: 0 1px 2px rgba(0,0,0,0.75);
+        margin-right: 10px;
+      }
+      &.current-menu-item {
+        // border: 1px solid rgba(50,205,255,0.2);
+        // box-shadow: 0 0 3px rgba(50,205,255,0.5);
+        background-color: rgba(50,205,255,0.2);
+      }
+      &:hover img {
+        box-shadow: 0 0px 3px rgba(255,160,0,0.75);
+      }
+      a {
+        clear: both;
+      }
+      // a {
+      //   display: block;
+      //   padding: 0;
+      //   position: relative;
+      // }
+      // &:hover a {
+      //   padding-bottom: 20px;
+      //   background-color: rgba(255,215,100,0.12);
+      // }
+      // .text {
+      //   background-color: rgba(0,0,0,0.5);
+      //   position: absolute;
+      //   top: -2em;
+      //   padding: 3px;
+      //   border-radius: 2px;
+      //   opacity: 0;
+      // }
+    }}}
+
+.navbar-brand {
+  display: none;
+  @include breakpoint( $max-phone ) {
+    display: inline;
+    height: 50px;
+    padding: 5px;
+    float: right;
+  }}
+.mobile-logo {
+  @include breakpoint( $max-phone ) {
+    height: 40px;
+  }}
+
+button.nav-menu {
+  @extend .navbar-brand;
+  float: left;
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  // border: 1px solid lightgray;
+  border: 0 none;
+}
+
+
+.menu {}
+
+.sub-menu {}
+
+.menu-item {}

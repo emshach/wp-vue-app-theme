@@ -1,0 +1,44 @@
+/**
+ * partials/html
+ * ---
+ */
+
+html {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #25252b;
+  height: 100%;
+}
+#bodywrap {
+  // max-width: $wrapper-width;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective: 2px;
+  height: 100%;
+}
+#bg-image, #bg-image-new {
+  position: absolute;
+  min-width: 100%; 
+  min-height: 100%;
+  max-width: none;
+  left: -12.5%;
+  transform: translateZ(-2px) scale(2.04);
+  height: 100%;
+  @include breakpoint( $max-phone ) {
+    transform: translateY(-50%) translateZ(-2px) scale(2.04);
+    height: 60%;
+  }}
+main {
+  box-shadow: 0 0px 15px rgba(0,0,0,0.6);
+  margin: 0 0 142px;
+  transform: translateZ(0);
+  z-index: 2;
+  background: url(assets/bg-fabric-white-2.jpg) repeat;
+  padding: 1em;
+  @include breakpoint( $max-phone ) {
+    margin-bottom: 0;
+  }}

@@ -17,7 +17,7 @@
     <?php wp_head(); ?>
   </head>
   <body>
-    <div id="app">
+    <div class="body-wrap wrapper" id="app">
       <transition name="fade-in">
         <router-view></router-view>
       </transition>

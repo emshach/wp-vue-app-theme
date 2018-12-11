@@ -1,21 +1,30 @@
+/**
+ * header
+ * ---
+ */
 
-.top-nav {
-    background-color:$light-grey;
-    color:$primary-color;
-    padding-top:5px;
-    padding-bottom:5px;
+
+// Header container
+#masthead {
+  position: absolute;
 }
-.main-header {
-    border-bottom:1px solid $light-grey;
-    margin-bottom:35px;
-    padding-top:45px;
-    padding-bottom:35px;
+#bg-image-wrapper {
+    position: absolute;
+    width: 100%; 
+    overflow: hidden; 
+    height: 100%;
+    /* transform: translateZ(-2px) scale(2); */
+    @include breakpoint( $max-phone ) {
+      height: 50%;
+    }
 }
-.home .main-header {
-    margin-bottom:0;
+#bg-image-new {
+    display: none
 }
-.blogname {
-    font-size:60px;
-    line-height: 64px;
-    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+
+// Logo
+.logo {
+  @include breakpoint( $max-phone ) {
+    display: none;
+  }}
+.logo-img {}

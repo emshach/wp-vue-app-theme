@@ -1,16 +1,10 @@
-<header>
-  <div class="container-fluid main-header">
-    <div class="row">
-      <div class="col-lg-8">
-        <router-link class="blogname" to="/">
-          <img v-if="logo" :src="logo" />{{ title }}
-        </router-link><br />
-        <span class="blogslogan">{{ slogan }}</span>
-      </div>
-      <div class="col-lg-2"></div>
-      <div class="col-lg-2 search-wrapper">
-        <search-form></search-form>
-      </div>
-    </div>
+<header id="masthead" class="header clear">
+  <div class="logo">
+    <router-link to="/"><img src="{{ logo }}" class="logo-img"/></router-link>
+  </div>
+  <h1 class="site-title"><router-link to="/">{{ title }}</router-link></h1>
+  <p class="site-description"></p>
+  <div class="search-wrapper float-right">
+    <search-form></search-form>
   </div>
 </header>

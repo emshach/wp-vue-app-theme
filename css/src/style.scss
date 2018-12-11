@@ -2,10 +2,16 @@ $light-grey : #ebebeb;
 $med-grey : #a8a8a8;
 $primary-color: #000;
 
+@import 'breakpoint';
+@import 'vars';
 @import 'jumbotron';
+@import 'parallax';
 @import 'header';
+@import 'nav';
+@import 'main';
 @import 'sidebar';
 @import 'comments';
+@impor  'filmstrip';
 @import 'footer';
 
 .latest-title {

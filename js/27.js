@@ -37,7 +37,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <div class=\"container-fluid main-header\">\n    <div class=\"row\">\n      <div class=\"col-lg-8\">\n        <router-link class=\"blogname\" to=\"/\">\n          <img v-if=\"logo\" :src=\"logo\" />{{ title }}\n        </router-link><br />\n        <span class=\"blogslogan\">{{ slogan }}</span>\n      </div>\n      <div class=\"col-lg-2\"></div>\n      <div class=\"col-lg-2 search-wrapper\">\n        <search-form></search-form>\n      </div>\n    </div>\n  </div>\n</header>\n";
+module.exports = "<header id=\"masthead\" class=\"header clear\">\n  <div class=\"logo\">\n    <router-link to=\"/\"><img src=\"{{ logo }}\" class=\"logo-img\"/></router-link>\n  </div>\n  <h1 class=\"site-title\"><router-link to=\"/\">{{ title }}</router-link></h1>\n  <p class=\"site-description\"></p>\n  <div class=\"search-wrapper float-right\">\n    <search-form></search-form>\n  </div>\n</header>\n";
 
 /***/ })
 

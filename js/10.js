@@ -33,7 +33,7 @@ __webpack_require__.r(__webpack_exports__);
       path.fetch().done(function (rpost) {
         console.log('got home page', rpost);
         path.getFeaturedMedia().done(function (rmedia) {
-          console.log('media object', rmedia, rmedia.get('source_url'));
+          // console.log( 'media object', rmedia, rmedia.get( 'source_url' ));
           self.img = rmedia.get('source_url');
         });
       });
@@ -50,7 +50,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home page\">\n  <wp-header></wp-header>\n  <transition>\n    <img v-if=\"img\" :src=\"img\" style=\"min-width; 100%; min-height: 100%\"/>\n  </transition>\n  <div class=\"mh-100 mw-100\">\n    <div class=\"container\">\n      <carousel id=\"hero\" topic=\"featured\"></carousel>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"row\">\n      <content-list title=\"latest\" :content=\"latest\"></content-list>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"trending\" :content=\"trending\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"recent activity\" :content=\"recent\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"pull up\" :content=\"history\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"you might like\" :content=\"discovery\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"my faves\" :content=\"favs\"></filmstrip>\n    </div>\n  </div>\n  <carousel-nav></carousel-nav>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"home page\">\n  <div id=\"bg-image-wrapper\">\n    <transition>\n      <img id=\"bg-image\" v-if=\"img\" :src=\"img\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <div class=\"featured-wrapper\">\n    <carousel id=\"featured\" topic=\"featured\"></carousel>\n  </div>\n\n  <main role=\"main\" class=\"container\">\n    <div class=\"row\">\n      <content-list title=\"latest\" :content=\"latest\"></content-list>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"trending\" :content=\"trending\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"recent activity\" :content=\"recent\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"pull up\" :content=\"history\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"you might like\" :content=\"discovery\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"my faves\" :content=\"favs\"></filmstrip>\n    </div>\n  </main>\n  <carousel-nav></carousel-nav>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 
