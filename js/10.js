@@ -13,6 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/wpapi */ "./js/lib/wpapi.js");
 
 
+console.log(_lib_wpapi__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/home/template.html"),
   data: function data() {

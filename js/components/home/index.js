@@ -1,5 +1,6 @@
 import store from '../../lib/store';
 import wpapix from '../../lib/wpapi';
+console.log( wpapix );
 export default {
   template: require( './template.html' ),
   data () {
