@@ -1,31 +1,28 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
 
-/***/ "./js/lib/wpapi.js":
-/*!*************************!*\
-  !*** ./js/lib/wpapi.js ***!
-  \*************************/
+/***/ "./js/components/about/index.js":
+/*!**************************************!*\
+  !*** ./js/components/about/index.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var Path = wp.api.models.Post.extend({
-  defaults: {
-    path: ""
-  },
-  url: function url() {
-    return wpApiSettings.root + 'mrk/v1/path/' + this.get('path');
-  }
+/* harmony default export */ __webpack_exports__["default"] = ({
+  template: __webpack_require__(/*! ./template.html */ "./js/components/about/template.html")
 });
-var Paths = wp.api.collections.Posts.extend({
-  url: function url() {
-    return wpApiSettings.root + 'mrk/v1/paths';
-  },
-  model: Path
-});
-wp.api.models.Path = Path;
-wp.api.collections.Paths = Paths;
-/* harmony default export */ __webpack_exports__["default"] = (wp.api);
+
+/***/ }),
+
+/***/ "./js/components/about/template.html":
+/*!*******************************************!*\
+  !*** ./js/components/about/template.html ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "";
 
 /***/ })
 

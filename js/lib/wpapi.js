@@ -16,4 +16,5 @@ var Paths = wp.api.collections.Posts.extend({
 
 wp.api.models.Path = Path;
 wp.api.collections.Paths = Paths;
+
 export default wp.api;

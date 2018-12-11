@@ -14,9 +14,8 @@ export default {
     };
   },
   mounted() {
-    import( '../../lib/wpapi' ).then(() => {
-      wp.api.loadPromise.done(() => {
-        console.log( 'path object', wp.api.models.Path );
+    wp.api.loadPromise.done(() => {
+      // console.log( 'path object', wp.api.models.Path );
       // var path = wp.api.models.Path();
       // console.log( 'path object', path );
       // path.fetch().done(( rpost ) => {
@@ -26,7 +25,6 @@ export default {
       //     // this.img = rmedia.source_url;
       //   });
       // });
-      });
     });
   }
 };
