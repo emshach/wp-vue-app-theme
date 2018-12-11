@@ -1,6 +1,9 @@
 var Path = wp.api.models.Post.extend({
+  defaults: {
+    path: ""
+  },
   url() {
-    return wpApiSettings.root + 'mrk/v1/path';
+    return wpApiSettings.root + 'mrk/v1/path' + this.get( 'path' );
   }
 });
 
