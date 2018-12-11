@@ -19,8 +19,8 @@ export default {
       console.log( 'path object', path );
       path.fetch().done(( rpost ) => {
         console.log( "got home page", rpost );
-        rpost.getFeaturedMedia().done(( rmedia ) => {
-          consale.log( 'media object', rmedia );
+        path.getFeaturedMedia().done(( rmedia ) => {
+          console.log( 'media object', rmedia );
           // this.img = rmedia.source_url;
         });
       });

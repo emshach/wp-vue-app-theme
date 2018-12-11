@@ -31,8 +31,8 @@ __webpack_require__.r(__webpack_exports__);
       console.log('path object', path);
       path.fetch().done(function (rpost) {
         console.log("got home page", rpost);
-        rpost.getFeaturedMedia().done(function (rmedia) {
-          consale.log('media object', rmedia); // this.img = rmedia.source_url;
+        path.getFeaturedMedia().done(function (rmedia) {
+          console.log('media object', rmedia); // this.img = rmedia.source_url;
         });
       });
     });
