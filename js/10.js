@@ -26,12 +26,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var path = wp.api.models.Path();
-    path.fetch().done(function (rpost) {
-      console.log("got home page", rpost); // if ( rpost.featured_media ) {
-      //   media = wp.api.models.Media();
-      //   this.img = rmedia.source_url;
-      // }
+    var _this = this;
+
+    wp.api.loadPromise.done(function () {
+      var path = wp.api.models.Path();
+      path.fetch().done(function (rpost) {
+        console.log("got home page", rpost);
+        rpost.getFeaturedMedia().done(function (rmedia) {
+          _this.img = rmedia.source_url;
+        });
+      });
     });
   }
 });
@@ -45,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home page\">\n  <wp-header></wp-header>\n  <div class=\"mh-100 mw-100\">\n    <div class=\"container\">\n      <carousel id=\"hero\" topic=\"featured\"></carousel>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"row\">\n      <content-list title=\"latest\" :content=\"latest\"></content-list>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"trending\" :content=\"trending\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"recent activity\" :content=\"recent\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"pull up\" :content=\"history\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"you might like\" :content=\"discovery\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"my faves\" :content=\"favs\"></filmstrip>\n    </div>\n  </div>\n  <carousel-nav></carousel-nav>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"home page\">\n  <wp-header></wp-header>\n  <transition>\n    <img v-if=\"img\" :src=\"img\" style=\"min-width; 100%; min-height: 100%\"/>\n  </transition>\n  <div class=\"mh-100 mw-100\">\n    <div class=\"container\">\n      <carousel id=\"hero\" topic=\"featured\"></carousel>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"row\">\n      <content-list title=\"latest\" :content=\"latest\"></content-list>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"trending\" :content=\"trending\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"recent activity\" :content=\"recent\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"pull up\" :content=\"history\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"you might like\" :content=\"discovery\"></filmstrip>\n    </div>\n    <div class=\"row\">\n      <filmstrip title=\"my faves\" :content=\"favs\"></filmstrip>\n    </div>\n  </div>\n  <carousel-nav></carousel-nav>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 

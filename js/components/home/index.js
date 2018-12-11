@@ -14,13 +14,14 @@ export default {
     };
   },
   mounted() {
-    var path = wp.api.models.Path();
-    path.fetch().done(( rpost ) => {
-      console.log( "got home page", rpost );
-      // if ( rpost.featured_media ) {
-      //   media = wp.api.models.Media();
-      //   this.img = rmedia.source_url;
-      // }
+    wp.api.loadPromise.done(() => {
+      var path = wp.api.models.Path();
+      path.fetch().done(( rpost ) => {
+        console.log( "got home page", rpost );
+        rpost.getFeaturedMedia().done(( rmedia ) => {
+          this.img = rmedia.source_url;
+        });
+      });
     });
   }
 };

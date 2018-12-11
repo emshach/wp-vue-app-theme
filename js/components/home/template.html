@@ -1,5 +1,8 @@
 <div class="home page">
   <wp-header></wp-header>
+  <transition>
+    <img v-if="img" :src="img" style="min-width; 100%; min-height: 100%"/>
+  </transition>
   <div class="mh-100 mw-100">
     <div class="container">
       <carousel id="hero" topic="featured"></carousel>
