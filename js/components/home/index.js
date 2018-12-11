@@ -1,5 +1,4 @@
 import store from '../../lib/store';
-console.log( wpapix );
 export default {
   template: require( './template.html' ),
   data () {
