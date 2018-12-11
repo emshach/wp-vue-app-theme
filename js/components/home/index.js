@@ -21,7 +21,7 @@ export default {
       path.fetch().done(( rpost ) => {
         console.log( 'got home page', rpost );
         path.getFeaturedMedia().done(( rmedia ) => {
-          console.log( 'media object', rmedia );
+          console.log( 'media object', rmedia, rmedia.get( 'source_url' ));
           self.img = rmedia.get( 'source_url' );
         });
       });

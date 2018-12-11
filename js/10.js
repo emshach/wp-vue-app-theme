@@ -33,7 +33,7 @@ __webpack_require__.r(__webpack_exports__);
       path.fetch().done(function (rpost) {
         console.log('got home page', rpost);
         path.getFeaturedMedia().done(function (rmedia) {
-          console.log('media object', rmedia);
+          console.log('media object', rmedia, rmedia.get('source_url'));
           self.img = rmedia.get('source_url');
         });
       });
