@@ -9,25 +9,13 @@
     <carousel id="featured" topic="featured"></carousel>
   </div>
 
-  <main role="main" class="container">
-    <div class="row">
-      <content-list title="latest" :content="latest"></content-list>
-    </div>
-    <div class="row">
-      <filmstrip title="trending" :content="trending"></filmstrip>
-    </div>
-    <div class="row">
-      <filmstrip title="recent activity" :content="recent"></filmstrip>
-    </div>
-    <div class="row">
-      <filmstrip title="pull up" :content="history"></filmstrip>
-    </div>
-    <div class="row">
-      <filmstrip title="you might like" :content="discovery"></filmstrip>
-    </div>
-    <div class="row">
-      <filmstrip title="my faves" :content="favs"></filmstrip>
-    </div>
+  <main role="main">
+    <content-list title="latest" :content="latest"></content-list>
+    <filmstrip title="trending" :content="trending"></filmstrip>
+    <filmstrip title="recent activity" :content="recent"></filmstrip>
+    <filmstrip title="pull up" :content="history"></filmstrip>
+    <filmstrip title="you might like" :content="discovery"></filmstrip>
+    <filmstrip title="my faves" :content="favs"></filmstrip>
   </main>
   <carousel-nav></carousel-nav>
   <wp-footer></wp-footer>
