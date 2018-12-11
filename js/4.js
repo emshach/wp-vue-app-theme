@@ -1,78 +1,69 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./js/components/comment-form/index.js":
-/*!*********************************************!*\
-  !*** ./js/components/comment-form/index.js ***!
-  \*********************************************/
+/***/ "./js/components/carousel/index.js":
+/*!*****************************************!*\
+  !*** ./js/components/carousel/index.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
+var carousels = 0;
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/comment-form/template.html"),
-  methods: {
-    validEmail: function validEmail(email) {
-      var re = /\S+@\S+/;
-      return re.test(email.toLowerCase());
+  template: __webpack_require__(/*! ./template.html */ "./js/components/carousel/template.html"),
+  props: {
+    topic: {
+      type: String,
+      default: ""
     },
-    validate: function validate() {
-      this.commenterBlured = true;
-      this.emailBlured = true;
-      this.contentBlured = true;
-
-      if (this.commenter !== '' && this.validEmail(this.email) && this.content !== '') {
-        this.valid = true;
+    id: {
+      type: String,
+      default: function _default() {
+        return "carusel-" + ++carousels;
       }
     },
-    submit: function submit() {
-      var self = this;
-      self.validate();
-
-      if (self.valid) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/wp-json/wp/v2/comments', {
-          author_name: self.commenter,
-          author_email: self.email,
-          content: self.content,
-          author_url: self.website,
-          post: self.$parent.post[0].id
-        }).then(function (response) {
-          self.submitted = true;
-        }).catch(function (error) {
-          console.log(error);
-        });
-      }
-    } //end submit
-
+    background: {
+      type: String,
+      default: "#000810"
+    },
+    interval: {
+      type: Number,
+      default: 15000
+    }
   },
   data: function data() {
     return {
-      commenter: "",
-      commenterBlured: false,
-      email: "",
-      emailBlured: false,
-      website: "",
-      content: "",
-      contentBlured: false,
-      valid: false,
-      submitted: false
+      loading: true,
+      slides: [],
+      slide: 0,
+      sliding: null
     };
+  },
+  mounted: function mounted() {
+    this.getSlides();
+  },
+  methods: {
+    onSlideStart: function onSlideStart(slide) {
+      this.sliding = true;
+    },
+    onSlideEnd: function onSlideEnd(slide) {
+      this.sliding = false;
+    },
+    getSlides: function getSlides() {}
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/comment-form/template.html":
-/*!**************************************************!*\
-  !*** ./js/components/comment-form/template.html ***!
-  \**************************************************/
+/***/ "./js/components/carousel/template.html":
+/*!**********************************************!*\
+  !*** ./js/components/carousel/template.html ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"comment-form-wrap\" v-cloak>\n  <h3>Leave a comment</h3>\n\n  <div v-if=\"submitted\" class=\"alert alert-success\" role=\"alert\">\n    Thank you. Your comment has been submitted!\n  </div>\n\n  <div v-if=\"!submitted\">\n    <div class=\"form-group\">\n      <label for=\"commenter\">Name</label>\n      <input\n        v-model=\"commenter\"\n        v-bind:class=\"{'form-control':true, 'is-invalid' : commenter == '' && commenterBlured}\"\n        @blur=\"commenterBlured = true\">\n      <div class=\"invalid-feedback\">This is required</div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input\n        v-model=\"email\"\n        v-bind:class=\"{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}\"\n        @blur=\"emailBlured = true\">\n      <div class=\"invalid-feedback\">A valid email is required</div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"website\">Website <i>(optional)</i></label>\n      <input v-model=\"website\" class=\"form-control\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"content\">Comment</label>\n      <textarea\n        v-model=\"content\"\n        v-bind:class=\"{'form-control':true, 'is-invalid' : content == '' && contentBlured}\"\n        @blur=\"contentBlured = true\"\n        ></textarea>\n      <div class=\"invalid-feedback\">This is required</div>\n    </div>\n    <div class=\"form-group\">\n      <a type=\"submit\" href=\"#\"\n         @click.stop.prevent=\"submit\" class=\"btn btn-lg btn-success\">Submit</a>\n    </div>\n  </div>\n</div>\n";
+module.exports = "<b-carousel :id=\"id\"\n            controls\n            indicators\n            :background=\"background\"\n            :interval=\"interval\">\n  <b-carousel-slide v-for=\"( slide, index ) in slides\"\n                    :key=\"slide.id\"\n                    :text=\"slide.text\"\n                    :img-src=\"slide.src\"\n                    :caption=\"slide.caption\">{{ slide.html }}</b-carousel-slide>\n  <b-carousel-slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </b-carousel-slide>\n</b-carousel>\n";
 
 /***/ })
 

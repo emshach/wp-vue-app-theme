@@ -1,31 +1,43 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[28],{
 
-/***/ "./js/lib/wpapi.js":
-/*!*************************!*\
-  !*** ./js/lib/wpapi.js ***!
-  \*************************/
+/***/ "./js/components/wp-header/index.js":
+/*!******************************************!*\
+  !*** ./js/components/wp-header/index.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var Path = wp.api.models.Post.extend({
-  defaults: {
-    path: ""
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  template: __webpack_require__(/*! ./template.html */ "./js/components/wp-header/template.html"),
+  data: function data() {
+    return {
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      title: '',
+      slogan: '',
+      logo: ''
+    };
   },
-  url: function url() {
-    return wpApiSettings.root + 'mrk/v1/path/' + this.get('path');
+  mounted: function mounted() {
+    this.title = this.sstate.site.title || '';
+    this.slogan = this.sstate.site.description || '';
+    this.logo = this.sstate.site.logo || '';
   }
 });
-var Paths = wp.api.collections.Posts.extend({
-  url: function url() {
-    return wpApiSettings.root + 'mrk/v1/paths';
-  },
-  model: Path
-});
-wp.api.models.Path = Path;
-wp.api.collections.Paths = Paths;
-/* harmony default export */ __webpack_exports__["default"] = (wp.api);
+
+/***/ }),
+
+/***/ "./js/components/wp-header/template.html":
+/*!***********************************************!*\
+  !*** ./js/components/wp-header/template.html ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<header>\n  <div class=\"container-fluid main-header\">\n    <div class=\"row\">\n      <div class=\"col-lg-8\">\n        <router-link class=\"blogname\" to=\"/\">\n          <img v-if=\"logo\" :src=\"logo\" />{{ title }}\n        </router-link><br />\n        <span class=\"blogslogan\">{{ slogan }}</span>\n      </div>\n      <div class=\"col-lg-2\"></div>\n      <div class=\"col-lg-2 search-wrapper\">\n        <search-form></search-form>\n      </div>\n    </div>\n  </div>\n</header>\n";
 
 /***/ })
 

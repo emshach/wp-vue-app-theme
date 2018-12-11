@@ -166,7 +166,7 @@ const app = new Vue({
   created() {     
     this.getSiteInfo();
     this.getUserData();
-    import('./lib/wpapi/').then(() => {
+    import('./lib/wpapi').then(() => {
       wp.api.loadPromise.done(() => {
         var settings = new wp.api.models.Settings();
         settings.fetch().done(( response ) => {
