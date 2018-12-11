@@ -17,13 +17,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       title: '',
-      slogan: '',
+      description: '',
       logo: ''
     };
   },
   mounted: function mounted() {
     this.title = this.sstate.site.title || '';
-    this.slogan = this.sstate.site.description || '';
+    this.description = this.sstate.site.description || '';
     this.logo = this.sstate.site.logo || '';
   }
 });
@@ -37,7 +37,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header id=\"masthead\" class=\"header clear\">\n  <div class=\"logo\">\n    <router-link to=\"/\"><img src=\"{{ logo }}\" class=\"logo-img\"/></router-link>\n  </div>\n  <h1 class=\"site-title\"><router-link to=\"/\">{{ title }}</router-link></h1>\n  <p class=\"site-description\"></p>\n  <div class=\"search-wrapper float-right\">\n    <search-form></search-form>\n  </div>\n</header>\n";
+module.exports = "<header id=\"masthead\" class=\"header clear\">\n  <div class=\"logo\">\n    <router-link to=\"/\"><img :src=\"logo\" class=\"logo-img\"/></router-link>\n  </div>\n  <h1 class=\"site-title\"><router-link to=\"/\">{{ title }}</router-link></h1>\n  <p class=\"site-description\">{{ description }}</p>\n  <div class=\"search-wrapper float-right\">\n    <search-form></search-form>\n  </div>\n</header>\n";
 
 /***/ })
 

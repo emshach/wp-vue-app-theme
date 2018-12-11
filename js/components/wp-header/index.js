@@ -5,13 +5,13 @@ export default {
     return {
       sstate: store.state,
       title: '',
-      slogan: '',
+      description: '',
       logo: ''
     };
   },
   mounted() {    
     this.title = this.sstate.site.title || '';
-    this.slogan = this.sstate.site.description || '';
+    this.description = this.sstate.site.description || '';
     this.logo = this.sstate.site.logo || '';
   }
 };

@@ -1,9 +1,9 @@
 <header id="masthead" class="header clear">
   <div class="logo">
-    <router-link to="/"><img src="{{ logo }}" class="logo-img"/></router-link>
+    <router-link to="/"><img :src="logo" class="logo-img"/></router-link>
   </div>
   <h1 class="site-title"><router-link to="/">{{ title }}</router-link></h1>
-  <p class="site-description"></p>
+  <p class="site-description">{{ description }}</p>
   <div class="search-wrapper float-right">
     <search-form></search-form>
   </div>
