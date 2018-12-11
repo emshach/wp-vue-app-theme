@@ -26,13 +26,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    var self = this;
     wp.api.loadPromise.done(function () {
       var path = new wp.api.models.Path();
       console.log('path object', path);
       path.fetch().done(function (rpost) {
-        console.log("got home page", rpost);
+        console.log('got home page', rpost);
         path.getFeaturedMedia().done(function (rmedia) {
-          console.log('media object', rmedia); // this.img = rmedia.source_url;
+          console.log('media object', rmedia);
+          self.img = rmedia.get('source_url');
         });
       });
     });
