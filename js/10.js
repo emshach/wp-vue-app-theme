@@ -33,6 +33,7 @@ console.log(_lib_wpapi__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
     wp.api.loadPromise.done(function () {
       var path = wp.api.models.Path();
+      console.log('path object', path);
       path.fetch().done(function (rpost) {
         console.log("got home page", rpost);
         rpost.getFeaturedMedia().done(function (rmedia) {
