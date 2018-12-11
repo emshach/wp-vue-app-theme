@@ -10,10 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
-/* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/wpapi */ "./js/lib/wpapi.js");
 
-
-console.log(_lib_wpapi__WEBPACK_IMPORTED_MODULE_1__["default"]);
+console.log(wpapix);
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/home/template.html"),
   data: function data() {
@@ -29,16 +27,18 @@ console.log(_lib_wpapi__WEBPACK_IMPORTED_MODULE_1__["default"]);
     };
   },
   mounted: function mounted() {
-    wp.api.loadPromise.done(function () {
-      console.log('path object', wp.api.models.Path); // var path = wp.api.models.Path();
-      // console.log( 'path object', path );
-      // path.fetch().done(( rpost ) => {
-      //   console.log( "got home page", rpost );
-      //   rpost.getFeaturedMedia().done(( rmedia ) => {
-      //     consale.log( 'media object', rmedia );
-      //     // this.img = rmedia.source_url;
-      //   });
-      // });
+    __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ../../lib/wpapi */ "./js/lib/wpapi.js")).then(function () {
+      wp.api.loadPromise.done(function () {
+        console.log('path object', wp.api.models.Path); // var path = wp.api.models.Path();
+        // console.log( 'path object', path );
+        // path.fetch().done(( rpost ) => {
+        //   console.log( "got home page", rpost );
+        //   rpost.getFeaturedMedia().done(( rmedia ) => {
+        //     consale.log( 'media object', rmedia );
+        //     // this.img = rmedia.source_url;
+        //   });
+        // });
+      });
     });
   }
 });

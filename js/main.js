@@ -8,7 +8,6 @@ import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import store from './lib/store';
-import wpapix from './lib/wpapi';
 
 // styles
 import 'bootstrap/dist/css/bootstrap.css';
@@ -167,12 +166,14 @@ const app = new Vue({
   created() {     
     this.getSiteInfo();
     this.getUserData();
-    wp.api.loadPromise.done(() => {
-      var settings = new wp.api.models.Settings();
-      settings.fetch().done(( response ) => {
-        this.title = response.title;
-        this.url = response.url;
-        this.description = response.description;
+    import('./lib/wpapi/').then(() => {
+      wp.api.loadPromise.done(() => {
+        var settings = new wp.api.models.Settings();
+        settings.fetch().done(( response ) => {
+          this.title = response.title;
+          this.url = response.url;
+          this.description = response.description;
+        });
       });
     });
   },    

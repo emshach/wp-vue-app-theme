@@ -1,5 +1,4 @@
 import store from '../../lib/store';
-import wpapix from '../../lib/wpapi';
 console.log( wpapix );
 export default {
   template: require( './template.html' ),
@@ -16,8 +15,9 @@ export default {
     };
   },
   mounted() {
-    wp.api.loadPromise.done(() => {
-      console.log( 'path object', wp.api.models.Path );
+    import( '../../lib/wpapi' ).then(() => {
+      wp.api.loadPromise.done(() => {
+        console.log( 'path object', wp.api.models.Path );
       // var path = wp.api.models.Path();
       // console.log( 'path object', path );
       // path.fetch().done(( rpost ) => {
@@ -27,6 +27,7 @@ export default {
       //     // this.img = rmedia.source_url;
       //   });
       // });
+      });
     });
   }
 };
