@@ -18,8 +18,8 @@ export default {
   mounted() {
     wp.api.loadPromise.done(() => {
       console.log( 'path object', wp.api.models.Path );
-      var path = wp.api.models.Path();
-      console.log( 'path object', path );
+      // var path = wp.api.models.Path();
+      // console.log( 'path object', path );
       // path.fetch().done(( rpost ) => {
       //   console.log( "got home page", rpost );
       //   rpost.getFeaturedMedia().done(( rmedia ) => {
