@@ -1,11 +1,12 @@
 /**
- * partials/html
+ * parallax
  * ---
  */
 
-html {
+html, #app {
   position: relative;
   height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -13,7 +14,7 @@ body {
   background-color: #25252b;
   height: 100%;
 }
-#bodywrap {
+#bodywrap .body-wrap {
   // max-width: $wrapper-width;
   overflow-x: hidden;
   overflow-y: scroll;
