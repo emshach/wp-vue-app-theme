@@ -3,7 +3,7 @@
  * ---
  */
 
-html, #app, .page {
+html, #app {
   position: relative;
   height: 100%;
   width: 100%;
@@ -14,7 +14,7 @@ body {
   background-color: #25252b;
   height: 100%;
 }
-#bodywrap .body-wrap {
+.page {
   // max-width: $wrapper-width;
   overflow-x: hidden;
   overflow-y: scroll;
