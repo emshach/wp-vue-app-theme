@@ -7,7 +7,7 @@ import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
-import VueLazyload from 'vue-lazyload';
+import VueLazyload from 'vue-lazyload-img';
 import store from './lib/store';
 import wpapix from './lib/wpapi';
 
@@ -56,7 +56,7 @@ Vue.use( Vuex );
 Vue.use( VueRouter );
 Vue.use( BootstrapVue );
 Vue.use( VueAwesomeSwiper );
-Vue.use( VueLazyload );
+Vue.use( VueLazyload, { fade: true });
 
 // init components
 Vue.component( 'the-loop',       TheLoop       );
