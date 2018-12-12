@@ -14,6 +14,8 @@ gulp.task( 'css', function () {
      //.pipe(cleanCSS())
      .pipe( sourcemaps.write( './' ))  
      .pipe( gulp.dest( './css/dist' ));
+  gulp.src( './css/dist/style.css')
+     .pipe( gulp.dest( './' ));
 });
 
 
