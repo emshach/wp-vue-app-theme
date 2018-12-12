@@ -203,9 +203,10 @@ function get_pos(obj) {
         menu.stop().animate({
           height: menu_height
         }, ease_in);
-        main_title.stop().animate({
-          bottom: 110
-        }, ts_easing);
+        var top = $(this).scrollTop();
+        if (top > 110) main_title.stop().animate({
+          bottom: 110 - top
+        }, ease_in);
       }, function () {
         //mouse out
         outer.stop().fadeTo(dur_out * 3, tc_opacity_out, "easeInOutCubic");
@@ -214,7 +215,7 @@ function get_pos(obj) {
         }, ease_out);
         main_title.stop().animate({
           bottom: 0
-        }, ts_easing);
+        }, ease_out);
       });
       thumb.not(t_current).hover(function () {
         //mouse over
