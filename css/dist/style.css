@@ -175,7 +175,7 @@ main {
     padding: 0;
     width: 100%;
     margin: 40px auto 0; }
-  #main-nav > .container {
+  #main-nav > .wrpper {
     position: relative;
     background-color: rgba(0, 0, 0, 0.65);
     border-top: 1px rgba(255, 255, 255, 0.15) solid;
@@ -194,7 +194,7 @@ main {
     left: -400px;
     top: -19px; } }
 
-#main-nav > .container, #menu-nav, #menu-nav > .menu-item {
+#main-nav > .wrapper, #menu-nav, #menu-nav > .menu-item {
   height: inherit; }
 
 @media (min-width: 600px) {
