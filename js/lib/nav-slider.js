@@ -89,7 +89,7 @@ export default {
       function() { //mouse over
 	outer.stop().fadeTo( dur_in, 1 );
 	menu.stop().animate({ height: menu_height }, ease_in );
-        var top = $( this ).scrollTop();
+        var top = $( "#app>.page" ).scrollTop();
         if ( top > 110 )
           main_title.stop().animate({ bottom: 110 - top }, ease_in );
       },
