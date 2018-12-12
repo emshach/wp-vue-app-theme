@@ -1,6 +1,6 @@
 <div class="home page">
   <div id="bg-image-wrapper">
-    <transition name="fade" v-if="img">
+    <transition name="fade">
       <img id="bg-image" :src="img" @load="showImg" v-show="show"/>
     </transition>
   </div>
