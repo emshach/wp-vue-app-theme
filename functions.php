@@ -254,7 +254,8 @@ add_action( 'rest_api_init', 'mrk_register_endpoint' );
 
 wp_enqueue_script( 'wp-api' );
 wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
-                   [ 'wp-api', 'jquery' ], $VERSION, true ); // include in footer
+                   [ 'wp-api', 'jquery', 'jquery-effects-core' ],
+                   $VERSION, true ); // include in footer
 $moonraker_local_vars = [
     'site' => [
         'title' => get_option('blogname'),
