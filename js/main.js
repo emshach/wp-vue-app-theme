@@ -183,7 +183,7 @@ const app = new Vue({
     getUserData() {
     },
     getMenu() {
-      this.menu = this.sstate.menu.nav || [];
+      this.menu = this.sstate.menus.nav || [];
     }
   }
 }).$mount('#app');

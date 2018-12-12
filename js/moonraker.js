@@ -1095,7 +1095,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
     },
     getUserData: function getUserData() {},
     getMenu: function getMenu() {
-      this.menu = this.sstate.menu.nav || [];
+      this.menu = this.sstate.menus.nav || [];
     }
   }
 }).$mount('#app'); // Now the app has started!
