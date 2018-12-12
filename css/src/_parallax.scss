@@ -26,11 +26,10 @@ body {
   min-width: 100%; 
   min-height: 100%;
   max-width: none;
-  left: -12.5%;
-  transform: translateZ(-2px) scale(2.04);
+  transform: translateZ(-2px) scale(2.02);
   height: 100%;
   @include breakpoint( $max-phone ) {
-    transform: translateY(-50%) translateZ(-2px) scale(2.04);
+    transform: translateY(-50%) translateZ(-2px) scale(2.02);
     height: 60%;
   }}
 main {
