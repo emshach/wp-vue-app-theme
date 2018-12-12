@@ -10,19 +10,20 @@ export default {
       history: [],
       discovery: [],
       favs: [],
-      img: ''
+      img: '',
+      title: '',
     };
   },
   mounted() {
-    var self = this;
     wp.api.loadPromise.done(() => {
       var path = new wp.api.models.Path();
       console.log( 'path object', path );
       path.fetch().done(( rpost ) => {
         console.log( 'got home page', rpost );
+        this.title = rpost.title.rendered;
         path.getFeaturedMedia().done(( rmedia ) => {
           // console.log( 'media object', rmedia, rmedia.get( 'source_url' ));
-          self.img = rmedia.get( 'source_url' );
+          this.img = rmedia.get( 'source_url' );
         });
       });
     });

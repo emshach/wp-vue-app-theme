@@ -22,19 +22,22 @@ __webpack_require__.r(__webpack_exports__);
       history: [],
       discovery: [],
       favs: [],
-      img: ''
+      img: '',
+      title: ''
     };
   },
   mounted: function mounted() {
-    var self = this;
+    var _this = this;
+
     wp.api.loadPromise.done(function () {
       var path = new wp.api.models.Path();
       console.log('path object', path);
       path.fetch().done(function (rpost) {
         console.log('got home page', rpost);
+        _this.title = rpost.title.rendered;
         path.getFeaturedMedia().done(function (rmedia) {
           // console.log( 'media object', rmedia, rmedia.get( 'source_url' ));
-          self.img = rmedia.get('source_url');
+          _this.img = rmedia.get('source_url');
         });
       });
     });
@@ -50,7 +53,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home page\">\n  <div id=\"bg-image-wrapper\">\n    <transition>\n      <img id=\"bg-image\" v-if=\"img\" :src=\"img\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <div class=\"featured-wrapper\">\n    <carousel id=\"featured\" topic=\"featured\"></carousel>\n  </div>\n\n  <main role=\"main\">\n    <content-list title=\"latest\" :contents=\"latest\"></content-list>\n    <filmstrip title=\"trending\" :contents=\"trending\"></filmstrip>\n    <filmstrip title=\"recent activity\" :contents=\"recent\"></filmstrip>\n    <filmstrip title=\"pull up\" :contents=\"history\"></filmstrip>\n    <filmstrip title=\"you might like\" :contents=\"discovery\"></filmstrip>\n    <filmstrip title=\"my faves\" :contents=\"favs\"></filmstrip>\n  </main>\n  <carousel-nav></carousel-nav>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"home page\">\n  <div id=\"bg-image-wrapper\">\n    <transition>\n      <img id=\"bg-image\" v-if=\"img\" :src=\"img\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <div class=\"featured-wrapper\">\n    <carousel id=\"featured\" topic=\"featured\"></carousel>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <content-list title=\"latest\" :contents=\"latest\"></content-list>\n    <filmstrip title=\"trending\" :contents=\"trending\"></filmstrip>\n    <filmstrip title=\"recent activity\" :contents=\"recent\"></filmstrip>\n    <filmstrip title=\"pull up\" :contents=\"history\"></filmstrip>\n    <filmstrip title=\"you might like\" :contents=\"discovery\"></filmstrip>\n    <filmstrip title=\"my faves\" :contents=\"favs\"></filmstrip>\n  </main>\n  <carousel-nav></carousel-nav>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 
