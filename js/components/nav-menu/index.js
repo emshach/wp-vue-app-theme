@@ -1,20 +1,21 @@
-import store from '../../lib/store';
 export default {
   template: require( './template.html' ),
   props: {
     menu: {
+      type: Array,
+      default: () => []
+    },
+    logo: {
       type: String,
-      default: "nav"
+      default: ""
+    },
+    title: {
+      type: String,
+      default: ""
+    },
+    url: {
+      type: String,
+      default: ""
     }
-  },
-  data() {
-    return {
-      sstate: store.state,
-      slides: [],
-      slide: 0
-    };
-  },
-  created() {
-    this.slides = this.sstate.menus.nav || [];
   }
 };

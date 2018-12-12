@@ -164,26 +164,26 @@ const app = new Vue({
       "description" : ""
     },
     sstate: store.state,
-    user: {}
-  }, 
-  created() {     
+    user: {},
+    menu: {}
+  },
+  mounted() { 
     this.getSiteInfo();
     this.getUserData();
-    wp.api.loadPromise.done(() => {
-      var settings = new wp.api.models.Settings();
-      settings.fetch().done(( response ) => {
-        this.title = response.title;
-        this.url = response.url;
-        this.description = response.description;
-      });
-    });
+    this.getMenu();
   },    
   watch : {
   }, 
   methods : {
     getSiteInfo() {
+      this.site.title = this.sstate.site.title || "My Blog";
+      this.site.url = this.sstate.site.url; // TODO: or?
+      this.site.description = this.sstate.site.description;
     },
     getUserData() {
+    },
+    getMenu() {
+      this.menu = this.sstate.menu.nav || [];
     }
   }
 }).$mount('#app');

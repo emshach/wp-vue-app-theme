@@ -1077,26 +1077,26 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
       "description": ""
     },
     sstate: _lib_store__WEBPACK_IMPORTED_MODULE_10__["default"].state,
-    user: {}
+    user: {},
+    menu: {}
   },
-  created: function created() {
-    var _this = this;
-
+  mounted: function mounted() {
     this.getSiteInfo();
     this.getUserData();
-    wp.api.loadPromise.done(function () {
-      var settings = new wp.api.models.Settings();
-      settings.fetch().done(function (response) {
-        _this.title = response.title;
-        _this.url = response.url;
-        _this.description = response.description;
-      });
-    });
+    this.getMenu();
   },
   watch: {},
   methods: {
-    getSiteInfo: function getSiteInfo() {},
-    getUserData: function getUserData() {}
+    getSiteInfo: function getSiteInfo() {
+      this.site.title = this.sstate.site.title || "My Blog";
+      this.site.url = this.sstate.site.url; // TODO: or?
+
+      this.site.description = this.sstate.site.description;
+    },
+    getUserData: function getUserData() {},
+    getMenu: function getMenu() {
+      this.menu = this.sstate.menu.nav || [];
+    }
   }
 }).$mount('#app'); // Now the app has started!
 
