@@ -139,8 +139,7 @@ export default {
       scroll.css( "width", newWidth );
       ts_width = newWidth;
       pos = get_pos($menu);
-    });
-  });                           // TODO: unbind if < 600px
-})( jQuery );
+    });                         // TODO: unbind if < 600px
+  })( jQuery );
   }
 };
