@@ -347,7 +347,17 @@ main h1.title {
   float: left;
   margin-top: 5px; }
 
-@impor 'filmstrip';
+/**
+ * filmstrip
+ */
+.content-list, .film-strip {
+  margin-bottom: 30px; }
+
+.content-list > .title, .film-strip > .title {
+  text-transform: capitalize;
+  padding: 2px 12px;
+  border-bottom: 4px solid darkred; }
+
 footer {
   background: #f8f8f8;
   padding-top: 75px;
