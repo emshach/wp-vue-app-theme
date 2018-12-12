@@ -350,10 +350,10 @@ main h1.title {
 /**
  * filmstrip
  */
-.content-list, .film-strip {
+.content-list, .filmstrip {
   margin-bottom: 30px; }
 
-.content-list > .title, .film-strip > .title {
+.content-list > .title, .filmstrip > .title {
   text-transform: capitalize;
   padding: 2px 12px;
   border-bottom: 4px solid darkred; }
