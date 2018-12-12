@@ -13,7 +13,7 @@
           href="<?php echo $template_dir; ?>/css/dist/bootstrap-grid.css" />
     <link rel="stylesheet"
           href="<?php echo $template_dir; ?>/css/dist/bootstrap-reboot.css" />
-    <link rel="stylesheet" href="<?php echo $template_dir; ?>/css/dist/style.css" />
+    <link rel="stylesheet" href="<?php echo $template_dir; ?>/style.css" />
     <?php wp_head(); ?>
   </head>
   <body>
