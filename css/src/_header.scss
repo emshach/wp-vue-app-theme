@@ -7,19 +7,21 @@
 // Header container
 #masthead {
   position: absolute;
+  width: 100%;
+  z-index: 10;
 }
 #bg-image-wrapper {
-    position: absolute;
-    width: 100%; 
-    overflow: hidden; 
-    height: 100%;
-    /* transform: translateZ(-2px) scale(2); */
-    @include breakpoint( $max-phone ) {
-      height: 50%;
-    }
+  position: absolute;
+  width: 100%; 
+  overflow: hidden; 
+  height: 100%;
+  /* transform: translateZ(-2px) scale(2); */
+  @include breakpoint( $max-phone ) {
+    height: 50%;
+  }
 }
 #bg-image-new {
-    display: none
+  display: none
 }
 
 // Logo

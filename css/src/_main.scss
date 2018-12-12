@@ -9,6 +9,7 @@ main {
   margin: 0;
   width: 100%;
   background: url(img/assets/bg-fabric-white-2.jpg) repeat;
+  padding: 1em;
   @include breakpoint( $max-phone ) {
     top: 50%;
   }

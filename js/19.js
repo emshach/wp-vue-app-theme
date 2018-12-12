@@ -44,7 +44,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<input class=\"form-control input-sm\"\n       type=\"text\" name=\"search\"\n       placeholder=\"search term...\"\n       @keyup.enter=\"doSearch\"\n       v-model=\"searchTerm\"\n/>\n<!-- TODO: make into select-list -->\n";
+module.exports = "<input class=\"form-control input-sm search-box\"\n       type=\"text\" name=\"search\"\n       placeholder=\"search term...\"\n       @keyup.enter=\"doSearch\"\n       v-model=\"searchTerm\"\n/>\n<!-- TODO: make into select-list -->\n";
 
 /***/ })
 
