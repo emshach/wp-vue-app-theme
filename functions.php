@@ -171,7 +171,7 @@ function mrk_filter_menu_items( $menu ) {
             'title' => $item->title,
             'object' => $item->object,
             'object_id' => $item->object_id,
-            'url' => $item->url,
+            'url' => wp_make_link_relative( $item->url ),
             'thumb' => $img
         ];
     }
