@@ -19,7 +19,7 @@
         <!-- /mobile site title -->
       </router-link>
       <div id="nav-main-container" class="menu-nav-container">
-        <ul class="menu primary-menu nav navbar-nav collapse">
+        <ul id="menu-nav" class="menu primary-menu nav navbar-nav collapse">
           <li v-for="( item, index ) in menu" :key="index" class="menu-item">
             <router-link :to="item.url">
               <img :src="item.thumb" />

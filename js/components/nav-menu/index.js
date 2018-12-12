@@ -16,9 +16,13 @@ export default {
     }
   },
   mounted() {
-    navSlider.init();
+    this.$nextTick(() => {
+      navSlider.init();
+    });
   },
   updated() {
-    navSlider.init();
+    this.$nextTick(() => {
+      navSlider.init();
+    });
   }
 };
