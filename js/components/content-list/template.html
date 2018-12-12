@@ -1,7 +1,7 @@
-<section>
+<section class="content-list">
   <h3 class="title" v-if="title">{{ title }}</h3>
   <template v-if="contents.length > 0">
-    <ul class="list-unstyled content-list">
+    <ul class="list-unstyled content">
       <b-media v-for="( item, index ) in contents" tag="li" :item="item"
                :key="index">
         <b-img slot="aside" blank-color="#abc" width="64" :alt="item.alt" />
