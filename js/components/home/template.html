@@ -1,6 +1,8 @@
 <div class="home page">
   <div id="bg-image-wrapper">
-    <img id="bg-image" v-if="img" v-lazyload="img"/>
+    <transition name="fade" v-if="img">
+      <img id="bg-image" :src="img" @load="showImg" v-show="show"/>
+    </transition>
   </div>
   <wp-header></wp-header>
   <div class="featured-wrapper">

@@ -12,6 +12,7 @@ export default {
       favs: [],
       img: '',
       title: '',
+      show: false
     };
   },
   mounted() {
@@ -27,5 +28,10 @@ export default {
         });
       });
     });
+  },
+  methods: {
+    showImg() {
+      this.show = true;
+    }
   }
 };
