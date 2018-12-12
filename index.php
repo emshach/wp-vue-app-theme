@@ -21,8 +21,8 @@
       <transition name="fade-in">
         <router-view></router-view>
       </transition>
-      <nav-menu menu="menu" logo="site.logo" title="site.title" url="site.url">
-      </nav-menu>
+      <nav-menu :menu="menu" :logo="site.logo"
+                :title="site.title" :url="site.url"></nav-menu>
     </div><!--app-->
     <?php wp_footer(); ?>
   </body>
