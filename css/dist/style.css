@@ -390,7 +390,7 @@ footer {
   background: #666;
   text-align: center;
   padding-top: 5px;
-  padding-bottom: 120px;
+  min-height: 145px;
   color: white; }
 
 .latest-title {
