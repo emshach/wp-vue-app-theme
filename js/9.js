@@ -23,7 +23,8 @@ __webpack_require__.r(__webpack_exports__);
       discovery: [],
       favs: [],
       img: '',
-      title: ''
+      title: '',
+      show: false
     };
   },
   mounted: function mounted() {
@@ -41,6 +42,11 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     });
+  },
+  methods: {
+    showImg: function showImg() {
+      this.show = true;
+    }
   }
 });
 
@@ -53,7 +59,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home page\">\n  <div id=\"bg-image-wrapper\">\n    <img id=\"bg-image\" v-if=\"img\" v-lazyload=\"img\"/>\n  </div>\n  <wp-header></wp-header>\n  <div class=\"featured-wrapper\">\n    <carousel id=\"featured\" topic=\"featured\"></carousel>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <content-list title=\"latest\" :contents=\"latest\"></content-list>\n    <filmstrip title=\"trending\" :contents=\"trending\"></filmstrip>\n    <filmstrip title=\"recent activity\" :contents=\"recent\"></filmstrip>\n    <filmstrip title=\"pull up\" :contents=\"history\"></filmstrip>\n    <filmstrip title=\"you might like\" :contents=\"discovery\"></filmstrip>\n    <filmstrip title=\"my faves\" :contents=\"favs\"></filmstrip>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"home page\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade\" v-if=\"img\">\n      <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <div class=\"featured-wrapper\">\n    <carousel id=\"featured\" topic=\"featured\"></carousel>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <content-list title=\"latest\" :contents=\"latest\"></content-list>\n    <filmstrip title=\"trending\" :contents=\"trending\"></filmstrip>\n    <filmstrip title=\"recent activity\" :contents=\"recent\"></filmstrip>\n    <filmstrip title=\"pull up\" :contents=\"history\"></filmstrip>\n    <filmstrip title=\"you might like\" :contents=\"discovery\"></filmstrip>\n    <filmstrip title=\"my faves\" :contents=\"favs\"></filmstrip>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 
