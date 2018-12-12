@@ -374,6 +374,7 @@ footer {
   float: right; }
 
 .search-wrapper > .search-box {
+  margin-top: 3em;
   margin-right: -3em;
   padding-right: 3em;
   border-top-left-radius: 100px;
