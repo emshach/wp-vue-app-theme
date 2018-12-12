@@ -30,6 +30,7 @@ export default {
     var ts_container = $( "#menu-nav" );
     var thumb        = $( "#menu-nav > .menu-item" );
     var t_current    = $( "#menu-nav > .current-menu-item" );
+    var main_title   = $( "main > h1.title" );
     
     var $menu       = menu.get(0);
     var menu_height = menu.innerHeight();
@@ -88,10 +89,12 @@ export default {
       function() { //mouse over
 	outer.stop().fadeTo( dur_in, 1 );
 	menu.stop().animate({ height: menu_height }, ease_in );
+        main_title.stop().animate({ bottom: 110 }, ts_easing );
       },
       function() { //mouse out
 	outer.stop().fadeTo( dur_out * 3, tc_opacity_out, "easeInOutCubic");
 	menu.stop().animate({ height: 15 }, ease_out );
+        main_title.stop().animate({ bottom: 0 }, ts_easing );
       }
     );
 
