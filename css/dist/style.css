@@ -361,9 +361,10 @@ main h1.title {
   border-bottom: 1px solid #b00; }
 
 footer {
-  background: #f8f8f8;
+  background: #666;
   text-align: center;
-  border-top: 1px solid #ebebeb; }
+  padding-top: 100px;
+  color: white; }
 
 .latest-title {
   margin-bottom: 25px; }
