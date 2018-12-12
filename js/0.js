@@ -204,7 +204,7 @@ function get_pos(obj) {
           height: menu_height
         }, ease_in);
         var top = $("#app>.page").scrollTop();
-        if (top > 110) main_title.stop().animate({
+        main_title.stop().animate({
           bottom: 110 - top
         }, ease_in);
       }, function () {
