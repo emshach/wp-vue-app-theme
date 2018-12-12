@@ -10,6 +10,7 @@
     "gulp-clean-css": "^3.9.0",
     "gulp-load-plugins": "^1.5.0",
     "gulp-sourcemaps": "^2.6.1",
+    "vue-lazyload": "^1.2.6",
     "vuex": "^3.0.1",
     "wpapi": "^1.1.2"
   },

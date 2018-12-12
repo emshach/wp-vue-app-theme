@@ -1,8 +1,6 @@
 <div class="home page">
   <div id="bg-image-wrapper">
-    <transition>
-      <img id="bg-image" v-if="img" :src="img"/>
-    </transition>
+    <img id="bg-image" v-if="img" v-lazy="img"/>
   </div>
   <wp-header></wp-header>
   <div class="featured-wrapper">
@@ -18,6 +16,5 @@
     <filmstrip title="you might like" :contents="discovery"></filmstrip>
     <filmstrip title="my faves" :contents="favs"></filmstrip>
   </main>
-  <carousel-nav></carousel-nav>
   <wp-footer></wp-footer>
 </div>

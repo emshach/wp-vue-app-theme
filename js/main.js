@@ -7,6 +7,7 @@ import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
+import VueLazyload from 'vue-lazyload';
 import store from './lib/store';
 import wpapix from './lib/wpapi';
 
@@ -27,7 +28,7 @@ const Comments    = () => import( './components/comments'     );
 const Carousel    = () => import( './components/carousel'     );
 const ContentList = () => import( './components/content-list' );
 const Filmstrip   = () => import( './components/filmstrip'    );
-const CarouselNav = () => import( './components/carousel-nav' );
+const NavMenu     = () => import( './components/nav-menu'     );
 // const             = () => import( './components/'             );
 
 // const components with routes
@@ -55,6 +56,7 @@ Vue.use( Vuex );
 Vue.use( VueRouter );
 Vue.use( BootstrapVue );
 Vue.use( VueAwesomeSwiper );
+Vue.use( VueLazyload );
 
 // init components
 Vue.component( 'the-loop',       TheLoop       );
@@ -69,7 +71,7 @@ Vue.component( 'flower-spinner', FlowerSpinner );
 Vue.component( 'carousel',       Carousel      );
 Vue.component( 'content-list',   ContentList   );
 Vue.component( 'filmstrip',      Filmstrip     );
-Vue.component( 'carousel-nav',   CarouselNav   );
+Vue.component( 'nav-menu',       NavMenu       );
 // Vue.component( '',                             );
 
 //components with routes
