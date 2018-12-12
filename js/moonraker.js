@@ -1078,7 +1078,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
     },
     sstate: _lib_store__WEBPACK_IMPORTED_MODULE_10__["default"].state,
     user: {},
-    menu: {}
+    menu: []
   },
   mounted: function mounted() {
     this.getSiteInfo();

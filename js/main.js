@@ -165,7 +165,7 @@ const app = new Vue({
     },
     sstate: store.state,
     user: {},
-    menu: {}
+    menu: []
   },
   mounted() { 
     this.getSiteInfo();
