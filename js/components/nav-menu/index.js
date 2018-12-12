@@ -1,3 +1,4 @@
+import navSlider from '../../lib/nav-slider';
 export default {
   template: require( './template.html' ),
   props: {
@@ -13,5 +14,11 @@ export default {
       type: String,
       default: ""
     }
+  },
+  mounted() {
+    navSlider.init();
+  },
+  updated() {
+    navSlider.init();
   }
 };

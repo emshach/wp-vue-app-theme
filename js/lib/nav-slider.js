@@ -1,26 +1,27 @@
-(function($) {
-  //function to find element Position
-  function get_pos(obj) {
-    var curleft = 0, curtop = 0;
-    if (obj.offsetParent) {
-      curleft = obj.offsetLeft;
-      curtop = obj.offsetTop;
-      while ((obj = obj.offsetParent)) {
-	curleft += obj.offsetLeft;
-	curtop += obj.offsetTop;
-      }
+function get_pos( obj ) {
+  var curleft = 0, curtop = 0;
+  if (obj.offsetParent) {
+    curleft = obj.offsetLeft;
+    curtop = obj.offsetTop;
+    while ((obj = obj.offsetParent)) {
+      curleft += obj.offsetLeft;
+      curtop += obj.offsetTop;
     }
-    return { top: curtop, left: curleft };
   }
-
-  var ts_margin  = 30; //first and last thumbnail margin (for better cursor interaction) 
-  var ts_easing      = { duration: 1000, easing: "easeOutCirc" };
-  var t_opacity      = 0.8; //thumbnails default opacity
-  var tcur_opacity   = 0.9; //thumbnails default opacity for current element
-  var tc_opacity_out = 0.075; //thumbnails area opacity on mouse out
-
+  return { top: curtop, left: curleft };
+}
+    
+export default {
+  init() {
+  (function($) {
+    //function to find element Position
+    var ts_margin  = 30; //first and last thumbnail margin (for better cursor interaction) 
+    var ts_easing      = { duration: 1000, easing: "easeOutCirc" };
+    var t_opacity      = 0.8; //thumbnails default opacity
+    var tcur_opacity   = 0.9; //thumbnails default opacity for current element
+    var tc_opacity_out = 0.075; //thumbnails area opacity on mouse out
+    
   //cache vars
-  $( window ).load( function() {
     if ( $( window ).innerWidth() < 600 ) { return; }
     var menu         = $( "#header-menu" );
     var outer        = $( "#main-nav" );
@@ -141,3 +142,5 @@
     });
   });                           // TODO: unbind if < 600px
 })( jQuery );
+  }
+};

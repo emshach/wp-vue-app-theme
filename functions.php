@@ -5,7 +5,7 @@
  * USES THE COMPONENT "PREVIEW"
 */
 
-$VERSION = '0.1.0';
+$VERSION = '0.1.25';
 
 //classe
 // require_once 'lib/classes.php';
@@ -254,9 +254,7 @@ add_action( 'rest_api_init', 'mrk_register_endpoint' );
 
 wp_enqueue_script( 'wp-api' );
 wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
-                   [ 'wp-api' ], $VERSION, true ); // include in footer
-wp_enqueue_script( 'nav-slider', get_theme_file_uri( '/js/nav-slider.js' ),
-                   false, $VERSION, true );
+                   [ 'wp-api', 'jquery' ], $VERSION, true ); // include in footer
 $moonraker_local_vars = [
     'site' => [
         'title' => get_option('blogname'),
