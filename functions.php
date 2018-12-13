@@ -322,7 +322,7 @@ function mrk_get_home_page( $data ) {
     $result = mrk_rest_get_post( $post );
     if ( is_array( $result ))
         $result = apply_filters( 'mrk_rest_process_home_page', $result );
-    return $result
+    return $result;
 }
 
 /**
