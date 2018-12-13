@@ -198,22 +198,119 @@ function mrk_get_current_user_info() {
 }
 
 /**
-* Fix the wordpress rest-api so we can just lookup pages by their full * path
-*
-* @return WP_Error|WP_REST_Response
-*/
-function mrk_get_post_by_path( $data ) {
-    $post = get_page_by_path( $data['url'] );
+ * Add background image to a post data object
+ *
+ * @return post array
+ */
+function mrk_rest_add_bg_image( $data ) {
+    if ( $data[ 'featured_media' ])
+        $data[ 'background_image' ] = wp_get_attachment_url( $data[ 'featured_media' ]);
+    return $data;
+}
+
+/**
+ * Add a promo reel to a product page object
+ *
+ * @return post array
+ */
+function mrk_rest_add_promo_reel( $data ) {
+    $collection = get_field( 'promo_reel', $data[ 'id' ]);
+    if ( empty( $collection ))
+        return $data;
+    $posts = get_posts(
+        [
+            'posts_per_page' => -1,
+            // 'post_type' => 'fabric_building',
+            'tax_query' => [
+                [
+                    'taxonomy' => 'attachment_category',
+                    'field' => 'term_id',
+                    'terms' => $collection->term_id,
+                ]
+            ]
+        ]
+    );
+    if ( empty( $posts ))
+        return $data;
+    $data[ 'promo_reel' ] = [];
+    foreach ( $posts as $post ) {
+        $postdata = mrk_rest_get_post( $post );
+        if (! is_array( $postdata ))
+            continue;
+        $data[ 'promo_reel' ][] = $postdata;
+    }
+}
+
+/**
+ * Add episodes to a product page object
+ *
+ * @return post array
+ */
+function mrk_rest_add_episodes( $data ) {
+    $collection = get_field( 'episodes', $data[ 'id' ]);
+    if ( empty( $collection ))
+        return $data;
+    $posts = get_posts(
+        [
+            'posts_per_page' => -1,
+            // 'post_type' => 'fabric_building',
+            'tax_query' => [
+                [
+                    'taxonomy' => 'attachment_category',
+                    'field' => 'term_id',
+                    'terms' => $collection->term_id,
+                ]
+            ]
+        ]
+    );
+    if ( empty( $posts ))
+        return $data;
+    $data[ 'episodes' ] = [];
+    foreach ( $posts as $post ) {
+        $postdata = mrk_rest_get_episode( $post );
+        if (! is_array( $postdata ))
+            continue;
+        $data[ 'opisodes' ][] = $postdata;
+    }
+}
+
+/**
+ *  Get post data, passing it through the rest controller
+ */
+function mrk_rest_get_post( $post ) {
     if ( empty( $post )) {
         return new WP_Error( 'mrk_no_such_post', 'Path not found', [ 'status' => 404 ]);
     }
     $request = new WP_REST_Request();
     $controller = new WP_REST_Posts_Controller( $post->post_type );
     $prepared = $controller->prepare_item_for_response( $post, $request);
-    return $prepared->data;
+    $result = apply_filters( 'mrk_rest_process_post', $prepared->data );
+}
+
+/**
+ * Fix the wordpress rest-api so we can just lookup pages by their full * path
+ *
+ * @return post array
+ */
+function mrk_get_post_by_path( $data ) {
+    $post = get_page_by_path( $data['path'] );
+    $result = mrk_rest_get_post( $post );
+    return $result;
+}
+/**
+ * Get any post type by id
+ *
+ * @return post array
+*/
+function mrk_get_post_by_id( $data ) {
+    $post = get_post( $data['id'] );
+    $result = mrk_rest_get_post( $post );
+    return $result;
 }
 /**
  * get the home page post
+ *
+ * @return post array
  */
 function mrk_get_home_page( $data ) {
     $post_id = get_option( 'page_on_front');
@@ -222,21 +319,39 @@ function mrk_get_home_page( $data ) {
                              [ 'status' => 404 ]);
     }
     $post = get_post( $post_id );
-    if ( empty( $post )) {
-        return new WP_Error( 'mrk_no_such_post', 'Path not found', [ 'status' => 404 ]);
-    }
-    $request = new WP_REST_Request();
-    $controller = new WP_REST_Posts_Controller( $post->post_type );
-    $prepared = $controller->prepare_item_for_response( $post, $request);
-    error_log( var_export( $prepared, true ));
-    $result = $prepared->data;
-    if ( $result[ 'featured_media' ])
-        $result[ 'background_image' ]
-            = wp_get_attachment_url( $result[ 'featured_media' ]);
+    $result = mrk_rest_get_post( $post );
+    if ( is_array( $result ))
+        $result = apply_filters( 'mrk_rest_process_home_page', $result );
+    return $result
+}
+
+/**
+ * get a product page
+ *
+ * @return post array
+ */
+function mrk_get_product_page( $data ) {
+    $result = null;
+    if ( $data[ 'id' ])
+        $result = mrk_get_post_by_id( $data );
+    elseif ( $data[ 'path' ])
+        $result = mrk_get_post_by_path( $data );
+    $result = apply_filters( 'mrk_rest_process_product_page', $result );
     return $result;
 }
+
 /**
- * make the endpoint for fetching posts/pages by url 
+ * get an episode page
+ *
+ * @return array
+ */
+function mrk_get_episode_page( $data ) {
+
+}
+
+/**
+ * Make the endpoint for fetching posts/pages by path
+ *
  * /wp-json/mrk/v1
  */
 function mrk_register_endpoint () {
@@ -244,14 +359,37 @@ function mrk_register_endpoint () {
         'methods'  => 'GET',
 	'callback' => 'mrk_get_home_page',
     ]);
-    register_rest_route( 'mrk/v1', '/path/(?P<url>.+)', [
+    register_rest_route( 'mrk/v1', '/path/(?P<id>\d+)', [
+        'methods'  => 'GET',
+	'callback' => 'mrk_get_post_by_id',
+    ]);
+    register_rest_route( 'mrk/v1', '/path/(?P<path>.+)', [
         'methods'  => 'GET',
 	'callback' => 'mrk_get_post_by_path',
+    ]);
+    register_rest_route( 'mrk/v1', '/product/(?P<id>\d+)', [
+        'methods'  => 'GET',
+	'callback' => 'mrk_get_product_page',
+    ]);
+    register_rest_route( 'mrk/v1', '/product/(?P<path>.+)', [
+        'methods'  => 'GET',
+	'callback' => 'mrk_get_product_page',
+    ]);
+    register_rest_route( 'mrk/v1', '/episode/(?P<id>\d+)', [
+        'methods'  => 'GET',
+	'callback' => 'mrk_get_episode_page',
+    ]);
+    register_rest_route( 'mrk/v1', '/episode/(?P<path>.+)', [
+        'methods'  => 'GET',
+	'callback' => 'mrk_get_episode_page',
     ]);
 }
 
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_action( 'rest_api_init', 'mrk_register_endpoint' );
+add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image' );
+add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel' );
+add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_promo_reel' );
 
 /**
  * enqueue oficial wp api rest api js client and our js client

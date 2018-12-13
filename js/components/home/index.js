@@ -4,6 +4,7 @@ export default {
   data () {
     return {
       sstate: store.state,
+      promos: [],
       latest: [],
       trending: [],
       recent: [],
@@ -23,6 +24,7 @@ export default {
         console.log( 'got home page', rpost );
         this.title = rpost.title.rendered;
         this.img = rpost.background_image || '';
+        this.promos = rpost.promo_reel || [];
       });
     });
   },

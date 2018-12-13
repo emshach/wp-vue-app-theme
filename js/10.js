@@ -16,6 +16,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      promos: [],
       latest: [],
       trending: [],
       recent: [],
@@ -37,6 +38,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log('got home page', rpost);
         _this.title = rpost.title.rendered;
         _this.img = rpost.background_image || '';
+        _this.promos = rpost.promo_reel || [];
       });
     });
   },
