@@ -14,12 +14,9 @@
            :src="slide.source_url" controls>
       {{ slide.alt_text }}
     </video>
-    <div v-if="slide.caption" class="caption">
-      {{{ slide.caption.rendered }}}
-    </div>
-    <div v-if="slide.description" class="description">
-      {{{ slide.description.rendered }}}
-    </div>
+    <div v-if="slide.caption" class="caption" v-html="slide.caption.rendered"></div>
+    <div v-if="slide.description" class="description"
+         v-html="slide.description.rendered"></div>
     <router-link v-if="slide.full_content" :to="slide.full_content.path"
                  class="watch-now">watch now</router-link>
     <!-- TODO: if paid content, this link should be different, maybe it's own
