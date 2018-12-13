@@ -5,18 +5,15 @@
             :interval="interval">
   <b-carousel-slide v-for="( slide, index ) in slides"
                     :key="slide.id"
-                    :text="slide.text"
+                    :text="slide.description ? slide.description.rendered: ''"
                     :img-src="slide.src"
-                    :caption="slide.caption">
+                    :caption="slide.caption ? slide.caption.rendered : ''">
     <h2 v-html="slide.title.rendered"></h2>
     <img v-if="slide.media_type == 'image'" :src="slide.source_url" />
     <video v-else-if"slide.mime_type.indexOf( 'video' ) == 0"
            :src="slide.source_url" controls>
       {{ slide.alt_text }}
     </video>
-    <div v-if="slide.caption" class="caption" v-html="slide.caption.rendered"></div>
-    <div v-if="slide.description" class="description"
-         v-html="slide.description.rendered"></div>
     <router-link v-if="slide.full_content" :to="slide.full_content.path"
                  class="watch-now">watch now</router-link>
     <!-- TODO: if paid content, this link should be different, maybe it's own
