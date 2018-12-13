@@ -170,7 +170,7 @@ function mrk_get_current_user_info() {
  * @return post array
  */
 function mrk_rest_add_bg_image( $data ) {
-    if ( $data[ 'featured_media' ])
+    if (! empty( $data[ 'featured_media' ]))
         $data[ 'background_image' ] = wp_get_attachment_url( $data[ 'featured_media' ]);
     return $data;
 }
