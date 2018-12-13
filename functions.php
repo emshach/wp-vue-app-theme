@@ -233,7 +233,7 @@ function mrk_get_home_page( $data ) {
     if ( $result[ 'featured_media' ])
         $result[ 'background_image' ]
             = wp_get_attachment_url( $result[ 'featured_media' ]);
-    return $prepared->data;
+    return $result;
 }
 /**
  * make the endpoint for fetching posts/pages by url 
