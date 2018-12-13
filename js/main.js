@@ -15,7 +15,7 @@ import wpapix from './lib/wpapi';
 // styles
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import 'swiper/dist/css/swiper.css';
+// import 'swiper/dist/css/swiper.css';
 
 //partial components
 const TheLoop     = () => import( './components/the-loop'     );

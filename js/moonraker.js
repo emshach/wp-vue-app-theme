@@ -775,8 +775,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
 /* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var swiper_dist_css_swiper_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! swiper/dist/css/swiper.css */ "./node_modules/swiper/dist/css/swiper.css");
-/* harmony import */ var swiper_dist_css_swiper_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(swiper_dist_css_swiper_css__WEBPACK_IMPORTED_MODULE_14__);
 
 
 
@@ -792,8 +790,8 @@ __webpack_require__.r(__webpack_exports__);
  // styles
 
 
-
- //partial components
+ // import 'swiper/dist/css/swiper.css';
+//partial components
 
 var TheLoop = function TheLoop() {
   return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ./components/the-loop */ "./js/components/the-loop/index.js"));
@@ -37111,17 +37109,6 @@ Popper.Defaults = Defaults;
 //# sourceMappingURL=popper.js.map
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../../../usr/local/lib/node_modules/webpack/buildin/global.js */ "../../../../../../../usr/local/lib/node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/swiper/dist/css/swiper.css":
-/*!*************************************************!*\
-  !*** ./node_modules/swiper/dist/css/swiper.css ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
