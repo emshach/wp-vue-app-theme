@@ -219,8 +219,7 @@ function mrk_rest_add_promo_reel( $data ) {
         return $data;
     $posts = get_posts(
         [
-            'posts_per_page' => -1,
-            // 'post_type' => 'fabric_building',
+            'nopaaging' => true,
             'tax_query' => [
                 [
                     'taxonomy' => 'collection',
@@ -230,6 +229,7 @@ function mrk_rest_add_promo_reel( $data ) {
             ]
         ]
     );
+    error_log( var_export( $posts, true ));
     if ( empty( $posts ))
         return $data;
     $data[ 'promo_reel' ] = [];
@@ -253,8 +253,7 @@ function mrk_rest_add_episodes( $data ) {
         return $data;
     $posts = get_posts(
         [
-            'posts_per_page' => -1,
-            // 'post_type' => 'fabric_building',
+            'nopaaging' => true,
             'tax_query' => [
                 [
                     'taxonomy' => 'attachment_category',
