@@ -10,11 +10,13 @@
                     :img-src="slide.src"
                     :caption="slide.caption ? slide.caption.rendered : ''">
     <h2 v-html="slide.title.rendered"></h2>
-    <img v-if="slide.media_type == 'image'" :src="slide.source_url" />
-    <video v-else-if="slide.mime_type.indexOf( 'video' ) == 0"
-           :src="slide.source_url" controls>
-      {{ slide.alt_text }}
-    </video>
+    <template v-if="slide.post_type == 'attachment'">
+      <img v-if="slide.media_type == 'image'" :src="slide.source_url" />
+      <video v-else-if="slide.mime_type.indexOf( 'video' ) == 0"
+             :src="slide.source_url" controls>
+        {{ slide.alt_text }}
+      </video>
+    </template>
     <router-link v-if="slide.full_content" :to="slide.full_content.path"
                  class="watch-now">watch now</router-link>
     <!-- TODO: if paid content, this link should be different, maybe it's own
