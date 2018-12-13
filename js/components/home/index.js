@@ -22,10 +22,7 @@ export default {
       path.fetch().done(( rpost ) => {
         console.log( 'got home page', rpost );
         this.title = rpost.title.rendered;
-        path.getFeaturedMedia().done(( rmedia ) => {
-          // console.log( 'media object', rmedia, rmedia.get( 'source_url' ));
-          this.img = rmedia.get( 'source_url' );
-        });
+        this.img = rpost.background_image || '';
       });
     });
   },

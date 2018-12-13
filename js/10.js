@@ -36,10 +36,7 @@ __webpack_require__.r(__webpack_exports__);
       path.fetch().done(function (rpost) {
         console.log('got home page', rpost);
         _this.title = rpost.title.rendered;
-        path.getFeaturedMedia().done(function (rmedia) {
-          // console.log( 'media object', rmedia, rmedia.get( 'source_url' ));
-          _this.img = rmedia.get('source_url');
-        });
+        _this.img = rpost.background_image || '';
       });
     });
   },
