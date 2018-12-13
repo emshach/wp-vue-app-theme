@@ -51,39 +51,6 @@ function post_preview_callback( $request_data ) {
     return $postarray;
 }
 
-/**
- * END POST / PAGE PREVIEW
- * 
-*/
-
-
-/**
- * CHANGES URL PREFIX
- * TO MATCH OUR VUE ROUTE 
- * SO A PAGE WILL LOOK LIKE 
- * /post/post-name/
- * /page/page-name/
- * https://stackoverflow.com/questions/17613789/wordpress-rewrite-add-base-prefix-to-pages-only * 
- * 
- */
-
-function change_base_permalinks() {
-  global $wp_rewrite;
- 
-  // $wp_rewrite->permalink_structure = 'post/%postname%/';
-  $wp_rewrite->page_structure = 'page/%pagename%';
-  // $wp_rewrite->extra_permastructs['category']['struct'] = 'category/%category%';
-  $wp_rewrite->flush_rules();
-  // var_dump($wp_rewrite);exit;
-
-  //look into this:
-  //https://wordpress.stackexchange.com/questions/152306/change-permalinks-structure-for-specific-category
-
-}
-add_action('init','change_base_permalinks');
-
-
-
 function prepare_rest($data,$post,$request){
   
   
