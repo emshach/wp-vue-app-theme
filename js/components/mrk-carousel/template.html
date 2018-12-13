@@ -2,7 +2,7 @@
   <slide v-for="( slide, index ) in slides" :key="slide.id">
     <div class="container">
       <div class="row">
-        <div class="col-6">
+        <div class="col-8">
           <template v-if="slide.type == 'attachment'">
             <img v-if="slide.media_type == 'image'" :src="slide.source_url"
                  class="media" />
@@ -12,7 +12,7 @@
             </video>
           </template>
         </div>
-        <div class="col-6">
+        <div class="col-4">
           <h2 v-html="slide.title.rendered"></h2>
           <div v-if="slide.excerpt" class="excerpt"
                v-html="slide.excerpt.rendered"></div>
@@ -36,4 +36,4 @@
     <flower-spinner :animation-duration="2500" :size="70" color="#025">
     </flower-spinner>
   </slide>
-</"carousel>
+</carousel>

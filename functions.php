@@ -10,6 +10,11 @@ $VERSION = '0.1.25';
 //classe
 // require_once 'lib/classes.php';
 
+// change excerpt length so I can get some longer excerpts
+function mrk_excerpt_length () {
+    return 150;
+}
+
 //change preview post links - to match wpvue route
 function new_preview_link() {
   $slug = basename(get_the_ID()); 
@@ -396,6 +401,7 @@ function mrk_register_endpoint () {
     ]);
 }
 
+add_filter( 'excerpt_length', 'mrk_excerpt_length', 999 );
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_action( 'rest_api_init', 'mrk_register_endpoint' );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
