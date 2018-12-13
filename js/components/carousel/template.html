@@ -8,7 +8,7 @@
                     :text="slide.text"
                     :img-src="slide.src"
                     :caption="slide.caption">
-    <h2>{{{ slide.title.rendered }}}</h2>
+    <h2 v-html="slide.title.rendered"></h2>
     <img v-if="slide.media_type == 'image'" :src="slide.source_url" />
     <video v-else-if"slide.mime_type.indexOf( 'video' ) == 0"
            :src="slide.source_url" controls>
