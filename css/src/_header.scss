@@ -17,7 +17,7 @@
   background: #100;
   /* transform: translateZ(-2px) scale(2); */
   @include breakpoint( $max-phone ) {
-    height: 50%;
+    width: auto;
   }
 }
 #bg-image-new {
