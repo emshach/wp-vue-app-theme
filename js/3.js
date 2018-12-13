@@ -17,6 +17,12 @@ var carousels = 0;
       type: String,
       default: ""
     },
+    slides: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
     id: {
       type: String,
       default: function _default() {
@@ -35,7 +41,6 @@ var carousels = 0;
   data: function data() {
     return {
       loading: true,
-      slides: [],
       slide: 0,
       sliding: null
     };
@@ -50,7 +55,10 @@ var carousels = 0;
     onSlideEnd: function onSlideEnd(slide) {
       this.sliding = false;
     },
-    getSlides: function getSlides() {}
+    getSlides: function getSlides() {
+      if (!this.slides.length && this.topic) {// TODO: search using topic, get posts
+      }
+    }
   }
 });
 
@@ -63,7 +71,7 @@ var carousels = 0;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<b-carousel :id=\"id\"\n            controls\n            indicators\n            :background=\"background\"\n            :interval=\"interval\">\n  <b-carousel-slide v-for=\"( slide, index ) in slides\"\n                    :key=\"slide.id\"\n                    :text=\"slide.text\"\n                    :img-src=\"slide.src\"\n                    :caption=\"slide.caption\">{{ slide.html }}</b-carousel-slide>\n  <b-carousel-slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </b-carousel-slide>\n</b-carousel>\n";
+module.exports = "<b-carousel :id=\"id\"\n            controls\n            indicators\n            :background=\"background\"\n            :interval=\"interval\">\n  <b-carousel-slide v-for=\"( slide, index ) in slides\"\n                    :key=\"slide.id\"\n                    :text=\"slide.text\"\n                    :img-src=\"slide.src\"\n                    :caption=\"slide.caption\">\n    <h2>{{{ slide.title.rendered }}}</h2>\n    <img v-if=\"slide.media_type == 'image'\" :src=\"slide.source_url\" />\n    <video v-else-if\"slide.mime_type.indexOf( 'video' ) == 0\"\n           :src=\"slide.source_url\" controls>\n      {{ slide.alt_text }}\n    </video>\n    <div v-if=\"slide.caption\" class=\"caption\">\n      {{{ slide.caption.rendered }}}\n    </div>\n    <div v-if=\"slide.description\" class=\"description\">\n      {{{ slide.description.rendered }}}\n    </div>\n    <router-link v-if=\"slide.full_content\" :to=\"slide.full_content.path\"\n                 class=\"watch-now\">watch now</router-link>\n    <!-- TODO: if paid content, this link should be different, maybe it's own\n         component -->\n  </b-carousel-slide>\n  <b-carousel-slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </b-carousel-slide>\n</b-carousel>\n";
 
 /***/ })
 

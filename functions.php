@@ -176,6 +176,17 @@ function mrk_rest_add_bg_image( $data ) {
 }
 
 /**
+ * Add background image to a post data object
+ *
+ * @return post array
+ */
+function mrk_rest_add_rel_path( $data ) {
+    if (! empty( $data[ 'link' ]))
+        $data[ 'path'] = wp_make_link_relative( $data[ 'link' ]);
+    return $data;
+}
+
+/**
  * Add a promo reel to a product page object
  *
  * @return post array
@@ -201,7 +212,10 @@ function mrk_rest_add_promo_reel( $data ) {
         return $data;
     $data[ 'promo_reel' ] = [];
     foreach ( $posts as $post ) {
-        $postdata = mrk_rest_get_post( $post );
+        if ( $post->post_type == 'attachment' )
+            $postdata = mrk_rest_get_media( $post );
+        else
+            $postdata = mrk_rest_get_post( $post );
         if (! is_array( $postdata ))
             continue;
         $data[ 'promo_reel' ][] = $postdata;
@@ -220,7 +234,7 @@ function mrk_rest_add_releases( $data ) {
         return $data;
     $posts = get_posts(
         [
-            'post_type' => 'any',
+            'post_type' => [ 'post', 'page', 'release', 'attachment' ],
             'nopaaging' => true,
             'tax_query' => [
                 [
@@ -235,7 +249,10 @@ function mrk_rest_add_releases( $data ) {
         return $data;
     $data[ 'releases' ] = [];
     foreach ( $posts as $post ) {
-        $postdata = mrk_rest_get_release( $post );
+        if ( $post->post_type == 'attachment' )
+            $postdata = mrk_rest_get_media( $post );
+        else
+            $postdata = mrk_rest_get_post( $post );
         if (! is_array( $postdata ))
             continue;
         $data[ 'opisodes' ][] = $postdata;
@@ -245,6 +262,8 @@ function mrk_rest_add_releases( $data ) {
 
 /**
  *  Get post data, passing it through the rest controller
+ *
+ * @return post array
  */
 function mrk_rest_get_post( $post ) {
     if ( empty( $post )) {
@@ -254,6 +273,22 @@ function mrk_rest_get_post( $post ) {
     $controller = new WP_REST_Posts_Controller( $post->post_type );
     $prepared = $controller->prepare_item_for_response( $post, $request);
     $result = apply_filters( 'mrk_rest_process_post', $prepared->data );
+    return $result;
+}
+
+/**
+ *  Get media data, passing it through the rest controller
+ *
+ * @return media array
+ */
+function mrk_rest_get_media( $post ) {
+    if ( empty( $post )) {
+        return new WP_Error( 'mrk_no_such_post', 'Path not found', [ 'status' => 404 ]);
+    }
+    $request = new WP_REST_Request();
+    $controller = new WP_REST_Attachments_Controller( $post->post_type );
+    $prepared = $controller->prepare_item_for_response( $post, $request);
+    $result = apply_filters( 'mrk_rest_process_media', $prepared->data );
     return $result;
 }
 
@@ -364,6 +399,8 @@ function mrk_register_endpoint () {
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_action( 'rest_api_init', 'mrk_register_endpoint' );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
+add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
+add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_releases', 10, 1 );

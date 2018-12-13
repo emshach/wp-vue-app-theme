@@ -6,6 +6,10 @@ export default {
       type: String,
       default: ""
     },
+    slides: {
+      type: Array,
+      default: () => []
+    },
     id: {
       type: String,
       default: () => "carusel-" + ++carousels
@@ -22,7 +26,6 @@ export default {
   data() {
     return {
       loading: true,
-      slides: [],
       slide: 0,
       sliding: null
     };
@@ -38,6 +41,9 @@ export default {
       this.sliding = false;
     },
     getSlides() {
+      if (! this.slides.length && this.topic ) {
+        // TODO: search using topic, get posts
+      }
     }
   }
 };

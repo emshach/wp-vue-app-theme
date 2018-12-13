@@ -7,7 +7,24 @@
                     :key="slide.id"
                     :text="slide.text"
                     :img-src="slide.src"
-                    :caption="slide.caption">{{ slide.html }}</b-carousel-slide>
+                    :caption="slide.caption">
+    <h2>{{{ slide.title.rendered }}}</h2>
+    <img v-if="slide.media_type == 'image'" :src="slide.source_url" />
+    <video v-else-if"slide.mime_type.indexOf( 'video' ) == 0"
+           :src="slide.source_url" controls>
+      {{ slide.alt_text }}
+    </video>
+    <div v-if="slide.caption" class="caption">
+      {{{ slide.caption.rendered }}}
+    </div>
+    <div v-if="slide.description" class="description">
+      {{{ slide.description.rendered }}}
+    </div>
+    <router-link v-if="slide.full_content" :to="slide.full_content.path"
+                 class="watch-now">watch now</router-link>
+    <!-- TODO: if paid content, this link should be different, maybe it's own
+         component -->
+  </b-carousel-slide>
   <b-carousel-slide v-if="slides.length == 0">
     <flower-spinner :animation-duration="2500" :size="70" color="#025">
     </flower-spinner>
