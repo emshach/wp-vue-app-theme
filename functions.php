@@ -186,6 +186,7 @@ function mrk_rest_add_promo_reel( $data ) {
         return $data;
     $posts = get_posts(
         [
+            'showpoosts' => -1,
             'nopaaging' => true,
             'tax_query' => [
                 [
