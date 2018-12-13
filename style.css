@@ -111,6 +111,11 @@ body {
   transform: translateZ(-2px) scale(2.02);
   height: 100%; }
 
+@media (max-width: 600px) {
+  #bg-image, #bg-image-new {
+    min-height: 100%;
+    max-width: none; } }
+
 main {
   transform: translateZ(0);
   z-index: 2; }
