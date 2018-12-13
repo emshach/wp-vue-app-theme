@@ -31,7 +31,7 @@ var carousels = 0;
     },
     background: {
       type: String,
-      default: "#000810"
+      default: "transparent"
     },
     interval: {
       type: Number,
