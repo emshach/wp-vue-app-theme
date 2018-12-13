@@ -42,7 +42,12 @@ var carousels = 0;
     return {
       loading: true,
       slide: 0,
-      sliding: null
+      sliding: null,
+      options: {
+        pagination: {
+          el: '.swiper-pagination'
+        }
+      }
     };
   },
   mounted: function mounted() {
@@ -71,7 +76,7 @@ var carousels = 0;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<b-carousel :id=\"id\"\n            controls\n            indicators\n            :background=\"background\"\n            :interval=\"interval\">\n  <b-carousel-slide v-for=\"( slide, index ) in slides\" :key=\"slide.id\">\n    <h2 v-html=\"slide.title.rendered\"></h2>\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-6\">\n          <template v-if=\"slide.post_type == 'attachment'\">\n            <img v-if=\"slide.media_type == 'image'\" :src=\"slide.source_url\"\n                 class=\"media\" />\n            <video v-else-if=\"slide.mime_type.indexOf( 'video' ) == 0\"\n                   :src=\"slide.source_url\" class=\"media\" controls>\n              {{ slide.alt_text }}\n            </video>\n          </template>\n          <div class=\"col-6\">\n            <div v-if=\"slide.excerpt\" class=\"excerpt\"\n                 v-html=\"slide.excerpt.rendered\"></div>\n            <div v-if=\"slide.description\" class=\"description\"\n                 v-html=\"slide.description.rendered\"></div>\n            <div v-else-if=\"slide.caption\" class=\"caption\"\n                 v-html=\"slide.caption.rendered\"></div>\n            <router-link v-if=\"slide.read_more\"\n                         :to=\"slide.full_content.path\"\n                         class=\"read-more\">read_more</router-link>\n            <router-link v-else-if=\"slide.full_content\"\n                         :to=\"slide.full_content.path\"\n                         class=\"watch-now\">watch now</router-link>\n          </div>\n          <!-- TODO: if paid content, this link should be different, maybe it's\n               own component -->\n        </div>\n      </div>\n    </div>\n  </b-carousel-slide>\n  <b-carousel-slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </b-carousel-slide>\n</b-carousel>\n";
+module.exports = "<swiper :options=\"options\">\n  <swiper-slide v-for=\"( slide, index ) in slides\" :key=\"slide.id\">\n    <h2 v-html=\"slide.title.rendered\"></h2>\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-6\">\n          <template v-if=\"slide.post_type == 'attachment'\">\n            <img v-if=\"slide.media_type == 'image'\" :src=\"slide.source_url\"\n                 class=\"media\" />\n            <video v-else-if=\"slide.mime_type.indexOf( 'video' ) == 0\"\n                   :src=\"slide.source_url\" class=\"media\" controls>\n              {{ slide.alt_text }}\n            </video>\n          </template>\n          <div class=\"col-6\">\n            <div v-if=\"slide.excerpt\" class=\"excerpt\"\n                 v-html=\"slide.excerpt.rendered\"></div>\n            <div v-if=\"slide.description\" class=\"description\"\n                 v-html=\"slide.description.rendered\"></div>\n            <div v-else-if=\"slide.caption\" class=\"caption\"\n                 v-html=\"slide.caption.rendered\"></div>\n            <router-link v-if=\"slide.read_more\"\n                         :to=\"slide.full_content.path\"\n                         class=\"read-more\">read_more</router-link>\n            <router-link v-else-if=\"slide.full_content\"\n                         :to=\"slide.full_content.path\"\n                         class=\"watch-now\">watch now</router-link>\n          </div>\n          <!-- TODO: if paid content, this link should be different, maybe it's\n               own component -->\n        </div>\n      </div>\n    </div>\n    <div class=\"swiper-pagination\" slot=\"pagination\"></div>\n  </swiper-slide>\n  <swiper-slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </swiper-slide>\n</swiper>\n";
 
 /***/ })
 

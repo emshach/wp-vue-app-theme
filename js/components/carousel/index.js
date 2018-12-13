@@ -27,7 +27,12 @@ export default {
     return {
       loading: true,
       slide: 0,
-      sliding: null
+      sliding: null,
+      options: {
+        pagination: {
+          el: '.swiper-pagination'
+        }
+      }
     };
   },
   mounted() {
