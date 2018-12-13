@@ -5,7 +5,7 @@
             :interval="interval">
   <b-carousel-slide v-for="( slide, index ) in slides"
                     :key="slide.id"
-                    :text="slide.excerpt ? slide.excerpt
+                    :text="slide.excerpt ? slide.excerpt.rendered
                            : slide.description ? slide.description.rendered: ''"
                     :img-src="slide.src"
                     :caption="slide.caption ? slide.caption.rendered : ''">
