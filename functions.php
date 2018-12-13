@@ -228,7 +228,7 @@ function mrk_get_home_page( $data ) {
     $request = new WP_REST_Request();
     $controller = new WP_REST_Posts_Controller( $post->post_type );
     $prepared = $controller->prepare_item_for_response( $post, $request);
-    var_export( $prepared, true );
+    error_log( var_export( $prepared, true ));
     return $prepared->data;
 }
 /**
