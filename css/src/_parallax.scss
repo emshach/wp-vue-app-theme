@@ -28,10 +28,11 @@ body {
   max-width: none;
   transform: translateZ(-2px) scale(2.02);
   height: 100%;
-  @include breakpoint( $max-phone ) {
-    transform: translateY(-50%) translateZ(-2px) scale(2.02);
-    height: 60%;
-  }}
+  // @include breakpoint( $max-phone ) {
+  //   transform: translateY(-50%) translateZ(-2px) scale(2.02);
+  //   height: 60%;
+  // }
+}
 main {
   transform: translateZ(0);
   z-index: 2;

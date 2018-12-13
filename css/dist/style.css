@@ -73,10 +73,6 @@ input[type="search"] {
   height: 100%;
   padding: 120px 0; }
 
-@media (max-width: 600px) {
-  .featured-wrapper {
-    height: 50%; } }
-
 .featured-wrapper .carousel, .featured-wrapper .carousel-inner, .featured-wrapper .carousel-item {
   height: 100%; }
 
@@ -114,11 +110,6 @@ body {
   max-width: none;
   transform: translateZ(-2px) scale(2.02);
   height: 100%; }
-
-@media (max-width: 600px) {
-  #bg-image, #bg-image-new {
-    transform: translateY(-50%) translateZ(-2px) scale(2.02);
-    height: 60%; } }
 
 main {
   transform: translateZ(0);

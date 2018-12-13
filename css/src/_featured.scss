@@ -2,9 +2,9 @@
   position: relative;
   height: 100%;
   padding: 120px 0;
-  @include breakpoint( $max-phone ) {
-    height: 50%;
-  }
+  // @include breakpoint( $max-phone ) {
+  //   height: 50%;
+  // }
   .carousel, .carousel-inner, .carousel-item {
     height: 100%;
   }
