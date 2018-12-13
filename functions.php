@@ -186,7 +186,7 @@ function mrk_rest_add_promo_reel( $data ) {
         return $data;
     $posts = get_posts(
         [
-            'post_type' => [ 'any', 'attachment' ],
+            'post_type' => [ 'post', 'page', 'release', 'attachment' ],
             'nopaaging' => true,
             'tax_query' => [
                 [
