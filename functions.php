@@ -229,6 +229,10 @@ function mrk_get_home_page( $data ) {
     $controller = new WP_REST_Posts_Controller( $post->post_type );
     $prepared = $controller->prepare_item_for_response( $post, $request);
     error_log( var_export( $prepared, true ));
+    $result = $prepared->data;
+    if ( $result[ 'featured_media' ])
+        $result[ 'background_image' ]
+            = wp_get_attachment_url( $result[ 'featured_media' ]);
     return $prepared->data;
 }
 /**
