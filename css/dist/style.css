@@ -76,6 +76,9 @@ input[type="search"] {
   .featured-wrapper {
     height: 50%; } }
 
+.featured-wrapper .carousel, .featured-wrapper .carousel-inner, .featured-wrapper .carousel-item {
+  height: 100%; }
+
 /**
  * parallax
  * ---
