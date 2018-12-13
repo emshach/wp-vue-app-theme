@@ -1,6 +1,5 @@
-<swiper :options="options">
-  <swiper-slide v-for="( slide, index ) in slides" :key="slide.id">
-    <h2 v-html="slide.title.rendered"></h2>
+<carousel :autoplay="true" :per-page="1" :autoplay-timeout="15000">
+  <slide v-for="( slide, index ) in slides" :key="slide.id">
     <div class="container">
       <div class="row">
         <div class="col-6">
@@ -14,6 +13,7 @@
           </template>
         </div>
         <div class="col-6">
+          <h2 v-html="slide.title.rendered"></h2>
           <div v-if="slide.excerpt" class="excerpt"
                v-html="slide.excerpt.rendered"></div>
           <div v-if="slide.description" class="description"
@@ -31,10 +31,9 @@
              own component -->
       </div>
     </div>
-  </swiper-slide>
-  <swiper-slide v-if="slides.length == 0">
+  </slide>
+  <slide v-if="slides.length == 0">
     <flower-spinner :animation-duration="2500" :size="70" color="#025">
     </flower-spinner>
-  </swiper-slide>
-  <div v-else class="swiper-pagination" slot="pagination"></div>
-</swiper>
+  </slide>
+</carousel>
