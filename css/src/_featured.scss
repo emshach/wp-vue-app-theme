@@ -1,6 +1,7 @@
 .featured-wrapper{
   position: relative;
   height: 100%;
+  padding: 60px 0;
   @include breakpoint( $max-phone ) {
     height: 50%;
   }
