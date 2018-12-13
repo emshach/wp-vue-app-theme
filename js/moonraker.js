@@ -818,23 +818,23 @@ var SearchForm = function SearchForm() {
 };
 
 var CommentForm = function CommentForm() {
-  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/comment-form */ "./js/components/comment-form/index.js"));
+  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/comment-form */ "./js/components/comment-form/index.js"));
 };
 
 var Comments = function Comments() {
-  return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/comments */ "./js/components/comments/index.js"));
+  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/comments */ "./js/components/comments/index.js"));
 };
 
 var Carousel = function Carousel() {
-  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/carousel */ "./js/components/carousel/index.js"));
+  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/mrk-carousel */ "./js/components/mrk-carousel/index.js"));
 };
 
 var ContentList = function ContentList() {
-  return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/content-list */ "./js/components/content-list/index.js"));
+  return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/content-list */ "./js/components/content-list/index.js"));
 };
 
 var Filmstrip = function Filmstrip() {
-  return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/filmstrip */ "./js/components/filmstrip/index.js"));
+  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/filmstrip */ "./js/components/filmstrip/index.js"));
 };
 
 var NavMenu = function NavMenu() {
@@ -848,11 +848,11 @@ var PageNotFound = function PageNotFound() {
 };
 
 var Home = function Home() {
-  return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/home */ "./js/components/home/index.js"));
+  return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/home */ "./js/components/home/index.js"));
 };
 
 var Login = function Login() {
-  return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/login */ "./js/components/login/index.js"));
+  return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/login */ "./js/components/login/index.js"));
 };
 
 var About = function About() {
@@ -860,7 +860,7 @@ var About = function About() {
 };
 
 var Contact = function Contact() {
-  return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/contact */ "./js/components/contact/index.js"));
+  return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/contact */ "./js/components/contact/index.js"));
 };
 
 var Single = function Single() {
@@ -884,7 +884,7 @@ var Program = function Program() {
 };
 
 var Episode = function Episode() {
-  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/episode */ "./js/components/episode/index.js"));
+  return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/episode */ "./js/components/episode/index.js"));
 };
 
 var PreviewProgram = function PreviewProgram() {
@@ -896,7 +896,7 @@ var PreviewEpisode = function PreviewEpisode() {
 };
 
 var Members = function Members() {
-  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/members */ "./js/components/members/index.js"));
+  return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/members */ "./js/components/members/index.js"));
 };
 
 var Upload = function Upload() {
@@ -912,14 +912,12 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].config.devtools = true;
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_6__["default"]); // Vue.use( VueAwesomeSwiper );
-// Vue.use( VueCarousel );
 
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_carousel__WEBPACK_IMPORTED_MODULE_8___default.a);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_lazyload_img__WEBPACK_IMPORTED_MODULE_9___default.a, {
   fade: true
 }); // init components
 
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('vue-carousel', vue_carousel__WEBPACK_IMPORTED_MODULE_8__["VueCarousel"]);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('vue-slider', vue_carousel__WEBPACK_IMPORTED_MODULE_8__["VueSlider"]);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('the-loop', TheLoop);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('sidebar', Sidebar);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('wp-footer', WpFooter);
@@ -929,7 +927,7 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('search-form', SearchForm)
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('comment-form', CommentForm);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('comments', Comments);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('flower-spinner', epic_spinners__WEBPACK_IMPORTED_MODULE_7__["FlowerSpinner"]);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('carousel', Carousel);
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('mrk-carousel', Carousel);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('content-list', ContentList);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('filmstrip', Filmstrip);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('nav-menu', NavMenu); // Vue.component( '',                             );

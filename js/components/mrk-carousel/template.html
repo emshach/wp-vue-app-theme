@@ -1,5 +1,5 @@
-<vue-carousel :autoplay="true" :per-page="1" :autoplay-timeout="15000">
-  <vue-slide v-for="( slide, index ) in slides" :key="slide.id">
+<carousel :autoplay="true" :per-page="1" :autoplay-timeout="15000">
+  <slide v-for="( slide, index ) in slides" :key="slide.id">
     <div class="container">
       <div class="row">
         <div class="col-6">
@@ -31,9 +31,9 @@
              own component -->
       </div>
     </div>
-  </vue-slide>
-  <vue-slide v-if="slides.length == 0">
+  </slide>
+  <slide v-if="slides.length == 0">
     <flower-spinner :animation-duration="2500" :size="70" color="#025">
     </flower-spinner>
-  </vue-slide>
-</vue-carousel>
+  </slide>
+</carousel>

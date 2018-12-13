@@ -12,7 +12,7 @@ export default {
     },
     id: {
       type: String,
-      default: () => "carusel-" + ++carousels
+      default: () => "carousel-" + ++carousels
     },
     background: {
       type: String,
