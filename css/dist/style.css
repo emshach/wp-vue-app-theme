@@ -72,6 +72,10 @@ input[type="search"] {
   position: relative;
   height: 100%; }
 
+@media (max-width: 600px) {
+  .featured-wrapper {
+    height: 50%; } }
+
 /**
  * parallax
  * ---
@@ -311,10 +315,6 @@ main {
   width: 100%;
   background: url(img/assets/bg-fabric-white-2.jpg) repeat;
   padding: 1em; }
-
-@media (max-width: 600px) {
-  main {
-    top: 50%; } }
 
 main > section {
   position: relative; }
