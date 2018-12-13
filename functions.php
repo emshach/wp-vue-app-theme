@@ -346,7 +346,13 @@ function mrk_get_product_page( $data ) {
  * @return array
  */
 function mrk_get_episode_page( $data ) {
-
+    $result = null;
+    if ( $data[ 'id' ])
+        $result = mrk_get_post_by_id( $data );
+    elseif ( $data[ 'path' ])
+        $result = mrk_get_post_by_path( $data );
+    $result = apply_filters( 'mrk_rest_process_episode_page', $result );
+    return $result;
 }
 
 /**
@@ -387,9 +393,10 @@ function mrk_register_endpoint () {
 
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_action( 'rest_api_init', 'mrk_register_endpoint' );
-add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image' );
-add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel' );
-add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_promo_reel' );
+add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
+add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
+add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_promo_reel', 10, 1 );
+add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_episodes', 10, 1 );
 
 /**
  * enqueue oficial wp api rest api js client and our js client
