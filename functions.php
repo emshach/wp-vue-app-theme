@@ -239,6 +239,7 @@ function mrk_rest_add_promo_reel( $data ) {
             continue;
         $data[ 'promo_reel' ][] = $postdata;
     }
+    return $data;
 }
 
 /**
@@ -272,6 +273,7 @@ function mrk_rest_add_episodes( $data ) {
             continue;
         $data[ 'opisodes' ][] = $postdata;
     }
+    return $data;
 }
 
 /**
@@ -285,6 +287,7 @@ function mrk_rest_get_post( $post ) {
     $controller = new WP_REST_Posts_Controller( $post->post_type );
     $prepared = $controller->prepare_item_for_response( $post, $request);
     $result = apply_filters( 'mrk_rest_process_post', $prepared->data );
+    return $result;
 }
 
 /**
