@@ -186,7 +186,7 @@ function mrk_rest_add_promo_reel( $data ) {
         return $data;
     $posts = get_posts(
         [
-            'post_type' => 'any',
+            'post_type' => [ 'any', 'attachment' ],
             'nopaaging' => true,
             'tax_query' => [
                 [
@@ -197,7 +197,6 @@ function mrk_rest_add_promo_reel( $data ) {
             ]
         ]
     );
-    error_log( var_export( $posts, true ));
     if ( empty( $posts ))
         return $data;
     $data[ 'promo_reel' ] = [];
@@ -211,16 +210,17 @@ function mrk_rest_add_promo_reel( $data ) {
 }
 
 /**
- * Add episodes to a product page object
+ * Add releases to a product page object
  *
  * @return post array
  */
-function mrk_rest_add_episodes( $data ) {
-    $collection = get_field( 'episodes', $data[ 'id' ]);
+function mrk_rest_add_releases( $data ) {
+    $collection = get_field( 'releases', $data[ 'id' ]);
     if ( empty( $collection ))
         return $data;
     $posts = get_posts(
         [
+            'post_type' => 'any',
             'nopaaging' => true,
             'tax_query' => [
                 [
@@ -233,9 +233,9 @@ function mrk_rest_add_episodes( $data ) {
     );
     if ( empty( $posts ))
         return $data;
-    $data[ 'episodes' ] = [];
+    $data[ 'releases' ] = [];
     foreach ( $posts as $post ) {
-        $postdata = mrk_rest_get_episode( $post );
+        $postdata = mrk_rest_get_release( $post );
         if (! is_array( $postdata ))
             continue;
         $data[ 'opisodes' ][] = $postdata;
@@ -311,17 +311,17 @@ function mrk_get_product_page( $data ) {
 }
 
 /**
- * get an episode page
+ * get an release page
  *
  * @return array
  */
-function mrk_get_episode_page( $data ) {
+function mrk_get_release_page( $data ) {
     $result = null;
     if ( $data[ 'id' ])
         $result = mrk_get_post_by_id( $data );
     elseif ( $data[ 'path' ])
         $result = mrk_get_post_by_path( $data );
-    $result = apply_filters( 'mrk_rest_process_episode_page', $result );
+    $result = apply_filters( 'mrk_rest_process_release_page', $result );
     return $result;
 }
 
@@ -351,13 +351,13 @@ function mrk_register_endpoint () {
         'methods'  => 'GET',
 	'callback' => 'mrk_get_product_page',
     ]);
-    register_rest_route( 'mrk/v1', '/episode/(?P<id>\d+)', [
+    register_rest_route( 'mrk/v1', '/release/(?P<id>\d+)', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_episode_page',
+	'callback' => 'mrk_get_release_page',
     ]);
-    register_rest_route( 'mrk/v1', '/episode/(?P<path>.+)', [
+    register_rest_route( 'mrk/v1', '/release/(?P<path>.+)', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_episode_page',
+	'callback' => 'mrk_get_release_page',
     ]);
 }
 
@@ -366,7 +366,7 @@ add_action( 'rest_api_init', 'mrk_register_endpoint' );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_promo_reel', 10, 1 );
-add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_episodes', 10, 1 );
+add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_releases', 10, 1 );
 
 /**
  * enqueue oficial wp api rest api js client and our js client
