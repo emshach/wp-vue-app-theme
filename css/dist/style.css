@@ -141,10 +141,6 @@ main {
   background: #100;
   /* transform: translateZ(-2px) scale(2); */ }
 
-@media (max-width: 600px) {
-  #bg-image-wrapper {
-    width: auto; } }
-
 #bg-image-new {
   display: none; }
 
