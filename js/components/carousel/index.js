@@ -30,7 +30,10 @@ export default {
       sliding: null,
       options: {
         pagination: {
-          el: '.swiper-pagination'
+          direction: 'horizontal',
+          el: '.swiper-pagination',
+          speed: 15000,
+          loop: true
         }
       }
     };
