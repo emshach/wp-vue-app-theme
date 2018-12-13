@@ -215,7 +215,6 @@ function mrk_rest_add_bg_image( $data ) {
  */
 function mrk_rest_add_promo_reel( $data ) {
     $collection = get_field( 'promo_reel', $data[ 'id' ]);
-    error_log( var_export( $collection, true ));
     if ( empty( $collection ))
         return $data;
     $posts = get_posts(
@@ -224,7 +223,7 @@ function mrk_rest_add_promo_reel( $data ) {
             // 'post_type' => 'fabric_building',
             'tax_query' => [
                 [
-                    'taxonomy' => 'attachment_category',
+                    'taxonomy' => 'collection',
                     'field' => 'term_id',
                     'terms' => $collection->term_id,
                 ]
