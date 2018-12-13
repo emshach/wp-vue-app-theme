@@ -1,19 +1,19 @@
 <section class="filmstrip">
   <h3 class="title" v-if="title">{{ title }}</h3>
   <div class="content" v-if="contents.length > 0">
-    <swiper :options="swiperOptions">
-      <swiper-slide v-for="( slide, index ) in contents" :key="index">
-        <b-card>
-          <h5 class="mt-0 mb-1">{{ item.title }}</h5>
-          <thumbnail :type="item.mediatype" :src="item.src"></thumbnail>
-          <metadata v-if="item.metadata" :stats="item.metadata"></metadata>
-          <p class="card-text">{{ item.desc }}</p>
-        </b-card>
-      </swiper-slide>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
-      <div class="swiper-scrollbar"   slot="scrollbar"></div>
-    </swiper>
+    <!-- <swiper :options="swiperOptions"> -->
+    <!--   <swiper-slide v-for="( slide, index ) in contents" :key="index"> -->
+    <!--     <b-card> -->
+    <!--       <h5 class="mt-0 mb-1">{{ item.title }}</h5> -->
+    <!--       <thumbnail :type="item.mediatype" :src="item.src"></thumbnail> -->
+    <!--       <metadata v-if="item.metadata" :stats="item.metadata"></metadata> -->
+    <!--       <p class="card-text">{{ item.desc }}</p> -->
+    <!--     </b-card> -->
+    <!--   </swiper-slide> -->
+    <!--   <div class="swiper-button-prev" slot="button-prev"></div> -->
+    <!--   <div class="swiper-button-next" slot="button-next"></div> -->
+    <!--   <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
+    <!-- </swiper> -->
   </div>
   <template v-else>
     <div class="message empty-list">nothing to show yet</div>

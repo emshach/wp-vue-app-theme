@@ -28,14 +28,14 @@ export default {
       loading: true,
       slide: 0,
       sliding: null,
-      options: {
-        pagination: {
-          direction: 'horizontal',
-          el: '.swiper-pagination',
-          speed: 15000,
-          loop: true
-        }
-      }
+      // options: {
+      //   pagination: {
+      //     direction: 'horizontal',
+      //     el: '.swiper-pagination',
+      //     speed: 15000,
+      //     loop: true
+      //   }
+      // }
     };
   },
   mounted() {

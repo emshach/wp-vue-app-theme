@@ -42,15 +42,15 @@ var carousels = 0;
     return {
       loading: true,
       slide: 0,
-      sliding: null,
-      options: {
-        pagination: {
-          direction: 'horizontal',
-          el: '.swiper-pagination',
-          speed: 15000,
-          loop: true
-        }
-      }
+      sliding: null // options: {
+      //   pagination: {
+      //     direction: 'horizontal',
+      //     el: '.swiper-pagination',
+      //     speed: 15000,
+      //     loop: true
+      //   }
+      // }
+
     };
   },
   mounted: function mounted() {
