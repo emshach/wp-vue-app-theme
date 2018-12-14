@@ -318,7 +318,7 @@ function mrk_get_post_by_id( $data ) {
     return $result;
 }
 /**
- * get the home page post
+ * Get the home page post
  *
  * @return post array
  */
@@ -336,7 +336,7 @@ function mrk_get_home_page( $data ) {
 }
 
 /**
- * get a product page
+ * Get a product page
  *
  * @return post array
  */
@@ -351,7 +351,7 @@ function mrk_get_product_page( $data ) {
 }
 
 /**
- * get an release page
+ * Get an release page
  *
  * @return array
  */
@@ -366,6 +366,12 @@ function mrk_get_release_page( $data ) {
 }
 
 /**
+ * 
+ *
+ * @return arary of post data arrays
+ */
+
+/**
  * Make the endpoint for fetching posts/pages by path
  *
  * /wp-json/mrk/v1
@@ -373,34 +379,59 @@ function mrk_get_release_page( $data ) {
 function mrk_register_endpoint () {
     register_rest_route( 'mrk/v1', '/path/', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_home_page',
+        'callback' => 'mrk_get_home_page',
     ]);
     register_rest_route( 'mrk/v1', '/path/(?P<id>\d+)', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_post_by_id',
+        'callback' => 'mrk_get_post_by_id',
     ]);
     register_rest_route( 'mrk/v1', '/path/(?P<path>.+)', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_post_by_path',
+        'callback' => 'mrk_get_post_by_path',
     ]);
     register_rest_route( 'mrk/v1', '/product/(?P<id>\d+)', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_product_page',
+        'callback' => 'mrk_get_product_page',
     ]);
     register_rest_route( 'mrk/v1', '/product/(?P<path>.+)', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_product_page',
+        'callback' => 'mrk_get_product_page',
     ]);
     register_rest_route( 'mrk/v1', '/release/(?P<id>\d+)', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_release_page',
+        'callback' => 'mrk_get_release_page',
     ]);
     register_rest_route( 'mrk/v1', '/release/(?P<path>.+)', [
         'methods'  => 'GET',
-	'callback' => 'mrk_get_release_page',
+        'callback' => 'mrk_get_release_page',
+    ]);
+    register_rest_route( 'mrk/v1', '/latest', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_latest',
+    ]);
+    register_rest_route( 'mrk/v1', '/trending', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_trending',
+    ]);
+    register_rest_route( 'mrk/v1', '/recent', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_recent',
+    ]);
+    register_rest_route( 'mrk/v1', '/watched', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_watched',
+    ]);
+    register_rest_route( 'mrk/v1', '/discover', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_discovery',
+    ]);
+    register_rest_route( 'mrk/v1', '/favourites', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_favourites',
     ]);
 }
 
+add_theme_support( 'post-thumbnails' );
 add_filter( 'excerpt_length', 'mrk_excerpt_length', 999 );
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_action( 'rest_api_init', 'mrk_register_endpoint' );
