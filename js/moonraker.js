@@ -782,7 +782,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import VueAwesomeSwiper from 'vue-awesome-swiper';
 
 
 
@@ -911,8 +910,7 @@ var Shop = function Shop() {
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].config.devtools = true;
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_6__["default"]); // Vue.use( VueAwesomeSwiper );
-
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_carousel__WEBPACK_IMPORTED_MODULE_8___default.a);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_lazyload_img__WEBPACK_IMPORTED_MODULE_9___default.a, {
   fade: true

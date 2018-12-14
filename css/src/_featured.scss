@@ -14,6 +14,9 @@
   .sharedaddy {
     display: none !important;
   }
+  .caption, .description, .excerpt {
+    text-align: justify;
+  }
   .media {
     max-width: 100%;
   }

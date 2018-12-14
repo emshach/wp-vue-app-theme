@@ -82,6 +82,9 @@ input[type="search"] {
 .featured-wrapper .sharedaddy {
   display: none !important; }
 
+.featured-wrapper .caption, .featured-wrapper .description, .featured-wrapper .excerpt {
+  text-align: justify; }
+
 .featured-wrapper .media {
   max-width: 100%; }
 

@@ -6,7 +6,6 @@ import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
-// import VueAwesomeSwiper from 'vue-awesome-swiper';
 import VueCarousel from 'vue-carousel';
 import VueLazyload from 'vue-lazyload-img';
 import store from './lib/store';
@@ -56,7 +55,6 @@ Vue.config.devtools = true;
 Vue.use( Vuex );
 Vue.use( VueRouter );
 Vue.use( BootstrapVue );
-// Vue.use( VueAwesomeSwiper );
 Vue.use( VueCarousel );
 Vue.use( VueLazyload, { fade: true });
 
