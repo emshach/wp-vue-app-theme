@@ -8,19 +8,19 @@ var Path = wp.api.models.Post.extend({
   }
 });
 
-var Program = wp.api.models.Path.extend({
+var Program = Path.extend({
   defaults: {
     root: 'program'
   }
 });
 
-var Release = wp.api.models.Path.extend({
+var Release = Path.extend({
   defaults: {
     root: 'release'
   }
 });
 
-var Preview = wp.api.models.Path.extend({
+var Preview = Path.extend({
   defaults: {
     root: 'preview'
   }
