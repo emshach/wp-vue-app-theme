@@ -169,7 +169,7 @@ const routes = [
     meta: { auth: true }},
   { path: '/:program/:release',  component: VueRelease, name: 'release',
     beforeEnter: mkApiRequest( wpapix.Release )},
-  { path: '/:path',
+  { path: '/:path',              component: VueSingle,  name: 'single',
     beforeEnter: mkApiRequest( wpapix.Path )},
   { path: "*",                   component: VuePageNotFound }
 ];

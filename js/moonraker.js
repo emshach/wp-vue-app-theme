@@ -1105,6 +1105,8 @@ var routes = [{
   beforeEnter: mkApiRequest(_lib_wpapi__WEBPACK_IMPORTED_MODULE_12__["default"].Release)
 }, {
   path: '/:path',
+  component: VueSingle,
+  name: 'single',
   beforeEnter: mkApiRequest(_lib_wpapi__WEBPACK_IMPORTED_MODULE_12__["default"].Path)
 }, {
   path: "*",
