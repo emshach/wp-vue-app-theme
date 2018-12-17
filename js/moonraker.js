@@ -725,10 +725,11 @@ __webpack_require__.r(__webpack_exports__);
 var Path = wp.api.models.Post.extend({
   defaults: {
     root: 'path',
+    version: 'mrk/v1/',
     path: ''
   },
   url: function url() {
-    return wpApiSettings.root + this.get('root') + this.get('path');
+    return wpApiSettings.root + this.get('root') + this.get('version') + this.get('path');
   }
 });
 var Program = Path.extend({
