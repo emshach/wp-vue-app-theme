@@ -9,6 +9,8 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/post/template.html"),
   props: {
@@ -19,6 +21,10 @@ __webpack_require__.r(__webpack_exports__);
     path: {
       type: String,
       default: ''
+    },
+    post: {
+      type: Object,
+      default: function _default() {}
     }
   },
   data: function data() {
@@ -33,21 +39,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    wp.api.loadPromise.done(function () {
-      var path = new wp.api.models.Path({
-        path: _this.id || _this.path
-      });
-      path.fetch().done(function (rpost) {
-        console.log('got post page', rpost);
-        _this.title = rpost.title.rendered;
-        _this.img = rpost.background_image || '';
-        _this.promos = rpost.promo_reel || [];
-        _this.content = rpost.content.rendered;
-        if (!_this.promos.length) _this.classes.small = true;
-      });
-    });
+    // wp.api.loadPromise.done(() => {
+    //   var path = new wp.api.models.Path({ path: this.id || this.path });
+    //   path.fetch().done( rpost => {
+    //     console.log( 'got post page', rpost );
+    if (!this.post) this.post = Object.assign({}, _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.nextpost);
+    this.title = this.post.title.rendered;
+    this.img = this.post.background_image || '';
+    this.promos = this.post.promo_reel || [];
+    this.content = this.post.content.rendered;
+    if (!this.promos.length) this.classes.small = true; //   });
+    // });
   },
   methods: {
     showImg: function showImg() {

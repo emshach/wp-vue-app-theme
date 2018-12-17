@@ -1,3 +1,4 @@
+import store from '../../lib/store';
 export default {
   template: require( './template.html' ),
   props: {
@@ -8,6 +9,10 @@ export default {
     path: {
       type: String,
       default: ''
+    },
+    post: {
+      type: Object,
+      default: () => {}
     }
   },
   data() {
@@ -20,18 +25,20 @@ export default {
     };
   },
   mounted() {
-    wp.api.loadPromise.done(() => {
-      var path = new wp.api.models.Path({ path: this.id || this.path });
-      path.fetch().done( rpost => {
-        console.log( 'got post page', rpost );
-        this.title = rpost.title.rendered;
-        this.img = rpost.background_image || '';
-        this.promos = rpost.promo_reel || [];
-        this.content = rpost.content.rendered;
-        if (! this.promos.length )
-          this.classes.small = true;
-      });
-    });
+    // wp.api.loadPromise.done(() => {
+    //   var path = new wp.api.models.Path({ path: this.id || this.path });
+    //   path.fetch().done( rpost => {
+    //     console.log( 'got post page', rpost );
+    if (! this.post )
+      this.post = Object.assign( {}, store.state.nextpost );
+    this.title = this.post.title.rendered;
+    this.img = this.post.background_image || '';
+    this.promos = this.post.promo_reel || [];
+    this.content = this.post.content.rendered;
+    if (! this.promos.length )
+      this.classes.small = true;
+    //   });
+    // });
   },
   methods: {
     showImg() {
