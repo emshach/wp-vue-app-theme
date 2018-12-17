@@ -6,7 +6,10 @@
   </div>
   <wp-header></wp-header>
   <div class="featured-wrapper">
-    <mrk-carousel id="featured" :slides="promos"></mrk-carousel>
+    <transition name="fade">
+      <mrk-carousel v-if="promos.length" id="featured"
+                    :slides="promos"></mrk-carousel>
+    </transition>
   </div>
 
   <main role="main">

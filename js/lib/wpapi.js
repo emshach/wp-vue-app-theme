@@ -1,20 +1,34 @@
 var Path = wp.api.models.Post.extend({
   defaults: {
-    path: ""
+    root: 'path',
+    path: ''
   },
   url() {
-    return wpApiSettings.root + 'mrk/v1/path/' + this.get( 'path' );
+    return wpApiSettings.root + this.get( 'root' ) + this.get( 'path' );
   }
 });
 
-var Paths = wp.api.collections.Posts.extend({
-  url() {
-    return wpApiSettings.root + 'mrk/v1/paths';
-  },
-  model: Path
+var Program = wp.api.models.Path.extend({
+  defaults: {
+    root: 'program'
+  }
 });
 
-wp.api.models.Path = Path;
-wp.api.collections.Paths = Paths;
+var Release = wp.api.models.Path.extend({
+  defaults: {
+    root: 'release'
+  }
+});
 
-export default { Path, Paths };
+var Preview = wp.api.models.Path.extend({
+  defaults: {
+    root: 'preview'
+  }
+});
+
+wp.api.models.Path    = Path;
+wp.api.models.Program = Program;
+wp.api.models.Release = Release;
+wp.api.models.Preview = Preview;
+
+export default { Path, Program, Release, Preview };

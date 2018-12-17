@@ -5,10 +5,12 @@ export default {
     return {
       img: '',
       show: false,
-      promos: [],
-      episodes: [],
+      prev: 0,
+      next: 0,
       content:'',
-      classes:{ small: false }
+      views: 0,
+      likes: 0,
+      dislikes: 0,
     };
   },
   mounted() {

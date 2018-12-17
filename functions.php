@@ -192,7 +192,7 @@ function mrk_rest_add_rel_path( $data ) {
 }
 
 /**
- * Add a promo reel to a product page object
+ * Add a promo reel to a program page object
  *
  * @return post array
  */
@@ -229,7 +229,7 @@ function mrk_rest_add_promo_reel( $data ) {
 }
 
 /**
- * Add releases to a product page object
+ * Add releases to a program page object
  *
  * @return post array
  */
@@ -239,7 +239,7 @@ function mrk_rest_add_releases( $data ) {
         return $data;
     $posts = get_posts(
         [
-            'post_type' => [ 'post', 'page', 'release', 'attachment' ],
+            'post_type' => [ 'release', 'attachment' ],
             'nopaaging' => true,
             'tax_query' => [
                 [
@@ -303,7 +303,7 @@ function mrk_rest_get_media( $post ) {
  * @return post array
  */
 function mrk_get_post_by_path( $data ) {
-    $post = get_page_by_path( $data['path'] );
+    $post = get_page_by_path( $data[ 'path' ]);
     $result = mrk_rest_get_post( $post );
     return $result;
 }
@@ -313,7 +313,7 @@ function mrk_get_post_by_path( $data ) {
  * @return post array
 */
 function mrk_get_post_by_id( $data ) {
-    $post = get_post( $data['id'] );
+    $post = get_post( $data[ 'id' ]);
     $result = mrk_rest_get_post( $post );
     return $result;
 }
@@ -336,40 +336,159 @@ function mrk_get_home_page( $data ) {
 }
 
 /**
- * Get a product page
+ * Get a program page by id
  *
  * @return post array
  */
-function mrk_get_product_page( $data ) {
-    $result = null;
-    if ( $data[ 'id' ])
-        $result = mrk_get_post_by_id( $data );
-    elseif ( $data[ 'path' ])
-        $result = mrk_get_post_by_path( $data );
-    $result = apply_filters( 'mrk_rest_process_product_page', $result );
+function mrk_get_program_by_id( $data ) {
+    $result = mrk_get_post_by_id( $data );
+    $result = apply_filters( 'mrk_rest_process_program_page', $result );
     return $result;
 }
 
 /**
- * Get an release page
+ * Get a program page by name
+ *
+ * @return post array
+ */
+function mrk_get_program_by_name( $data ) {
+    $result = mrk_get_post_by_path( $data );
+    $result = apply_filters( 'mrk_rest_process_program_page', $result );
+    return $result;
+}
+
+/**
+ * Get an release page by id
  *
  * @return array
  */
-function mrk_get_release_page( $data ) {
-    $result = null;
-    if ( $data[ 'id' ])
-        $result = mrk_get_post_by_id( $data );
-    elseif ( $data[ 'path' ])
-        $result = mrk_get_post_by_path( $data );
+function mrk_get_release_by_id( $data ) {
+    $result = mrk_get_post_by_id( $data );
     $result = apply_filters( 'mrk_rest_process_release_page', $result );
     return $result;
 }
 
 /**
- * 
+ * Get an release page by program id
  *
- * @return arary of post data arrays
+ * @return array
  */
+function mrk_get_release_by_program_id( $data ) {
+    $releases = get_field( 'releases', $data[ 'id' ]);
+    if ( empty( $releases ))
+        return new WP_Error( 'mrk_no_releases', 'Got no releases for program',
+                             [ 'status' => 404 ]);
+    $posts = get_posts(
+        [
+            'post_type' => [ 'release', 'attachment' ],
+            'nopaaging' => true,
+            'tax_query' => [
+                [
+                    'taxonomy' => 'attachment_category',
+                    'field' => 'term_id',
+                    'terms' => $releases->term_id,
+                ]
+            ]
+        ]
+    );
+    if ( empty( $posts ))
+        return new WP_Error( 'mrk_no_releases', 'Got no releases for program',
+                             [ 'status' => 404 ]);
+    if ( empty( $posts[ $data[ 'num' ]]))
+        return new WP_Error( 'mrk_no_such_release',
+                             'Could not get the requested release',
+                             [ 'status' => 404 ]);
+    $result = mrk_rest_get_media( $posts[ $data[ 'num' ]] );
+    $result = apply_filters( 'mrk_rest_process_release_page', $result );
+    return $result;
+}
+
+/**
+ * Get an release page by program name
+ *
+ * @return array
+ */
+function mrk_get_release_by_program_name( $data ) {
+    $post = get_page_by_path( $data[ 'path' ]);
+    if ( empty( $post ))
+        return new WP_Error( 'mrk_no_such_program',
+                             'Could not get requested program',
+                             [ 'status' => 404 ]);
+    $data[ 'id' ] = $post->ID;
+    return mrk_get_release_by_program_id( $data );
+}
+
+/**
+ * Get the latest releases
+ *
+ * @return post data array
+ */
+function mrk_get_latest( $data ) {
+    return new WP_Error(
+        'mrk_not_implemented',
+        'Latest content is not yet implemented. Please try again later',
+        [ 'status' => 404 ]);
+}
+
+/**
+ * Get trending content
+ *
+ * @return post data array
+ */
+function mrk_get_trending( $data ) {
+    return new WP_Error(
+        'mrk_not_implemented',
+        'Trending content is not yet implemented. Please try again later',
+        [ 'status' => 404 ]);
+}
+
+/**
+ * Get content by most recent activity
+ *
+ * @return post data array
+ */
+function mrk_get_recent( $data ) {
+    return new WP_Error(
+        'mrk_not_implemented',
+        'Recent activity is not yet implemented. Please try again later',
+        [ 'status' => 404 ]);
+}
+
+/**
+ * Get content from the user's watch history
+ *
+ * @return post data array
+ */
+function mrk_get_watched( $data ) {
+    return new WP_Error(
+        'mrk_not_implemented',
+        'Watch history is not yet implemented. Please try again later',
+        [ 'status' => 404 ]);
+}
+
+/**
+ * Use a discovery algorithm to suggest content
+ *
+ * @return post data array
+ */
+function mrk_get_discovery( $data ) {
+    return new WP_Error(
+        'mrk_not_implemented',
+        'Content discovery is not yet implemented. Please try again later',
+        [ 'status' => 404 ]);
+}
+
+/**
+ * Get the user's marked favourites
+ *
+ * @return post data array
+ */
+function mrk_get_favourites( $data ) {
+    return new WP_Error(
+        'mrk_not_implemented',
+        'Favourite content is not yet implemented. Please try again later',
+        [ 'status' => 404 ]);
+}
 
 /**
  * Make the endpoint for fetching posts/pages by path
@@ -389,21 +508,29 @@ function mrk_register_endpoint () {
         'methods'  => 'GET',
         'callback' => 'mrk_get_post_by_path',
     ]);
-    register_rest_route( 'mrk/v1', '/product/(?P<id>\d+)', [
+    register_rest_route( 'mrk/v1', '/program/(?P<id>\d+)', [
         'methods'  => 'GET',
-        'callback' => 'mrk_get_product_page',
+        'callback' => 'mrk_get_program_by_id',
     ]);
-    register_rest_route( 'mrk/v1', '/product/(?P<path>.+)', [
+    register_rest_route( 'mrk/v1', '/program/(?P<path>.+)', [
         'methods'  => 'GET',
-        'callback' => 'mrk_get_product_page',
+        'callback' => 'mrk_get_program_by_name',
     ]);
     register_rest_route( 'mrk/v1', '/release/(?P<id>\d+)', [
         'methods'  => 'GET',
-        'callback' => 'mrk_get_release_page',
+        'callback' => 'mrk_get_release_by_id',
     ]);
-    register_rest_route( 'mrk/v1', '/release/(?P<path>.+)', [
+    register_rest_route( 'mrk/v1', '/release/(?P<id>\d+/(?P<num>\d+))', [
         'methods'  => 'GET',
-        'callback' => 'mrk_get_release_page',
+        'callback' => 'mrk_get_release_by_program_id',
+    ]);
+    register_rest_route( 'mrk/v1', '/release/(?P<program>.+?)/(?P<num>\d+)', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_release_by_program_name',
+    ]);
+    register_rest_route( 'mrk/v1', '/release/(?P<program>.+?)/(?P<release>.+)', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_release_by_name',
     ]);
     register_rest_route( 'mrk/v1', '/latest', [
         'methods'  => 'GET',
@@ -439,8 +566,8 @@ add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
-add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_promo_reel', 10, 1 );
-add_filter( 'mrk_rest_process_product_page', 'mrk_rest_add_releases', 10, 1 );
+add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_promo_reel', 10, 1 );
+add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_releases', 10, 1 );
 
 /**
  * enqueue oficial wp api rest api js client and our js client

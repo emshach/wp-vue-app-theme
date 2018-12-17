@@ -1,50 +1,54 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[19],{
 
-/***/ "./js/components/search-form/index.js":
-/*!********************************************!*\
-  !*** ./js/components/search-form/index.js ***!
-  \********************************************/
+/***/ "./js/components/release/index.js":
+/*!****************************************!*\
+  !*** ./js/components/release/index.js ***!
+  \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/search-form/template.html"),
-  methods: {
-    doSearch: function doSearch() {
-      this.$router.push({
-        name: 'search',
-        query: {
-          term: this.searchTerm
-        }
-      });
-    }
-  },
+  template: __webpack_require__(/*! ./template.html */ "./js/components/release/template.html"),
+  props: ['post'],
   data: function data() {
-    var searchTerm = this.$route.query.term ? this.$route.query.term : "";
     return {
-      searchTerm: searchTerm
+      img: '',
+      show: false,
+      prev: 0,
+      next: 0,
+      content: '',
+      views: 0,
+      likes: 0,
+      dislikes: 0
     };
   },
-  watch: {
-    '$route': function $route(to, from) {
-      var searchTerm = to.query.term || "";
-      this.searchTerm = searchTerm;
+  mounted: function mounted() {
+    this.title = this.post.title.rendered;
+    this.img = this.post.background_image || '';
+    this.promos = this.post.promo_reel || [];
+    this.episodes = this.post.releases || [];
+    this.content = this.post.content.rendered;
+    if (!this.promos.length) this.classes.small = true;
+  },
+  methods: {
+    showImg: function showImg() {
+      this.show = true;
     }
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/search-form/template.html":
-/*!*************************************************!*\
-  !*** ./js/components/search-form/template.html ***!
-  \*************************************************/
+/***/ "./js/components/release/template.html":
+/*!*********************************************!*\
+  !*** ./js/components/release/template.html ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<input class=\"form-control input-sm search-box\"\n       type=\"text\" name=\"search\"\n       placeholder=\"search term...\"\n       @keyup.enter=\"doSearch\"\n       v-model=\"searchTerm\"\n/>\n<!-- TODO: make into select-list -->\n";
+module.exports = "";
 
 /***/ })
 

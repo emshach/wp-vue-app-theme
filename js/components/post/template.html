@@ -14,11 +14,8 @@
 
   <main role="main">
     <h1 class="title">{{ title }}</h1>
-    <section class="content description" v-html="content"></section>
-    <section class="episodes">
-      <b-card v-for="( episode, index ) in episodes"></b-card>
-    </section>
-    <comments></comments>
+    <div class="content" v-html="content"></div>
   </main>
+  <comments></comments>
   <wp-footer></wp-footer>
 </div>

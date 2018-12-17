@@ -11,7 +11,18 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/comments/template.html"),
-  props: ['comments']
+  props: {
+    comments: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    post_id: {
+      type: Number,
+      default: 0
+    }
+  }
 });
 
 /***/ }),
