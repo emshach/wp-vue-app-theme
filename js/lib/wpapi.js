@@ -5,7 +5,7 @@ var Path = wp.api.models.Post.extend({
     path: ''
   },
   url() {
-    return wpApiSettings.root + this.get( 'root' ) + this.get( 'version' )
+    return wpApiSettings.root + this.get( 'version' ) + this.get( 'root' ) + '/'
        + this.get( 'path' );
   }
 });

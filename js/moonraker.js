@@ -729,7 +729,7 @@ var Path = wp.api.models.Post.extend({
     path: ''
   },
   url: function url() {
-    return wpApiSettings.root + this.get('root') + this.get('version') + this.get('path');
+    return wpApiSettings.root + this.get('version') + this.get('root') + '/' + this.get('path');
   }
 });
 var Program = Path.extend({
