@@ -270,7 +270,7 @@ function mrk_rest_add_releases( $data ) {
             $postdata = mrk_rest_get_post( $post );
         if (! is_array( $postdata ))
             continue;
-        $data[ 'opisodes' ][] = $postdata;
+        $data[ 'releases' ][] = $postdata;
     }
     return $data;
 }

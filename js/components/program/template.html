@@ -1,4 +1,4 @@
-<div class="post page">
+<div class="program post page">
   <div id="bg-image-wrapper" :class="classes">
     <transition name="fade">
       <img id="bg-image" :src="img" @load="showImg" v-show="show"/>
@@ -16,7 +16,8 @@
     <h1 class="title">{{ title }}</h1>
     <section class="content description" v-html="content"></section>
     <section class="episodes">
-      <b-card v-for="( episode, index ) in episodes"></b-card>
+      <h2 class="title">Episodes</h2>
+      <b-card v-for="( episode, index ) in episodes" :key="episode.id"></b-card>
     </section>
     <comments></comments>
   </main>
