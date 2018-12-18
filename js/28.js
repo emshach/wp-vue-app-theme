@@ -14,27 +14,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['post', 'path'],
   render: function render(h) {
-    if (!this.post) this.post = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.nextpost;
-    if (!this.post) return h('page-not-found', {
+    var post = this.post || _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.nextpost;
+    if (!post) return h('page-not-found', {
       props: {
         path: this.path
       }
     });
-    if (this.post.type == 'program') return h('program', {
+    if (post.type == 'program') return h('program', {
       props: {
-        post: this.post,
+        post: post,
         path: this.path
       }
     });
-    if (this.post.type == 'post') return h('post', {
+    if (post.type == 'post') return h('post', {
       props: {
-        post: this.post,
+        post: post,
         path: this.path
       }
     });
     return h('page', {
       props: {
-        post: this.post,
+        post: post,
         path: this.path
       }
     });

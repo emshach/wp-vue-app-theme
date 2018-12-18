@@ -192,6 +192,16 @@ function mrk_rest_add_rel_path( $data ) {
 }
 
 /**
+ * Set the type of a program object to 'program'
+ *
+ * @return post array
+ */
+function mrk_rest_set_program_type( $data ) {
+    $data[ 'type' ] = 'program';
+    return $data;
+}
+
+/**
  * Add a promo reel to a program page object
  *
  * @return post array
@@ -566,6 +576,7 @@ add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
+add_filter( 'mrk_rest_process_program_page', 'mrk_rest_set_program_type', 10, 1 );
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_releases', 10, 1 );
 

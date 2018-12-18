@@ -9,32 +9,49 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/program/template.html"),
   props: ['post'],
   data: function data() {
     return {
-      img: '',
-      show: false,
-      promos: [],
-      episodes: [],
-      content: '',
-      classes: {
-        small: false
-      }
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      storedPost: {},
+      show: false
     };
   },
   mounted: function mounted() {
-    this.title = this.post.title.rendered;
-    this.img = this.post.background_image || '';
-    this.promos = this.post.promo_reel || [];
-    this.episodes = this.post.releases || [];
-    this.content = this.post.content.rendered;
-    if (!this.promos.length) this.classes.small = true;
+    this.storedPost = Object.assign({}, this.sstate.nextpost);
   },
   methods: {
     showImg: function showImg() {
       this.show = true;
+    }
+  },
+  computed: {
+    postData: function postData() {
+      return this.post || this.storedPost;
+    },
+    title: function title() {
+      return this.postData.title && this.postData.title.rendered || '';
+    },
+    img: function img() {
+      return this.postData.background_image || '';
+    },
+    promos: function promos() {
+      return this.postData.promo_reel || [];
+    },
+    episodes: function episodes() {
+      return this.postData.releases || [];
+    },
+    content: function content() {
+      return this.postData.content && this.postData.content.rendered || '';
+    },
+    classes: function classes() {
+      return {
+        small: !!this.promos.length
+      };
     }
   }
 });

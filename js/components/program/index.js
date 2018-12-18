@@ -1,28 +1,43 @@
+import store from '../../lib/store';
 export default {
   template: require( './template.html' ),
   props: [ 'post' ],
   data() {
     return {
-      img: '',
-      show: false,
-      promos: [],
-      episodes: [],
-      content:'',
-      classes:{ small: false }
+      sstate: store.state,
+      storedPost: {},
+      show: false
     };
   },
   mounted() {
-    this.title = this.post.title.rendered;
-    this.img = this.post.background_image || '';
-    this.promos = this.post.promo_reel || [];
-    this.episodes = this.post.releases || [];
-    this.content = this.post.content.rendered;
-    if (! this.promos.length )
-      this.classes.small = true;
+    this.storedPost = Object.assign( {}, this.sstate.nextpost );
   },
   methods: {
     showImg() {
       this.show = true;
+    }
+  },
+  computed: {
+    postData() {
+      return this.post || this.storedPost;
+    },
+    title() {
+      return this.postData.title && this.postData.title.rendered || '';
+    },
+    img() {
+      return this.postData.background_image || '';
+    },
+    promos() {
+      return this.postData.promo_reel || [];
+    },
+    episodes() {
+      return this.postData.releases || [];
+    },
+    content() {
+      return this.postData.content && this.postData.content.rendered || '';
+    },
+    classes() {
+      return { small: !!this.promos.length };
     }
   }
 };
