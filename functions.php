@@ -573,10 +573,24 @@ function mrk_register_endpoint () {
     ]);
 }
 
+/**
+ * add all the fancy stuff on NON-ADMIN pages only to avoid absolutely smashing
+ * history function. I'd like to find out why this happened in the first place.
+ */
+function mrk_enqueue_scripts() {
+    if ( is_admin() )
+        return;
+    wp_enqueue_script( 'wp-api' );
+    wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
+                       [ 'wp-api', 'jquery', 'jquery-effects-core' ],
+                       $VERSION, true ); // include in footer
+}
+
 add_theme_support( 'post-thumbnails' );
+add_action( 'rest_api_init', 'mrk_register_endpoint' );
+add_action( 'wp_enqueue_scripts', 'mrk_enqueue_scripts' );
 add_filter( 'excerpt_length', 'mrk_excerpt_length', 999 );
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
-add_action( 'rest_api_init', 'mrk_register_endpoint' );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
@@ -589,10 +603,6 @@ add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_releases', 10, 1 );
  * enqueue oficial wp api rest api js client and our js client
  */
 
-wp_enqueue_script( 'wp-api' );
-wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
-                   [ 'wp-api', 'jquery', 'jquery-effects-core' ],
-                   $VERSION, true ); // include in footer
 $moonraker_local_vars = [
     'site' => [
         'title' => get_option('blogname'),
