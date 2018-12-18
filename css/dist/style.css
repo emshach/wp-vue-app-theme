@@ -327,6 +327,11 @@ main {
 main > section {
   position: relative; }
 
+main > section > .content {
+  max-width: 750px;
+  padding: 30px;
+  text-align: justify; }
+
 main h1.title {
   position: relative;
   margin-top: -1.6em;

@@ -12,6 +12,11 @@ main {
   padding: 1em;
   &>section {
     position: relative;
+    >.content {
+      max-width: 750px;
+      padding: 30px;
+      text-align: justify;
+    }
   }
   & h1.title {
     position: relative;
