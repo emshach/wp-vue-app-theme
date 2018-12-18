@@ -927,8 +927,9 @@ var Upload = function Upload() {
 
 var Shop = function Shop() {
   return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./components/shop */ "./js/components/shop/index.js"));
-}; // directives
+};
 
+windew.Vue = vue__WEBPACK_IMPORTED_MODULE_3__["default"]; // directives
 
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].config.devtools = true;
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
@@ -985,7 +986,7 @@ var VueShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop
 
 window.store = _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"];
 
-var mkApiRequest = function mkApiRequest(object, arg) {
+var mkApiRequest = function mkApiRequest(Type, arg) {
   return function (to, from, next) {
     console.log('this is', _this);
     console.log('also', {
@@ -994,8 +995,8 @@ var mkApiRequest = function mkApiRequest(object, arg) {
       next: next
     });
     wp.api.loadPromise.done(function () {
-      var handle = new object(arg ? arg(to) : to.params);
-      handle.fetch({
+      var object = new Type(arg ? arg(to) : to.params);
+      object.fetch({
         success: function success(result) {
           console.log('got', object, result);
 

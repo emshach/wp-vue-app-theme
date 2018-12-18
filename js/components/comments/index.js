@@ -5,9 +5,14 @@ export default {
       type: Array,
       default: () => []
     },
-    post_id: {
+    postId: {
       type: Number,
       default: 0
+    }
+  },
+  mounted() {
+    if (! this.comments.length && this.postId ) {
+      
     }
   }
 };

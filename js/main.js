@@ -51,6 +51,7 @@ const Members        = () => import( './components/members'         );
 const Upload         = () => import( './components/upload'          );
 const Shop           = () => import( './components/shop'            );
 
+windew.Vue = Vue;
 
 // directives
 Vue.config.devtools = true;
@@ -109,13 +110,13 @@ const VueShop           = Vue.component( 'shop',            Shop           );
 // });
 window.store = store;
 
-const mkApiRequest = ( object, arg ) => {
+const mkApiRequest = ( Type, arg ) => {
   return ( to, from, next ) => {
     console.log( 'this is', this );
     console.log( 'also', { to, from, next });
     wp.api.loadPromise.done(() => {
-      var handle = new object( arg ? arg( to ): to.params );
-      handle.fetch({
+      var object = new Type( arg ? arg( to ): to.params );
+      object.fetch({
         success: result => {
           console.log( 'got', object, result );
           if ( object.members_only && ! store.state.user.membership ) {

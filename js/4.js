@@ -18,10 +18,13 @@ __webpack_require__.r(__webpack_exports__);
         return [];
       }
     },
-    post_id: {
+    postId: {
       type: Number,
       default: 0
     }
+  },
+  mounted: function mounted() {
+    if (!this.comments.length && this.postId) {}
   }
 });
 
