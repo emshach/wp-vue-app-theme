@@ -262,7 +262,7 @@ function mrk_rest_add_releases( $data ) {
     );
     $data[ 'debug' ] = [];
     $data[ 'debug'][ 'collection' ] = var_export( $collection, true );
-    $data[ 'debug'][ 'collection' ] = var_export( $posts, true );
+    $data[ 'debug'][ 'releases' ] = var_export( $posts, true );
     if ( empty( $posts ))
         return $data;
     $data[ 'releases' ] = [];
