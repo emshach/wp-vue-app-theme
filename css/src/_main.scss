@@ -12,12 +12,10 @@ main {
   padding: 1em;
   &>section {
     position: relative;
-    >.content {
-      max-width: 750px;
-      margin: 0 auto;
-      padding: 30px;
-      text-align: justify;
-    }
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: justify;
   }
   & h1.title {
     position: relative;

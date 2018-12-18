@@ -213,7 +213,7 @@ function mrk_rest_add_promo_reel( $data ) {
     $posts = get_posts(
         [
             'post_type' => [ 'post', 'page', 'release', 'attachment' ],
-            'nopaaging' => true,
+            'nopaging' => true,
             'tax_query' => [
                 [
                     'taxonomy' => 'collection',
@@ -250,7 +250,7 @@ function mrk_rest_add_releases( $data ) {
     $posts = get_posts(
         [
             'post_type' => [ 'release', 'attachment' ],
-            'nopaaging' => true,
+            'nopaging' => true,
             'tax_query' => [
                 [
                     'taxonomy' => 'attachment_category',
@@ -260,6 +260,9 @@ function mrk_rest_add_releases( $data ) {
             ]
         ]
     );
+    $data[ 'debug' ] = [];
+    $data[ 'debug'][ 'collection' ] = var_export( $collection, true );
+    $data[ 'debug'][ 'collection' ] = var_export( $posts, true );
     if ( empty( $posts ))
         return $data;
     $data[ 'releases' ] = [];

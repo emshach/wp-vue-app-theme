@@ -325,9 +325,7 @@ main {
   padding: 1em; }
 
 main > section {
-  position: relative; }
-
-main > section > .content {
+  position: relative;
   max-width: 750px;
   margin: 0 auto;
   padding: 30px;
