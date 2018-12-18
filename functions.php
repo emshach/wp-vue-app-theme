@@ -574,6 +574,8 @@ function mrk_register_endpoint () {
 }
 
 /**
+ * enqueue oficial wp api rest api js client and our js client
+ *
  * add all the fancy stuff on NON-ADMIN pages only to avoid absolutely smashing
  * history function. I'd like to find out why this happened in the first place.
  */
@@ -585,6 +587,18 @@ function mrk_enqueue_scripts() {
     wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
                        [ 'wp-api', 'jquery', 'jquery-effects-core' ],
                        $VERSION, true ); // include in footer
+    $moonraker_local_vars = [
+        'site' => [
+            'title' => get_option('blogname'),
+            'url' => get_site_url(),
+            'description' => get_option('blogdescription'),
+        ],
+        'menus' => [
+            'nav' => mrk_filter_menu_items( wp_get_nav_menu_items( 'nav' ))
+        ],
+        'user' =>  mrk_get_current_user_info()
+    ];
+    wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 }
 
 add_theme_support( 'post-thumbnails' );
@@ -600,20 +614,4 @@ add_filter( 'mrk_rest_process_program_page', 'mrk_rest_set_program_type', 10, 1 
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_releases', 10, 1 );
 
-/**
- * enqueue oficial wp api rest api js client and our js client
- */
-
-$moonraker_local_vars = [
-    'site' => [
-        'title' => get_option('blogname'),
-        'url' => get_site_url(),
-        'description' => get_option('blogdescription'),
-    ],
-    'menus' => [
-        'nav' => mrk_filter_menu_items( wp_get_nav_menu_items( 'nav' ))
-    ],
-    'user' =>  mrk_get_current_user_info()
-];
-wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 ?>
