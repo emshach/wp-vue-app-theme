@@ -117,18 +117,18 @@ const mkApiRequest = ( Type, arg ) => {
     wp.api.loadPromise.done(() => {
       var object = new Type( arg ? arg( to ): to.params );
       object.fetch({
-        success: result => {
+        success: ( model, result, options ) => {
           console.log( 'got', object, result );
-          if ( object.members_only && ! store.state.user.membership ) {
-            if ( object.preview ) {
-              next({ path: '/preview/' + object.preview });
+          if ( result.members_only && ! store.state.user.membership ) {
+            if ( result.preview ) {
+              next({ path: '/preview/' + result.preview });
             } else
               next({ path: '/shop/membership', then: to.path });
           }
-          store.state.nextpost = object;
+          store.state.nextpost = result;
           next();
         },
-        error: result => {
+        error: ( model, result, options ) => {
           Vue.swal( "Sorry! We couldn't get you that page.<br/>Please try again later" );
           next( false );
         }});

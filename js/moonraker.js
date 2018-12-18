@@ -997,13 +997,13 @@ var mkApiRequest = function mkApiRequest(Type, arg) {
     wp.api.loadPromise.done(function () {
       var object = new Type(arg ? arg(to) : to.params);
       object.fetch({
-        success: function success(result) {
+        success: function success(model, result, options) {
           console.log('got', object, result);
 
-          if (object.members_only && !_lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.user.membership) {
-            if (object.preview) {
+          if (result.members_only && !_lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.user.membership) {
+            if (result.preview) {
               next({
-                path: '/preview/' + object.preview
+                path: '/preview/' + result.preview
               });
             } else next({
               path: '/shop/membership',
@@ -1011,10 +1011,10 @@ var mkApiRequest = function mkApiRequest(Type, arg) {
             });
           }
 
-          _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.nextpost = object;
+          _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.nextpost = result;
           next();
         },
-        error: function error(result) {
+        error: function error(model, result, options) {
           vue__WEBPACK_IMPORTED_MODULE_3__["default"].swal("Sorry! We couldn't get you that page.<br/>Please try again later");
           next(false);
         }
