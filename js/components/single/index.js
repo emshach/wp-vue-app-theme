@@ -3,6 +3,7 @@ export default {
   props: [ 'post', 'path' ],
   render(h) {
     var post = this.post || store.state.nextpost;
+    console.log( 'post is', post );
     if (! post )
       return h( 'page-not-found', {
         props: {

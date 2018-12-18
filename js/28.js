@@ -15,6 +15,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['post', 'path'],
   render: function render(h) {
     var post = this.post || _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.nextpost;
+    console.log('post is', post);
     if (!post) return h('page-not-found', {
       props: {
         path: this.path
