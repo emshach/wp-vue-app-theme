@@ -51,7 +51,7 @@ const Members        = () => import( './components/members'         );
 const Upload         = () => import( './components/upload'          );
 const Shop           = () => import( './components/shop'            );
 
-windew.Vue = Vue;
+window.Vue = Vue;
 
 // directives
 Vue.config.devtools = true;

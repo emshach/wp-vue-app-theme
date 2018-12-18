@@ -929,7 +929,7 @@ var Shop = function Shop() {
   return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./components/shop */ "./js/components/shop/index.js"));
 };
 
-windew.Vue = vue__WEBPACK_IMPORTED_MODULE_3__["default"]; // directives
+window.Vue = vue__WEBPACK_IMPORTED_MODULE_3__["default"]; // directives
 
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].config.devtools = true;
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
