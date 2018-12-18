@@ -11,6 +11,7 @@ export default {
   },
   mounted() {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
+    delete this.sstate.nextpost;
   },
   methods: {
     showImg() {
