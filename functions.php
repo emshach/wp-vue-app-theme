@@ -578,6 +578,7 @@ function mrk_register_endpoint () {
  * history function. I'd like to find out why this happened in the first place.
  */
 function mrk_enqueue_scripts() {
+    global $VERSION;
     if ( is_admin() )
         return;
     wp_enqueue_script( 'wp-api' );
