@@ -315,6 +315,9 @@ function mrk_rest_get_media( $post ) {
 function mrk_get_post_by_path( $data ) {
     $post = get_page_by_path( $data[ 'path' ]);
     $result = mrk_rest_get_post( $post );
+    $content = get_field( 'content_page', $result[ 'id' ]);
+    if ( $result[ 'type' ] == 'page' && $content )
+        $result = apply_filters( 'mrk_rest_process_program_page', $result );
     return $result;
 }
 /**
