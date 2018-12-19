@@ -19,7 +19,7 @@
       <h2 class="title">Episodes</h2>
       <b-card v-for="( episode, index ) in episodes" :key="episode.id">
         <b-media>
-          <b-img slot="aside" :src="episode.thumbnail" />
+          <b-img slot="aside" :src="episode.thumbnail" width="64" />
           <h5 class="mt-0">{{ episode.title.rendered }}</h5>
           <div v-html="episode.caption.rendered"></div>
         </b-media>
