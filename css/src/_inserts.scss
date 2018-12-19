@@ -35,11 +35,20 @@
       > * {
         margin-right: 10px;
       }
-      .likes:hover, .likes.active {
+      .views.active {
+        color: deepskyblue;
+      }
+      .likes.active {
         color: green;
       }
-      .dislikes:hover, .dislikes.active {
+      .dislikes.active {
         color: red;
+      }
+      .fav.active {
+        color: orange;
+      }
+      .comments.active {
+        color: purple;
       }
     }
   }

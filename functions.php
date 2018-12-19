@@ -214,6 +214,18 @@ function mrk_rest_add_postmeta( $data ) {
 }
 
 /**
+ * Add stats for (media) posts
+ *
+ * @return post array
+ */
+function mrk_rest_add_stats( $data ) {
+    $data[ 'stats' ] = [];
+    $data[ 'my_xp' ] = [];
+    // TODO: complete
+    return $data;
+}
+
+/**
  * Add thumbnail to a media object
  *
  * @return post array
@@ -651,6 +663,7 @@ add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_kgvid_meta', 10, 1 );
+add_filter( 'mrk_rest_process_media', 'mrk_rest_add_stats', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_thumbnail', 11, 1 );
 add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_set_program_type', 10, 1 );

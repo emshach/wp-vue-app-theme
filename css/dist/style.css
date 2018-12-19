@@ -386,11 +386,20 @@ section.episodes .card h5 {
 .media .media-body > .info > * {
   margin-right: 10px; }
 
-.media .media-body > .info .likes:hover, .media .media-body > .info .likes.active {
+.media .media-body > .info .views.active {
+  color: deepskyblue; }
+
+.media .media-body > .info .likes.active {
   color: green; }
 
-.media .media-body > .info .dislikes:hover, .media .media-body > .info .dislikes.active {
+.media .media-body > .info .dislikes.active {
   color: red; }
+
+.media .media-body > .info .fav.active {
+  color: orange; }
+
+.media .media-body > .info .comments.active {
+  color: purple; }
 
 .sidebar-section {
   padding: 18px 20px 12px;
