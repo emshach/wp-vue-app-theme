@@ -17,7 +17,13 @@
     <section class="content description" v-html="content"></section>
     <section class="episodes">
       <h2 class="title">Episodes</h2>
-      <b-card v-for="( episode, index ) in episodes" :key="episode.id"></b-card>
+      <b-card v-for="( episode, index ) in episodes" :key="episode.id">
+        <b-media>
+          <b-img slot="aside" :src="episode.thumbnail" />
+          <h5 class="mt-0">{{ episode.title.rendered }}</h5>
+          <template v-html="episode.caption.rendered"></template>
+        </b-media>
+      </b-card>
     </section>
     <comments></comments>
   </main>
