@@ -5,10 +5,12 @@
 .media > .d-flex {
   position: relative;
   .info {
+    position: absolute;
+    bottom: 0;
     &.length {
       background: rgba(0,0,0,0.75);
       color: white;
-      font-weight: bold;
+      right: 0;
     }
   }
 }

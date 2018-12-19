@@ -357,10 +357,14 @@ section.episodes .card h5 {
 .media > .d-flex {
   position: relative; }
 
+.media > .d-flex .info {
+  position: absolute;
+  bottom: 0; }
+
 .media > .d-flex .info.length {
   background: rgba(0, 0, 0, 0.75);
   color: white;
-  font-weight: bold; }
+  right: 0; }
 
 .sidebar-section {
   padding: 18px 20px 12px;
