@@ -23,8 +23,10 @@
             <b-img :src="episode.thumbnail" width="128" height="96" />
             <div class="info length">{{ episode.media_details.length_formatted }}</div>
           </b-media-aside>
-          <h5 class="mt-0">{{ episode.title.rendered }}</h5>
-          <div v-html="episode.caption.rendered"></div>
+          <b-media-body>
+            <h5 class="mt-0">{{ episode.title.rendered }}</h5>
+            <div v-html="episode.caption.rendered"></div>
+          </b-media-body>
         </b-media>
       </b-card>
     </section>
