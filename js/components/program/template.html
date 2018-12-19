@@ -21,7 +21,7 @@
         <b-media>
           <b-img slot="aside" :src="episode.thumbnail" />
           <h5 class="mt-0">{{ episode.title.rendered }}</h5>
-          <template v-html="episode.caption.rendered"></template>
+          <div v-html="episode.caption.rendered"></div>
         </b-media>
       </b-card>
     </section>
