@@ -371,6 +371,11 @@ section.episodes .card h5 {
   font-weight: bold;
   right: 1px; }
 
+.media .media-body > .info {
+  color: grey;
+  padding: 10px;
+  margin: 10px; }
+
 .sidebar-section {
   padding: 18px 20px 12px;
   background-color: #ebebeb;

@@ -2,20 +2,29 @@
  * inserts: excerpt and preview-card elements
  * ---
  */
-.media > .d-flex {
-  position: relative;
-  margin-right: 10px;
-  .info {
-    position: absolute;
-    bottom: 1px;
-    padding: 1px 4px 0;
-    &.length {
-      border-top-left-radius: 4px;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      font-size: 90%;
-      font-weight: bold;
-      right: 1px;
+.media {
+  > .d-flex {
+    position: relative;
+    margin-right: 10px;
+    .info {
+      position: absolute;
+      bottom: 1px;
+      padding: 1px 4px 0;
+      &.length {
+        border-top-left-radius: 4px;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        font-size: 90%;
+        font-weight: bold;
+        right: 1px;
+      }
+    }
+  }
+  .media-body {
+    >.info {
+      color: grey;
+      padding: 10px;
+      margin: 10px;
     }
   }
 }
