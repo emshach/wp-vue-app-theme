@@ -376,7 +376,12 @@ section.episodes .card h5 {
   margin: 0 0 10px; }
 
 .media .media-body > .info .dashicons {
-  margin-right: 2px; }
+  margin-right: 2px;
+  font-size: 18px; }
+
+.media .media-body > .info .count {
+  vertical-align: center;
+  font-size: 13px; }
 
 .media .media-body > .info > * {
   margin-right: 10px; }

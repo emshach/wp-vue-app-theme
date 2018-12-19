@@ -28,15 +28,15 @@
             <div class="info row">
               <div class="views d-flex">
                 <span class="dashicons dashicons-visibility"></span>
-                {{ episode.kgvid_meta.starts }}
+                <span class="count">{{ episode.kgvid_meta.starts }}</span>
               </div>
               <div class="likes d-flex">
                 <span class="dashicons dashicons-thumbs-up"></span>
-                {{ episode.likes && episode.like.up || 0 }}
+                <span class="count">{{ episode.likes && episode.like.up || 0 }}</span>
               </div>
               <div class="dislikes d-flex">
                 <span class="dashicons dashicons-thumbs-down"></span>
-                {{ episode.likes && episode.like.down || 0 }}
+                <span class="count">{{ episode.likes && episode.like.down || 0 }}</span>
               </div>
             </div>
             <div v-html="episode.caption.rendered"></div>
