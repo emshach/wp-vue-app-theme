@@ -197,8 +197,13 @@ function mrk_rest_add_rel_path( $data ) {
  * @return post array
  */
 function mrk_rest_add_thumbnail( $data ) {
-    if (! empty( $data[ 'id' ]))
-        $data[ 'thumbnail'] = wp_get_attachment_thumb_url( $data[ 'id' ]);
+    if ( empty( $data[ 'id' ]))
+        return $data;
+    $data[ 'thumbnail'] = wp_get_attachment_thumb_url( $data[ 'id' ]);
+    if (! empty( $data[ 'thumbnail' ]))
+        return $data;
+    $data[ 'thumbnail' ] = get_post_meta( $data[ 'id' ],
+                                          "_kgflashmediaplayer-poster", true );
     return $data;
 }
 
