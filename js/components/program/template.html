@@ -26,7 +26,9 @@
           <b-media-body>
             <h5 class="mt-0">{{ episode.title.rendered }}</h5>
             <div class="info">
-              <span>{{ episode.kgvid_meta.starts }} views</span>
+              <span class="dashicons dashicons-visibility">
+                {{ episode.kgvid_meta.starts }}
+              </span>
             </div>
             <div v-html="episode.caption.rendered"></div>
           </b-media-body>

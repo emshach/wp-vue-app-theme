@@ -41,7 +41,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"comments-wrap\">\n  <h2 class=\"comments-title\">Comments</h2>\n  <b-media v-for=\"(comment, index) in comments\" class=\"comment\">\n    <b-img class=\"gravatar\" :src=\"comment.author_avatar_urls[48]\" />\n    <h5 class=\"comment-author\">{{ comment.author_name }}</h5>\n    <div class=\"comment-content\" v-html=\"comment.content.rendered\"></div>\n  </b-media>\n  <comment-form v-if=\"!readOnly\"></comment-form>\n</section>\n";
+module.exports = "<section class=\"comments-wrap\">\n  <h2 class=\"comments-title\">Comments</h2>\n  <b-media v-for=\"(comment, index) in comments\" class=\"comment\"\n           :key=\"comment.id\">\n    <b-img class=\"gravatar\" :src=\"comment.author_avatar_urls[48]\" />\n    <h5 class=\"comment-author\">{{ comment.author_name }}</h5>\n    <div class=\"comment-content\" v-html=\"comment.content.rendered\"></div>\n  </b-media>\n  <div class=\"message\" v-if=\"!comments.length\">none yet</div>\n  <comment-form v-if=\"!readOnly\" :first=\"!comments.length\"></comment-form>\n</section>\n";
 
 /***/ })
 

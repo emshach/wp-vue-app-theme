@@ -1,9 +1,11 @@
 <section class="comments-wrap">
   <h2 class="comments-title">Comments</h2>
-  <b-media v-for="(comment, index) in comments" class="comment">
+  <b-media v-for="(comment, index) in comments" class="comment"
+           :key="comment.id">
     <b-img class="gravatar" :src="comment.author_avatar_urls[48]" />
     <h5 class="comment-author">{{ comment.author_name }}</h5>
     <div class="comment-content" v-html="comment.content.rendered"></div>
   </b-media>
-  <comment-form v-if="!readOnly"></comment-form>
+  <div class="message" v-if="!comments.length">none yet</div>
+  <comment-form v-if="!readOnly" :first="!comments.length"></comment-form>
 </section>
