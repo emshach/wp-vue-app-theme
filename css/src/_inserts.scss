@@ -22,17 +22,18 @@
   }
   .media-body {
     >.info {
-      color: grey;
+      color: #aaa;
       margin: 0 0 10px;
       .dashicons {
-        font-size: 18px
+        margin-right: 1px;
+        font-size: 18px;
       }
       .count {
         vertical-align: center;
         font-size: 13px;
       }
       > * {
-        margin-right: 12px;
+        margin-right: 1em;
       }
       .views.active {
         color: deepskyblue;

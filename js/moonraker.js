@@ -1005,6 +1005,10 @@ var mkApiRequest = function mkApiRequest(Type, arg) {
               next({
                 path: '/preview/' + result.preview
               });
+            } else if (result.redirect) {
+              next({
+                path: result.redirect
+              });
             } else next({
               path: '/shop/membership',
               then: to.path

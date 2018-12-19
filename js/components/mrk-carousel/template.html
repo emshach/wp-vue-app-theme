@@ -14,7 +14,7 @@
           </template>
         </div>
         <div class="col-12 col-md-4">
-          <h2 v-html="slide.title.rendered"></h2>
+          <h2 v-if="slide.title" v-html="slide.title.rendered"></h2>
           <div v-if="slide.excerpt" class="excerpt"
                v-html="slide.excerpt.rendered"></div>
           <div v-else-if="slide.caption" class="caption"

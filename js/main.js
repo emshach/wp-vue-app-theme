@@ -122,6 +122,8 @@ const mkApiRequest = ( Type, arg ) => {
           if ( result.members_only && ! store.state.user.membership ) {
             if ( result.preview ) {
               next({ path: '/preview/' + result.preview });
+            } else if ( result.redirect ) {
+              next({ path: result.redirect });
             } else
               next({ path: '/shop/membership', then: to.path });
           }
