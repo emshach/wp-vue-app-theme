@@ -7,13 +7,15 @@
   margin-right: 10px;
   .info {
     position: absolute;
-    bottom: 0;
-    padding: 1px 4px;
+    bottom: 1px;
+    padding: 1px 4px 0;
     &.length {
-      background: rgba(0,0,0,0.75);
+      border-top-left-radius: 4px;
+      background: rgba(0,0,0,0.5);
       color: white;
       font-size: 90%;
-      right: 0;
+      font-weight: bold;
+      right: 1px;
     }
   }
 }

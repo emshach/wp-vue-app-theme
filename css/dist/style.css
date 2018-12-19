@@ -360,14 +360,16 @@ section.episodes .card h5 {
 
 .media > .d-flex .info {
   position: absolute;
-  bottom: 0;
-  padding: 1px 4px; }
+  bottom: 1px;
+  padding: 1px 4px 0; }
 
 .media > .d-flex .info.length {
-  background: rgba(0, 0, 0, 0.75);
+  border-top-left-radius: 4px;
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 90%;
-  right: 0; }
+  font-weight: bold;
+  right: 1px; }
 
 .sidebar-section {
   padding: 18px 20px 12px;

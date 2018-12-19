@@ -192,6 +192,18 @@ function mrk_rest_add_rel_path( $data ) {
 }
 
 /**
+ * Add video-thumbnail-generator metadata
+ *
+ * @return post array
+ */
+function mrk_rest_add_kgvid_meta( $data ) {
+    if (! function_exists( 'kgvid_get_attachment_meta' ))
+        return $data;
+    $data[ 'kgvid_meta' ] = kgvid_get_attachment_meta( $data[ 'id' ]);
+    return $data;
+}
+
+/**
  * Add thumbnail to a media object
  *
  * @return post array
@@ -202,8 +214,8 @@ function mrk_rest_add_thumbnail( $data ) {
     $data[ 'thumbnail'] = wp_get_attachment_thumb_url( $data[ 'id' ]);
     if (! empty( $data[ 'thumbnail' ]))
         return $data;
-    $data[ 'thumbnail' ] = get_post_meta( $data[ 'id' ],
-                                          "_kgflashmediaplayer-poster", true );
+    if (! empty( $data[ 'kgvid_meta' ]))
+        $data[ 'thumbnail' ] = $data[ 'kgvid_meta' ][ 'poster' ];
     return $data;
 }
 
@@ -628,7 +640,8 @@ add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
-add_filter( 'mrk_rest_process_media', 'mrk_rest_add_thumbnail', 10, 1 );
+add_filter( 'mrk_rest_process_media', 'mrk_rest_add_kgvid_meta', 10, 1 );
+add_filter( 'mrk_rest_process_media', 'mrk_rest_add_thumbnail', 11, 1 );
 add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_set_program_type', 10, 1 );
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_promo_reel', 10, 1 );

@@ -21,6 +21,10 @@ __webpack_require__.r(__webpack_exports__);
     postId: {
       type: Number,
       default: 0
+    },
+    readOnly: {
+      type: Boolean,
+      default: false
     }
   },
   mounted: function mounted() {
@@ -37,7 +41,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"comments-wrap\">\n  <h2 class=\"comments-title\">Comments</h2>\n  <div v-for=\"(comment, index) in comments\" class=\"comment\">\n    <img class=\"gravatar\" :src=\"comment.author_avatar_urls[48]\" />\n    <div class=\"comment-author\">{{ comment.author_name }}</div>\n    <div class=\"comment-content\" v-html=\"comment.content.rendered\"></div>\n  </div>\n</div>\n";
+module.exports = "<section class=\"comments-wrap\">\n  <h2 class=\"comments-title\">Comments</h2>\n  <b-media v-for=\"(comment, index) in comments\" class=\"comment\">\n    <b-img class=\"gravatar\" :src=\"comment.author_avatar_urls[48]\" />\n    <h5 class=\"comment-author\">{{ comment.author_name }}</h5>\n    <div class=\"comment-content\" v-html=\"comment.content.rendered\"></div>\n  </b-media>\n  <comment-form v-if=\"!readOnly\"></comment-form>\n</section>\n";
 
 /***/ })
 
