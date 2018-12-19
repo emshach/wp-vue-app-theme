@@ -1,0 +1,22 @@
+<div class="preview program post page">
+  <div id="bg-image-wrapper" :class="classes">
+    <transition name="fade-in">
+      <img id="bg-image" :src="img" @load="showImg" v-show="show"/>
+    </transition>
+  </div>
+  <wp-header></wp-header>
+  <div class="featured-wrapper">
+    <transition name="fade">
+      <mrk-carousel v-if="promos.length" id="featured"
+                    :slides="promos"></mrk-carousel>
+    </transition>
+  </div>
+
+  <main role="main">
+    <h1 class="title">{{ title }}</h1>
+    <section class="content description" v-html="content"></section>
+    <membership-order-menu></membership-order-menu>
+    <comments read-only></comments>
+  </main>
+  <wp-footer></wp-footer>
+</div>

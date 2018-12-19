@@ -6,7 +6,7 @@
   </div>
   <wp-header></wp-header>
   <div class="featured-wrapper">
-    <transition name="fade">
+    <transition name="fade-in">
       <mrk-carousel v-if="promos.length" id="featured"
                     :slides="promos"></mrk-carousel>
     </transition>
@@ -19,7 +19,10 @@
       <h2 class="title">Episodes</h2>
       <b-card v-for="( episode, index ) in episodes" :key="episode.id">
         <b-media>
-          <b-img slot="aside" :src="episode.thumbnail" width="128" height="96" />
+          <b-media-aside>
+            <b-img :src="episode.thumbnail" width="128" height="96" />
+            <div class="info length">{{ episode.media_details.length_formatted }}</div>
+          </b-media-aside>
           <h5 class="mt-0">{{ episode.title.rendered }}</h5>
           <div v-html="episode.caption.rendered"></div>
         </b-media>

@@ -347,6 +347,7 @@ section.episodes .card .sharedaddy {
 
 section.episodes .card h5 {
   font-size: 110%;
+  font-weight: bold;
   text-transform: capitalize; }
 
 .sidebar-section {
