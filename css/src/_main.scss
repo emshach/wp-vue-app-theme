@@ -13,7 +13,6 @@ main {
   &>section {
     position: relative;
     max-width: 750px;
-    margin: 0 auto;
     padding: 30px;
     text-align: justify;
   }
@@ -25,4 +24,16 @@ main {
   }}
 #app {
   background: #100;
+}
+section.episodes {
+  .card {
+    margin-bottom: 20px;
+    .sharedaddy {
+      display: none !important;
+    }
+    h5 {
+      font-size: 110%;
+      text-transform: capitalize;
+    }
+  }
 }

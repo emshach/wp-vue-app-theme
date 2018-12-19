@@ -13,8 +13,7 @@ gulp.task( 'css', function () {
      .pipe( sass().on( 'error', sass.logError ))        
      //.pipe(cleanCSS())
      .pipe( sourcemaps.write( './' ))  
-     .pipe( gulp.dest( './css/dist' ));
-  gulp.src( './css/dist/style.css')
+     .pipe( gulp.dest( './css/dist' ))
      .pipe( gulp.dest( './' ));
 });
 

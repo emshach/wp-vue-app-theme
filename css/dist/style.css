@@ -327,7 +327,6 @@ main {
 main > section {
   position: relative;
   max-width: 750px;
-  margin: 0 auto;
   padding: 30px;
   text-align: justify; }
 
@@ -339,6 +338,16 @@ main h1.title {
 
 #app {
   background: #100; }
+
+section.episodes .card {
+  margin-bottom: 20px; }
+
+section.episodes .card .sharedaddy {
+  display: none !important; }
+
+section.episodes .card h5 {
+  font-size: 110%;
+  text-transform: capitalize; }
 
 .sidebar-section {
   padding: 18px 20px 12px;
