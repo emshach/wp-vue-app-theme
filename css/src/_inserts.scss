@@ -1,0 +1,14 @@
+/**
+ * inserts: excerpt and preview-card elements
+ * ---
+ */
+.media > .d-flex {
+  position: relative;
+  .info {
+    &.length {
+      background: rgba(0,0,0,0.75);
+      color: white;
+      font-weight: bold;
+    }
+  }
+}
