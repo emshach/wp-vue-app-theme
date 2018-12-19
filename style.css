@@ -387,10 +387,10 @@ section.episodes .card h5 {
   margin-right: 10px; }
 
 .media .media-body > .info .likes:hover, .media .media-body > .info .likes.active {
-  color: darkgreen; }
+  color: green; }
 
 .media .media-body > .info .dislikes:hover, .media .media-body > .info .dislikes.active {
-  color: darkred; }
+  color: red; }
 
 .sidebar-section {
   padding: 18px 20px 12px;
