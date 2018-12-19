@@ -192,6 +192,17 @@ function mrk_rest_add_rel_path( $data ) {
 }
 
 /**
+ * Add thumbnail to a media object
+ *
+ * @return post array
+ */
+function mrk_rest_add_thumbnail( $data ) {
+    if (! empty( $data[ 'id' ]))
+        $data[ 'thumbnail'] = wp_get_attachment_thumb_url( $data[ 'id' ]);
+    return $data;
+}
+
+/**
  * Set the type of a program object to 'program'
  *
  * @return post array
@@ -216,7 +227,7 @@ function mrk_rest_add_promo_reel( $data ) {
             'nopaging' => true,
             'tax_query' => [
                 [
-                    'taxonomy' => 'collection',
+                    'taxonomy' => $collection->taxonomy,
                     'field' => 'term_id',
                     'terms' => $collection->term_id,
                 ]
@@ -253,7 +264,7 @@ function mrk_rest_add_releases( $data ) {
             'nopaging' => true,
             'tax_query' => [
                 [
-                    'taxonomy' => 'attachment_category',
+                    'taxonomy' => $collection->taxonomy,
                     'field' => 'term_id',
                     'terms' => $collection->term_id,
                 ]
@@ -261,8 +272,8 @@ function mrk_rest_add_releases( $data ) {
         ]
     );
     $data[ 'debug' ] = [];
-    $data[ 'debug'][ 'collection' ] = var_export( $collection, true );
-    $data[ 'debug'][ 'releases' ] = var_export( $posts, true );
+    $data[ 'debug' ][ 'collection' ] = var_export( $collection, true );
+    $data[ 'debug' ][ 'releases' ] = var_export( $posts, true );
     if ( empty( $posts ))
         return $data;
     $data[ 'releases' ] = [];
@@ -612,6 +623,7 @@ add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
+add_filter( 'mrk_rest_process_media', 'mrk_rest_add_thumbnail', 10, 1 );
 add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_set_program_type', 10, 1 );
 add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_promo_reel', 10, 1 );
