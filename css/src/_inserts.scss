@@ -24,6 +24,12 @@
     >.info {
       color: grey;
       margin: 0 0 10px;
+      .dashicons {
+        margin-right: 2px;
+      }
+      > * {
+        margin-right: 10px;
+      }
     }
   }
 }

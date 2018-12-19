@@ -25,16 +25,16 @@
           </b-media-aside>
           <b-media-body>
             <h5 class="mt-0">{{ episode.title.rendered }}</h5>
-            <div class="info">
-              <div class="views col-1">
+            <div class="info row">
+              <div class="views d-flex">
                 <span class="dashicons dashicons-visibility"></span>
                 {{ episode.kgvid_meta.starts }}
               </div>
-              <div class="likes col-2">
+              <div class="likes d-flex">
                 <span class="dashicons dashicons-thumbs-up"></span>
                 {{ episode.likes && episode.like.up || 0 }}
               </div>
-              <div class="dislikes col-2">
+              <div class="dislikes d-flex">
                 <span class="dashicons dashicons-thumbs-down"></span>
                 {{ episode.likes && episode.like.down || 0 }}
               </div>
