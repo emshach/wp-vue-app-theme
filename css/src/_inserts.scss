@@ -35,6 +35,12 @@
       > * {
         margin-right: 10px;
       }
+      .likes:hover, .likes.active {
+        color: darkgreen;
+      }
+      .dislikes:hover, .dislikes.active {
+        color: darkred;
+      }
     }
   }
 }

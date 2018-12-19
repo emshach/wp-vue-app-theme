@@ -386,6 +386,12 @@ section.episodes .card h5 {
 .media .media-body > .info > * {
   margin-right: 10px; }
 
+.media .media-body > .info .likes:hover, .media .media-body > .info .likes.active {
+  color: darkgreen; }
+
+.media .media-body > .info .dislikes:hover, .media .media-body > .info .dislikes.active {
+  color: darkred; }
+
 .sidebar-section {
   padding: 18px 20px 12px;
   background-color: #ebebeb;
