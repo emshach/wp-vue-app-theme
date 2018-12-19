@@ -4,12 +4,15 @@
  */
 .media > .d-flex {
   position: relative;
+  margin-left: 10px;
   .info {
     position: absolute;
     bottom: 0;
+    padding: 1px 4px;
     &.length {
       background: rgba(0,0,0,0.75);
       color: white;
+      font-size: 90%;
       right: 0;
     }
   }

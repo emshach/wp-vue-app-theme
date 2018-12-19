@@ -355,15 +355,18 @@ section.episodes .card h5 {
  * ---
  */
 .media > .d-flex {
-  position: relative; }
+  position: relative;
+  margin-left: 10px; }
 
 .media > .d-flex .info {
   position: absolute;
-  bottom: 0; }
+  bottom: 0;
+  padding: 1px 4px; }
 
 .media > .d-flex .info.length {
   background: rgba(0, 0, 0, 0.75);
   color: white;
+  font-size: 90%;
   right: 0; }
 
 .sidebar-section {
