@@ -39,14 +39,18 @@
 #down-arrow {
   display: block;
   position: absolute;
-  // .arrow {
-  opacity: 0;
-  position: absolute;
   left: 50%;
   top: 50%;
   transform-origin: 50% 50%;
   transform: translate3d(-50%, -50%, 0);
-  // }
+  .arrow {
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: 50% 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
   .arrow-1 {
     animation: arrow-movement 2s ease-in-out infinite;
   }
