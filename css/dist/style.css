@@ -383,7 +383,11 @@ button.nav-menu {
     top: 50%;
     left: 0;
     opacity: 0.75;
-    z-index: 21; } }
+    z-index: 21; }
+  button.nav-menu .navbar-toggle-icon {
+    height: 32px;
+    width: 32px;
+    font-size: 32px; } }
 
 /**
  * main

@@ -197,6 +197,11 @@ button.nav-menu {
     left: 0;
     opacity: 0.75;
     z-index: 21;
+    .navbar-toggle-icon {
+      height: 32px;
+      width: 32px;
+      font-size: 32px;
+    }
   }
 }
 
