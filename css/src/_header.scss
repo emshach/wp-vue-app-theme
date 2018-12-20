@@ -73,12 +73,12 @@
   }
 
   .arrow:before {
-    transform: rotate(45deg) translateX(-23%);
+    transform: rotate(45deg) translateX(-123%);
     transform-origin: top left;
   }
 
   .arrow:after {
-    transform: rotate(-45deg) translateX(23%);
+    transform: rotate(-45deg) translateX(123%);
     transform-origin: top right;
   }
 }
@@ -86,7 +86,7 @@
 @keyframes arrow-movement {
   0% { 
     opacity: 0;
-    top: 45%;
+    top: 80%;
   }
   70% {
     opacity: 1;

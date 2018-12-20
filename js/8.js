@@ -1,64 +1,48 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[8],{
 
-/***/ "./js/components/home/index.js":
-/*!*************************************!*\
-  !*** ./js/components/home/index.js ***!
-  \*************************************/
+/***/ "./js/components/filmstrip/index.js":
+/*!******************************************!*\
+  !*** ./js/components/filmstrip/index.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/home/template.html"),
-  data: function data() {
-    return {
-      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      promos: [],
-      latest: [],
-      trending: [],
-      recent: [],
-      history: [],
-      discovery: [],
-      favs: [],
-      img: '',
-      title: '',
-      show: false
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    wp.api.loadPromise.done(function () {
-      var path = new wp.api.models.Path();
-      console.log('path object', path);
-      path.fetch().done(function (rpost) {
-        console.log('got home page', rpost);
-        _this.title = rpost.title.rendered;
-        _this.img = rpost.background_image || '';
-        _this.promos = rpost.promo_reel || [];
-      });
-    });
-  },
-  methods: {
-    showImg: function showImg() {
-      this.show = true;
+  template: __webpack_require__(/*! ./template.html */ "./js/components/filmstrip/template.html"),
+  props: {
+    title: {
+      type: String,
+      default: ""
+    },
+    contents: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    query: {
+      type: String,
+      default: ""
+    },
+    more: {
+      type: Boolean,
+      default: false
     }
   }
-});
+}); // TODO: add more
 
 /***/ }),
 
-/***/ "./js/components/home/template.html":
-/*!******************************************!*\
-  !*** ./js/components/home/template.html ***!
-  \******************************************/
+/***/ "./js/components/filmstrip/template.html":
+/*!***********************************************!*\
+  !*** ./js/components/filmstrip/template.html ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home page\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\">\n      <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <div class=\"featured-wrapper\">\n    <transition name=\"fade-in\">\n      <mrk-carousel v-if=\"promos.length\" id=\"featured\"\n                    :slides=\"promos\"></mrk-carousel>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <content-list title=\"latest\" :contents=\"latest\"></content-list>\n    <filmstrip title=\"trending\" :contents=\"trending\"></filmstrip>\n    <filmstrip title=\"recent activity\" :contents=\"recent\"></filmstrip>\n    <filmstrip title=\"pull up\" :contents=\"history\"></filmstrip>\n    <filmstrip title=\"you might like\" :contents=\"discovery\"></filmstrip>\n    <filmstrip title=\"my faves\" :contents=\"favs\"></filmstrip>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<section class=\"filmstrip\">\n  <h3 class=\"title\" v-if=\"title\">{{ title }}</h3>\n  <div class=\"content\" v-if=\"contents.length > 0\">\n    <carousel :per-page=\"5\"\n              :navigation-enabled=\"true\"\n              :pagination-enabled=\"false\"\n              :scroll-per-page=\"false\">\n      <slide v-for=\"( slide, index ) in contents\" :key=\"index\">\n        <b-card>\n          <h5 class=\"mt-0 mb-1\">{{ item.title }}</h5>\n          <thumbnail :type=\"item.mediatype\" :src=\"item.src\"></thumbnail>\n          <metadata v-if=\"item.metadata\" :stats=\"item.metadata\"></metadata>\n          <p class=\"card-text\">{{ item.desc }}</p>\n        </b-card>\n      </slide>\n      <div class=\"swiper-button-prev\" slot=\"button-prev\"></div>\n      <div class=\"swiper-button-next\" slot=\"button-next\"></div>\n      <div class=\"swiper-scrollbar\"   slot=\"scrollbar\"></div>\n    </carousel>\n  </div>\n  <template v-else>\n    <div class=\"message empty-list\">nothing to show yet</div>\n    <a v-if=\"query\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">refresh</a>\n  </template>\n</section>\n";
 
 /***/ })
 
