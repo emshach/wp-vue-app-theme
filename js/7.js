@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a href=\"#\" id=\"down-arrow\" v-scroll-to=\"{ el: 'main', container: '.page' x: false, y: true }\">\n  <div class=\"arrow arrow-1\"></div>\n  <div class=\"arrow arrow-2\"></div>\n  <div class=\"arrow arrow-3\"></div>\n  <div class=\"arrow arrow-4\"></div>\n</a>\n";
+module.exports = "<a href=\"#\" id=\"down-arrow\" v-scroll-to=\"{ el: 'main', container: '.page', x: false, y: true }\">\n  <div class=\"arrow arrow-1\"></div>\n  <div class=\"arrow arrow-2\"></div>\n  <div class=\"arrow arrow-3\"></div>\n  <div class=\"arrow arrow-4\"></div>\n</a>\n";
 
 /***/ })
 
