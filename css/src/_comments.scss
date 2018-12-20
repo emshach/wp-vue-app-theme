@@ -1,33 +1,48 @@
 .comment {
-    margin-bottom: 35px;
+  margin-bottom: 35px;
 }
 .comment-author, 
 .comment-content {
-    margin-left: 70px;
+  margin-left: 70px;
 }
 .comment-author {
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 .comment-form-wrap {
-    margin-top: 50px;
-    margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 .comment-form-wrap {
-    h3 {
-        margin-bottom:30px;
-        border-bottom:1px solid $light-grey;
-        padding-bottom:22px;
-    }
-    .btn {
-        margin-top:15px;
-    }
-    textarea{
-        min-height:140px;
-    }    
+  h3 {
+    margin-bottom:30px;
+    border-bottom:1px solid $light-grey;
+    padding-bottom:22px;
+  }
+  .btn {
+    margin-top:15px;
+  }
+  textarea {
+    min-height:140px;
+  }
+  label {
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+  input {
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid deepskyblue;
+    background: transparent;
+    box-shadow: none !important;  
+  }
+  textarea {
+    border-radius: 0;
+    box-shadow: none !important;
+    border: 1px solid lightgrey;
+  }
 }
-
 .gravatar {
-    float:left;
-    margin-top:5px;
+  float:left;
+  margin-top:5px;
 }

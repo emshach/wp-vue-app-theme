@@ -506,6 +506,22 @@ section.episodes .card h5 {
 .comment-form-wrap textarea {
   min-height: 140px; }
 
+.comment-form-wrap label {
+  margin-bottom: 0;
+  font-weight: normal; }
+
+.comment-form-wrap input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid deepskyblue;
+  background: transparent;
+  box-shadow: none !important; }
+
+.comment-form-wrap textarea {
+  border-radius: 0;
+  box-shadow: none !important;
+  border: 1px solid lightgrey; }
+
 .gravatar {
   float: left;
   margin-top: 5px; }
