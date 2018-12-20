@@ -182,16 +182,16 @@ main {
   transform: translate3d(-50%, -50%, 0); }
 
 #down-arrow .arrow-1 {
-  animation: arrow-movement 4s ease-in-out infinite; }
+  animation: arrow-movement 3s ease-in-out infinite; }
 
 #down-arrow .arrow-2 {
-  animation: arrow-movement 4s 1s ease-in-out infinite; }
+  animation: arrow-movement 3s 0.75s ease-in-out infinite; }
 
 #down-arrow .arrow-3 {
-  animation: arrow-movement 4s 2s ease-in-out infinite; }
+  animation: arrow-movement 3s 1.5s ease-in-out infinite; }
 
 #down-arrow .arrow-4 {
-  animation: arrow-movement 4s 3s ease-in-out infinite; }
+  animation: arrow-movement 3s 2.25s ease-in-out infinite; }
 
 #down-arrow .arrow:before,
 #down-arrow .arrow:after {
