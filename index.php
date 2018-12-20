@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="body-wrap wrapper" id="app">
-      <transition name="fade-in">
+      <transition name="fade-in" mode="out-in">
         <router-view></router-view>
       </transition>
       <nav-menu :menu="menu" :logo="site.logo" :title="site.title"></nav-menu>
