@@ -170,7 +170,8 @@ main {
   transform-origin: 50% 50%;
   transform: translate3d(-50%, -50%, 0);
   height: 100px;
-  width: 100px; }
+  width: 100px;
+  z-index: 12; }
 
 #down-arrow .arrow {
   opacity: 0;
