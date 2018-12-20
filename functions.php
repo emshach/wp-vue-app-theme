@@ -173,17 +173,27 @@ function mrk_get_current_user_info() {
  * get an array representing all the restrictions on an object
  */
 function mrk_get_post_restrictions( $id ) {
-    $restrictions = [
-        'restrictions' => get_field( 'restrictions', $id ),
-        'product'      => get_field( 'associated_prodect', $id ),
-        'users'        => get_field( 'userls_allowed', $id ),
-        'preview'      => get_field( 'preview_content', $id ),
-        'show'         => get_field( 'can_see', $id )
+    $restrictions = get_field( 'restrictions', $id );
+    $data = [
+        'public'     => false,
+        'private'    => false,
+        'auth'       => false,
+        'members'    => false,
+        'payperview' => false,
+        'premium'    => false,
+        'product'    => get_field( 'associated_product', $id ),
+        'users'      => false,
+        'preview'    => get_field( 'preview_content', $id ),
+        'show'       => get_field( 'can_see', $id )
     ];
-    if (! empty( $restrictions[ 'restrictions' ]))
-        $restrictions[ 'restrictions' ] = array_fill_keys(
-            $restrictions[ 'restrictions' ], true );
-    return $restrictions;
+    if (! $restrictions )
+        $restrictions = [ 'private' ];
+    foreach ( $restrictions as $key )
+        $data[ $key ] = true;
+    if ( $data[ 'private' ]) {
+        $data[ 'users' ] = get_field( 'users_allowed', $id );
+    }
+    return $data;
 }
 
 /**
