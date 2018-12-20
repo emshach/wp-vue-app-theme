@@ -185,9 +185,18 @@ const app = new Vue({
     this.getUserData();
     this.getMenu();
   },    
-  watch : {
-  }, 
+  created() {
+    window.addEventListener( 'resize', this.handleResize );
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener( 'resize', this.handleResize );
+  },
   methods : {
+    handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
+    },
     getSiteInfo() {
       this.site.title = this.sstate.site.title || "My Blog";
       this.site.url = this.sstate.site.url; // TODO: or?

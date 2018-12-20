@@ -1190,8 +1190,18 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
     this.getUserData();
     this.getMenu();
   },
-  watch: {},
+  created: function created() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   methods: {
+    handleResize: function handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
+    },
     getSiteInfo: function getSiteInfo() {
       this.site.title = this.sstate.site.title || "My Blog";
       this.site.url = this.sstate.site.url; // TODO: or?
