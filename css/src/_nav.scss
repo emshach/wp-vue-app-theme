@@ -5,8 +5,8 @@
  */
 
 #header-menu {
+  z-index: 10;
   @include breakpoint( $bp-phone ) {
-    z-index: 10;
     position: fixed;
     bottom: 0;
     width: 100%;

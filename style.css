@@ -10,7 +10,7 @@
  /style.css 
  */
 /**
- * modules/variables
+ * vars: variables
  * ---
  */
 /**
@@ -230,9 +230,11 @@ main {
  * ---
  * Menus
  */
+#header-menu {
+  z-index: 10; }
+
 @media (min-width: 600px) {
   #header-menu {
-    z-index: 10;
     position: fixed;
     bottom: 0;
     width: 100%;

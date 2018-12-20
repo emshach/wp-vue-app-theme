@@ -9,16 +9,9 @@
               data-toggle="collapse" data-target="#menu-nav"
               aria-controls="menu-nav" aria-expanded="false"
               aria-label="Toggle Navigation">
-        <span class="navbar-toggle-icon" aria-hidden="true">Menu</span>
+        <span class="dashicons dashicons-menu navbar-toggle-icon"
+              aria-hidden="true"></span>
       </button>
-      <router-link class="navbar-brand" to="/">
-        <!-- mobile logo -->
-        <img :src="logo" alt="Logo" class="logo-img mobile-logo"/>
-        <!-- /mobile logo -->
-        <!-- mobile site title -->
-        <h1 class="site-title">{{ title }}</h1>
-        <!-- /mobile site title -->
-      </router-link>
       <div id="nav-main-container" class="menu-nav-container">
         <ul id="menu-nav" class="menu primary-menu nav navbar-nav collapse">
           <li v-for="( item, index ) in menu" :key="index" class="menu-item">
