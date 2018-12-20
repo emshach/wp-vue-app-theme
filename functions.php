@@ -180,6 +180,9 @@ function mrk_get_post_restrictions( $id ) {
         'preview'      => get_field( 'preview_content', $id ),
         'show'         => get_field( 'can_see', $id )
     ];
+    if (! empty( $restrictions[ 'restrictions' ]))
+        $restrictions[ 'restrictions' ] = array_fill_keys(
+            $restrictions[ 'restrictions' ], true );
     return $restrictions;
 }
 
