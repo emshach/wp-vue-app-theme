@@ -10,9 +10,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/route-events */ "./js/lib/route-events.js");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['post', 'path'],
+  beforeRouteUpdate: _lib_route_events__WEBPACK_IMPORTED_MODULE_1__["default"].toPath,
   render: function render(h) {
     var post = this.post || _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.nextpost;
     console.log('post is', post);

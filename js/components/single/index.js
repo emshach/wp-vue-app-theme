@@ -1,6 +1,8 @@
 import store from '../../lib/store';
+import routeEvents from '../../lib/route-events';
 export default {
   props: [ 'post', 'path' ],
+  beforeRouteUpdate: routeEvents.toPath,
   render(h) {
     var post = this.post || store.state.nextpost;
     console.log( 'post is', post );

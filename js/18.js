@@ -23,7 +23,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.storedPost = Object.assign({}, this.sstate.nextpost);
-    delete this.sstate.nextpost;
   },
   methods: {
     showImg: function showImg() {

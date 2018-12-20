@@ -1,4 +1,5 @@
 import store from '../../lib/store';
+import routeEvents from '../../lib/route-events';
 export default {
   template: require( './template.html' ),
   props: {
@@ -15,6 +16,7 @@ export default {
       default: () => {}
     }
   },
+  beforeEnter: routeEvents.toPath,
   data() {
     return {
       img: '',

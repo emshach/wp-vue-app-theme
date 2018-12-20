@@ -1,4 +1,6 @@
+import routeEvents from '../../lib/route-events';
 export default {
   template: require( './template.html' ),
-  props: [ 'post' ]
+  props: [ 'post' ],
+  beforeRouteUpdate: routeEvents.toPath
 };

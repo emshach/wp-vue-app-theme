@@ -10,6 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/route-events */ "./js/lib/route-events.js");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/post/template.html"),
@@ -27,6 +29,7 @@ __webpack_require__.r(__webpack_exports__);
       default: function _default() {}
     }
   },
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_1__["default"].toPath,
   data: function data() {
     return {
       img: '',

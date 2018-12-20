@@ -698,6 +698,80 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./js/lib/route-events.js":
+/*!********************************!*\
+  !*** ./js/lib/route-events.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wpapi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./wpapi */ "./js/lib/wpapi.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./js/lib/store.js");
+var _this = undefined;
+
+
+
+
+var mkApiRequest = function mkApiRequest(Type, arg) {
+  return function (to, from, next) {
+    console.log('this is', _this);
+    console.log('also', {
+      to: to,
+      from: from,
+      next: next
+    });
+    wp.api.loadPromise.done(function () {
+      var object = new Type(arg ? arg(to) : to.params);
+      object.fetch({
+        success: function success(model, result, options) {
+          console.log('got', object, result);
+
+          if (result.members_only && !_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.user.membership) {
+            if (result.preview) {
+              next({
+                path: '/preview/' + result.preview
+              });
+            } else if (result.redirect) {
+              next({
+                path: result.redirect
+              });
+            } else next({
+              path: '/shop/membership',
+              then: to.path
+            });
+          }
+
+          _store__WEBPACK_IMPORTED_MODULE_1__["default"].state.nextpost = result;
+          next();
+        },
+        error: function error(model, result, options) {
+          Vue.swal("Sorry! We couldn't get you that page.<br/>Please try again later");
+          next(false);
+        }
+      }); // TODO: handle specific errors
+    });
+  };
+};
+
+var toPreviewRelease = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Preview, function (to) {
+  return {
+    path: to.params.preview + '/' + to.params.release
+  };
+});
+var toPreview = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Preview);
+var toPath = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Path);
+var toRelease = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Release);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mkApiRequest: mkApiRequest,
+  toPreviewRelease: toPreviewRelease,
+  toPreview: toPreview,
+  toPath: toPath
+});
+
+/***/ }),
+
 /***/ "./js/lib/store.js":
 /*!*************************!*\
   !*** ./js/lib/store.js ***!
@@ -708,7 +782,9 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  state: Object.assign({}, moonraker_local_vars)
+  state: Object.assign({}, moonraker_local_vars, {
+    nextpost: {}
+  })
 });
 
 /***/ }),
@@ -787,11 +863,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/src/index.js");
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./lib/store */ "./js/lib/store.js");
 /* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./lib/wpapi */ "./js/lib/wpapi.js");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14__);
-var _this = undefined;
+/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./lib/route-events */ "./js/lib/route-events.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_15__);
 
 
 
@@ -984,49 +1060,7 @@ var VueShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop
 //   }
 // });
 
-window.store = _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"];
-
-var mkApiRequest = function mkApiRequest(Type, arg) {
-  return function (to, from, next) {
-    console.log('this is', _this);
-    console.log('also', {
-      to: to,
-      from: from,
-      next: next
-    });
-    wp.api.loadPromise.done(function () {
-      var object = new Type(arg ? arg(to) : to.params);
-      object.fetch({
-        success: function success(model, result, options) {
-          console.log('got', object, result);
-
-          if (result.members_only && !_lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.user.membership) {
-            if (result.preview) {
-              next({
-                path: '/preview/' + result.preview
-              });
-            } else if (result.redirect) {
-              next({
-                path: result.redirect
-              });
-            } else next({
-              path: '/shop/membership',
-              then: to.path
-            });
-          }
-
-          _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.nextpost = result;
-          next();
-        },
-        error: function error(model, result, options) {
-          vue__WEBPACK_IMPORTED_MODULE_3__["default"].swal("Sorry! We couldn't get you that page.<br/>Please try again later");
-          next(false);
-        }
-      }); // TODO: handle specific errors
-    });
-  };
-}; // Define some routes
-
+window.store = _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"]; // Define some routes
 
 var routes = [{
   path: '/',
@@ -1047,26 +1081,22 @@ var routes = [{
   path: '/preview/:path/',
   component: VuePreviewProgram,
   name: 'preview-program',
-  beforeEnter: mkApiRequest(_lib_wpapi__WEBPACK_IMPORTED_MODULE_12__["default"].Preview)
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreview
 }, {
   path: '/preview/:program/:release',
   component: VuePreviewRelease,
   name: 'preview-release',
-  beforeEnter: mkApiRequest(_lib_wpapi__WEBPACK_IMPORTED_MODULE_12__["default"].Preview, function (to) {
-    return {
-      path: to.params.preview + '/' + to.params.release
-    };
-  })
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreviewRelease
 }, {
   path: '/page/:path',
   component: VuePage,
   name: 'page',
-  beforeEnter: mkApiRequest(_lib_wpapi__WEBPACK_IMPORTED_MODULE_12__["default"].Path)
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: '/post/:path',
   component: VuePost,
   name: 'post',
-  beforeEnter: mkApiRequest(_lib_wpapi__WEBPACK_IMPORTED_MODULE_12__["default"].Path)
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: '/category/:category',
   component: VueArchive,
@@ -1107,12 +1137,12 @@ var routes = [{
   path: '/:program/:release',
   component: VueRelease,
   name: 'release',
-  beforeEnter: mkApiRequest(_lib_wpapi__WEBPACK_IMPORTED_MODULE_12__["default"].Release)
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toRelease
 }, {
   path: '/:path',
   component: VueSingle,
   name: 'single',
-  beforeEnter: mkApiRequest(_lib_wpapi__WEBPACK_IMPORTED_MODULE_12__["default"].Path)
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: "*",
   component: VuePageNotFound

@@ -11,6 +11,7 @@ import VueLazyload from 'vue-lazyload-img';
 import VueSweetalert2 from 'vue-sweetalert2';
 import store from './lib/store';
 import wpapix from './lib/wpapi';
+import routeEvents from './lib/route-events';
 
 // styles
 import 'bootstrap/dist/css/bootstrap.css';
@@ -110,35 +111,6 @@ const VueShop           = Vue.component( 'shop',            Shop           );
 // });
 window.store = store;
 
-const mkApiRequest = ( Type, arg ) => {
-  return ( to, from, next ) => {
-    console.log( 'this is', this );
-    console.log( 'also', { to, from, next });
-    wp.api.loadPromise.done(() => {
-      var object = new Type( arg ? arg( to ): to.params );
-      object.fetch({
-        success: ( model, result, options ) => {
-          console.log( 'got', object, result );
-          if ( result.members_only && ! store.state.user.membership ) {
-            if ( result.preview ) {
-              next({ path: '/preview/' + result.preview });
-            } else if ( result.redirect ) {
-              next({ path: result.redirect });
-            } else
-              next({ path: '/shop/membership', then: to.path });
-          }
-          store.state.nextpost = result;
-          next();
-        },
-        error: ( model, result, options ) => {
-          Vue.swal( "Sorry! We couldn't get you that page.<br/>Please try again later" );
-          next( false );
-        }});
-      // TODO: handle specific errors
-    });
-  };
-};
-
 // Define some routes
 const routes = [
   { path: '/',                   component: VueHome },
@@ -148,19 +120,17 @@ const routes = [
 
   { path: '/preview/:path/',     component: VuePreviewProgram,
     name: 'preview-program',
-    beforeEnter: mkApiRequest( wpapix.Preview )},
+    beforeEnter: routeEvents.toPreview },
 
   { path: '/preview/:program/:release',
     component: VuePreviewRelease,
     name: 'preview-release',
-    beforeEnter: mkApiRequest( wpapix.Preview, to => {
-      return { path: to.params.preview + '/' + to.params.release };
-    })},
+    beforeEnter: routeEvents.toPreviewRelease },
 
   { path: '/page/:path',         component: VuePage,    name: 'page',
-    beforeEnter: mkApiRequest( wpapix.Path )},
+    beforeEnter: routeEvents.toPath },
   { path: '/post/:path',         component: VuePost,    name: 'post',
-    beforeEnter: mkApiRequest( wpapix.Path )},
+    beforeEnter: routeEvents.toPath },
   { path: '/category/:category', component: VueArchive, name: 'category', props: true },
   { path: '/tag/:tag',           component: VueArchive, name: 'tag', props: true },
   { path: '/blog/',              component: VueArchive, name: 'blog' },
@@ -171,9 +141,9 @@ const routes = [
   { path: '/upload/',            component: VueUpload,  name: 'upload',
     meta: { auth: true }},
   { path: '/:program/:release',  component: VueRelease, name: 'release',
-    beforeEnter: mkApiRequest( wpapix.Release )},
+    beforeEnter: routeEvents.toRelease },
   { path: '/:path',              component: VueSingle,  name: 'single',
-    beforeEnter: mkApiRequest( wpapix.Path )},
+    beforeEnter: routeEvents.toPath },
   { path: "*",                   component: VuePageNotFound }
 ];
 
