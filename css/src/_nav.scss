@@ -166,27 +166,38 @@
       // }
     }}}
 
-.navbar-brand {
-  display: none;
-  @include breakpoint( $max-phone ) {
-    display: inline;
-    height: 50px;
-    padding: 5px;
-    float: right;
-  }}
+// .navbar-brand {
+//   display: none;
+//   @include breakpoint( $max-phone ) {
+//     display: block;
+//     height: 50px;
+//     padding: 5px;
+//     float: right;
+//   }}
 .mobile-logo {
   @include breakpoint( $max-phone ) {
     height: 40px;
   }}
 
 button.nav-menu {
-  @extend .navbar-brand;
-  float: left;
-  background: transparent;
-  color: white;
-  font-weight: bold;
-  // border: 1px solid lightgray;
-  border: 0 none;
+  display: none;
+  @include breakpoint( $max-phone ) {
+    display: block;
+    position: absolute;
+    float: left;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    // border: 1px solid lightgray;
+    border: 0 none;
+    height: 48px;
+    padding: 8px;
+    width: 48px;
+    top: 50%;
+    left: 0;
+    opacity: 0.75;
+    z-index: 21;
+  }
 }
 
 

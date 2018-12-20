@@ -209,12 +209,16 @@ main {
   width: 30px; }
 
 #down-arrow .arrow:before {
-  transform: rotate(45deg) translateX(-23%);
-  transform-origin: top left; }
+  transform: rotate(45deg) translateX(-21%);
+  transform-origin: top left;
+  border-top-left-radius: 1.5px;
+  border-bottom-left-radius: 1.5px; }
 
 #down-arrow .arrow:after {
-  transform: rotate(-45deg) translateX(23%);
-  transform-origin: top right; }
+  transform: rotate(-45deg) translateX(21%);
+  transform-origin: top right;
+  border-top-right-radius: 1.5px;
+  border-bottom-right-radius: 1.5px; }
 
 @keyframes arrow-movement {
   0% {
@@ -357,26 +361,29 @@ main {
   #menu-nav > .menu-item a {
     clear: both; } }
 
-.navbar-brand, button.nav-menu {
-  display: none; }
-
-@media (max-width: 600px) {
-  .navbar-brand, button.nav-menu {
-    display: inline;
-    height: 50px;
-    padding: 5px;
-    float: right; } }
-
 @media (max-width: 600px) {
   .mobile-logo {
     height: 40px; } }
 
 button.nav-menu {
-  float: left;
-  background: transparent;
-  color: white;
-  font-weight: bold;
-  border: 0 none; }
+  display: none; }
+
+@media (max-width: 600px) {
+  button.nav-menu {
+    display: block;
+    position: absolute;
+    float: left;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    border: 0 none;
+    height: 48px;
+    padding: 8px;
+    width: 48px;
+    top: 50%;
+    left: 0;
+    opacity: 0.75;
+    z-index: 21; } }
 
 /**
  * main

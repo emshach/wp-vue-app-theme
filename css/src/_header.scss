@@ -84,13 +84,17 @@
   }
 
   .arrow:before {
-    transform: rotate(45deg) translateX(-23%);
+    transform: rotate(45deg) translateX(-21%);
     transform-origin: top left;
+    border-top-left-radius: 1.5px;
+    border-bottom-left-radius: 1.5px;
   }
 
   .arrow:after {
-    transform: rotate(-45deg) translateX(23%);
+    transform: rotate(-45deg) translateX(21%);
     transform-origin: top right;
+    border-top-right-radius: 1.5px;
+    border-bottom-right-radius: 1.5px;
   }
 }
 // Animation
