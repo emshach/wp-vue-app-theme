@@ -194,8 +194,8 @@ const app = new Vue({
   },
   methods : {
     handleResize() {
-      this.window.width = window.innerWidth;
-      this.window.height = window.innerHeight;
+      this.sstate.window.width = window.innerWidth;
+      this.sstate.window.height = window.innerHeight;
     },
     getSiteInfo() {
       this.site.title = this.sstate.site.title || "My Blog";

@@ -10,6 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/nav-slider */ "./js/lib/nav-slider.js");
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/nav-menu/template.html"),
@@ -28,6 +30,11 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       default: ""
     }
+  },
+  data: function data() {
+    return {
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_1__["default"].state
+    };
   },
   mounted: function mounted() {
     this.$nextTick(function () {
@@ -50,7 +57,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"header-menu\" :class=\"['header-menu', { mobile: window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              data-toggle=\"collapse\" data-target=\"#menu-nav\"\n              aria-controls=\"menu-nav\" aria-expanded=\"false\"\n              aria-label=\"Toggle Navigation\">\n        <span class=\"navbar-toggle-icon\" aria-hidden=\"true\">Menu</span>\n      </button>\n      <router-link class=\"navbar-brand\" to=\"/\">\n        <!-- mobile logo -->\n        <img :src=\"logo\" alt=\"Logo\" class=\"logo-img mobile-logo\"/>\n        <!-- /mobile logo -->\n        <!-- mobile site title -->\n        <h1 class=\"site-title\">{{ title }}</h1>\n        <!-- /mobile site title -->\n      </router-link>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav collapse\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\">{{ item.title }}</span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
+module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              data-toggle=\"collapse\" data-target=\"#menu-nav\"\n              aria-controls=\"menu-nav\" aria-expanded=\"false\"\n              aria-label=\"Toggle Navigation\">\n        <span class=\"navbar-toggle-icon\" aria-hidden=\"true\">Menu</span>\n      </button>\n      <router-link class=\"navbar-brand\" to=\"/\">\n        <!-- mobile logo -->\n        <img :src=\"logo\" alt=\"Logo\" class=\"logo-img mobile-logo\"/>\n        <!-- /mobile logo -->\n        <!-- mobile site title -->\n        <h1 class=\"site-title\">{{ title }}</h1>\n        <!-- /mobile site title -->\n      </router-link>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav collapse\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\">{{ item.title }}</span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
 
 /***/ }),
 

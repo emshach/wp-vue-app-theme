@@ -783,7 +783,11 @@ var toRelease = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Rele
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: Object.assign({}, moonraker_local_vars, {
-    nextpost: {}
+    nextpost: {},
+    window: {
+      width: 0,
+      height: 0
+    }
   })
 });
 
@@ -1199,8 +1203,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
   },
   methods: {
     handleResize: function handleResize() {
-      this.window.width = window.innerWidth;
-      this.window.height = window.innerHeight;
+      this.sstate.window.width = window.innerWidth;
+      this.sstate.window.height = window.innerHeight;
     },
     getSiteInfo: function getSiteInfo() {
       this.site.title = this.sstate.site.title || "My Blog";

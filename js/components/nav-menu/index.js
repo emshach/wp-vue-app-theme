@@ -1,4 +1,5 @@
 import navSlider from '../../lib/nav-slider';
+import store from '../../lib/store';
 export default {
   template: require( './template.html' ),
   props: {
@@ -14,6 +15,11 @@ export default {
       type: String,
       default: ""
     }
+  },
+  data() {
+    return {
+      sstate: store.state
+    };
   },
   mounted() {
     this.$nextTick(() => {
