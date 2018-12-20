@@ -1,5 +1,6 @@
 <div class="comment-form-wrap" v-cloak>
-  <h3>Leave a comment</h3>
+  <h3 v-if="first">Be the first!</h3>
+  <h3 v-else>Leave a comment</h3>
 
   <div v-if="submitted" class="alert alert-success" role="alert">
     Thank you. Your comment has been submitted!

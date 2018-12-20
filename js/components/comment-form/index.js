@@ -1,6 +1,12 @@
 import axios from 'axios';
 export default {  
   template: require( './template.html' ),
+  props: {
+    first: {
+      type: Boolean,
+      default: false
+    }
+  },
   methods: {
     validEmail( email ) {
       var re = /\S+@\S+/;
