@@ -1,7 +1,7 @@
 <div class="program post page">
   <div id="bg-image-wrapper" :class="classes">
     <transition name="fade">
-      <img id="bg-image" :src="img" @load="showImg" v-show="show"/>
+      <img id="bg-image" :src="img" :key="img" @load="showImg" v-show="show"/>
     </transition>
   </div>
   <wp-header></wp-header>

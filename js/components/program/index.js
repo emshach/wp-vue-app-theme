@@ -42,10 +42,5 @@ export default {
     classes() {
       return { small: !!this.promos.length };
     }
-  },
-  watch: {
-    img() {
-      this.show = false;
-    }
   }
 };
