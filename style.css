@@ -171,7 +171,11 @@ main {
   transform: translate3d(-50%, -50%, 0);
   height: 100px;
   width: 100px;
-  z-index: 12; }
+  z-index: 12;
+  opacity: 0.5; }
+
+#down-arrow:hover {
+  opacity: 1; }
 
 #down-arrow .arrow {
   opacity: 0;
