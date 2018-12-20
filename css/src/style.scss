@@ -85,7 +85,7 @@ $primary-color: #000;
   transition: all 0.8s ease-in-out;
 }
 .fade-in-leave-active {
-  transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease;
 }
 .fade-in-enter, .fade-in-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ { 
