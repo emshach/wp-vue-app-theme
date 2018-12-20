@@ -10,11 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/down-arrow/template.html"),
-  methods: {
-    pageTwo: function pageTwo() {// TODO: figure out how to scroll down in vue
-    }
-  }
+  template: __webpack_require__(/*! ./template.html */ "./js/components/down-arrow/template.html")
 });
 
 /***/ }),
@@ -26,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a href=\"#\" id=\"down-arrow\" @click.stop.prevent=\"pageTwo\">\n  <div class=\"arrow arrow-1\"></div>\n  <div class=\"arrow arrow-2\"></div>\n  <div class=\"arrow arrow-3\"></div>\n  <div class=\"arrow arrow-4\"></div>\n</a>\n";
+module.exports = "<a href=\"#\" id=\"down-arrow\" v-scroll-to=\"'main'\">\n  <div class=\"arrow arrow-1\"></div>\n  <div class=\"arrow arrow-2\"></div>\n  <div class=\"arrow arrow-3\"></div>\n  <div class=\"arrow arrow-4\"></div>\n</a>\n";
 
 /***/ })
 

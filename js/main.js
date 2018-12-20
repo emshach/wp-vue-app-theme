@@ -9,6 +9,7 @@ import { FlowerSpinner } from 'epic-spinners';
 import VueCarousel from 'vue-carousel';
 import VueLazyload from 'vue-lazyload-img';
 import VueSweetalert2 from 'vue-sweetalert2';
+import VueScrollto from 'vue-scrollto';
 import store from './lib/store';
 import wpapix from './lib/wpapi';
 import routeEvents from './lib/route-events';
@@ -63,6 +64,7 @@ Vue.use( BootstrapVue );
 Vue.use( VueCarousel );
 Vue.use( VueLazyload, { fade: true });
 Vue.use( VueSweetalert2 );
+Vue.use( VueScrollto );
 
 // init components
 Vue.component( 'the-loop',       TheLoop       );
