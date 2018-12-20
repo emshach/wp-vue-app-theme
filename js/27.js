@@ -37,7 +37,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header id=\"masthead\" class=\"header clear\">\n  <div class=\"search-wrapper col-3\">\n    <search-form></search-form>\n  </div>\n  <div class=\"logo\">\n    <router-link to=\"/\"><img :src=\"logo\" class=\"logo-img\"/></router-link>\n  </div>\n  <h1 class=\"site-title\"><router-link to=\"/\">{{ title }}</router-link></h1>\n  <p class=\"site-description\">{{ description }}</p>\n</header>\n";
+module.exports = "<header id=\"masthead\" class=\"header clear\">\n  <div class=\"search-wrapper col-3\">\n    <search-form></search-form>\n  </div>\n  <div class=\"logo\">\n    <router-link to=\"/\"><img :src=\"logo\" class=\"logo-img\"/></router-link>\n  </div>\n  <h1 class=\"site-title\"><router-link to=\"/\">{{ title }}</router-link></h1>\n  <p class=\"site-description\">{{ description }}</p>\n  <a href=\"#\" id=\"down-arrow\" @click.stop.prevent=\"pageTwo\">\n    <div class=\"arrow arrow-1\"></div>\n    <div class=\"arrow arrow-2\"></div>\n  </a>\n</header>\n";
 
 /***/ })
 

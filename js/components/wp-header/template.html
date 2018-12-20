@@ -7,4 +7,8 @@
   </div>
   <h1 class="site-title"><router-link to="/">{{ title }}</router-link></h1>
   <p class="site-description">{{ description }}</p>
+  <a href="#" id="down-arrow" @click.stop.prevent="pageTwo">
+    <div class="arrow arrow-1"></div>
+    <div class="arrow arrow-2"></div>
+  </a>
 </header>
