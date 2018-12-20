@@ -601,7 +601,7 @@ footer {
   transition: all .6s ease; }
 
 .fade-in-leave-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1); }
+  transition: all 0.6s cubic-bezier(1, 0.5, 0.8, 1); }
 
 .fade-in-enter, .fade-in-leave-to {
   opacity: 0; }
