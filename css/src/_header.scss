@@ -9,6 +9,24 @@
   width: 100%;
   z-index: 10;
 }
+#banner-notices {
+  width: 100%
+}
+.search-wrapper {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+  overflow: hidden;
+  >.search-box {
+    margin-top: 3em;
+    margin-right: -3em;
+    padding-left: 30px;
+    padding-right: 3em;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+  }
+}
 #bg-image-wrapper {
   position: absolute;
   width: 100%; 

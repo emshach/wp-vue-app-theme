@@ -170,6 +170,20 @@ function mrk_get_current_user_info() {
 }
 
 /**
+ * get an array representing all the restrictions on an object
+ */
+function mrk_get_post_restrictions( $id ) {
+    $restrictions = [
+        'restrictions' => get_field( 'restrictions', $id ),
+        'product'      => get_field( 'associated_prodect', $id ),
+        'users'        => get_field( 'userls_allowed', $id ),
+        'preview'      => get_field( 'preview_content', $id ),
+        'show'         => get_field( 'can_see', $id )
+    ];
+    return $restrictions;
+}
+
+/**
  * Add background image to a post data object
  *
  * @return post array
@@ -188,6 +202,17 @@ function mrk_rest_add_bg_image( $data ) {
 function mrk_rest_add_rel_path( $data ) {
     if (! empty( $data[ 'link' ]))
         $data[ 'path'] = wp_make_link_relative( $data[ 'link' ]);
+    return $data;
+}
+
+/**
+ * Restrict content by stripping out data and returning an appropriate redirect url
+ *
+ * @return post array
+ */
+function mrk_rest_restrictions( $data ) {
+    $restrictions = mrk_get_post_restrictions( $data[ 'id' ]);
+    $data[ 'debug' ][ 'restrictions' ] = $restrictions;
     return $data;
 }
 
@@ -223,6 +248,14 @@ function mrk_rest_add_stats( $data ) {
     $data[ 'my_xp' ] = [];
     // TODO: complete
     return $data;
+}
+
+/**
+ * Add content-restriction redirect
+ *
+ * @return post array
+ */
+function mrk_rest_add_redirect( $data ) {
 }
 
 /**
@@ -661,7 +694,9 @@ add_filter( 'excerpt_length', 'mrk_excerpt_length', 999 );
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
+add_filter( 'mrk_rest_process_post', 'mrk_rest_restrictions', 11, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
+add_filter( 'mrk_rest_process_media', 'mrk_rest_restrictions', 11, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_kgvid_meta', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_stats', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_thumbnail', 11, 1 );
