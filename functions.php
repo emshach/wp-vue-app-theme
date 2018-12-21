@@ -188,7 +188,7 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
         'show'       => get_field( 'can_see', $id )
     ];
     if (! $restrictions )
-        $restrictions = [ $type == 'attachment' ? 'private'
+        $restrictions = [ $type == 'attachment' || $type == 'file' ? 'private'
                           : $type == 'post' ? 'members'
                           : 'public' ];
     foreach ( $restrictions as $key )
