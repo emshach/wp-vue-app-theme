@@ -189,7 +189,7 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
         'show'       => get_field( 'can_see', $id )
     ];
     if (! $restrictions ) {
-        $restrictions = [ $type == 'attachment' || $type == 'file' ? 'private'
+        $restrictions = [ ( $type == 'attachment' || $type == 'file') ? 'private'
                           : $type == 'post' ? 'members'
                           : 'public' ];
         error_log( var_export( $restrictions, true ));
