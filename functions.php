@@ -192,6 +192,7 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
         $restrictions = [ $type == 'attachment' || $type == 'file' ? 'private'
                           : $type == 'post' ? 'members'
                           : 'public' ];
+        error_log( var_export( $restrictions, true ));
         $data[ 'default' ] = $restrictions;
     }
     foreach ( $restrictions as $key )
