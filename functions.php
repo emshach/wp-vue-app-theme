@@ -600,7 +600,7 @@ function mrk_get_release_by_name( $data ) {
     $posts = get_posts(
     [
         'post_type'   => [ 'release', 'attachment' ],
-        'post_parent' => $post->ID,
+        // 'post_parent' => $post->ID,
         'name'        => $data[ 'release' ]
     ]);
     if ( empty( $posts ))
