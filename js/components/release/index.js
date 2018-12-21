@@ -43,7 +43,7 @@ export default {
     },
     content() {
       return this.postData.content ? this.postData.content.rendered
-         : this.postData.caption ? this.postData.caption : '';
+         : this.postData.caption ? this.postData.caption.rendered : '';
     },
     classes() {
       return { small: !!this.promos.length };

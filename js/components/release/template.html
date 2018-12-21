@@ -27,7 +27,7 @@
 
   <main role="main">
     <h1 class="title">{{ title }}</h1>
-    <section class="info">
+    <section class="info row">
       <div :class="[ 'views', 'd-flex',
                    { active : postData.my_xp.seen }]">
         <span class="dashicons dashicons-visibility"></span>
@@ -54,7 +54,7 @@
       </div>
     </section>
     <!-- TODO: strips for related, series -->
-    <section class="description" v-if"wideMode" v-html="content"></section>
+    <section class="description" v-if="wideMode" v-html="content"></section>
     <comments></comments>
   </main>
   <wp-footer></wp-footer>

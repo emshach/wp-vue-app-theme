@@ -500,6 +500,36 @@ section.episodes .card h5 {
 .media .media-body > .info .comments.active {
   color: purple; }
 
+.media .page.release section.info {
+  color: #aaa;
+  margin: 0 0 10px; }
+
+.media .page.release section.info .dashicons {
+  margin-right: 1px;
+  font-size: 18px; }
+
+.media .page.release section.info .count {
+  vertical-align: center;
+  font-size: 13px; }
+
+.media .page.release section.info > * {
+  margin-right: 1em; }
+
+.media .page.release section.info .views.active {
+  color: deepskyblue; }
+
+.media .page.release section.info .likes.active, .media .page.release section.info .views:hover {
+  color: green; }
+
+.media .page.release section.info .dislikes.active, .media .page.release section.info .dislikes:hover {
+  color: red; }
+
+.media .page.release section.info .fav.active, .media .page.release section.info .fav:hover {
+  color: orange; }
+
+.media .page.release section.info .comments.active {
+  color: purple; }
+
 .sidebar-section {
   padding: 18px 20px 12px;
   background-color: #ebebeb;
