@@ -336,7 +336,7 @@ function mrk_rest_add_thumbnail( $data ) {
     $data[ 'thumbnail'] = wp_get_attachment_thumb_url( $data[ 'id' ]);
     if (! empty( $data[ 'thumbnail' ]))
         return $data;
-    if (! empty( $data[ 'kgvid_meta' ]))
+    if (! empty( $data[ 'kgvid_meta' ]) && ! empty( $data[ 'kgvid_meta' ][ 'poster' ]))
         $data[ 'thumbnail' ] = $data[ 'kgvid_meta' ][ 'poster' ];
     return $data;
 }
