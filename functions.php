@@ -172,7 +172,7 @@ function mrk_get_current_user_info() {
 /**
  * get an array representing all the restrictions on an object
  */
-function mrk_get_post_restrictions( $id ) {
+function mrk_get_post_restrictions( $id, $type = 'post' ) {
     $restrictions = get_field( 'restrictions', $id );
     $data = [
         'public'     => false,
@@ -188,7 +188,7 @@ function mrk_get_post_restrictions( $id ) {
         'show'       => get_field( 'can_see', $id )
     ];
     if (! $restrictions )
-        $restrictions = [ $data[ 'type' ] == 'attachment' ? 'private' : 'public' ];
+        $restrictions = [ $type == 'attachment' ? 'private' : 'public' ];
     foreach ( $restrictions as $key )
         $data[ $key ] = true;
     if ( $data[ 'private' ] || $data[ 'plus' ]) {
@@ -230,7 +230,7 @@ function mrk_rest_add_rel_path( $data ) {
  * @return post array
  */
 function mrk_rest_restrictions( $data ) {
-    $rst = mrk_get_post_restrictions( $data[ 'id' ]);
+    $rst = mrk_get_post_restrictions( $data[ 'id' ], $data[ 'type' ]);
     $user = wp_get_current_user();
     $membership = $user->membership_level
         ? $user->membership_level->name
