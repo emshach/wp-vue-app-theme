@@ -1,37 +1,33 @@
 var Path = wp.api.models.Post.extend({
   version: 'mrk/v1/',
+  root: 'path',
   defaults: {
-    root: 'path',
     path: ''
   },
   url() {
-    return wpApiSettings.root + this.get( 'version' ) + this.get( 'root' ) + '/'
+    return wpApiSettings.root + this.version + this.root + '/'
        + this.get( 'path' );
   }
 });
 
 var Program = Path.extend({
-  defaults: {
-    root: 'program'
-  }
+  root: 'program'
 });
 
 var Release = Path.extend({
+  root: 'release',
   defaults: {
-    root: 'release',
     program: '',
     release: ''
   },
   url() {
-    return wpApiSettings.root + this.get( 'version' ) + this.get( 'root' ) + '/'
+    return wpApiSettings.root + this.version + this.root + '/'
        + this.get( 'program' ) + '/' + this.get( 'release' );
   }
 });
 
 var Preview = Path.extend({
-  defaults: {
-    root: 'preview'
-  }
+  root: 'preview'
 });
 
 wp.api.models.Path    = Path;
