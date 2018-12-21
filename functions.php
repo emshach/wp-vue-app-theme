@@ -566,7 +566,7 @@ function mrk_get_release_by_program_id( $data ) {
         return new WP_Error( 'mrk_no_such_release',
                              'Could not get the requested release',
                              [ 'status' => 404 ]);
-    $result = mrk_rest_get_media( $posts[ $data[ 'num' ]] );
+    $result = mrk_rest_get_media( $posts[ $data[ 'num' ]]);
     $result = apply_filters( 'mrk_rest_process_release_page', $result );
     return $result;
 }
@@ -577,13 +577,39 @@ function mrk_get_release_by_program_id( $data ) {
  * @return array
  */
 function mrk_get_release_by_program_name( $data ) {
-    $post = get_page_by_path( $data[ 'path' ]);
+    $post = get_page_by_path( $data[ 'program' ]);
     if ( empty( $post ))
         return new WP_Error( 'mrk_no_such_program',
                              'Could not get requested program',
                              [ 'status' => 404 ]);
     $data[ 'id' ] = $post->ID;
     return mrk_get_release_by_program_id( $data );
+}
+
+/**
+ * Get an release page by program name and release name
+ *
+ * @return array
+ */
+function mrk_get_release_by_name( $data ) {
+    $post = get_page_by_path( $data[ 'program' ]);
+    if ( empty( $post ))
+        return new WP_Error( 'mrk_no_such_program',
+                             'Could not get requested program',
+                             [ 'status' => 404 ]);
+    $posts = get_posts(
+    [
+        'post_type'   => [ 'release', 'attachment' ],
+        'post_parent' => $post->ID,
+        'slug'        => $data[ 'release' ]
+    ]);
+    if ( empty( $posts ))
+        return new WP_Error( 'mrk_no_releases',
+                             'Could not find the requested program release',
+                             [ 'status' => 404 ]);
+    $result = mrk_rest_get_media( $posts[0] );
+    $result = apply_filters( 'mrk_rest_process_release_page', $result );
+    return $result;
 }
 
 /**

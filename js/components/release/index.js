@@ -7,11 +7,9 @@ export default {
     return {
       sstate: store.state,
       storedPost: {},
-      img: '',
       show: false,
       prev: 0,
       next: 0,
-      content:'',
       wideMode: 0,
     };
   },
@@ -44,7 +42,8 @@ export default {
       return this.postData.releases || [];
     },
     content() {
-      return this.postData.content && this.postData.content.rendered || '';
+      return this.postData.content ? this.postData.content.rendered
+         : this.postData.caption ? this.postData.caption : '';
     },
     classes() {
       return { small: !!this.promos.length };
