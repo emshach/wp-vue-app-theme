@@ -1,5 +1,6 @@
 import wpapix from './wpapi';
 import store from './store';
+import Swal from 'sweetalert2';
 
 const mkApiRequest = ( Type, arg ) => {
   return ( to, from, next ) => {
@@ -22,8 +23,8 @@ const mkApiRequest = ( Type, arg ) => {
           next();
         },
         error: ( model, result, options ) => {
-          Vue.swal( "Sorry! We couldn't get you that page.<br/>Please try again later" );
-          next( false );
+          Swal( "Sorry! We couldn't get you that page.<br/>Please try again later" );
+          next( result.redirect? { path: result.redirect } : false );
         }});
       // TODO: handle specific errors
     });

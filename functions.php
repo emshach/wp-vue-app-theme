@@ -173,7 +173,6 @@ function mrk_get_current_user_info() {
  * get an array representing all the restrictions on an object
  */
 function mrk_get_post_restrictions( $id, $type = 'post' ) {
-    error_log ( "type = $type" . var_export( $type == 'attachment', true ));
     $restrictions = get_field( 'restrictions', $id );
     $data = [
         'public'     => false,
@@ -191,8 +190,6 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
     if (! $restrictions ) {
         $restrictions = [( $type == 'attachment' || $type == 'file' ) ? 'private'
                          : ( $type == 'post' ? 'members' : 'public') ];
-        error_log( var_export( $restrictions, true ));
-        $data[ 'default' ] = $restrictions;
     }
     foreach ( $restrictions as $key )
         $data[ $key ] = true;
@@ -242,7 +239,6 @@ function mrk_rest_restrictions( $data ) {
         : '';
     $redir = '';
     $data[ 'debug' ][ 'restrictions' ] = $rst;
-    $data[ 'rst_type' ] = $data[ 'type' ];
     if ( $rst[ 'public' ])
         return $data;
     if ( in_array( $user, $rst[ 'users' ]))
