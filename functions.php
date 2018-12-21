@@ -224,7 +224,7 @@ function mrk_rest_add_bg_image( $data ) {
  */
 function mrk_rest_add_rel_path( $data ) {
     if (! empty( $data[ 'link' ]))
-        $data[ 'path'] = wp_make_link_relative( $data[ 'link' ]);
+        $data[ 'path' ] = wp_make_link_relative( $data[ 'link' ]);
     return $data;
 }
 
@@ -241,6 +241,7 @@ function mrk_rest_restrictions( $data ) {
         : '';
     $redir = '';
     $data[ 'debug' ][ 'restrictions' ] = $rst;
+    $data[ 'rst_type' ] = $data[ 'type' ];
     if ( $rst[ 'public' ])
         return $data;
     if ( in_array( $user, $rst[ 'users' ]))
