@@ -188,11 +188,13 @@ function mrk_get_post_restrictions( $id ) {
         'show'       => get_field( 'can_see', $id )
     ];
     if (! $restrictions )
-        $restrictions = [ 'private' ];
+        $restrictions = [ $data[ 'type' ] == 'attachment' ? 'private' : 'public' ];
     foreach ( $restrictions as $key )
         $data[ $key ] = true;
     if ( $data[ 'private' ] || $data[ 'plus' ]) {
         $data[ 'users' ] = get_field( 'users_allowed', $id );
+        if (! $data[ 'users' ])
+            $data[ 'users' ] = [];
     }
     if ( $data[ 'payperview' ])
         $data[ 'product' ] = get_field( 'associated_product', $id );
