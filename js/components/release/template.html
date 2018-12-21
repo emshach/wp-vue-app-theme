@@ -1,0 +1,60 @@
+<div class="['release', 'page', postData.release_type]" :key="postData.id">
+  <div id="bg-image-wrapper" :class="classes">
+    <transition name="fade">
+      <img id="bg-image" :src="img" :key="img" @load="showImg" v-show="show"/>
+    </transition>
+  </div>
+  <wp-header></wp-header>
+  <div class="featured-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="['col-12', wideMode ? '' : 'col-md-8']">
+          <video v-if="postData.releaseType == 'video'"
+                 :src="postData.source_url" class="media" controls>
+            {{ postData.alt_text }}
+          </video>
+          <audio v-if="postData.releaseType == 'audio'"
+                 :src="postData.source_url" class="media" controls>
+            {{ postData.alt_text }}
+          </audio>
+        </div>
+        <transition name="fade-in">
+          <div v-if="!wideMode" class="col-12 col-md-4" v-html="content"></div>
+        </transition>
+      </div>
+    </div>
+  </div>
+
+  <main role="main">
+    <h1 class="title">{{ title }}</h1>
+    <section class="info">
+      <div :class="[ 'views', 'd-flex',
+                   { active : postData.my_xp.seen }]">
+        <span class="dashicons dashicons-visibility"></span>
+        <span class="count">{{ postData.stats.views || 0 }}</span>
+      </div>
+      <div :class="[ 'likes',  'd-flex',
+                   { active: postData.my_xp.like }]">
+        <span class="dashicons dashicons-thumbs-up"></span>
+        <span class="count">{{ postData.stats.likes || 0 }}</span>
+      </div>
+      <div :class="[ 'dislikes', 'd-flex',
+                   { active: postData.my_xp.dislike }]">
+        <span class="dashicons dashicons-thumbs-down"></span>
+        <span class="count">{{ postData.stats.dislikes || 0 }}</span>
+      </div>
+      <div :class="[ 'favs', 'd-flex', { active: postData.my_xp.fav }]">
+        <span class="dashicons dashicons-star-filled"></span>
+        <span class="count">{{ postData.stats.favs || 0 }}</span>
+      </div>
+      <div :class="[ 'comments', 'd-flex',
+                             { active: postData.my_xp.comment }]">
+        <span class="dashicons dashicons-admin-comments"></span>
+        <span class="count">{{ postData.stats.comments || 0 }}</span>
+      </div>
+    </section>
+    <section class="description" v-if"wideMode" v-html="content"></section>
+    <comments></comments>
+  </main>
+  <wp-footer></wp-footer>
+</div>
