@@ -600,8 +600,8 @@ function mrk_get_release_by_name( $data ) {
     $posts = get_posts(
     [
         'post_type'   => [ 'release', 'attachment' ],
-        // 'post_parent' => $post->ID,
-        'slug'        => $data[ 'release' ]
+        'post_parent' => $post->ID,
+        'name'        => $data[ 'release' ]
     ]);
     if ( empty( $posts ))
         return new WP_Error( 'mrk_no_releases',
