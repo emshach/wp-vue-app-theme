@@ -1,7 +1,7 @@
 var Path = wp.api.models.Post.extend({
+  version: 'mrk/v1/',
   defaults: {
     root: 'path',
-    version: 'mrk/v1/',
     path: ''
   },
   url() {
@@ -18,7 +18,13 @@ var Program = Path.extend({
 
 var Release = Path.extend({
   defaults: {
-    root: 'release'
+    root: 'release',
+    program: '',
+    release: ''
+  },
+  url() {
+    return wpApiSettings.root + this.get( 'version' ) + this.get( 'root' ) + '/'
+       + this.get( 'program' ) + '/' + this.get( 'release' );
   }
 });
 

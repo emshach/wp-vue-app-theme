@@ -809,9 +809,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var Path = wp.api.models.Post.extend({
+  version: 'mrk/v1/',
   defaults: {
     root: 'path',
-    version: 'mrk/v1/',
     path: ''
   },
   url: function url() {
@@ -825,7 +825,12 @@ var Program = Path.extend({
 });
 var Release = Path.extend({
   defaults: {
-    root: 'release'
+    root: 'release',
+    program: '',
+    release: ''
+  },
+  url: function url() {
+    return wpApiSettings.root + this.get('version') + this.get('root') + '/' + this.get('program') + '/' + this.get('release');
   }
 });
 var Preview = Path.extend({
