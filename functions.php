@@ -173,6 +173,7 @@ function mrk_get_current_user_info() {
  * get an array representing all the restrictions on an object
  */
 function mrk_get_post_restrictions( $id, $type = 'post' ) {
+    error_log ( "type = $type" );
     $restrictions = get_field( 'restrictions', $id );
     $data = [
         'public'     => false,
