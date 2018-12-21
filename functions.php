@@ -181,8 +181,9 @@ function mrk_get_post_restrictions( $id ) {
         'members'    => false,
         'payperview' => false,
         'premium'    => false,
-        'product'    => get_field( 'associated_product', $id ),
-        'users'      => false,
+        'plus'       => false,
+        'product'    => new stdClass,
+        'users'      => [],
         'preview'    => get_field( 'preview_content', $id ),
         'show'       => get_field( 'can_see', $id )
     ];
@@ -190,9 +191,12 @@ function mrk_get_post_restrictions( $id ) {
         $restrictions = [ 'private' ];
     foreach ( $restrictions as $key )
         $data[ $key ] = true;
-    if ( $data[ 'private' ]) {
+    if ( $data[ 'private' ] || $data[ 'plus' ]) {
         $data[ 'users' ] = get_field( 'users_allowed', $id );
     }
+    if ( $data[ 'payperview' ])
+        $data[ 'product' ] = get_field( 'associated_product', $id );
+
     return $data;
 }
 
@@ -224,9 +228,53 @@ function mrk_rest_add_rel_path( $data ) {
  * @return post array
  */
 function mrk_rest_restrictions( $data ) {
-    $restrictions = mrk_get_post_restrictions( $data[ 'id' ]);
-    $data[ 'debug' ][ 'restrictions' ] = $restrictions;
-    return $data;
+    $rst = mrk_get_post_restrictions( $data[ 'id' ]);
+    $user = wp_get_current_user();
+    $membership = $user->membership_level
+        ? $user->membership_level->name
+        : '';
+    $redir = '';
+    $data[ 'debug' ][ 'restrictions' ] = $rst;
+    if ( in_array( $user, $rst[ 'users' ]))
+        return $data;
+    if ( $rst[ 'premium' ] &&  preg_match( '/premium/i', $membership ))
+        return $data;
+    if ( $rst[ 'members' ] && preg_match( '/vip/i', $membership ))
+        return $data;
+    if ( $rst[ 'auth' ] && $user )
+        return $data;
+    if ( $rst[ 'payperview' ]) {
+        $redir = wp_make_link_relative( $rst[ 'product' ]->link );
+    } elseif ( $rst[ 'private' ]) {
+        $redir = ( $rst[ 'show' ] ? '/private' : '/search' )
+            . ( $data[ 'title' ]
+                ? '/' . $data[ 'title' ][ 'rendered' ]
+                : $data[ 'path' ]);
+        // TODO: urlencode title
+    } else {
+        $redir = '/preview' . $data[ 'path' ];
+    }
+    if ( !$rst[ 'show' ])
+        return new WP_Error(
+            'mrk_access_denied', 'Nothing to see here',
+            [ 'status' => 403,
+              'redirect' => $redir ]);
+    $stub = [ 'redirect' => $redir ];
+    $keys = [ 'id', 'excerpt', 'path', 'background_image', 'menu_order', 'title',
+              'author', 'debug', 'parent', 'thumbnail', 'caption', 'stats', 'my_xp',
+              'type' ];
+    // strip out some things (or only keep some things)
+    foreach ( $keys as $key )
+        if ( array_key_exists( $key, $data ))
+            $stub[ $key ] = $data[ $key ];
+    if ( array_key_exists( 'media_details', $data ))
+        $stub[ 'media_details' ] = [
+            'height' => $data[ 'media_details' ][ 'height' ],
+            'width' => $data[ 'media_details' ][ 'width' ],
+            'length' => $data[ 'media_details' ][ 'length' ],
+            'length_formatted' => $data[ 'media_details' ][ 'length_formatted' ],
+        ];
+    return $stub;
 }
 
 /**
@@ -707,9 +755,9 @@ add_filter( 'excerpt_length', 'mrk_excerpt_length', 999 );
 add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
-add_filter( 'mrk_rest_process_post', 'mrk_rest_restrictions', 11, 1 );
+add_filter( 'mrk_rest_process_post', 'mrk_rest_restrictions', 999, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
-add_filter( 'mrk_rest_process_media', 'mrk_rest_restrictions', 11, 1 );
+add_filter( 'mrk_rest_process_media', 'mrk_rest_restrictions', 999, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_kgvid_meta', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_stats', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_thumbnail', 11, 1 );
