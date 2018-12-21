@@ -38,3 +38,9 @@ section.episodes {
     }
   }
 }
+.card-body {
+  >a, > a:hover {
+    text-decoration: none;
+    cursor: default;
+  }
+}

@@ -445,6 +445,10 @@ section.episodes .card h5 {
   font-weight: bold;
   text-transform: capitalize; }
 
+.card-body > a, .card-body > a:hover {
+  text-decoration: none;
+  cursor: default; }
+
 /**
  * inserts: excerpt and preview-card elements
  * ---
