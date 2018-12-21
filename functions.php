@@ -606,7 +606,9 @@ function mrk_get_release_by_name( $data ) {
     if ( empty( $posts ))
         return new WP_Error( 'mrk_no_releases',
                              'Could not find the requested program release',
-                             [ 'status' => 404 ]);
+                             [ 'status' => 404,
+                               'requested' => $data[ 'release' ]
+                             ]);
     $result = mrk_rest_get_media( $posts[0] );
     $result = apply_filters( 'mrk_rest_process_release_page', $result );
     return $result;
