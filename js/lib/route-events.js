@@ -41,5 +41,6 @@ export default {
   mkApiRequest,
   toPreviewRelease,
   toPreview,
-  toPath
+  toPath,
+  toRelease
 };

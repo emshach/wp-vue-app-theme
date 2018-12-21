@@ -772,7 +772,8 @@ var toRelease = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Rele
   mkApiRequest: mkApiRequest,
   toPreviewRelease: toPreviewRelease,
   toPreview: toPreview,
-  toPath: toPath
+  toPath: toPath,
+  toRelease: toRelease
 });
 
 /***/ }),
