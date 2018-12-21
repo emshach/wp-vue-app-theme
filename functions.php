@@ -188,7 +188,9 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
         'show'       => get_field( 'can_see', $id )
     ];
     if (! $restrictions )
-        $restrictions = [ $type == 'attachment' ? 'private' : 'public' ];
+        $restrictions = [ $type == 'attachment' ? 'private'
+                          : $type == 'post' ? 'members'
+                          : 'public' ];
     foreach ( $restrictions as $key )
         $data[ $key ] = true;
     if ( $data[ 'private' ] || $data[ 'plus' ]) {
@@ -237,6 +239,8 @@ function mrk_rest_restrictions( $data ) {
         : '';
     $redir = '';
     $data[ 'debug' ][ 'restrictions' ] = $rst;
+    if ( $rst[ 'public' ])
+        return $data;
     if ( in_array( $user, $rst[ 'users' ]))
         return $data;
     if ( $rst[ 'premium' ] &&  preg_match( '/premium/i', $membership ))
