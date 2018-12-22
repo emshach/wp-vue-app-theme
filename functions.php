@@ -543,7 +543,7 @@ function mrk_get_program_by_name( $data ) {
  */
 function mrk_get_release_by_id( $data ) {
     $result = mrk_get_post_by_id( $data );
-    $result = apply_filters( 'mrk_rest_process_release_page', $result );
+    $result = apply_filters( 'mrk_rest_process_release', $result );
     return $result;
 }
 
@@ -578,7 +578,7 @@ function mrk_get_release_by_program_id( $data ) {
                              'Could not get the requested release',
                              [ 'status' => 404 ]);
     $result = mrk_rest_get_media( $posts[ $data[ 'num' ]]);
-    $result = apply_filters( 'mrk_rest_process_release_page', $result );
+    $result = apply_filters( 'mrk_rest_process_release', $result );
     return $result;
 }
 
@@ -622,7 +622,7 @@ function mrk_get_release_by_name( $data ) {
                                'requested' => $data[ 'release' ]
                              ]);
     $result = mrk_rest_get_media( $posts[0] );
-    $result = apply_filters( 'mrk_rest_process_release_page', $result );
+    $result = apply_filters( 'mrk_rest_process_release', $result );
     return $result;
 }
 
