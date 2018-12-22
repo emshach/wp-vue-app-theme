@@ -52,33 +52,34 @@
       }
     }
   }
- .page.release section.info {
-   color: #aaa;
-   margin: 0 0 10px;
-   .dashicons {
-     margin-right: 1px;
-     font-size: 18px;
-   }
-   .count {
-     vertical-align: center;
-     font-size: 13px;
-   }
-   > * {
-     margin-right: 1em;
-   }
-   .views.active {
-     color: deepskyblue;
-   }
-   .likes.active, .views:hover {
-     color: green;
-   }
-   .dislikes.active, .dislikes:hover {
-     color: red;
-   }
-   .fav.active, .fav:hover {
-     color: orange;
-   }
-   .comments.active {
-     color: purple;
-   }
- }}
+}
+.page.release section.info {
+  color: #aaa;
+  margin: 0 0 10px;
+  .dashicons {
+    margin-right: 1px;
+    font-size: 18px;
+  }
+  .count {
+    vertical-align: center;
+    font-size: 13px;
+  }
+  > * {
+    margin-right: 1em;
+  }
+  .views.active {
+    color: deepskyblue;
+  }
+  .likes.active, .views:hover {
+    color: green;
+  }
+  .dislikes.active, .dislikes:hover {
+    color: red;
+  }
+  .fav.active, .fav:hover {
+    color: orange;
+  }
+  .comments.active {
+    color: purple;
+  }
+}
