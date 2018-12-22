@@ -44,7 +44,7 @@
       .dislikes.active {
         color: red;
       }
-      .fav.active {
+      .favs.active {
         color: orange;
       }
       .comments.active {
@@ -70,13 +70,13 @@
   .views.active {
     color: deepskyblue;
   }
-  .likes.active, .views:hover {
+  .likes.active, .likes:hover {
     color: green;
   }
   .dislikes.active, .dislikes:hover {
     color: red;
   }
-  .fav.active, .fav:hover {
+  .favs.active, .favs:hover {
     color: orange;
   }
   .comments.active {

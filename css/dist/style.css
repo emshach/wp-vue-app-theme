@@ -503,7 +503,7 @@ section.episodes .card h5 {
 .media .media-body > .info .dislikes.active {
   color: red; }
 
-.media .media-body > .info .fav.active {
+.media .media-body > .info .favs.active {
   color: orange; }
 
 .media .media-body > .info .comments.active {
@@ -527,13 +527,13 @@ section.episodes .card h5 {
 .page.release section.info .views.active {
   color: deepskyblue; }
 
-.page.release section.info .likes.active, .page.release section.info .views:hover {
+.page.release section.info .likes.active, .page.release section.info .likes:hover {
   color: green; }
 
 .page.release section.info .dislikes.active, .page.release section.info .dislikes:hover {
   color: red; }
 
-.page.release section.info .fav.active, .page.release section.info .fav:hover {
+.page.release section.info .favs.active, .page.release section.info .favs:hover {
   color: orange; }
 
 .page.release section.info .comments.active {
