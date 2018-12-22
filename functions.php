@@ -195,7 +195,10 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
         $data[ $key ] = true;
     if ( $data[ 'private' ] || $data[ 'plus' ]) {
         $data[ 'users' ] = get_field( 'users_allowed', $id );
-        if (! $data[ 'users' ])
+        if ( $data[ 'users' ])
+            $data[ 'users' ] = array_map( function($u) { return $u[ 'ID' ]; },
+                                          $data[ 'users' ]);
+        else
             $data[ 'users' ] = [];
     }
     if ( $data[ 'payperview' ])
