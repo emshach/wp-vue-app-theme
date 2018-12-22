@@ -215,12 +215,14 @@ function mrk_rest_add_bg_image( $data ) {
     if ( empty( $data[ 'background_image' ])) {
         $ancestors = get_post_ancestors( $data[ 'id' ]);
         if ( $ancestors )
-            foreach( $ancestors as $post )
+            foreach( $ancestors as $post ) {
+                $post = get_post( $post );
                 if ( $post->featured_media ) {
                     $data[ 'background_image' ]
                         = wp_get_attachment_url( $post->featured_media );
                     break;
                 }
+            }
     }
     return $data;
 }
