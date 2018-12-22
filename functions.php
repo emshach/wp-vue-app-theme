@@ -214,6 +214,7 @@ function mrk_rest_add_bg_image( $data ) {
         $data[ 'background_image' ] = wp_get_attachment_url( $data[ 'featured_media' ]);
     if ( empty( $data[ 'background_image' ])) {
         $ancestors = get_post_ancestors( $data[ 'id' ]);
+        error_log( "ancestors: ." . var_export( $ancestors ));
         if ( $ancestors )
             foreach( $ancestors as $post )
                 if ( $post->featured_media ) {
