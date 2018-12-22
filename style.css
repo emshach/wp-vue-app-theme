@@ -536,6 +536,9 @@ section.episodes .card h5 {
 .page.release section.info .favs.active, .page.release section.info .favs:hover {
   color: orange; }
 
+.page.release section.info .likes, .page.release section.info .dislikes, .page.release section.info .favs {
+  cursor: pointer; }
+
 .page.release section.info .comments.active {
   color: purple; }
 

@@ -79,6 +79,9 @@
   .favs.active, .favs:hover {
     color: orange;
   }
+  .likes, .dislikes, .favs {
+    cursor: pointer;
+  }
   .comments.active {
     color: purple;
   }
