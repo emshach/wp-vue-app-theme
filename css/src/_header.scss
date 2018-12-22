@@ -41,6 +41,7 @@
 
 // Logo
 .logo {
+  float: left;
   @include breakpoint( $max-phone ) {
     display: none;
   }}

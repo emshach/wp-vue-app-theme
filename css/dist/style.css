@@ -167,6 +167,9 @@ main {
 #bg-image-new {
   display: none; }
 
+.logo {
+  float: left; }
+
 @media (max-width: 600px) {
   .logo {
     display: none; } }
