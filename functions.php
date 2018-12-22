@@ -196,7 +196,7 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
     if ( $data[ 'private' ] || $data[ 'plus' ]) {
         $data[ 'users' ] = get_field( 'users_allowed', $id );
         if ( $data[ 'users' ])
-            $data[ 'users' ] = array_map( function($u) { return $u[ 'ID' ]; },
+            $data[ 'users' ] = array_map( function($u) { return (int) $u[ 'ID' ]; },
                                           $data[ 'users' ]);
         else
             $data[ 'users' ] = [];
@@ -256,7 +256,7 @@ function mrk_rest_restrictions( $data ) {
     $data[ 'debug' ][ 'restrictions' ] = $rst;
     if ( $rst[ 'public' ])
         return $data;
-    if ( in_array( $user, $rst[ 'users' ]))
+    if ( in_array( $user->ID, $rst[ 'users' ]))
         return $data;
     if ( $rst[ 'premium' ] && preg_match( '/premium/i', $membership ))
         return $data;
