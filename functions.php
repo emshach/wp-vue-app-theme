@@ -212,6 +212,16 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
 function mrk_rest_add_bg_image( $data ) {
     if (! empty( $data[ 'featured_media' ]))
         $data[ 'background_image' ] = wp_get_attachment_url( $data[ 'featured_media' ]);
+    if ( empty( $data[ 'background_image' ])) {
+        $ancestors = get_post_ancestors( $data[ 'id' ]);
+        if ( $ancestors )
+            foreach( $ancestors as $post )
+                if ( $post->featured_media ) {
+                    $data[ 'background_image' ]
+                        = wp_get_attachment_url( $post->featured_media );
+                    break;
+                }
+    }
     return $data;
 }
 
@@ -472,7 +482,7 @@ function mrk_get_post_by_path( $data ) {
         return $result;;
     $content = get_field( 'content_page', $result[ 'id' ]);
     if ( $result[ 'type' ] == 'page' && $content )
-        $result = apply_filters( 'mrk_rest_process_program_page', $result );
+        $result = apply_filters( 'mrk_rest_process_program', $result );
     return $result;
 }
 /**
@@ -510,7 +520,7 @@ function mrk_get_home_page( $data ) {
  */
 function mrk_get_program_by_id( $data ) {
     $result = mrk_get_post_by_id( $data );
-    $result = apply_filters( 'mrk_rest_process_program_page', $result );
+    $result = apply_filters( 'mrk_rest_process_program', $result );
     return $result;
 }
 
@@ -521,7 +531,7 @@ function mrk_get_program_by_id( $data ) {
  */
 function mrk_get_program_by_name( $data ) {
     $result = mrk_get_post_by_path( $data );
-    $result = apply_filters( 'mrk_rest_process_program_page', $result );
+    $result = apply_filters( 'mrk_rest_process_program', $result );
     return $result;
 }
 
@@ -797,8 +807,9 @@ add_filter( 'mrk_rest_process_media', 'mrk_rest_add_kgvid_meta', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_stats', 10, 1 );
 add_filter( 'mrk_rest_process_media', 'mrk_rest_add_thumbnail', 11, 1 );
 add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
-add_filter( 'mrk_rest_process_program_page', 'mrk_rest_set_program_type', 10, 1 );
-add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_promo_reel', 10, 1 );
-add_filter( 'mrk_rest_process_program_page', 'mrk_rest_add_releases', 10, 1 );
+add_filter( 'mrk_rest_process_program', 'mrk_rest_set_program_type', 10, 1 );
+add_filter( 'mrk_rest_process_program', 'mrk_rest_add_promo_reel', 10, 1 );
+add_filter( 'mrk_rest_process_program', 'mrk_rest_add_releases', 10, 1 );
+add_filter( 'mrk_rest_process_release', 'mrk_rest_add_bg_image', 10, 1 );
 
 ?>
