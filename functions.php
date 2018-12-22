@@ -254,7 +254,7 @@ function mrk_rest_restrictions( $data ) {
         return $data;
     if ( in_array( $user, $rst[ 'users' ]))
         return $data;
-    if ( $rst[ 'premium' ] &&  preg_match( '/premium/i', $membership ))
+    if ( $rst[ 'premium' ] && preg_match( '/premium/i', $membership ))
         return $data;
     if ( $rst[ 'members' ] && preg_match( '/vip/i', $membership ))
         return $data;
@@ -469,6 +469,23 @@ function mrk_rest_get_media( $post ) {
     $prepared = $controller->prepare_item_for_response( $post, $request);
     $result = apply_filters( 'mrk_rest_process_media', $prepared->data );
     return $result;
+}
+
+/**
+ * Set the type of a release object to the appropriate type
+ *
+ * @return post array
+ */
+function mrk_rest_set_release_type( $data ) {
+    if ( $data[ 'media_type' ] == 'image' )
+        $data[ 'release_type' ] = 'image';
+    elseif ( empty( $data[ 'mime_type' ]))
+        $data[ 'release_type' ] = 'release';
+    elseif ( preg_match( '/video/', $data[ 'mime_type' ]))
+        $data[ 'release_type' ] = 'video';
+    elseif ( preg_match( '/audio/', $data[ 'mime_type' ]))
+        $data[ 'release_type' ] = 'audio';
+    return $data;
 }
 
 /**
@@ -812,5 +829,6 @@ add_filter( 'mrk_rest_process_program', 'mrk_rest_set_program_type', 10, 1 );
 add_filter( 'mrk_rest_process_program', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_program', 'mrk_rest_add_releases', 10, 1 );
 add_filter( 'mrk_rest_process_release', 'mrk_rest_add_bg_image', 10, 1 );
+add_filter( 'mrk_rest_process_release', 'mrk_rest_set_release_type', 10, 1 );
 
 ?>
