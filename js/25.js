@@ -56,7 +56,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     user: function user() {
-      return this.sttate.user;
+      return this.sstate.user;
     },
     memberLevels: function memberLevels() {
       return this.levels.length ? this.levels : this.storedLevels;

@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     user() {
-      return this.sttate.user;
+      return this.sstate.user;
     },
     memberLevels() {
       return ( this.levels.length ? this.levels : this.storedLevels );
