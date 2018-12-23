@@ -6,7 +6,10 @@ export default {
   data() {
     return {
       sstate: store.state,
-      storedPost: {},
+      storedPost: {
+        stats: {},
+        my_xp: {}
+      },
       show: false,
       prev: 0,
       next: 0,

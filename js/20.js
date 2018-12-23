@@ -19,7 +19,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_1__["default"].state,
-      storedPost: {},
+      storedPost: {
+        stats: {},
+        my_xp: {}
+      },
       show: false,
       prev: 0,
       next: 0,

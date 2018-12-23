@@ -331,8 +331,20 @@ function mrk_rest_add_postmeta( $data ) {
  * @return post array
  */
 function mrk_rest_add_stats( $data ) {
-    $data[ 'stats' ] = [];
-    $data[ 'my_xp' ] = [];
+    $data[ 'stats' ] = [
+        'seen'     => 0,
+        'likes'    => 0,
+        'dislikes' => 0,
+        'favs'     => 0,
+        'comments' => 0,
+    ];
+    $data[ 'my_xp' ] = [
+        'seen'     => 0,
+        'likes'    => 0,
+        'dislikes' => 0,
+        'favs'     => 0,
+        'comments' => 0,
+    ];
     // TODO: complete
     return $data;
 }
