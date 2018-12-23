@@ -1,29 +1,79 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[25],{
 
-/***/ "./js/components/the-loop/index.js":
-/*!*****************************************!*\
-  !*** ./js/components/the-loop/index.js ***!
-  \*****************************************/
+/***/ "./js/components/subscription-menu/index.js":
+/*!**************************************************!*\
+  !*** ./js/components/subscription-menu/index.js ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/wpapi */ "./js/lib/wpapi.js");
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/the-loop/template.html"),
-  props: ['posts', 'pagers']
+  template: __webpack_require__(/*! ./template.html */ "./js/components/subscription-menu/template.html"),
+  props: {
+    levels: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    }
+  },
+  data: function data() {
+    return {
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      selectedLevel: false,
+      storedLevels: false
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    if (!this.levels.length) wp.api.loadPromise.done(function () {
+      var levels = new _lib_wpapi__WEBPACK_IMPORTED_MODULE_2__["default"].Membership({
+        path: 'levels'
+      });
+      levels.fetch().done(function (res) {
+        console.log('got membership levels', res);
+        _this.storedLevels = res;
+      });
+    });
+  },
+  methods: {
+    setLevel: function setLevel(level) {
+      this.selectedLevel = level;
+    },
+    unsetLevel: function unsetLevel() {
+      this.selectedLevel = false;
+    }
+  },
+  computed: {
+    user: function user() {
+      return this.sttate.user;
+    },
+    memberLevels: function memberLevels() {
+      return this.levels.length ? this.levels : this.storedLevels;
+    }
+  }
 });
 
 /***/ }),
 
-/***/ "./js/components/the-loop/template.html":
-/*!**********************************************!*\
-  !*** ./js/components/the-loop/template.html ***!
-  \**********************************************/
+/***/ "./js/components/subscription-menu/template.html":
+/*!*******************************************************!*\
+  !*** ./js/components/subscription-menu/template.html ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div><!--div wrapper-->\n  <div v-if=\"posts.length > 0\">\n    <!--loop starts here-->\n    <ul class=\"the-loop\">\n      <li v-for=\"post in posts\">\n        <div class=\"title\">\n          <router-link v-bind:to=\"{ name: 'post', params: { slug: post.slug }}\">\n            {{post.title.rendered}}\n          </router-link>\n        </div>\n        <div class=\"meta\">\n          Categories:\n          <router-link v-for=\"(cat, index) in post.cats\" :key=\"cat.id\"\n                       :to=\"{name:'category', params: { category: cat.slug }}\">\n            {{ cat.name }}<span v-if=\"index < post.cats.length - 1\">,&nbsp;</span>\n          </router-link>\n        </div>\n        <div class=\"excerpt\" v-html=\"post.excerpt.rendered\"></div>\n      </li>\n    </ul>\n    <!--the loop ends-->\n    <!--paging starts here-->\n    <ul v-if=\"pagers.length > 1\" class=\"pagination\">\n      <li v-for=\"(pager,index) in pagers\" class=\"page-item\">\n        <router-link class=\"page-link\"\n                     v-bind:to=\"{path:$route.fullPath, query: {page : pager}}\">\n          {{pager}}\n        </router-link>\n      </li>\n    </ul>\n    <!--paging ends-->\n  </div><!--end v-if-->\n  <div v-else>\n    <nopost></nopost>\n  </div>\n</div><!--end div wrapper-->\n\n";
+module.exports = "<div class=\"subscription-menu\">\n  <transition name=\"fade-in\">\n    <template v-if=\"selectedLevel\">\n      <h2 class=\"message\">Confirm Order</h2>\n      <div class=\"row\">\n        <div class=\"col-8\">{{ selectedLevel.name }}</div>\n        <!-- TODO: expires -->\n        <div class=\"col-4\">{{ selectedLevel.price }}</div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-4\"></div>\n        <div class=\"col-4\">\n          <a class=\"cancel\" href=\"#\" @click.stop=\"unsetLevel\">go back</a>\n        </div>\n        <div class=\"col-4\">\n          <router-link\n            :to=\"{ name:'membership-checkout', query: {\n                   level: selectedLevel.id,\n                   'submit-checkout': 1,\n                   checkjavascript: 1,\n                   javascriptok: 1\n                 }}\"\n            class=\"submit confirm checkout paypal paypal-express\"\n            target=\"_blank\">checkout</router-link>\n        </div>\n      </div>\n    </template>\n    <template v-else>\n      <div v-for=\"level in memberLevels\" :key=\"level.id\" class=\"member-level\">\n        <h4>{{ level.title }}</h4>\n        <div class=\"description\">{{ level.description }}</div>\n        <div class=\"price\">{{ level.price }}</div>\n        <div v-if=\"user.membership.id == level.id\" class=\"selected\">\n          expires {{ user.membership.expires }}\n        </div>\n        <div v-else class=\"buy\">\n          <!-- <router-link :to=\"'/members/signup/' + level.id\"></router-link> -->\n          <a href=\"#\" @click.stop=\"setLevel( level.id )\">{{\n              user.membership ? 'switch' : 'sign up'\n            }}</a>\n        </div>\n      </div>\n    </template>\n  </transition>\n</div>\n";
 
 /***/ })
 

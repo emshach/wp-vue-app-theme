@@ -905,7 +905,7 @@ __webpack_require__.r(__webpack_exports__);
 //partial components
 
 var TheLoop = function TheLoop() {
-  return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./components/the-loop */ "./js/components/the-loop/index.js"));
+  return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./components/the-loop */ "./js/components/the-loop/index.js"));
 };
 
 var Sidebar = function Sidebar() {
@@ -913,7 +913,7 @@ var Sidebar = function Sidebar() {
 };
 
 var WpFooter = function WpFooter() {
-  return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./components/wp-footer */ "./js/components/wp-footer/index.js"));
+  return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./components/wp-footer */ "./js/components/wp-footer/index.js"));
 };
 
 var NoPost = function NoPost() {
@@ -921,7 +921,7 @@ var NoPost = function NoPost() {
 };
 
 var WpHeader = function WpHeader() {
-  return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./components/wp-header */ "./js/components/wp-header/index.js"));
+  return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/wp-header */ "./js/components/wp-header/index.js"));
 };
 
 var DownArrow = function DownArrow() {
@@ -954,6 +954,10 @@ var Filmstrip = function Filmstrip() {
 
 var NavMenu = function NavMenu() {
   return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/nav-menu */ "./js/components/nav-menu/index.js"));
+};
+
+var SubscriptionMenu = function SubscriptionMenu() {
+  return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./components/subscription-menu */ "./js/components/subscription-menu/index.js"));
 }; // const             = () => import( './components/'             );
 // const components with routes
 
@@ -979,7 +983,7 @@ var Contact = function Contact() {
 };
 
 var Single = function Single() {
-  return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/single */ "./js/components/single/index.js"));
+  return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! ./components/single */ "./js/components/single/index.js"));
 };
 
 var Page = function Page() {
@@ -1019,7 +1023,7 @@ var Members = function Members() {
 };
 
 var Upload = function Upload() {
-  return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./components/upload */ "./js/components/upload/index.js"));
+  return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./components/upload */ "./js/components/upload/index.js"));
 };
 
 var Shop = function Shop() {
@@ -1051,7 +1055,8 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('flower-spinner', epic_spi
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('mrk-carousel', Carousel);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('content-list', ContentList);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('filmstrip', Filmstrip);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('nav-menu', NavMenu); // Vue.component( '',                             );
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('nav-menu', NavMenu);
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('subscription-menu', SubscriptionMenu); // Vue.component( '',                             );
 //components with routes
 
 var VuePageNotFound = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('page-not-found', PageNotFound);
@@ -1070,18 +1075,7 @@ var VuePreviewProgram = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('p
 var VuePreviewRelease = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('preview-release', PreviewRelease);
 var VueMembers = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('members', Members);
 var VueUpload = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('upload', Upload);
-var VueShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop); // Vuex store
-// const store = new Vuex.Store({
-//   state: {
-//     count: 0
-//   },
-//   mutations: {
-//     increment( state ) {
-//       state.count++;
-//     }
-//   }
-// });
-
+var VueShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop);
 window.store = _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"]; // Define some routes
 
 var routes = [{
@@ -1100,15 +1094,15 @@ var routes = [{
   component: VueContact,
   name: 'contact'
 }, {
-  path: '/preview/:path/',
-  component: VuePreviewProgram,
-  name: 'preview-program',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreview
-}, {
   path: '/preview/:program/:release',
   component: VuePreviewRelease,
   name: 'preview-release',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreviewRelease
+}, {
+  path: '/preview/:path/',
+  component: VuePreviewProgram,
+  name: 'preview-program',
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreview
 }, {
   path: '/page/:path',
   component: VuePage,

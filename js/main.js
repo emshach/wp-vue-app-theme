@@ -32,6 +32,7 @@ const Carousel    = () => import( './components/mrk-carousel' );
 const ContentList = () => import( './components/content-list' );
 const Filmstrip   = () => import( './components/filmstrip'    );
 const NavMenu     = () => import( './components/nav-menu'     );
+const SubscriptionMenu = () => import( './components/subscription-menu' );
 // const             = () => import( './components/'             );
 
 // const components with routes
@@ -79,6 +80,7 @@ Vue.component( 'mrk-carousel',   Carousel      );
 Vue.component( 'content-list',   ContentList   );
 Vue.component( 'filmstrip',      Filmstrip     );
 Vue.component( 'nav-menu',       NavMenu       );
+Vue.component( 'subscription-menu', SubscriptionMenu );
 // Vue.component( '',                             );
 
 //components with routes
@@ -100,17 +102,6 @@ const VueMembers        = Vue.component( 'members',         Members        );
 const VueUpload         = Vue.component( 'upload',          Upload         );
 const VueShop           = Vue.component( 'shop',            Shop           );
 
-// Vuex store
-// const store = new Vuex.Store({
-//   state: {
-//     count: 0
-//   },
-//   mutations: {
-//     increment( state ) {
-//       state.count++;
-//     }
-//   }
-// });
 window.store = store;
 
 // Define some routes
@@ -120,14 +111,14 @@ const routes = [
   { path: '/about/',             component: VueAbout,   name: 'about' },
   { path: '/contact/',           component: VueContact, name: 'contact' },
 
-  { path: '/preview/:path/',     component: VuePreviewProgram,
-    name: 'preview-program',
-    beforeEnter: routeEvents.toPreview },
-
   { path: '/preview/:program/:release',
     component: VuePreviewRelease,
     name: 'preview-release',
     beforeEnter: routeEvents.toPreviewRelease },
+
+  { path: '/preview/:path/',     component: VuePreviewProgram,
+    name: 'preview-program',
+    beforeEnter: routeEvents.toPreview },
 
   { path: '/page/:path',         component: VuePage,    name: 'page',
     beforeEnter: routeEvents.toPath },
