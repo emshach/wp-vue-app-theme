@@ -834,15 +834,20 @@ var Release = Path.extend({
 var Preview = Path.extend({
   root: 'preview'
 });
+var Membership = Path.extend({
+  root: 'members'
+});
 wp.api.models.Path = Path;
 wp.api.models.Program = Program;
 wp.api.models.Release = Release;
 wp.api.models.Preview = Preview;
+wp.api.models.Membership = Membership;
 /* harmony default export */ __webpack_exports__["default"] = ({
   Path: Path,
   Program: Program,
   Release: Release,
-  Preview: Preview
+  Preview: Preview,
+  Membership: Membership
 });
 
 /***/ }),

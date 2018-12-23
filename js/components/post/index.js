@@ -16,7 +16,7 @@ export default {
       default: () => {}
     }
   },
-  beforeEnter: routeEvents.toPath,
+  beforeRouteUpdate: routeEvents.toPath,
   data() {
     return {
       img: '',

@@ -163,9 +163,14 @@ function mrk_get_current_user_info() {
         'last_name' => $user->user_lastname,
         'display_name' => $user->display_name,
         'email' => $user->user_email,
-        'membership' => ( $user->membership_level
-                          ? $user->membership_level->name
-                          : '' )
+        'membership' => (
+            $user->membership_level && $user->membership_level->id
+            ? [
+                'id'   => $user->membership_level->id,
+                'name' => $user->membership_level->name,
+                'debug' => $user->membership_level
+            ]
+            : false )
     ];
 }
 
@@ -720,6 +725,16 @@ function mrk_get_favourites( $data ) {
 }
 
 /**
+ * Get the membership levels defined in the system
+ *
+ * @return membership levels array
+ */
+function mrk_get_membership_levels( $data ) {
+    $pmpro_levels = pmpro_getAllLevels(false, true);
+    return $pmpro_levels;
+}
+
+/**
  * Make the endpoint for fetching posts/pages by path
  *
  * /wp-json/mrk/v1
@@ -784,6 +799,10 @@ function mrk_register_endpoint () {
     register_rest_route( 'mrk/v1', '/favourites', [
         'methods'  => 'GET',
         'callback' => 'mrk_get_favourites',
+    ]);
+    register_rest_route( 'mrk/v1', '/members/levels', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_membership_levels',
     ]);
 }
 

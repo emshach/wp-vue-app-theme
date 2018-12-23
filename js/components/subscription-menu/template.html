@@ -1,0 +1,45 @@
+<div class="subscription-menu">
+  <transition name="fade-in">
+    <template v-if="selectedLevel">
+      <h2 class="message">Confirm Order</h2>
+      <div class="row">
+        <div class="col-8">{{ selectedLevel.name }}</div>
+        <!-- TODO: expires -->
+        <div class="col-4">{{ selectedLevel.price }}</div>
+      </div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <a class="cancel" href="#" @click.stop="unsetLevel">go back</a>
+        </div>
+        <div class="col-4">
+          <router-link
+            :to="{ name:'membership-checkout', query: {
+                   level: selectedLevel.id,
+                   'submit-checkout': 1,
+                   checkjavascript: 1,
+                   javascriptok: 1
+                 }}"
+            class="submit confirm checkout paypal paypal-express"
+            target="_blank">checkout</router-link>
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <div v-for="level in memberLevels" :key="level.id" class="member-level">
+        <h4>{{ level.title }}</h4>
+        <div class="description">{{ level.description }}</div>
+        <div class="price">{{ level.price }}</div>
+        <div v-if="user.membership.id == level.id" class="selected">
+          expires {{ user.membership.expires }}
+        </div>
+        <div v-else class="buy">
+          <!-- <router-link :to="'/members/signup/' + level.id"></router-link> -->
+          <a href="#" @click.stop="setLevel( level.id )">{{
+              user.membership ? 'switch' : 'sign up'
+            }}</a>
+        </div>
+      </div>
+    </template>
+  </transition>
+</div>

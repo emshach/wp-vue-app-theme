@@ -29,7 +29,7 @@ __webpack_require__.r(__webpack_exports__);
       default: function _default() {}
     }
   },
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_1__["default"].toPath,
+  beforeRouteUpdate: _lib_route_events__WEBPACK_IMPORTED_MODULE_1__["default"].toPath,
   data: function data() {
     return {
       img: '',

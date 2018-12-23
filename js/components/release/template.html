@@ -34,16 +34,19 @@
         <span class="count">{{ postData.stats.views || 0 }}</span>
       </div>
       <div :class="[ 'likes',  'd-flex',
-                   { active: postData.my_xp.like }]">
+                   { active: postData.my_xp.like }]"
+           @click.stop="likePost">
         <span class="dashicons dashicons-thumbs-up"></span>
         <span class="count">{{ postData.stats.likes || 0 }}</span>
       </div>
       <div :class="[ 'dislikes', 'd-flex',
-                   { active: postData.my_xp.dislike }]">
+                   { active: postData.my_xp.dislike }]"
+           @click.stop="dislikePost">
         <span class="dashicons dashicons-thumbs-down"></span>
         <span class="count">{{ postData.stats.dislikes || 0 }}</span>
       </div>
-      <div :class="[ 'favs', 'd-flex', { active: postData.my_xp.fav }]">
+      <div :class="[ 'favs', 'd-flex', { active: postData.my_xp.fav }]"
+           @click.stop="favPost">
         <span class="dashicons dashicons-star-filled"></span>
         <span class="count">{{ postData.stats.favs || 0 }}</span>
       </div>

@@ -542,6 +542,10 @@ section.episodes .card h5 {
 .page.release section.info .comments.active {
   color: purple; }
 
+/**
+ * shop: styles for shopping elements
+ * ---
+ */
 .sidebar-section {
   padding: 18px 20px 12px;
   background-color: #ebebeb;
