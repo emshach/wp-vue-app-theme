@@ -129,6 +129,8 @@ const routes = [
   { path: '/blog/',              component: VueArchive, name: 'blog' },
   { path: '/search/',            component: VueSearch,  name: 'search' },
   { path: '/shop/',              component: VueShop,    name: 'shop' },
+  { path: '/members/checkout',   component: VueMembers, name: 'members-checkout',
+    meta: { auth: true }},
   { path: '/members/',           component: VueMembers, name: 'members',
     meta: { auth: true }},
   { path: '/upload/',            component: VueUpload,  name: 'upload',

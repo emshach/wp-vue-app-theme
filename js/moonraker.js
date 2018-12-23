@@ -1136,6 +1136,13 @@ var routes = [{
   component: VueShop,
   name: 'shop'
 }, {
+  path: '/members/checkout',
+  component: VueMembers,
+  name: 'members-checkout',
+  meta: {
+    auth: true
+  }
+}, {
   path: '/members/',
   component: VueMembers,
   name: 'members',
