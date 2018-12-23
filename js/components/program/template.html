@@ -1,6 +1,6 @@
 <div class="program post page" :key="postData.id">
   <div id="bg-image-wrapper" :class="classes">
-    <transition name="fade">
+    <transition name="fade-in" appear>
       <img id="bg-image" :src="img" :key="img" @load="showImg" v-show="show"/>
     </transition>
   </div>

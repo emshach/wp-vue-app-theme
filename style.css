@@ -558,7 +558,7 @@ section.episodes .card h5 {
   font-size: x-large;
   text-align: center;
   font-weight: bold;
-  background: #224;
+  background: #567;
   color: #fd0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px; }
@@ -579,7 +579,8 @@ section.episodes .card h5 {
   background: darkseagreen; }
 
 .card.member-level .card-footer.buy {
-  padding: 0; }
+  padding: 0;
+  border-top-color: #fb1; }
 
 .card.member-level .card-footer.buy a {
   padding: 0.75rem 1.25rem;
