@@ -28,18 +28,18 @@
     <template v-else>
       <div v-for="level in memberLevels" :key="level.id"
            class="col-12 col-md-4">
-        <b-card class="member-level" :title="level.name">
+        <b-card class="member-level" :header="level.name">
           <div class="description">{{ level.description }}</div>
           <div class="price">${{ level.billing_amount }}</div>
-          <div v-if="user.membership.id == level.id" class="selected">
+          <b-card-footer v-if="user.membership.id == level.id" class="selected">
             expires {{ user.membership.expires }}
-          </div>
-          <div v-else class="buy">
+          </b-card-footer>
+          <b-card-footer v-else class="buy">
             <!-- <router-link :to="'/members/signup/' + level.id"></router-link> -->
             <a href="#" @click.stop="setLevel( level.id )">{{
               user.membership ? 'switch' : 'sign up'
               }}</a>
-          </div>
+          </b-card-footer>
         </b-card>
       </div>
     </template>
