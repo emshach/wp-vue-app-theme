@@ -33,7 +33,7 @@
             <div class="description" v-html="level.description"></div>
             <div class="price">${{ level.billing_amount }}</div>
           </b-card-body>
-          <b-card-footer v-if="user.membership.id == level.id" class="selected">
+          <b-card-footer v-if="currentLevel.id == level.id" class="selected">
             expires {{ user.membership.expires }}
           </b-card-footer>
           <b-card-footer v-else class="buy">
