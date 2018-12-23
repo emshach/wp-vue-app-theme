@@ -1,13 +1,13 @@
 <div class="subscription-menu container">
   <transition-group name="fade-in">
     <template v-if="selectedLevel">
-      <h2 class="message">Confirm Order</h2>
-      <div class="row">
-        <div class="col-8">{{ selectedLevel.name }}</div>
+      <h2 class="message" key="head">Confirm Order</h2>
+      <div class="row" key="body">
+        <div class="col-8 name">{{ selectedLevel.name }}</div>
         <!-- TODO: expires -->
-        <div class="col-4">{{ selectedLevel.price }}</div>
+        <div class="col-4 price">${{ selectedLevel.billing_amount }}</div>
       </div>
-      <div class="row">
+      <div class="row" key="links">
         <div class="col-4"></div>
         <div class="col-4">
           <a class="cancel" href="#" @click.stop="unsetLevel">go back</a>
@@ -39,7 +39,7 @@
           <b-card-footer v-else class="buy">
             <!-- <router-link :to="'/members/signup/' + level.id"></router-link> -->
             <a href="#" @click.stop="setLevel( level.id )">{{
-              user.membership ? 'switch' : 'sign up'
+              user.membership ? 'select' : 'sign up'
               }}</a>
           </b-card-footer>
         </b-card>
