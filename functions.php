@@ -253,7 +253,6 @@ function mrk_rest_add_rel_path( $data ) {
 function mrk_rest_restrictions( $data ) {
     $rst = mrk_get_post_restrictions( $data[ 'id' ], $data[ 'type' ]);
     $user = wp_get_current_user();
-    error_log( var_export( $user->ID, true ).', '. var_export( $rst[ 'users' ], true ));
     $membership = $user->membership_level
         ? $user->membership_level->name
         : '';
@@ -859,7 +858,7 @@ function mrk_register_endpoint () {
         'methods'  => 'GET',
         'callback' => 'mrk_get_preview_by_program_name',
     ]);
-    register_rest_route( 'mrk/v1', '/preview/(?P<program>.+?)/(?P<preview>.+)', [
+    register_rest_route( 'mrk/v1', '/preview/(?P<program>.+?)/(?P<release>.+)', [
         'methods'  => 'GET',
         'callback' => 'mrk_get_preview_by_name',
     ]);
