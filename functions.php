@@ -285,7 +285,7 @@ function mrk_rest_restrictions( $data ) {
             'mrk_access_denied', 'Nothing to see here',
             [ 'status' => 403,
               'redirect' => $redir ]);
-    $stub = [ 'redirect' => $redir ];
+    $stub = empty( $data[ 'preview' ]) ? [ 'redirect' => $redir ] : [];
     $keys = [ 'id', 'excerpt', 'path', 'background_image', 'menu_order', 'title',
               'author', 'debug', 'parent', 'thumbnail', 'caption', 'stats', 'my_xp',
               'type', 'slug' ];
@@ -347,14 +347,6 @@ function mrk_rest_add_stats( $data ) {
     ];
     // TODO: complete
     return $data;
-}
-
-/**
- * Add content-restriction redirect
- *
- * @return post array
- */
-function mrk_rest_add_redirect( $data ) {
 }
 
 /**
@@ -665,6 +657,62 @@ function mrk_get_release_by_name( $data ) {
 }
 
 /**
+ * Get an release preview page by id
+ *
+ * @return array
+ */
+function mrk_get_preview_by_id( $data ) {
+    $data[ 'preview' ] = true;
+    $result = mrk_get_release_by_id( $data );
+    if (! is_array( $result ))
+        return $result;
+    $result = apply_filters( 'mrk_rest_process_preview', $result );
+    return $result;
+}
+
+/**
+ * Get an release preview page by program id
+ *
+ * @return array
+ */
+function mrk_get_preview_by_program_id( $data ) {
+    $data[ 'preview' ] = true;
+    $resurt = mrk_get_release_by_program_id( $data );
+    if (! is_array( $result ))
+        return $result;
+    $result = apply_filters( 'mrk_rest_process_preview', $result );
+    return $result;
+}
+
+/**
+ * Get an release preview page by program name
+ *
+ * @return array
+ */
+function mrk_get_preview_by_program_name( $data ) {
+    $data[ 'preview' ] = true;
+    $result = mrk_get_release_by_program_name( $data );
+    if (! is_array( $result ))
+        return $result;
+    $result = apply_filters( 'mrk_rest_process_preview', $result );
+    return $result;
+}
+
+/**
+ * Get an release preview page by program name and release name
+ *
+ * @return array
+ */
+function mrk_get_preview_by_name( $data ) {
+    $data[ 'preview' ] = true;
+    $resurt = mrk_get_release_by_name( $data );
+    if (! is_array( $result ))
+        return $result;
+    $result = apply_filters( 'mrk_rest_process_preview', $result );
+    return $result;
+}
+
+/**
  * Get the latest releases
  *
  * @return post data array
@@ -752,10 +800,13 @@ function mrk_get_membership_levels( $data ) {
  * /wp-json/mrk/v1
  */
 function mrk_register_endpoint () {
+    // home page
     register_rest_route( 'mrk/v1', '/path/', [
         'methods'  => 'GET',
         'callback' => 'mrk_get_home_page',
     ]);
+
+    // post
     register_rest_route( 'mrk/v1', '/path/(?P<id>\d+)', [
         'methods'  => 'GET',
         'callback' => 'mrk_get_post_by_id',
@@ -764,6 +815,8 @@ function mrk_register_endpoint () {
         'methods'  => 'GET',
         'callback' => 'mrk_get_post_by_path',
     ]);
+
+    // program
     register_rest_route( 'mrk/v1', '/program/(?P<id>\d+)', [
         'methods'  => 'GET',
         'callback' => 'mrk_get_program_by_id',
@@ -772,6 +825,8 @@ function mrk_register_endpoint () {
         'methods'  => 'GET',
         'callback' => 'mrk_get_program_by_name',
     ]);
+
+    // release
     register_rest_route( 'mrk/v1', '/release/(?P<id>\d+)', [
         'methods'  => 'GET',
         'callback' => 'mrk_get_release_by_id',
@@ -788,6 +843,26 @@ function mrk_register_endpoint () {
         'methods'  => 'GET',
         'callback' => 'mrk_get_release_by_name',
     ]);
+
+    // preview
+    register_rest_route( 'mrk/v1', '/preview/(?P<id>\d+)', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_preview_by_id',
+    ]);
+    register_rest_route( 'mrk/v1', '/preview/(?P<id>\d+/(?P<num>\d+))', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_preview_by_program_id',
+    ]);
+    register_rest_route( 'mrk/v1', '/preview/(?P<program>.+?)/(?P<num>\d+)', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_preview_by_program_name',
+    ]);
+    register_rest_route( 'mrk/v1', '/preview/(?P<program>.+?)/(?P<preview>.+)', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_preview_by_name',
+    ]);
+
+    // usage-related
     register_rest_route( 'mrk/v1', '/latest', [
         'methods'  => 'GET',
         'callback' => 'mrk_get_latest',
