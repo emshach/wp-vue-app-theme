@@ -3,7 +3,7 @@
  * ---
  */
 .card.member-level {
-  background: slategray;
+  background: #345;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 4px;
@@ -13,13 +13,18 @@
     font-size: x-large;
     text-align: center;
     font-weight: bold;
-    background: #567;
-    color: #fd0;
+    background: #234;
+    color: #fe9;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
+  .description {
+    color: #eee;
+    padding: 5px;
+    min-height: 6em;
+  }
   .price {
-    font-size: x-large;
+    font-size: xx-large;
     text-align: right;
     color: white;
   }
