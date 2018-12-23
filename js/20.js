@@ -36,7 +36,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     showImg: function showImg() {
       this.show = true;
-    }
+    },
+    likePost: function likePost() {},
+    dislikePost: function dislikePost() {},
+    favPost: function favPost() {}
   },
   computed: {
     postData: function postData() {

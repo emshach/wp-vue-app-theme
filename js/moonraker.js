@@ -762,7 +762,7 @@ var mkApiRequest = function mkApiRequest(Type, arg) {
 
 var toPreviewRelease = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Preview, function (to) {
   return {
-    path: to.params.preview + '/' + to.params.release
+    path: to.params.program + '/' + to.params.release
   };
 });
 var toPreview = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Preview);

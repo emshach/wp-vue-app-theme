@@ -23,6 +23,12 @@ export default {
   methods: {
     showImg() {
       this.show = true;
+    },
+    likePost() {
+    },
+    dislikePost() {
+    },
+    favPost() {
     }
   },
   computed: {

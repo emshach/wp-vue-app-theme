@@ -31,7 +31,7 @@ const mkApiRequest = ( Type, arg ) => {
   };
 };
 const toPreviewRelease = mkApiRequest( wpapix.Preview, to => {
-  return { path: to.params.preview + '/' + to.params.release };
+  return { path: to.params.program + '/' + to.params.release };
 });
 const toPreview = mkApiRequest( wpapix.Preview );
 const toPath = mkApiRequest( wpapix.Path );
