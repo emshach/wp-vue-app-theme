@@ -284,7 +284,7 @@ function mrk_rest_restrictions( $data ) {
             'mrk_access_denied', 'Nothing to see here',
             [ 'status' => 403,
               'redirect' => $redir ]);
-    $stub = empty( $data[ 'preview' ]) ? [ 'redirect' => $redir ] : [];
+    $stub = [ 'redirect' => $redir ];
     $keys = [ 'id', 'excerpt', 'path', 'background_image', 'menu_order', 'title',
               'author', 'debug', 'parent', 'thumbnail', 'caption', 'stats', 'my_xp',
               'type', 'media_type', 'slug' ];
@@ -501,6 +501,18 @@ function mrk_rest_set_release_type( $data ) {
 }
 
 /**
+ * Remove redundant and possibly troublesome redirect
+ *
+ * @return post array
+ */
+function mrk_rest_rm_preview_redirect( $data ) {
+    if (is_array( $data ) && isset( $data[ 'redirect' ])
+       && $data[ 'redirect' ] == '/preview' + $data[ 'path' ])
+        unset( $data[ 'redirect' ]);
+    return $data;
+}
+
+/**
  * Fix the wordpress rest-api so we can just lookup pages by their full * path
  *
  * @return post array
@@ -663,7 +675,6 @@ function mrk_get_release_by_name( $data ) {
  * @return array
  */
 function mrk_get_preview_by_id( $data ) {
-    $data[ 'preview' ] = true;
     $result = mrk_get_release_by_id( $data );
     if (! is_array( $result ))
         return $result;
@@ -677,7 +688,6 @@ function mrk_get_preview_by_id( $data ) {
  * @return array
  */
 function mrk_get_preview_by_program_id( $data ) {
-    $data[ 'preview' ] = true;
     $result = mrk_get_release_by_program_id( $data );
     if (! is_array( $result ))
         return $result;
@@ -691,7 +701,6 @@ function mrk_get_preview_by_program_id( $data ) {
  * @return array
  */
 function mrk_get_preview_by_program_name( $data ) {
-    $data[ 'preview' ] = true;
     $result = mrk_get_release_by_program_name( $data );
     if (! is_array( $result ))
         return $result;
@@ -705,7 +714,6 @@ function mrk_get_preview_by_program_name( $data ) {
  * @return array
  */
 function mrk_get_preview_by_name( $data ) {
-    $data[ 'preview' ] = true;
     $result = mrk_get_release_by_name( $data );
     if (! is_array( $result ))
         return $result;
@@ -941,5 +949,6 @@ add_filter( 'mrk_rest_process_program', 'mrk_rest_add_promo_reel', 10, 1 );
 add_filter( 'mrk_rest_process_program', 'mrk_rest_add_releases', 10, 1 );
 add_filter( 'mrk_rest_process_release', 'mrk_rest_add_bg_image', 10, 1 );
 add_filter( 'mrk_rest_process_release', 'mrk_rest_set_release_type', 10, 1 );
+add_filter( 'mrk_rest_process_preview', 'mrk_rest_rm_preview_redirect', 10, 1 );
 
 ?>
