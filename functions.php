@@ -524,8 +524,8 @@ function mrk_get_post_by_path( $data ) {
 function mrk_get_post_by_id( $data ) {
     $post = get_post( $data[ 'id' ]);
     $result = ( $post->post_type == 'attachment'
-                ? mrk_rest_get_post( $post )
-                : mrk_rest_get_media( $post ));
+                ? mrk_rest_get_media( $post )
+                : mrk_rest_get_post( $post ));
     return $result;
 }
 /**
