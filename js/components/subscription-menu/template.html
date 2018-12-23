@@ -29,8 +29,10 @@
       <div v-for="level in memberLevels" :key="level.id"
            class="col-12 col-md-4">
         <b-card class="member-level" :header="level.name">
-          <div class="description">{{ level.description }}</div>
-          <div class="price">${{ level.billing_amount }}</div>
+          <b-card-body>
+            <div class="description">{{ level.description }}</div>
+            <div class="price">${{ level.billing_amount }}</div>
+          </b-card-body>
           <b-card-footer v-if="user.membership.id == level.id" class="selected">
             expires {{ user.membership.expires }}
           </b-card-footer>
