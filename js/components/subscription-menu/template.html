@@ -26,10 +26,11 @@
       </div>
     </template>
     <template v-else>
-      <div v-for="level in memberLevels" :key="level.id" class="member-level">
-        <h4>{{ level.title }}</h4>
+      <div v-for="level in memberLevels" :key="level.id"
+           class="member-level col-12 col-md-4">
+        <h4>{{ level.name }}</h4>
         <div class="description">{{ level.description }}</div>
-        <div class="price">{{ level.price }}</div>
+        <div class="price">${{ level.billing_amount }}</div>
         <div v-if="user.membership.id == level.id" class="selected">
           expires {{ user.membership.expires }}
         </div>
