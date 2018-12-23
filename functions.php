@@ -677,7 +677,7 @@ function mrk_get_preview_by_id( $data ) {
  */
 function mrk_get_preview_by_program_id( $data ) {
     $data[ 'preview' ] = true;
-    $resurt = mrk_get_release_by_program_id( $data );
+    $result = mrk_get_release_by_program_id( $data );
     if (! is_array( $result ))
         return $result;
     $result = apply_filters( 'mrk_rest_process_preview', $result );
@@ -705,7 +705,7 @@ function mrk_get_preview_by_program_name( $data ) {
  */
 function mrk_get_preview_by_name( $data ) {
     $data[ 'preview' ] = true;
-    $resurt = mrk_get_release_by_name( $data );
+    $result = mrk_get_release_by_name( $data );
     if (! is_array( $result ))
         return $result;
     $result = apply_filters( 'mrk_rest_process_preview', $result );
