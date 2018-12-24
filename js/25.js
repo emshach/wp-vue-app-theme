@@ -48,6 +48,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setLevel: function setLevel(level) {
+      if (!this.user) {// redirect to login, then continue
+      }
+
       this.selectedLevel = level;
     },
     unsetLevel: function unsetLevel() {
@@ -62,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.levels.length ? this.levels : this.storedLevels;
     },
     currentLevel: function currentLevel() {
-      return this.user && this.user.membership && this.user.membership.id || false;
+      return this.user && this.user.membership || false;
     }
   }
 });
@@ -76,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"subscription-menu container\">\n  <transition-group name=\"fade-fast\" mode=\"out-in\" class=\"row\">\n    <template v-if=\"selectedLevel\">\n      <h2 class=\"message\" key=\"head\">Confirm Order</h2>\n      <div class=\"row\" key=\"body\">\n        <div class=\"col-8 name\">{{ selectedLevel.name }}</div>\n        <!-- TODO: expires -->\n        <div class=\"col-4 price\">${{ selectedLevel.billing_amount }}</div>\n      </div>\n      <div class=\"row\" key=\"links\">\n        <div class=\"col-4\"></div>\n        <div class=\"col-4\">\n          <a class=\"cancel\" href=\"#\" @click.stop=\"unsetLevel\">go back</a>\n        </div>\n        <div class=\"col-4\">\n          <router-link\n            :to=\"{ name:'members-checkout', query: {\n                   level: selectedLevel.id,\n                   'submit-checkout': 1,\n                   checkjavascript: 1,\n                   javascriptok: 1\n                 }}\"\n            class=\"submit confirm checkout paypal paypal-express\"\n            target=\"_blank\">checkout</router-link>\n        </div>\n      </div>\n    </template>\n    <template v-else>\n      <div v-for=\"level in memberLevels\" :key=\"level.id\"\n           class=\"col-12 col-md-4\">\n        <b-card no-body class=\"member-level\" :header=\"level.name\">\n          <b-card-body>\n            <div class=\"description\" v-html=\"level.description\"></div>\n            <div class=\"price\">${{ level.billing_amount }}</div>\n          </b-card-body>\n          <b-card-footer v-if=\"currentLevel.id == level.id\" class=\"selected\">\n            expires {{ user.membership.expires }}\n          </b-card-footer>\n          <b-card-footer v-else class=\"buy\">\n            <!-- <router-link :to=\"'/members/signup/' + level.id\"></router-link> -->\n            <a href=\"#\" @click.stop=\"setLevel( level )\">{{\n              user.membership ? 'select' : 'sign up'\n              }}</a>\n          </b-card-footer>\n        </b-card>\n      </div>\n    </template>\n  </transition-group>\n</div>\n";
+module.exports = "<div class=\"subscription-menu container\">\n  <transition name=\"fade-fast\" mode=\"out-in\">\n    <div v-if=\"selectedLevel\" class=\"row\" key=\"confirm\">\n      <h2 class=\"message\" key=\"head\">Confirm Order</h2>\n      <div class=\"row\" key=\"body\">\n        <div class=\"col-8 name\">{{ selectedLevel.name }}</div>\n        <!-- TODO: expires -->\n        <div class=\"col-4 price\">${{ selectedLevel.billing_amount }}</div>\n      </div>\n      <div class=\"row\" key=\"links\">\n        <div class=\"col-4\"></div>\n        <div class=\"col-4\">\n          <a class=\"cancel\" href=\"#\" @click.stop=\"unsetLevel\">go back</a>\n        </div>\n        <div class=\"col-4\">\n          <router-link\n            :to=\"{ name:'members-checkout', query: {\n                   level: selectedLevel.id,\n                   'submit-checkout': 1,\n                   checkjavascript: 1,\n                   javascriptok: 1\n                 }}\"\n            class=\"submit confirm checkout paypal paypal-express\"\n            target=\"_blank\">checkout</router-link>\n        </div>\n      </div>\n    </div>\n    <div v-else class=\"row\" key=\"select\">\n      <div v-for=\"level in memberLevels\" :key=\"level.id\"\n           class=\"col-12 col-md-4\">\n        <b-card no-body class=\"member-level\" :header=\"level.name\">\n          <b-card-body>\n            <div class=\"description\" v-html=\"level.description\"></div>\n            <div class=\"price\">${{ level.billing_amount }}</div>\n          </b-card-body>\n          <b-card-footer v-if=\"currentLevel.id == level.id\" class=\"selected\">\n            expires {{ user.membership.expires }}\n          </b-card-footer>\n          <b-card-footer v-else class=\"buy\">\n            <!-- <router-link :to=\"'/members/signup/' + level.id\"></router-link> -->\n            <a href=\"#\" @click.stop=\"setLevel( level )\">{{\n              user ? 'select' : 'sign up'\n              }}</a>\n          </b-card-footer>\n        </b-card>\n      </div>\n    </div>\n  </transition>\n</div>\n";
 
 /***/ })
 

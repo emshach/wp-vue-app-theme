@@ -45,7 +45,7 @@ export default {
       return ( this.levels.length ? this.levels : this.storedLevels );
     },
     currentLevel() {
-      return this.user && this.user.membership && this.user.membership.id || false;
+      return this.user && this.user.membership || false;
     }
   }
 };
