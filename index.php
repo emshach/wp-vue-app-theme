@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<?php echo $template_dir; ?>/style.css" />
     <?php wp_head(); ?>
   </head>
-  <body>
+  <body><?php if( have_posts() ) { the_post(); break } ?>
     <div class="body-wrap wrapper" id="app">
       <transition name="fade-in" mode="out-in">
         <router-view></router-view>
