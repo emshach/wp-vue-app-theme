@@ -258,7 +258,7 @@ function mrk_rest_restrictions( $data ) {
         : '';
     $redir = '';
     $data[ 'debug' ][ 'restrictions' ] = $rst;
-    if ( $rst[ 'public' ])
+    if ( $rst[ 'public' ] || current_user_can( 'see_all_content' ))
         return $data;
     if ( in_array( $user->ID, $rst[ 'users' ]))
         return $data;
@@ -804,6 +804,17 @@ function mrk_get_membership_levels( $data ) {
 }
 
 /**
+ * Get the membership levels defined in the system
+ *
+ * @return membership levels array
+ */
+function mrk_get_current_membership_level( $data ) {
+    $user = wp_get_current_user();
+    $membership = $user->membership_level;
+    return $membership;
+}
+
+/**
  * Make the endpoint for fetching posts/pages by path
  *
  * /wp-json/mrk/v1
@@ -899,6 +910,10 @@ function mrk_register_endpoint () {
     register_rest_route( 'mrk/v1', '/members/levels', [
         'methods'  => 'GET',
         'callback' => 'mrk_get_membership_levels',
+    ]);
+    register_rest_route( 'mrk/v1', '/members/my-level', [
+        'methods'  => 'GET',
+        'callback' => 'mrk_get_current_membership_level',
     ]);
 }
 
