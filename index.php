@@ -1,4 +1,6 @@
-<?php $template_dir = get_template_directory_uri();
+<?php
+$template_dir = get_template_directory_uri();
+get_header(); 
 ?><!doctype html>
 <html>
   <head>

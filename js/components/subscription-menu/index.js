@@ -28,6 +28,9 @@ export default {
   },
   methods: {
     setLevel( level ) {
+      if (! this.user ) {
+        // redirect to login, then continue
+      }
       this.selectedLevel = level;
     },
     unsetLevel() {

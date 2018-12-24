@@ -1,6 +1,6 @@
 <div class="subscription-menu container">
-  <transition-group name="fade-fast" mode="out-in" class="row">
-    <template v-if="selectedLevel">
+  <transition name="fade-fast" mode="out-in">
+    <div v-if="selectedLevel" class="row" key="confirm">
       <h2 class="message" key="head">Confirm Order</h2>
       <div class="row" key="body">
         <div class="col-8 name">{{ selectedLevel.name }}</div>
@@ -24,8 +24,8 @@
             target="_blank">checkout</router-link>
         </div>
       </div>
-    </template>
-    <template v-else>
+    </div>
+    <div v-else class="row" key="select">
       <div v-for="level in memberLevels" :key="level.id"
            class="col-12 col-md-4">
         <b-card no-body class="member-level" :header="level.name">
@@ -39,11 +39,11 @@
           <b-card-footer v-else class="buy">
             <!-- <router-link :to="'/members/signup/' + level.id"></router-link> -->
             <a href="#" @click.stop="setLevel( level )">{{
-              user.membership ? 'select' : 'sign up'
+              user ? 'select' : 'sign up'
               }}</a>
           </b-card-footer>
         </b-card>
       </div>
-    </template>
-  </transition-group>
+    </div>
+  </transition>
 </div>
