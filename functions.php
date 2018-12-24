@@ -258,7 +258,8 @@ function mrk_rest_restrictions( $data ) {
         : '';
     $redir = '';
     $data[ 'debug' ][ 'restrictions' ] = $rst;
-    if ( $rst[ 'public' ] || current_user_can( 'see_all_content' ))
+    // if ( $rst[ 'public' ] || current_user_can( 'see_all_content' ))
+    if ( $rst[ 'public' ])
         return $data;
     if ( in_array( $user->ID, $rst[ 'users' ]))
         return $data;
