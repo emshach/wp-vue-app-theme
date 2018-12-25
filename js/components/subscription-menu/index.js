@@ -57,7 +57,7 @@ export default {
       this.selectedLevel = false;
     },
     getConfirmation() {
-      var membership = wpapix.Membership({ path: 'my-level' });
+      var membership = new wpapix.Membership({ path: 'my-level' });
       this.fetching = false;
       this.wait = window.setInterval( () => {
         if ( this.fetching )

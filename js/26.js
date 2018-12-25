@@ -83,7 +83,7 @@ __webpack_require__.r(__webpack_exports__);
     getConfirmation: function getConfirmation() {
       var _this2 = this;
 
-      var membership = _lib_wpapi__WEBPACK_IMPORTED_MODULE_2__["default"].Membership({
+      var membership = new _lib_wpapi__WEBPACK_IMPORTED_MODULE_2__["default"].Membership({
         path: 'my-level'
       });
       this.fetching = false;
