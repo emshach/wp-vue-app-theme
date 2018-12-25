@@ -1149,7 +1149,7 @@ var routes = [{
     auth: true
   }
 }, {
-  path: '/members/confirm',
+  path: '/members/confirmation',
   component: VMemberConfirm,
   name: 'members-confirm',
   meta: {

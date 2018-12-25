@@ -119,6 +119,7 @@ const routes = [
     name: 'preview-release',
     beforeEnter: routeEvents.toPreviewRelease },
 
+
   { path: '/preview/:path/',     component: VPreviewProgram,
     name: 'preview-program',
     beforeEnter: routeEvents.toPreview },
@@ -134,7 +135,7 @@ const routes = [
   { path: '/shop/',              component: VShop,    name: 'shop' },
   { path: '/members/checkout',   component: VMembers, name: 'members-checkout',
     meta: { auth: true }},
-  { path: '/members/confirm',    component: VMemberConfirm, name: 'members-confirm',
+  { path: '/members/confirmation', component: VMemberConfirm, name: 'members-confirm',
     meta: { auth: true }},
   { path: '/members/',           component: VMembers, name: 'members',
     meta: { auth: true }},
