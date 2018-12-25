@@ -43,7 +43,13 @@
     right: 0%;
     overflow: auto;
     margin-right: -48px;
-  }}
+    >.wrapper {
+      position: absolute;
+      width: inherit;
+      right: 0;
+      margin-right: 0;
+      overflow: auto;
+    }}}
 #bg-nav {
   @include breakpoint( $bp-phone ) {
     position: absolute;
@@ -51,8 +57,7 @@
     height: 250px;
     left: -400px;
     top: -19px;
-  }
-}
+  }}
 #main-nav>.wrapper, #menu-nav, #menu-nav > .menu-item {
   height: inherit;
 }
@@ -64,8 +69,7 @@
     right: 48px;
     padding: 0;
     padding-left: 48px;
-  }
-}
+  }}
 #menu-nav {
   @include breakpoint( $bp-phone ) {
     position: relative;

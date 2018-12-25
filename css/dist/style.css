@@ -299,7 +299,13 @@ main {
     top: 0;
     right: 0%;
     overflow: auto;
-    margin-right: -48px; } }
+    margin-right: -48px; }
+  #main-nav > .wrapper {
+    position: absolute;
+    width: inherit;
+    right: 0;
+    margin-right: 0;
+    overflow: auto; } }
 
 @media (min-width: 600px) {
   #bg-nav {
