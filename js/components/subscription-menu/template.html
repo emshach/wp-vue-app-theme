@@ -16,7 +16,8 @@
         <div class="col-8"></div>
         <b-button class="col-2 cancel" @click.stop="unsetLevel"
                   variant="link">go back</b-button>
-        <b-button variant="primary"
+        <b-button variant="warning"
+                  size="lg"
                   :to="{ name:'members-checkout', query: {
                          level: selectedLevel.id,
                          'submit-checkout': 1,

@@ -22,6 +22,7 @@ export default {
           class: 'col-8'
         },
         { key:   'amount',
+          label: 'Amount (USD)',
           class: 'col-4'
         }
       ],
