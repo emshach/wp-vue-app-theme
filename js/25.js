@@ -35,10 +35,12 @@ __webpack_require__.r(__webpack_exports__);
       confirmed: false,
       fetching: false,
       order_fields: [{
-        key: 'item'
+        key: 'item',
+        class: 'col-8'
       }, {
         key: 'amount',
-        label: 'Amount (USD)'
+        label: 'Amount (USD)',
+        class: 'col-4'
       }],
       order: []
     };
