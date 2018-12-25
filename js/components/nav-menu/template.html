@@ -6,14 +6,12 @@
     <div class="wrapper">
       <div id="bg-nav"></div>
       <button class="menu-toggle toggle-mobile nav-menu" type="button"
-              data-toggle="collapse" data-target="#menu-nav"
-              aria-controls="menu-nav" aria-expanded="false"
               aria-label="Toggle Navigation">
         <span class="dashicons dashicons-menu navbar-toggle-icon"
               aria-hidden="true"></span>
       </button>
       <div id="nav-main-container" class="menu-nav-container">
-        <ul id="menu-nav" class="menu primary-menu nav navbar-nav collapse">
+        <ul id="menu-nav" class="menu primary-menu nav navbar-nav">
           <li v-for="( item, index ) in menu" :key="index" class="menu-item">
             <router-link :to="item.url">
               <img :src="item.thumb" />
