@@ -10,7 +10,8 @@
     </div>
     <div v-else-if="selectedLevel" class="confirm container" key="confirm">
       <h2 class="message">Confirm Order</h2>
-      <b-table striped hover :items="order" :fields="order_fields"></b-table>
+      <b-table striped hover :items="order" :fields="order_fields"
+               class="order"></b-table>
       <div class="row">
         <div class="col-8"></div>
         <b-button class="col-2 cancel" href="#" @click.stop="unsetLevel"
