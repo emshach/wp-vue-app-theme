@@ -66,6 +66,10 @@ __webpack_require__.r(__webpack_exports__);
       this.order = [{
         item: level.name,
         amount: level.billing_amount
+      }, {
+        item: "Total",
+        amount: level.billing_amount,
+        _rowVariant: 'secondary'
       }];
     },
     unsetLevel: function unsetLevel() {

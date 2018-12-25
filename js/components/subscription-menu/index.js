@@ -44,7 +44,9 @@ export default {
         // redirect to login, then continue
       }
       this.selectedLevel = level;
-      this.order = [{ item: level.name, amount: level.billing_amount }];
+      this.order = [{ item: level.name, amount: level.billing_amount },
+                    { item: "Total",    amount: level.billing_amount,
+                      _rowVariant: 'secondary' }];
     },
     unsetLevel() {
       this.selectedLevel = false;
