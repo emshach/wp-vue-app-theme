@@ -10,14 +10,10 @@
     </div>
     <div v-else-if="selectedLevel" class="confirm container" key="confirm">
       <h2 class="message">Confirm Order</h2>
-      <b-table striped hover :items="order" :fields="order_fields"
+      <b-table striped hover :items="order" :fields="order_fields" stacked="sm"
                class="order"></b-table>
-      <div class="row">
-        <div class="col-8"></div>
-        <b-button class="col-2 cancel" @click.stop="unsetLevel"
-                  variant="link">go back</b-button>
+      <div class="actions">
         <b-button variant="warning"
-                  size="lg"
                   :to="{ name:'members-checkout', query: {
                          level: selectedLevel.id,
                          'submit-checkout': 1,
@@ -26,6 +22,8 @@
                        }}"
                   class="col-2 submit confirm checkout paypal paypal-express"
                   target="_blank">checkout</b-button>
+        <b-button class="col-2 cancel" @click.stop="unsetLevel"
+                  variant="link">go back</b-button>
       </div>
     </div>
     <div v-else class="row" key="select">

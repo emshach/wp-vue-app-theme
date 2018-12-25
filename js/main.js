@@ -19,19 +19,19 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 // import 'swiper/dist/css/swiper.css';
 
 //partial components
-const TheLoop     = () => import( './components/the-loop'     );
-const Sidebar     = () => import( './components/sidebar'      );
-const WpFooter    = () => import( './components/wp-footer'    );
-const NoPost      = () => import( './components/nopost'       );
-const WpHeader    = () => import( './components/wp-header'    );
-const DownArrow   = () => import( './components/down-arrow'   );
-const SearchForm  = () => import( './components/search-form'  );
-const CommentForm = () => import( './components/comment-form' );
-const Comments    = () => import( './components/comments'     );
-const Carousel    = () => import( './components/mrk-carousel' );
-const ContentList = () => import( './components/content-list' );
-const Filmstrip   = () => import( './components/filmstrip'    );
-const NavMenu     = () => import( './components/nav-menu'     );
+const TheLoop          = () => import( './components/the-loop'          );
+const Sidebar          = () => import( './components/sidebar'           );
+const WpFooter         = () => import( './components/wp-footer'         );
+const NoPost           = () => import( './components/nopost'            );
+const WpHeader         = () => import( './components/wp-header'         );
+const DownArrow        = () => import( './components/down-arrow'        );
+const SearchForm       = () => import( './components/search-form'       );
+const CommentForm      = () => import( './components/comment-form'      );
+const Comments         = () => import( './components/comments'          );
+const Carousel         = () => import( './components/mrk-carousel'      );
+const ContentList      = () => import( './components/content-list'      );
+const Filmstrip        = () => import( './components/filmstrip'         );
+const NavMenu          = () => import( './components/nav-menu'          );
 const SubscriptionMenu = () => import( './components/subscription-menu' );
 // const             = () => import( './components/'             );
 
@@ -51,6 +51,7 @@ const Release        = () => import( './components/release'         );
 const PreviewProgram = () => import( './components/preview-program' );
 const PreviewRelease = () => import( './components/preview-release' );
 const Members        = () => import( './components/members'         );
+const MemberConfirm  = () => import( './components/member-confirm'  );
 const Upload         = () => import( './components/upload'          );
 const Shop           = () => import( './components/shop'            );
 
@@ -66,80 +67,84 @@ Vue.use( VueLazyload, { fade: true });
 Vue.use( VueScrollto );
 
 // init components
-Vue.component( 'the-loop',       TheLoop       );
-Vue.component( 'sidebar',        Sidebar       );
-Vue.component( 'wp-footer',      WpFooter      );
-Vue.component( 'nopost',         NoPost        );
-Vue.component( 'wp-header',      WpHeader      );
-Vue.component( 'down-arrow',     DownArrow     );
-Vue.component( 'search-form',    SearchForm    );
-Vue.component( 'comment-form',   CommentForm   );
-Vue.component( 'comments',       Comments      );
-Vue.component( 'flower-spinner', FlowerSpinner );
-Vue.component( 'mrk-carousel',   Carousel      );
-Vue.component( 'content-list',   ContentList   );
-Vue.component( 'filmstrip',      Filmstrip     );
-Vue.component( 'nav-menu',       NavMenu       );
+Vue.component( 'the-loop',          TheLoop          );
+Vue.component( 'sidebar',           Sidebar          );
+Vue.component( 'wp-footer',         WpFooter         );
+Vue.component( 'nopost',            NoPost           );
+Vue.component( 'wp-header',         WpHeader         );
+Vue.component( 'down-arrow',        DownArrow        );
+Vue.component( 'search-form',       SearchForm       );
+Vue.component( 'comment-form',      CommentForm      );
+Vue.component( 'comments',          Comments         );
+Vue.component( 'flower-spinner',    FlowerSpinner    );
+Vue.component( 'mrk-carousel',      Carousel         );
+Vue.component( 'content-list',      ContentList      );
+Vue.component( 'filmstrip',         Filmstrip        );
+Vue.component( 'nav-menu',          NavMenu          );
 Vue.component( 'subscription-menu', SubscriptionMenu );
+Vue.component( 'member-confirm',    MemberConfirm    );
 // Vue.component( '',                             );
 
 //components with routes
-const VuePageNotFound   = Vue.component( 'page-not-found',  PageNotFound   );
-const VueHome           = Vue.component( 'home',            Home           );
-const VueLogin          = Vue.component( 'login',           Login          );
-const VueAbout          = Vue.component( 'about',           About          );
-const VueContact        = Vue.component( 'contact',         Contact        );
-const VueSingle         = Vue.component( 'single',          Single         );
-const VuePage           = Vue.component( 'page',            Page           );
-const VuePost           = Vue.component( 'post',            Post           );
-const VueArchive        = Vue.component( 'archive',         Archive        );
-const VueSearch         = Vue.component( 'search',          Search         );
-const VueProgram        = Vue.component( 'program',         Program        );
-const VueRelease        = Vue.component( 'release',         Release        );
-const VuePreviewProgram = Vue.component( 'preview-program', PreviewProgram );
-const VuePreviewRelease = Vue.component( 'preview-release', PreviewRelease );
-const VueMembers        = Vue.component( 'members',         Members        );
-const VueUpload         = Vue.component( 'upload',          Upload         );
-const VueShop           = Vue.component( 'shop',            Shop           );
+const VPageNotFound   = Vue.component( 'page-not-found',  PageNotFound   );
+const VHome           = Vue.component( 'home',            Home           );
+const VLogin          = Vue.component( 'login',           Login          );
+const VAbout          = Vue.component( 'about',           About          );
+const VContact        = Vue.component( 'contact',         Contact        );
+const VSingle         = Vue.component( 'single',          Single         );
+const VPage           = Vue.component( 'page',            Page           );
+const VPost           = Vue.component( 'post',            Post           );
+const VArchive        = Vue.component( 'archive',         Archive        );
+const VSearch         = Vue.component( 'search',          Search         );
+const VProgram        = Vue.component( 'program',         Program        );
+const VRelease        = Vue.component( 'release',         Release        );
+const VPreviewProgram = Vue.component( 'preview-program', PreviewProgram );
+const VPreviewRelease = Vue.component( 'preview-release', PreviewRelease );
+const VMembers        = Vue.component( 'members',         Members        );
+const VMemberConfirm  = Vue.component( 'member-confirm',  MemberConfirm  );
+const VUpload         = Vue.component( 'upload',          Upload         );
+const VShop           = Vue.component( 'shop',            Shop           );
 
 window.store = store;
 
 // Define some routes
 const routes = [
-  { path: '/',                   component: VueHome },
-  { path: '/login/:then?',       component: VueLogin,   name: 'login' },
-  { path: '/about/',             component: VueAbout,   name: 'about' },
-  { path: '/contact/',           component: VueContact, name: 'contact' },
+  { path: '/',                   component: VHome },
+  { path: '/login/:then?',       component: VLogin,   name: 'login' },
+  { path: '/about/',             component: VAbout,   name: 'about' },
+  { path: '/contact/',           component: VContact, name: 'contact' },
 
   { path: '/preview/:program/:release',
-    component: VuePreviewRelease,
+    component: VPreviewRelease,
     name: 'preview-release',
     beforeEnter: routeEvents.toPreviewRelease },
 
-  { path: '/preview/:path/',     component: VuePreviewProgram,
+  { path: '/preview/:path/',     component: VPreviewProgram,
     name: 'preview-program',
     beforeEnter: routeEvents.toPreview },
 
-  { path: '/page/:path',         component: VuePage,    name: 'page',
+  { path: '/page/:path',         component: VPage,    name: 'page',
     beforeEnter: routeEvents.toPath },
-  { path: '/post/:path',         component: VuePost,    name: 'post',
+  { path: '/post/:path',         component: VPost,    name: 'post',
     beforeEnter: routeEvents.toPath },
-  { path: '/category/:category', component: VueArchive, name: 'category', props: true },
-  { path: '/tag/:tag',           component: VueArchive, name: 'tag', props: true },
-  { path: '/blog/',              component: VueArchive, name: 'blog' },
-  { path: '/search/',            component: VueSearch,  name: 'search' },
-  { path: '/shop/',              component: VueShop,    name: 'shop' },
-  { path: '/members/checkout',   component: VueMembers, name: 'members-checkout',
+  { path: '/category/:category', component: VArchive, name: 'category', props: true },
+  { path: '/tag/:tag',           component: VArchive, name: 'tag', props: true },
+  { path: '/blog/',              component: VArchive, name: 'blog' },
+  { path: '/search/',            component: VSearch,  name: 'search' },
+  { path: '/shop/',              component: VShop,    name: 'shop' },
+  { path: '/members/checkout',   component: VMembers, name: 'members-checkout',
     meta: { auth: true }},
-  { path: '/members/',           component: VueMembers, name: 'members',
+  { path: '/members/confirm',    component: VMemberConfirm, name: 'members-confirm',
     meta: { auth: true }},
-  { path: '/upload/',            component: VueUpload,  name: 'upload',
+  { path: '/members/',           component: VMembers, name: 'members',
     meta: { auth: true }},
-  { path: '/:program/:release',  component: VueRelease, name: 'release',
+  { path: '/upload/',            component: VUpload,  name: 'upload',
+    meta: { auth: true }},
+  { path: '/:program/:release',  component: VRelease, name: 'release',
     beforeEnter: routeEvents.toRelease },
-  { path: '/:path',              component: VueSingle,  name: 'single',
+  { path: '/:path',              component: VSingle,  name: 'single',
     beforeEnter: routeEvents.toPath },
-  { path: "*",                   component: VuePageNotFound }
+  { path: "*",                   component: VPageNotFound }
 ];
 
 // Create the router instance and pass the `routes` option

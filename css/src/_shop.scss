@@ -65,5 +65,10 @@
         font-weight: bold;
       }
     }
+    .actions {
+      a, button {
+        float: right;
+      }
+    }
   }
 }

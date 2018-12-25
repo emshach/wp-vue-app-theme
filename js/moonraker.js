@@ -905,23 +905,23 @@ __webpack_require__.r(__webpack_exports__);
 //partial components
 
 var TheLoop = function TheLoop() {
-  return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./components/the-loop */ "./js/components/the-loop/index.js"));
+  return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./components/the-loop */ "./js/components/the-loop/index.js"));
 };
 
 var Sidebar = function Sidebar() {
-  return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ./components/sidebar */ "./js/components/sidebar/index.js"));
+  return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./components/sidebar */ "./js/components/sidebar/index.js"));
 };
 
 var WpFooter = function WpFooter() {
-  return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./components/wp-footer */ "./js/components/wp-footer/index.js"));
+  return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/wp-footer */ "./js/components/wp-footer/index.js"));
 };
 
 var NoPost = function NoPost() {
-  return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./components/nopost */ "./js/components/nopost/index.js"));
+  return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./components/nopost */ "./js/components/nopost/index.js"));
 };
 
 var WpHeader = function WpHeader() {
-  return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/wp-header */ "./js/components/wp-header/index.js"));
+  return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! ./components/wp-header */ "./js/components/wp-header/index.js"));
 };
 
 var DownArrow = function DownArrow() {
@@ -929,7 +929,7 @@ var DownArrow = function DownArrow() {
 };
 
 var SearchForm = function SearchForm() {
-  return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ./components/search-form */ "./js/components/search-form/index.js"));
+  return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./components/search-form */ "./js/components/search-form/index.js"));
 };
 
 var CommentForm = function CommentForm() {
@@ -941,7 +941,7 @@ var Comments = function Comments() {
 };
 
 var Carousel = function Carousel() {
-  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/mrk-carousel */ "./js/components/mrk-carousel/index.js"));
+  return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./components/mrk-carousel */ "./js/components/mrk-carousel/index.js"));
 };
 
 var ContentList = function ContentList() {
@@ -957,13 +957,13 @@ var NavMenu = function NavMenu() {
 };
 
 var SubscriptionMenu = function SubscriptionMenu() {
-  return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./components/subscription-menu */ "./js/components/subscription-menu/index.js"));
+  return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./components/subscription-menu */ "./js/components/subscription-menu/index.js"));
 }; // const             = () => import( './components/'             );
 // const components with routes
 
 
 var PageNotFound = function PageNotFound() {
-  return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./components/page-not-found */ "./js/components/page-not-found/index.js"));
+  return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./components/page-not-found */ "./js/components/page-not-found/index.js"));
 };
 
 var Home = function Home() {
@@ -983,15 +983,15 @@ var Contact = function Contact() {
 };
 
 var Single = function Single() {
-  return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! ./components/single */ "./js/components/single/index.js"));
+  return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! ./components/single */ "./js/components/single/index.js"));
 };
 
 var Page = function Page() {
-  return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./components/page */ "./js/components/page/index.js"));
+  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/page */ "./js/components/page/index.js"));
 };
 
 var Post = function Post() {
-  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/post */ "./js/components/post/index.js"));
+  return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./components/post */ "./js/components/post/index.js"));
 };
 
 var Archive = function Archive() {
@@ -999,35 +999,39 @@ var Archive = function Archive() {
 };
 
 var Search = function Search() {
-  return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./components/search */ "./js/components/search/index.js"));
+  return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! ./components/search */ "./js/components/search/index.js"));
 };
 
 var Program = function Program() {
-  return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ./components/program */ "./js/components/program/index.js"));
+  return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ./components/program */ "./js/components/program/index.js"));
 };
 
 var Release = function Release() {
-  return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ./components/release */ "./js/components/release/index.js"));
+  return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ./components/release */ "./js/components/release/index.js"));
 };
 
 var PreviewProgram = function PreviewProgram() {
-  return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./components/preview-program */ "./js/components/preview-program/index.js"));
+  return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ./components/preview-program */ "./js/components/preview-program/index.js"));
 };
 
 var PreviewRelease = function PreviewRelease() {
-  return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ./components/preview-release */ "./js/components/preview-release/index.js"));
+  return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ./components/preview-release */ "./js/components/preview-release/index.js"));
 };
 
 var Members = function Members() {
-  return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/members */ "./js/components/members/index.js"));
+  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/members */ "./js/components/members/index.js"));
+};
+
+var MemberConfirm = function MemberConfirm() {
+  return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/member-confirm */ "./js/components/member-confirm/index.js"));
 };
 
 var Upload = function Upload() {
-  return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./components/upload */ "./js/components/upload/index.js"));
+  return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./components/upload */ "./js/components/upload/index.js"));
 };
 
 var Shop = function Shop() {
-  return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! ./components/shop */ "./js/components/shop/index.js"));
+  return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ./components/shop */ "./js/components/shop/index.js"));
 };
 
 window.Vue = vue__WEBPACK_IMPORTED_MODULE_3__["default"]; // directives
@@ -1056,119 +1060,128 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('mrk-carousel', Carousel);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('content-list', ContentList);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('filmstrip', Filmstrip);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('nav-menu', NavMenu);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('subscription-menu', SubscriptionMenu); // Vue.component( '',                             );
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('subscription-menu', SubscriptionMenu);
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('member-confirm', MemberConfirm); // Vue.component( '',                             );
 //components with routes
 
-var VuePageNotFound = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('page-not-found', PageNotFound);
-var VueHome = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('home', Home);
-var VueLogin = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('login', Login);
-var VueAbout = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('about', About);
-var VueContact = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('contact', Contact);
-var VueSingle = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('single', Single);
-var VuePage = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('page', Page);
-var VuePost = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('post', Post);
-var VueArchive = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('archive', Archive);
-var VueSearch = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('search', Search);
-var VueProgram = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('program', Program);
-var VueRelease = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('release', Release);
-var VuePreviewProgram = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('preview-program', PreviewProgram);
-var VuePreviewRelease = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('preview-release', PreviewRelease);
-var VueMembers = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('members', Members);
-var VueUpload = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('upload', Upload);
-var VueShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop);
+var VPageNotFound = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('page-not-found', PageNotFound);
+var VHome = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('home', Home);
+var VLogin = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('login', Login);
+var VAbout = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('about', About);
+var VContact = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('contact', Contact);
+var VSingle = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('single', Single);
+var VPage = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('page', Page);
+var VPost = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('post', Post);
+var VArchive = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('archive', Archive);
+var VSearch = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('search', Search);
+var VProgram = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('program', Program);
+var VRelease = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('release', Release);
+var VPreviewProgram = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('preview-program', PreviewProgram);
+var VPreviewRelease = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('preview-release', PreviewRelease);
+var VMembers = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('members', Members);
+var VMemberConfirm = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('member-confirm', MemberConfirm);
+var VUpload = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('upload', Upload);
+var VShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop);
 window.store = _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"]; // Define some routes
 
 var routes = [{
   path: '/',
-  component: VueHome
+  component: VHome
 }, {
   path: '/login/:then?',
-  component: VueLogin,
+  component: VLogin,
   name: 'login'
 }, {
   path: '/about/',
-  component: VueAbout,
+  component: VAbout,
   name: 'about'
 }, {
   path: '/contact/',
-  component: VueContact,
+  component: VContact,
   name: 'contact'
 }, {
   path: '/preview/:program/:release',
-  component: VuePreviewRelease,
+  component: VPreviewRelease,
   name: 'preview-release',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreviewRelease
 }, {
   path: '/preview/:path/',
-  component: VuePreviewProgram,
+  component: VPreviewProgram,
   name: 'preview-program',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreview
 }, {
   path: '/page/:path',
-  component: VuePage,
+  component: VPage,
   name: 'page',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: '/post/:path',
-  component: VuePost,
+  component: VPost,
   name: 'post',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: '/category/:category',
-  component: VueArchive,
+  component: VArchive,
   name: 'category',
   props: true
 }, {
   path: '/tag/:tag',
-  component: VueArchive,
+  component: VArchive,
   name: 'tag',
   props: true
 }, {
   path: '/blog/',
-  component: VueArchive,
+  component: VArchive,
   name: 'blog'
 }, {
   path: '/search/',
-  component: VueSearch,
+  component: VSearch,
   name: 'search'
 }, {
   path: '/shop/',
-  component: VueShop,
+  component: VShop,
   name: 'shop'
 }, {
   path: '/members/checkout',
-  component: VueMembers,
+  component: VMembers,
   name: 'members-checkout',
   meta: {
     auth: true
   }
 }, {
+  path: '/members/confirm',
+  component: VMemberConfirm,
+  name: 'members-confirm',
+  meta: {
+    auth: true
+  }
+}, {
   path: '/members/',
-  component: VueMembers,
+  component: VMembers,
   name: 'members',
   meta: {
     auth: true
   }
 }, {
   path: '/upload/',
-  component: VueUpload,
+  component: VUpload,
   name: 'upload',
   meta: {
     auth: true
   }
 }, {
   path: '/:program/:release',
-  component: VueRelease,
+  component: VRelease,
   name: 'release',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toRelease
 }, {
   path: '/:path',
-  component: VueSingle,
+  component: VSingle,
   name: 'single',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: "*",
-  component: VuePageNotFound
+  component: VPageNotFound
 }]; // Create the router instance and pass the `routes` option
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
