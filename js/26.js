@@ -100,6 +100,8 @@ __webpack_require__.r(__webpack_exports__);
               window.setTimeout(function () {
                 _this2.fetching = false;
               }, 250);
+            } else {
+              _this2.fetching = false;
             }
           },
           error: function error(model, res, opt) {

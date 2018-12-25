@@ -71,6 +71,8 @@ export default {
               window.clearInterval( this.wait );
               this.wait = false;
               window.setTimeout( () => { this.fetching = false; }, 250 );
+            } else {
+              this.fetching = false;
             }
           },
           error: ( model, res, opt ) => {
