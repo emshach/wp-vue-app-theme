@@ -1,28 +1,30 @@
 <div class="subscription-menu container">
   <transition name="fade-fast" mode="out-in">
-    <div v-if="selectedLevel" class="row" key="confirm">
-      <h2 class="message" key="head">Confirm Order</h2>
-      <div class="row" key="body">
-        <div class="col-8 name">{{ selectedLevel.name }}</div>
-        <!-- TODO: expires -->
-        <div class="col-4 price">${{ selectedLevel.billing_amount }}</div>
+    <div v-if="confirmed" class="row success" key="success">
+      <h2>Success!</h2>
+      <div class="welcome col-12">You've succesfully signed up for the {{
+        currentLevel.name }} package. <span v-if="targetPost">You can now see
+          the content you were trying to view
+          <router-link :to="targetPost.path">here</router-link>.</span>
       </div>
-      <div class="row" key="links">
-        <div class="col-4"></div>
-        <div class="col-4">
-          <a class="cancel" href="#" @click.stop="unsetLevel">go back</a>
-        </div>
-        <div class="col-4">
-          <router-link
-            :to="{ name:'members-checkout', query: {
-                   level: selectedLevel.id,
-                   'submit-checkout': 1,
-                   checkjavascript: 1,
-                   javascriptok: 1
-                 }}"
-            class="submit confirm checkout paypal paypal-express"
-            target="_blank">checkout</router-link>
-        </div>
+    </div>
+    <div v-else-if="selectedLevel" class="confirm container" key="confirm">
+      <h2 class="message">Confirm Order</h2>
+      <b-table striped hover :items="order" :fields="order_fields"></b-table>
+      <div class="row">
+        <div class="col-8"></div>
+        <b-button class="col-2 cancel" href="#" @click.stop="unsetLevel">
+          go back
+        </b-button>
+        <b-button variant="primary"
+                  :to="{ name:'members-checkout', query: {
+                         level: selectedLevel.id,
+                         'submit-checkout': 1,
+                         checkjavascript: 1,
+                         javascriptok: 1
+                       }}"
+                  class="col-2 submit confirm checkout paypal paypal-express"
+                  target="_blank">checkout</b-button>
       </div>
     </div>
     <div v-else class="row" key="select">

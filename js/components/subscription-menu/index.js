@@ -16,7 +16,16 @@ export default {
       storedLevels: false,
       wait: false,
       confirmed: false,
-      fetching: false
+      fetching: false,
+      order_fields: [
+        { key:   'item',
+          class: 'col-8'
+        },
+        { key:   'amount',
+          class: 'col-4'
+        }
+      ],
+      order: []
     };
   },
   mounted() {
@@ -35,20 +44,10 @@ export default {
         // redirect to login, then continue
       }
       this.selectedLevel = level;
+      this.order = [{ item: level.name, amount: level.billing_amount }];
     },
     unsetLevel() {
       this.selectedLevel = false;
-    }
-  },
-  computed: {
-    user() {
-      return this.sstate.user;
-    },
-    memberLevels() {
-      return ( this.levels.length ? this.levels : this.storedLevels );
-    },
-    currentLevel() {
-      return this.user && this.user.membership || false;
     },
     getConfirmation() {
       var membership = wpapix.Membership({ path: 'my-level' });
@@ -73,5 +72,17 @@ export default {
         });
       }, 2500);
     }
+  },
+  computed: {
+    user() {
+      return this.sstate.user;
+    },
+    memberLevels() {
+      return ( this.levels.length ? this.levels : this.storedLevels );
+    },
+    currentLevel() {
+      return this.user && this.user.membership || false;
+    },
+    targetPost() { return false; }
   }
 };
