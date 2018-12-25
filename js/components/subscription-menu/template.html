@@ -13,16 +13,9 @@
       <b-table striped hover :items="order" :fields="order_fields" stacked="sm"
                class="order"></b-table>
       <div class="actions">
-        <b-button variant="warning"
-                  @click.native="getConfirmation"
-                  :to="{ name:'members-checkout', query: {
-                         level: selectedLevel.id,
-                         'submit-checkout': 1,
-                         checkjavascript: 1,
-                         javascriptok: 1
-                       }}"
-                  class="col-2 submit confirm checkout paypal paypal-express"
-                  target="_blank">checkout</b-button>
+        <b-button class="col-2 submit confirm checkout paypal paypal-express"
+                  @click.stop="getConfirmation"
+                  variant="warning">checkout</b-button>
         <b-button class="col-2 cancel" @click.stop="unsetLevel"
                   variant="link">go back</b-button>
       </div>

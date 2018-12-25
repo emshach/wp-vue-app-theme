@@ -56,7 +56,9 @@ export default {
     unsetLevel() {
       this.selectedLevel = false;
     },
-    getConfirmation() {
+    getConfirmation( e, level ) {
+      window.open('/members/checkout?level=' + this.selectedLevel.id
+                  + '&submit-checkout=1&checkjavascript=1&javascriptok=1', '_blank' );
       var membership = new wpapix.Membership({ path: 'my-level' });
       this.fetching = false;
       this.wait = window.setInterval( () => {

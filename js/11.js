@@ -24,7 +24,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     window.close();
-    var membership = _lib_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Membership({
+    var membership = new _lib_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Membership({
       path: 'my-level'
     });
     membership.fetch().done(function (res) {

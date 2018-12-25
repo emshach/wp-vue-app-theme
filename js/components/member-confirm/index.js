@@ -10,7 +10,7 @@ export default {
   }, 
   mounted() {
     window.close();
-    var membership = wpapix.Membership({ path: 'my-level' });
+    var membership = new wpapix.Membership({ path: 'my-level' });
     membership.fetch().done( res => {
       this.sstate.user.membership = res;
       this.membership = res;
