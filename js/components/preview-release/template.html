@@ -62,7 +62,7 @@
     <!-- TODO: strips for related, series -->
     <section class="description" v-if="wideMode" v-html="content"></section>
     <section class="subscriptions">
-      <subscription-menu></subscription-menu>
+      <subscription-menu :target="postData.path"></subscription-menu>
     </section>
   </main>
   <wp-footer></wp-footer>

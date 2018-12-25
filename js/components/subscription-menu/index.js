@@ -7,6 +7,10 @@ export default {
     levels: {
       type: Array,
       default: () => []
+    },
+    target: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -86,6 +90,6 @@ export default {
     currentLevel() {
       return this.user && this.user.membership || false;
     },
-    targetPost() { return false; }
+    targetPost() { return this.target; }
   }
 };

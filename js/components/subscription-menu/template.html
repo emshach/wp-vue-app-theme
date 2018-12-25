@@ -5,7 +5,7 @@
       <div class="welcome col-12">You've succesfully signed up for the {{
         currentLevel.name }} package. <span v-if="targetPost">You can now see
           the content you were trying to view
-          <router-link :to="targetPost.path">here</router-link>.</span>
+          <router-link :to="targetPost">here</router-link>.</span>
       </div>
     </div>
     <div v-else-if="selectedLevel" class="confirm container" key="confirm">
