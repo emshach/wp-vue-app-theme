@@ -4,7 +4,7 @@
   <!-- nav -->
   <nav id="main-nav" class="nav main-nav" role="navigation">
     <div class="wrapper">
-      <div @click.stop="toggleMenu" id="bg-nav"></div>
+      <div @click.stop="closeMenu" id="bg-nav"></div>
       <button class="menu-toggle toggle-mobile nav-menu" type="button"
               @click="toggleMenu" aria-label="Toggle Navigation">
         <transition name="fade-fast" mode="out-in">
@@ -19,7 +19,7 @@
       <div id="nav-main-container" class="menu-nav-container">
         <ul id="menu-nav" class="menu primary-menu nav navbar-nav">
           <li v-for="( item, index ) in menu" :key="index" class="menu-item">
-            <router-link :to="item.url">
+            <router-link :to="item.url" @click.native="closeMenu">
               <img :src="item.thumb" />
               <span class="text">{{ item.title }}</span>
             </router-link>

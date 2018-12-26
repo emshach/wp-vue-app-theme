@@ -149,6 +149,7 @@ export default {
   },
   toggleMenu ( open ) {
     var $ = jQuery;
+    if ( $( window ).innerWidth() >= 600 ) { return; }
     $("#main-nav button.toggle-mobile").blur();
     if ( open ) {
       $( "#main-nav" ).stop()
