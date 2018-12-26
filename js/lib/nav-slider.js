@@ -152,11 +152,11 @@ export default {
     if ( open ) {
       $( "#main-nav" ).stop()
          .animate({ right: 48 });
-      $( "bg-nav" ).stop().fadeIn();
+      $( "#bg-nav" ).stop().fadeIn();
     } else {
       $( "#main-nav" ).stop()
          .animate({ right: '100%' });
-      $( "bg-nav" ).stop().fadeOut();
+      $( "#bg-nav" ).stop().fadeOut();
     }
   }
 };
