@@ -951,7 +951,7 @@ function mrk_widgets_init() {
         [
             'name'          => 'Top Banner',
             'id'            => 'top-anner',
-            'before_widget' => '<div id="%1$s" class="banner widget %2$"s>',
+            'before_widget' => '<div id="%1$s" class="banner widget %2$s">',
             'after_widget'  => '</div>',
         ]);
 }
