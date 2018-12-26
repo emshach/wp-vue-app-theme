@@ -17,6 +17,9 @@
     <?php wp_head(); ?>
   </head>
   <body><?php if( have_posts() ) { the_post(); } ?>
+    <div id="top-banner" class="widget-area">
+      <?php dynamic_sidebar( 'top-banner' ); ?>
+    </div>
     <div class="body-wrap wrapper" id="app">
       <transition name="fade-in" mode="out-in">
         <router-view></router-view>
