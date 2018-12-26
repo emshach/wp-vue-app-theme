@@ -926,6 +926,8 @@ function mrk_rest_js_client_settings( $settings ) {
     $user = wp_get_current_user();
     if ( $user->ID == 0 )
         unset( $settings[ 'nonce' ]);
+    else
+        $settings[ 'user' ] = $user;
     return $settings;
 }
 /**
