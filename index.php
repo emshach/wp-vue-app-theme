@@ -7,13 +7,6 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-    <link rel="stylesheet"
-          href="<?php echo $template_dir; ?>/css/dist/bootstrap.css" />
-    <link rel="stylesheet"
-          href="<?php echo $template_dir; ?>/css/dist/bootstrap-grid.css" />
-    <link rel="stylesheet"
-          href="<?php echo $template_dir; ?>/css/dist/bootstrap-reboot.css" />
-    <link rel="stylesheet" href="<?php echo $template_dir; ?>/style.css" />
     <?php wp_head(); ?>
   </head>
   <body><?php if( have_posts() ) { the_post(); } ?>
