@@ -149,6 +149,6 @@
   padding: 15px;
   font-size: 100%;
   box-shadow: 0 2px 15px rgba(0,0,0,0.4);
-  .negative {
+  &.negative {
     background-color: rgba(0,0,0,0.8);
   }}
