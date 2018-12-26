@@ -315,6 +315,14 @@ main {
     left: -400px;
     top: -19px; } }
 
+@media (max-width: 600px) {
+  #bg-nav {
+    position: fixed;
+    height: inherit;
+    width: 200%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; } }
+
 #main-nav > .wrapper, #menu-nav, #menu-nav > .menu-item {
   height: inherit; }
 
@@ -397,13 +405,6 @@ main {
     right: 0;
     margin-right: 0;
     overflow: auto; }
-  #menu-nav #bg-nav {
-    position: fixed;
-    height: inherit;
-    width: 200%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    opacity: 0; }
   #menu-nav > .menu-item {
     margin: 0;
     height: 3em;
@@ -441,11 +442,14 @@ button.nav-menu {
     top: 50%;
     right: 8px;
     opacity: 0.75;
-    z-index: 21; }
+    z-index: 21;
+    text-shadow: 0 0 2px black; }
   button.nav-menu .navbar-toggle-icon {
     height: 32px;
     width: 32px;
-    font-size: 32px; } }
+    font-size: 32px; }
+  button.nav-menu:hover {
+    opacity: 1; } }
 
 /**
  * main

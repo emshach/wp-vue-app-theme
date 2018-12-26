@@ -57,6 +57,13 @@
     height: 250px;
     left: -400px;
     top: -19px;
+  }
+  @include breakpoint( $max-phone ) {
+    position: fixed;
+    height: inherit;
+    width: 200%;
+    background: rgba(0,0,0,0.5);
+    display: none;
   }}
 #main-nav>.wrapper, #menu-nav, #menu-nav > .menu-item {
   height: inherit;
@@ -147,14 +154,6 @@
       margin-right: 0;
       overflow: auto;
     }
-    #bg-nav {
-      position: fixed;
-      height: inherit;
-      width: 200%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      opacity: 0;
-    }
     > .menu-item {
       margin: 0;
       height: 3em;
@@ -229,10 +228,14 @@ button.nav-menu {
     right: 8px;
     opacity: 0.75;
     z-index: 21;
+    text-shadow: 0 0 2px black;
     .navbar-toggle-icon {
       height: 32px;
       width: 32px;
       font-size: 32px;
+    }
+    &:hover {
+      opacity: 1;
     }
   }
 }
