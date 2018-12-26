@@ -256,6 +256,24 @@ main {
   100% {
     opacity: 0; } }
 
+.widget_eu_cookie_law_widget.widget {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto; }
+
+.widget_eu_cookie_law_widget.widget .top {
+  top: 0;
+  bottom: auto; }
+
+#eu-cookie-law {
+  padding: 15px;
+  font-size: 100%;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4); }
+
+#eu-cookie-law .negative {
+  background-color: rgba(0, 0, 0, 0.8); }
+
 /**
  * partials/nav
  * ---
