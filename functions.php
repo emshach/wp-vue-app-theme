@@ -946,25 +946,35 @@ function mrk_enqueue_scripts() {
     wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 }
 
+function mrk_widgets_init() {
+	register_sidebar(
+        [
+            'name'          => 'Top Banner',
+            'id'            => 'top-anner',
+            'before_widget' => '<div id="%1$s" class="banner widget %2$"s>',
+            'after_widget'  => '</div>',
+        ]);
+}
 add_theme_support( 'post-thumbnails' );
-add_action( 'rest_api_init', 'mrk_register_endpoint' );
-add_action( 'wp_enqueue_scripts', 'mrk_enqueue_scripts' );
-add_filter( 'excerpt_length', 'mrk_excerpt_length', 999 );
-add_filter( 'rest_allow_anonymous_comments','allow_anonymous_comments' );
-add_filter( 'mrk_rest_process_post', 'mrk_rest_add_bg_image', 10, 1 );
-add_filter( 'mrk_rest_process_post', 'mrk_rest_add_rel_path', 10, 1 );
-add_filter( 'mrk_rest_process_post', 'mrk_rest_restrictions', 999, 1 );
-add_filter( 'mrk_rest_process_media', 'mrk_rest_add_rel_path', 10, 1 );
-add_filter( 'mrk_rest_process_media', 'mrk_rest_restrictions', 999, 1 );
-add_filter( 'mrk_rest_process_media', 'mrk_rest_add_kgvid_meta', 10, 1 );
-add_filter( 'mrk_rest_process_media', 'mrk_rest_add_stats', 10, 1 );
-add_filter( 'mrk_rest_process_media', 'mrk_rest_add_thumbnail', 11, 1 );
-add_filter( 'mrk_rest_process_home_page', 'mrk_rest_add_promo_reel', 10, 1 );
-add_filter( 'mrk_rest_process_program', 'mrk_rest_set_program_type', 10, 1 );
-add_filter( 'mrk_rest_process_program', 'mrk_rest_add_promo_reel', 10, 1 );
-add_filter( 'mrk_rest_process_program', 'mrk_rest_add_releases', 10, 1 );
-add_filter( 'mrk_rest_process_release', 'mrk_rest_add_bg_image', 10, 1 );
-add_filter( 'mrk_rest_process_release', 'mrk_rest_set_release_type', 10, 1 );
-add_filter( 'mrk_rest_process_preview', 'mrk_rest_rm_preview_redirect', 10, 1 );
+add_action( 'rest_api_init',                 'mrk_register_endpoint'               );
+add_action( 'wp_enqueue_scripts',            'mrk_enqueue_scripts'                 );
+add_action( 'widgets_init',                  'mrk_widgets_init'                    );
+add_filter( 'excerpt_length',                'mrk_excerpt_length',          999    );
+add_filter( 'rest_allow_anonymous_comments', 'allow_anonymous_comments'            );
+add_filter( 'mrk_rest_process_post',         'mrk_rest_add_bg_image',        10, 1 );
+add_filter( 'mrk_rest_process_post',         'mrk_rest_add_rel_path',        10, 1 );
+add_filter( 'mrk_rest_process_post',         'mrk_rest_restrictions',       999, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_add_rel_path',        10, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_restrictions',       999, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_add_kgvid_meta',      10, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_add_stats',           10, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_add_thumbnail',       11, 1 );
+add_filter( 'mrk_rest_process_home_page',    'mrk_rest_add_promo_reel',      10, 1 );
+add_filter( 'mrk_rest_process_program',      'mrk_rest_set_program_type',    10, 1 );
+add_filter( 'mrk_rest_process_program',      'mrk_rest_add_promo_reel',      10, 1 );
+add_filter( 'mrk_rest_process_program',      'mrk_rest_add_releases',        10, 1 );
+add_filter( 'mrk_rest_process_release',      'mrk_rest_add_bg_image',        10, 1 );
+add_filter( 'mrk_rest_process_release',      'mrk_rest_set_release_type',    10, 1 );
+add_filter( 'mrk_rest_process_preview',      'mrk_rest_rm_preview_redirect', 10, 1 );
 
 ?>
