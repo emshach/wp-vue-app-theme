@@ -1,5 +1,5 @@
-import wpapi from 'wpapi';
-const Path = wpapi.models.Post.extend({
+import wpapiPost from 'wpapiPost';
+const Path = wpapiPost.extend({
   version: 'mrk/v1/',
   root: 'path',
   defaults: {
@@ -35,10 +35,10 @@ const Membership = Path.extend({
   root: 'members'
 });
 
-wpapi.models.Path       = Path;
-wpapi.models.Program    = Program;
-wpapi.models.Release    = Release;
-wpapi.models.Preview    = Preview;
-wpapi.models.Membership = Membership;
+wp.api.models.Path       = Path;
+wp.api.models.Program    = Program;
+wp.api.models.Release    = Release;
+wp.api.models.Preview    = Preview;
+wp.api.models.Membership = Membership;
 
 export default { Path, Program, Release, Preview, Membership };

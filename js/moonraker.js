@@ -808,10 +808,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var wpapi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wpapi */ "wpapi");
-/* harmony import */ var wpapi__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wpapi__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var wpapiPost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wpapiPost */ "wpapiPost");
+/* harmony import */ var wpapiPost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wpapiPost__WEBPACK_IMPORTED_MODULE_0__);
 
-var Path = wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Post.extend({
+var Path = wpapiPost__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
   version: 'mrk/v1/',
   root: 'path',
   defaults: {
@@ -840,11 +840,11 @@ var Preview = Path.extend({
 var Membership = Path.extend({
   root: 'members'
 });
-wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Path = Path;
-wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Program = Program;
-wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Release = Release;
-wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Preview = Preview;
-wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Membership = Membership;
+wp.api.models.Path = Path;
+wp.api.models.Program = Program;
+wp.api.models.Release = Release;
+wp.api.models.Preview = Preview;
+wp.api.models.Membership = Membership;
 /* harmony default export */ __webpack_exports__["default"] = ({
   Path: Path,
   Program: Program,
@@ -57993,14 +57993,14 @@ var index_esm = {
 
 /***/ }),
 
-/***/ "wpapi":
-/*!*****************************!*\
-  !*** external ["wp","api"] ***!
-  \*****************************/
+/***/ "wpapiPost":
+/*!*************************************!*\
+  !*** external "wp.api.models.Post" ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = wp["api"];
+module.exports = wp.api.models.Post;
 
 /***/ })
 
