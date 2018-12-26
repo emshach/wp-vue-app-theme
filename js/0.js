@@ -108,6 +108,22 @@ function get_pos(obj) {
       //cache vars
 
       if ($(window).innerWidth() < 600) {
+        $("#main-nav button.toggle-mobile").click(function () {
+          var t = $(this);
+          t.toggleClass('open');
+
+          if (t.hasClass('open')) {
+            $("#main-nav").stop().animate({
+              right: 48
+            });
+            $("bg-nav").stop().fadeIn();
+          } else {
+            $("#main-nav").stop().animate({
+              right: '100%'
+            });
+            $("bg-nav").stop().fadeOut();
+          }
+        });
         return;
       }
 
