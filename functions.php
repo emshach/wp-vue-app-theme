@@ -985,7 +985,7 @@ add_action( 'wp_enqueue_scripts',            'mrk_enqueue_styles',          999 
 add_action( 'widgets_init',                  'mrk_widgets_init'                    );
 add_filter( 'excerpt_length',                'mrk_excerpt_length',          999    );
 add_filter( 'rest_allow_anonymous_comments', 'allow_anonymous_comments'            );
-add_filter( 'rest_js_client_settings',       'mrk_rest_js_client_settings',        );
+add_filter( 'rest_js_client_settings',       'mrk_rest_js_client_settings'         );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_add_bg_image',        10, 1 );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_add_rel_path',        10, 1 );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_restrictions',       999, 1 );
