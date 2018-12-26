@@ -4,7 +4,7 @@
   <!-- nav -->
   <nav id="main-nav" class="nav main-nav" role="navigation">
     <div class="wrapper">
-      <div id="bg-nav"></div>
+      <div @click.stop="toggleMenu" id="bg-nav"></div>
       <button class="menu-toggle toggle-mobile nav-menu" type="button"
               @click="toggleMenu" aria-label="Toggle Navigation">
         <transition name="fade-fast" mode="out-in">

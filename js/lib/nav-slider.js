@@ -149,6 +149,7 @@ export default {
   },
   toggleMenu ( open ) {
     var $ = jQuery;
+    $("#main-nav button.toggle-mobile").blur();
     if ( open ) {
       $( "#main-nav" ).stop()
          .animate({ right: 48 });
