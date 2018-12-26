@@ -15,7 +15,7 @@ main {
     max-width: 750px;
     padding: 30px;
     text-align: justify;
-    >.subscriptions {
+    &.subscriptions {
       max-width: none;
     }
   }
