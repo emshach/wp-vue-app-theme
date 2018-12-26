@@ -49,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggleMenu: function toggleMenu() {
-      this.menuOpen = !this.menuOpen;
+      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].toggleMenu(this.menuOpen = !this.menuOpen);
     }
   }
 });
@@ -114,24 +114,6 @@ function get_pos(obj) {
       //cache vars
 
       if ($(window).innerWidth() < 600) {
-        $("#main-nav button.toggle-mobile").click(function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          var t = $(this);
-          t.toggleClass('open');
-
-          if (t.hasClass('open')) {
-            $("#main-nav").stop().animate({
-              right: 48
-            });
-            $("bg-nav").stop().fadeIn();
-          } else {
-            $("#main-nav").stop().animate({
-              right: '100%'
-            });
-            $("bg-nav").stop().fadeOut();
-          }
-        });
         return;
       }
 
@@ -298,6 +280,21 @@ function get_pos(obj) {
         pos = get_pos($menu);
       }); // TODO: unbind if < 600px
     })(jQuery);
+  },
+  toggleMenu: function toggleMenu(open) {
+    var $ = jQuery;
+
+    if (open) {
+      $("#main-nav").stop().animate({
+        right: 48
+      });
+      $("bg-nav").stop().fadeIn();
+    } else {
+      $("#main-nav").stop().animate({
+        right: '100%'
+      });
+      $("bg-nav").stop().fadeOut();
+    }
   }
 });
 

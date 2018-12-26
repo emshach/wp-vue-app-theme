@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.menuOpen = !this.menuOpen;
+      navSlider.toggleMenu( this.menuOpen = !this.menuOpen );
     }
   }
 };
