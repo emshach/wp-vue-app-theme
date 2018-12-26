@@ -919,6 +919,17 @@ function mrk_register_endpoint () {
 }
 
 /**
+ * account for anonymous rest requests in js client
+ *
+ */
+function mrk_rest_js_client_settings( $settings ) {
+    $user = wp_get_current_user();
+    if ( $user->ID == 0 )
+        unset( $settings[ 'nonce' ]);
+    return $settings;
+}
+
+/**
  * enqueue oficial wp api rest api js client and our js client
  *
  * add all the fancy stuff on NON-ADMIN pages only to avoid absolutely smashing
