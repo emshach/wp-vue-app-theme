@@ -262,7 +262,7 @@ main {
   bottom: 0;
   top: auto; }
 
-.widget_eu_cookie_law_widget.widget .top {
+.widget_eu_cookie_law_widget.widget.top {
   top: 0;
   bottom: auto; }
 
