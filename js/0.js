@@ -108,7 +108,9 @@ function get_pos(obj) {
       //cache vars
 
       if ($(window).innerWidth() < 600) {
-        $("#main-nav button.toggle-mobile").click(function () {
+        $("#main-nav button.toggle-mobile").click(function (e) {
+          e.preventDefault();
+          e.stopPropagation();
           var t = $(this);
           t.toggleClass('open');
 
