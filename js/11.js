@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/wpapi */ "./js/lib/wpapi.js");
+/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/wpapix */ "./js/lib/wpapix.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/member-confirm/template.html"),
@@ -24,7 +24,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     window.close();
-    var membership = new _lib_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Membership({
+    var membership = new _lib_wpapix__WEBPACK_IMPORTED_MODULE_0__["default"].Membership({
       path: 'my-level'
     });
     membership.fetch().done(function (res) {

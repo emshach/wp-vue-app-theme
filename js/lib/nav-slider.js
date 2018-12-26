@@ -1,4 +1,3 @@
-
 function get_pos( obj ) {
   var curleft = 0, curtop = 0;
   if (obj.offsetParent) {

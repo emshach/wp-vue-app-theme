@@ -707,7 +707,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wpapi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./wpapi */ "./js/lib/wpapi.js");
+/* harmony import */ var _wpapix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./wpapix */ "./js/lib/wpapix.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./js/lib/store.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
@@ -760,14 +760,14 @@ var mkApiRequest = function mkApiRequest(Type, arg) {
   };
 };
 
-var toPreviewRelease = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Preview, function (to) {
+var toPreviewRelease = mkApiRequest(_wpapix__WEBPACK_IMPORTED_MODULE_0__["default"].Preview, function (to) {
   return {
     path: to.params.program + '/' + to.params.release
   };
 });
-var toPreview = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Preview);
-var toPath = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Path);
-var toRelease = mkApiRequest(_wpapi__WEBPACK_IMPORTED_MODULE_0__["default"].Release);
+var toPreview = mkApiRequest(_wpapix__WEBPACK_IMPORTED_MODULE_0__["default"].Preview);
+var toPath = mkApiRequest(_wpapix__WEBPACK_IMPORTED_MODULE_0__["default"].Path);
+var toRelease = mkApiRequest(_wpapix__WEBPACK_IMPORTED_MODULE_0__["default"].Release);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mkApiRequest: mkApiRequest,
   toPreviewRelease: toPreviewRelease,
@@ -799,16 +799,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./js/lib/wpapi.js":
-/*!*************************!*\
-  !*** ./js/lib/wpapi.js ***!
-  \*************************/
+/***/ "./js/lib/wpapix.js":
+/*!**************************!*\
+  !*** ./js/lib/wpapix.js ***!
+  \**************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var Path = wp.api.models.Post.extend({
+/* harmony import */ var wpapi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wpapi */ "wpapi");
+/* harmony import */ var wpapi__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wpapi__WEBPACK_IMPORTED_MODULE_0__);
+
+var Path = wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Post.extend({
   version: 'mrk/v1/',
   root: 'path',
   defaults: {
@@ -837,11 +840,11 @@ var Preview = Path.extend({
 var Membership = Path.extend({
   root: 'members'
 });
-wp.api.models.Path = Path;
-wp.api.models.Program = Program;
-wp.api.models.Release = Release;
-wp.api.models.Preview = Preview;
-wp.api.models.Membership = Membership;
+wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Path = Path;
+wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Program = Program;
+wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Release = Release;
+wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Preview = Preview;
+wpapi__WEBPACK_IMPORTED_MODULE_0___default.a.models.Membership = Membership;
 /* harmony default export */ __webpack_exports__["default"] = ({
   Path: Path,
   Program: Program,
@@ -879,7 +882,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-scrollto */ "./node_modules/vue-scrollto/vue-scrollto.js");
 /* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_scrollto__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./lib/store */ "./js/lib/store.js");
-/* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./lib/wpapi */ "./js/lib/wpapi.js");
+/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./lib/wpapix */ "./js/lib/wpapix.js");
 /* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./lib/route-events */ "./js/lib/route-events.js");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14__);
@@ -57987,6 +57990,17 @@ var index_esm = {
 
 /* harmony default export */ __webpack_exports__["default"] = (index_esm);
 
+
+/***/ }),
+
+/***/ "wpapi":
+/*!*****************************!*\
+  !*** external ["wp","api"] ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = wp["api"];
 
 /***/ })
 

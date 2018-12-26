@@ -1,6 +1,6 @@
 import store from '../../lib/store';
 import axios from 'axios';
-import wpapix from '../../lib/wpapi';
+import wpapix from '../../lib/wpapix';
 export default {
   template: require( './template.html' ),
   props: {

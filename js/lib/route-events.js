@@ -1,4 +1,4 @@
-import wpapix from './wpapi';
+import wpapix from './wpapix';
 import store from './store';
 import Swal from 'sweetalert2';
 

@@ -10,7 +10,7 @@ import VueCarousel from 'vue-carousel';
 import VueLazyload from 'vue-lazyload-img';
 import VueScrollto from 'vue-scrollto';
 import store from './lib/store';
-import wpapix from './lib/wpapi';
+import wpapix from './lib/wpapix';
 import routeEvents from './lib/route-events';
 
 // styles

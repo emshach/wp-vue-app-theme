@@ -25,6 +25,9 @@ module.exports = {
     }),
     new VueLoaderPlugin()
   ],
+  externals: {
+    wpapi: [ 'wp', 'api' ]
+  },
   module: {
     rules: [
       {

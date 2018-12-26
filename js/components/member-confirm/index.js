@@ -1,4 +1,4 @@
-import wpapix from '../../lib/wpapi';
+import wpapix from '../../lib/wpapix';
 export default {
   template: require( './template.html' ),
   data() {

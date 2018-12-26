@@ -12,7 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _lib_wpapi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/wpapi */ "./js/lib/wpapi.js");
+/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/wpapix */ "./js/lib/wpapix.js");
 
 
 
@@ -53,7 +53,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     if (!this.levels.length) wp.api.loadPromise.done(function () {
-      var levels = new _lib_wpapi__WEBPACK_IMPORTED_MODULE_2__["default"].Membership({
+      var levels = new _lib_wpapix__WEBPACK_IMPORTED_MODULE_2__["default"].Membership({
         path: 'levels'
       });
       levels.fetch().done(function (res) {
@@ -84,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       window.open('/members/checkout?level=' + this.selectedLevel.id + '&submit-checkout=1&checkjavascript=1&javascriptok=1', '_blank');
-      var membership = new _lib_wpapi__WEBPACK_IMPORTED_MODULE_2__["default"].Membership({
+      var membership = new _lib_wpapix__WEBPACK_IMPORTED_MODULE_2__["default"].Membership({
         path: 'my-level'
       });
       this.fetching = false;
