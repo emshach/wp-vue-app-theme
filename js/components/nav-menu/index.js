@@ -18,7 +18,8 @@ export default {
   },
   data() {
     return {
-      sstate: store.state
+      sstate: store.state,
+      menuOpen: false
     };
   },
   mounted() {
@@ -30,5 +31,10 @@ export default {
     this.$nextTick(() => {
       navSlider.init();
     });
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    }
   }
 };

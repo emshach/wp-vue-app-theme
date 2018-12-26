@@ -33,7 +33,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_1__["default"].state
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_1__["default"].state,
+      menuOpen: false
     };
   },
   mounted: function mounted() {
@@ -45,6 +46,11 @@ __webpack_require__.r(__webpack_exports__);
     this.$nextTick(function () {
       _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init();
     });
+  },
+  methods: {
+    toggleMenu: function toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    }
   }
 });
 
@@ -57,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              aria-label=\"Toggle Navigation\">\n        <span class=\"dashicons dashicons-menu navbar-toggle-icon\"\n              aria-hidden=\"true\"></span>\n      </button>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\">{{ item.title }}</span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
+module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n        <transition name=\"fade-in\" mode=\"out-in\">\n          <span v-if=\"menuOpen\" key=\"menu\"\n                class=\"dashicons dashicons-menu navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n          <span v-else key=\"close\"\n                class=\"dashicons dashicons-arrow-left-alt2 navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n        </transition>\n      </button>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\">{{ item.title }}</span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
 
 /***/ }),
 

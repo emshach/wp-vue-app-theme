@@ -6,9 +6,15 @@
     <div class="wrapper">
       <div id="bg-nav"></div>
       <button class="menu-toggle toggle-mobile nav-menu" type="button"
-              aria-label="Toggle Navigation">
-        <span class="dashicons dashicons-menu navbar-toggle-icon"
-              aria-hidden="true"></span>
+              @click="toggleMenu" aria-label="Toggle Navigation">
+        <transition name="fade-in" mode="out-in">
+          <span v-if="menuOpen" key="menu"
+                class="dashicons dashicons-menu navbar-toggle-icon"
+                aria-hidden="true"></span>
+          <span v-else key="close"
+                class="dashicons dashicons-arrow-left-alt2 navbar-toggle-icon"
+                aria-hidden="true"></span>
+        </transition>
       </button>
       <div id="nav-main-container" class="menu-nav-container">
         <ul id="menu-nav" class="menu primary-menu nav navbar-nav">
