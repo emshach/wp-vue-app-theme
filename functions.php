@@ -982,10 +982,23 @@ function mrk_widgets_init() {
             'after_widget'  => '</div>',
         ]);
 }
+
+function mrk_register_menus() {
+    register_nav_menus(
+    array(
+      'nav'    => __( 'Main Nav Menu' ),
+      'coming' => __( 'Upcoming Content' ),
+      'links'  => __( 'Site Link' )
+    )
+  );
+}
+add_action( 'init', 'register_my_menus' );
+
 add_theme_support( 'post-thumbnails' );
 add_action( 'rest_api_init',                 'mrk_register_endpoint'               );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_scripts'                 );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_styles',          999    );
+add_action( 'init',                          'mrk_register_menus'                  );
 add_action( 'widgets_init',                  'mrk_widgets_init'                    );
 add_filter( 'excerpt_length',                'mrk_excerpt_length',          999    );
 add_filter( 'rest_allow_anonymous_comments', 'allow_anonymous_comments'            );
