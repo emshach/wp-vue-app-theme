@@ -155,11 +155,11 @@ export default {
     if ( open ) {
       $( "#main-nav" ).stop()
          .animate({ right: 48 }, duration );
-      $( "#bg-nav" ).stop().fadeIn();
+      $( "#bg-nav" ).stop().fadeIn( duration );
     } else {
       $( "#main-nav" ).stop()
          .animate({ right: '100%' }, duration );
-      $( "#bg-nav" ).stop().fadeOut();
+      $( "#bg-nav" ).stop().fadeOut( duration );
     }
   }
 };
