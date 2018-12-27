@@ -41,7 +41,7 @@ export default {
       return this.post || this.storedPost;
     },
     title() {
-      return this.postData.title && this.postData.title.rendered || '';
+      return this.postData.title && he.decode( this.postData.title.rendered ) || '';
     },
     img() {
       return this.postData.background_image || '';

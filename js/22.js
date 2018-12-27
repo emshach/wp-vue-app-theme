@@ -53,7 +53,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.post || this.storedPost;
     },
     title: function title() {
-      return this.postData.title && this.postData.title.rendered || '';
+      return this.postData.title && he__WEBPACK_IMPORTED_MODULE_2___default.a.decode(this.postData.title.rendered) || '';
     },
     img: function img() {
       return this.postData.background_image || '';
