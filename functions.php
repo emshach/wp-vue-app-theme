@@ -928,17 +928,20 @@ function mrk_enqueue_scripts() {
     global $VERSION, $wp_scripts;
     if ( is_admin() )
         return;
+    wp_enqueue_script( 'wp-api-request' );
     wp_enqueue_script( 'wp-api' );
 
     // fix api settings, clear nonce if not logged in
     $user = wp_get_current_user();
     if ( $user->ID == 0 ) {
         $data = $wp_scripts->get_data('wp-api-request', 'data');
-        if(!is_array($data)) {
-            $data = json_decode(str_replace('var wpApiSettings = ', '',
-                                            substr($data, 0, -1)), true);
+        error_log( var_export( $data, true ));
+        if (! is_array( $data )) {
+            $data = json_decode( str_replace( 'var wpApiSettings = ', '',
+                                              substr($data, 0, -1)), true);
         }
         unset( $data[ 'nonce' ]);
+        error_log( var_export( $data, true ));
         $wp_scripts->add_data('wp-api-request', 'data', '');
         wp_localize_script('wp-api-request', 'wpApiSettings', $localized_data);
     }
