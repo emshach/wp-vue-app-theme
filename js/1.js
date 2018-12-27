@@ -122,7 +122,7 @@ function get_pos(obj) {
 
       var menu = $("#header-menu");
       var outer = $("#main-nav");
-      var scroll = $("#main-nav > .container");
+      var scroll = $("#main-nav > .wrapper");
       var ts_bg = $("#bg-nav");
       var ts_container = $("#menu-nav");
       var thumb = $("#menu-nav > .menu-item");
