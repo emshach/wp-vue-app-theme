@@ -31,12 +31,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    document.title = this.sstate.site.title;
     wp.api.loadPromise.done(function () {
       var path = new wp.api.models.Path();
       console.log('path object', path);
       path.fetch().done(function (rpost) {
         console.log('got home page', rpost);
-        document.title = _this.sstate.site.title;
         _this.title = rpost.title.rendered;
         _this.img = rpost.background_image || '';
         _this.promos = rpost.promo_reel || [];
