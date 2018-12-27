@@ -32,6 +32,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeRouteUpdate: _lib_route_events__WEBPACK_IMPORTED_MODULE_0__["default"].toRelease,
   mounted: function mounted() {
     this.storedPost = Object.assign({}, this.sstate.nextpost);
+    document.title = this.title + ' | ' + this.sstate.site.title;
   },
   methods: {
     showImg: function showImg() {

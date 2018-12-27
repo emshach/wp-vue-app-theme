@@ -36,6 +36,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log('path object', path);
       path.fetch().done(function (rpost) {
         console.log('got home page', rpost);
+        document.title = _this.sstate.site.title;
         _this.title = rpost.title.rendered;
         _this.img = rpost.background_image || '';
         _this.promos = rpost.promo_reel || [];

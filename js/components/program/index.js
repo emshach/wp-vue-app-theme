@@ -11,6 +11,7 @@ export default {
   },
   mounted() {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
+    document.title = this.title + ' | ' + this.sstate.site.title;
   },
   methods: {
     showImg() {
