@@ -33,13 +33,13 @@ export default {
       return this.postData.background_image || '';
     },
     promos() {
-      return [{
-        id: this.postData.id,
-        excerpt: { rendered: this.content }
-      }].concat( this.postData.promo_reel || []);
+      return this.postData.promo_reel || [];
     },
     episodes() {
       return this.postData.releases || [];
+    },
+    archive() {
+      return this.postData.archive || [];
     },
     content() {
       return this.postData.content && this.postData.content.rendered || '';

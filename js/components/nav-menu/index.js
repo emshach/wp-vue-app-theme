@@ -37,7 +37,7 @@ export default {
       navSlider.toggleMenu( this.menuOpen = !this.menuOpen );
     },
     closeMenu() {
-      navSlider.toggleMenu( this.menuOpen = false );
+      navSlider.toggleMenu( this.menuOpen = false, 150 );
     }
   }
 };

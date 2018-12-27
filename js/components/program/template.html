@@ -15,52 +15,12 @@
 
   <main role="main">
     <h1 class="title" v-html="title"></h1>
-    <section class="episodes">
-      <h2 class="title">Programmes</h2>
-      <b-card v-for="( episode, index ) in episodes" :key="episode.id">
-        <router-link :to="episode.redirect || episode.path">
-          <b-media no-body>
-            <b-media-aside>
-              <b-img :src="episode.thumbnail" width="128" height="96" />
-              <div class="info length">{{
-                episode.media_details.length_formatted
-                }}</div>
-            </b-media-aside>
-            <b-media-body>
-              <h5 class="mt-0" v-html="episode.title.rendered"></h5>
-              <div class="info row">
-                <div :class="[ 'views', 'd-flex',
-                             { active : episode.my_xp.seen }]">
-                  <span class="dashicons dashicons-visibility"></span>
-                  <span class="count">{{ episode.stats.views || 0 }}</span>
-                </div>
-                <div :class="[ 'likes',  'd-flex',
-                             { active: episode.my_xp.like }]">
-                  <span class="dashicons dashicons-thumbs-up"></span>
-                  <span class="count">{{ episode.stats.likes || 0 }}</span>
-                </div>
-                <div :class="[ 'dislikes', 'd-flex',
-                             { active: episode.my_xp.dislike }]">
-                  <span class="dashicons dashicons-thumbs-down"></span>
-                  <span class="count">{{ episode.stats.dislikes || 0 }}</span>
-                </div>
-                <div :class="[ 'favs', 'd-flex', { active: episode.my_xp.fav }]">
-                  <span class="dashicons dashicons-star-filled"></span>
-                  <span class="count">{{ episode.stats.favs || 0 }}</span>
-                </div>
-                <div :class="[ 'comments', 'd-flex',
-                             { active: episode.my_xp.comment }]">
-                  <span class="dashicons dashicons-admin-comments"></span>
-                  <span class="count">{{ episode.stats.comments || 0 }}</span>
-                </div>
-              </div>
-              <div v-html="episode.caption.rendered"></div>
-            </b-media-body>
-          </b-media>
-        </router-link>
-      </b-card>
-      <div class="message" v-if="!episodes.length">Coming Soon!</div>
-    </section>
+    <section class="description"
+             v-html="content"></section>
+    <!-- v-if="postData.promo_reel && postData.promo_reel.length" -->
+    <content-section title="Programmes" :episodes="episodes"></content-section>
+    <content-section title="Frome the Archive" :episodes="archive"
+                     :show-empty="false"></content-section>
     <comments></comments>
   </main>
   <wp-footer></wp-footer>

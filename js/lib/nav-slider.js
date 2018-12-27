@@ -146,17 +146,19 @@ export default {
     });                         // TODO: unbind if < 600px
   })( jQuery );
   },
-  toggleMenu ( open ) {
+  toggleMenu ( open, duration ) {
+    if (! duration )
+      duration = 400;
     var $ = jQuery;
     if ( $( window ).innerWidth() >= 600 ) { return; }
     $("#main-nav button.toggle-mobile").blur();
     if ( open ) {
       $( "#main-nav" ).stop()
-         .animate({ right: 48 });
+         .animate({ right: 48 }, duration );
       $( "#bg-nav" ).stop().fadeIn();
     } else {
       $( "#main-nav" ).stop()
-         .animate({ right: '100%' });
+         .animate({ right: '100%' }, duration );
       $( "#bg-nav" ).stop().fadeOut();
     }
   }
