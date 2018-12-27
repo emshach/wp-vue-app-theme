@@ -1,49 +1,43 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[31],{
 
-/***/ "./js/components/single/index.js":
-/*!***************************************!*\
-  !*** ./js/components/single/index.js ***!
-  \***************************************/
+/***/ "./js/components/wp-header/index.js":
+/*!******************************************!*\
+  !*** ./js/components/wp-header/index.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
-/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/route-events */ "./js/lib/route-events.js");
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['post', 'path'],
-  beforeRouteUpdate: _lib_route_events__WEBPACK_IMPORTED_MODULE_1__["default"].toPath,
-  render: function render(h) {
-    var post = this.post || _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.nextpost;
-    console.log('post is', post);
-    if (!post) return h('page-not-found', {
-      props: {
-        path: this.path
-      }
-    });
-    if (post.type == 'program') return h('program', {
-      props: {
-        post: post,
-        path: this.path
-      }
-    });
-    if (post.type == 'post') return h('post', {
-      props: {
-        post: post,
-        path: this.path
-      }
-    });
-    return h('page', {
-      props: {
-        post: post,
-        path: this.path
-      }
-    });
+  template: __webpack_require__(/*! ./template.html */ "./js/components/wp-header/template.html"),
+  data: function data() {
+    return {
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      title: '',
+      description: '',
+      logo: ''
+    };
+  },
+  mounted: function mounted() {
+    this.title = this.sstate.site.title || '';
+    this.description = this.sstate.site.description || '';
+    this.logo = this.sstate.site.logo || '';
   }
 });
+
+/***/ }),
+
+/***/ "./js/components/wp-header/template.html":
+/*!***********************************************!*\
+  !*** ./js/components/wp-header/template.html ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<header id=\"masthead\" class=\"header clear\">\n  <div id=\"banner-notices\"></div>\n  <div class=\"search-wrapper col-3\">\n    <search-form></search-form>\n  </div>\n  <div class=\"logo\">\n    <router-link to=\"/\"><img :src=\"logo\" class=\"logo-img\"/></router-link>\n  </div>\n  <h1 class=\"site-title\"><router-link to=\"/\">{{ title }}</router-link></h1>\n  <p class=\"site-description\">{{ description }}</p>\n</header>\n";
 
 /***/ })
 

@@ -1,4 +1,5 @@
 import store from '../../lib/store';
+import he from 'he';
 export default {
   template: require( './template.html' ),
   props: [ 'post' ],
@@ -11,10 +12,10 @@ export default {
   },
   mounted() {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
-    document.title = this.title + ' | ' + this.sstate.site.title;
+    document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
   },
   updated() {
-    document.title = this.title + ' | ' + this.sstate.site.title;
+    document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
   },
   methods: {
     showImg() {
