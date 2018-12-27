@@ -13,6 +13,9 @@ export default {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
     document.title = this.title + ' | ' + this.sstate.site.title;
   },
+  updated() {
+    document.title = this.title + ' | ' + this.sstate.site.title;
+  },
   methods: {
     showImg() {
       this.show = true;
