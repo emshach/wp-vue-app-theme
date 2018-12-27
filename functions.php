@@ -919,28 +919,31 @@ function mrk_register_endpoint () {
 }
 
 /**
- * account for anonymous rest requests in js client
- *
- */
-function mrk_rest_js_client_settings( $settings ) {
-    $user = wp_get_current_user();
-    if ( $user->ID == 0 )
-        unset( $settings[ 'nonce' ]);
-    else
-        $settings[ 'user' ] = $user;
-    return $settings;
-}
-/**
  * enqueue oficial wp api rest api js client and our js client
  *
  * add all the fancy stuff on NON-ADMIN pages only to avoid absolutely smashing
  * history function. I'd like to find out why this happened in the first place.
  */
 function mrk_enqueue_scripts() {
-    global $VERSION;
+    global $VERSION, $wp_scripts;
     if ( is_admin() )
         return;
     wp_enqueue_script( 'wp-api' );
+
+    // fix api settings, clear nonce if not logged in
+    $user = wp_get_current_user();
+    if ( $user->ID == 0 ) {
+        $data = $wp_scripts->get_data('wp-api-request', 'data');
+        if(!is_array($data)) {
+            $data = json_decode(str_replace('var wpApiSettings = ', '',
+                                            substr($data, 0, -1)), true);
+        }
+        unset( $data[ 'nonce' ]);
+        $wp_scripts->add_data('wp-api-request', 'data', '');
+        wp_localize_script('wp-api-request', 'wpApiSettings', $localized_data);
+    }
+
+    // back to our regularly scheduled programming
     wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
                        [ 'wp-api', 'jquery', 'jquery-effects-core' ],
                        $VERSION, true ); // include in footer
@@ -987,7 +990,6 @@ add_action( 'wp_enqueue_scripts',            'mrk_enqueue_styles',          999 
 add_action( 'widgets_init',                  'mrk_widgets_init'                    );
 add_filter( 'excerpt_length',                'mrk_excerpt_length',          999    );
 add_filter( 'rest_allow_anonymous_comments', 'allow_anonymous_comments'            );
-add_filter( 'rest_js_client_settings',       'mrk_rest_js_client_settings',  10, 1 );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_add_bg_image',        10, 1 );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_add_rel_path',        10, 1 );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_restrictions',       999, 1 );
