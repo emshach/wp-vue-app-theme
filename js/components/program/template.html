@@ -14,7 +14,7 @@
   </div>
 
   <main role="main">
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="title" v-html="title"></h1>
     <section class="episodes">
       <h2 class="title">Programmes</h2>
       <b-card v-for="( episode, index ) in episodes" :key="episode.id">
@@ -27,7 +27,7 @@
                 }}</div>
             </b-media-aside>
             <b-media-body>
-              <h5 class="mt-0">{{ episode.title.rendered }}</h5>
+              <h5 class="mt-0" v-html="episode.title.rendered"></h5>
               <div class="info row">
                 <div :class="[ 'views', 'd-flex',
                              { active : episode.my_xp.seen }]">
