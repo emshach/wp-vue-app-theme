@@ -931,20 +931,16 @@ function mrk_enqueue_scripts() {
     wp_enqueue_script( 'wp-api-request' );
     wp_enqueue_script( 'wp-api' );
 
-    // fix api settings, clear nonce if not logged in
+    // fix api settings, re-create rest nonce
     $user = wp_get_current_user();
-    if ( $user->ID == 0 ) {
-        $data = $wp_scripts->get_data('wp-api-request', 'data');
-        error_log( var_export( $data, true ));
-        if (! is_array( $data )) {
-            $data = json_decode( str_replace( 'var wpApiSettings = ', '',
-                                              substr($data, 0, -1)), true);
-        }
-        $data[ 'nonce' ] = wp_create_nonce( 'wp_rest' );
-        error_log( var_export( $data, true ));
-        $wp_scripts->add_data('wp-api-request', 'data', '');
-        wp_localize_script( 'wp-api-request', 'wpApiSettings', $data );
+    $data = $wp_scripts->get_data('wp-api-request', 'data');
+    if (! is_array( $data )) {
+        $data = json_decode( str_replace( 'var wpApiSettings = ', '',
+                                          substr($data, 0, -1)), true);
     }
+    $data[ 'nonce' ] = wp_create_nonce( 'wp_rest' );
+    $wp_scripts->add_data('wp-api-request', 'data', '');
+    wp_localize_script( 'wp-api-request', 'wpApiSettings', $data );
 
     // back to our regularly scheduled programming
     wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
