@@ -940,10 +940,10 @@ function mrk_enqueue_scripts() {
             $data = json_decode( str_replace( 'var wpApiSettings = ', '',
                                               substr($data, 0, -1)), true);
         }
-        unset( $data[ 'nonce' ]);
+        $data[ 'nonce' ] = wp_create_nonce( 'wp_rest' );
         error_log( var_export( $data, true ));
         $wp_scripts->add_data('wp-api-request', 'data', '');
-        wp_localize_script('wp-api-request', 'wpApiSettings', $localized_data);
+        wp_localize_script( 'wp-api-request', 'wpApiSettings', $data );
     }
 
     // back to our regularly scheduled programming
