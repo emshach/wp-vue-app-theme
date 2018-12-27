@@ -68,6 +68,9 @@ input[type="search"] {
   color: #fff;
   text-shadow: none; }
 
+h1 {
+  font-size: 4rem; }
+
 .featured-wrapper {
   position: relative;
   height: 100%;
