@@ -1,3 +1,6 @@
+const wp = window.wp;
+const wpApiSettings = window.wpApiSettings;
+
 export default new Promise (( resolve, reject ) => {
   const setup = () => {
     const Path = wp.api.models.Post.extend({

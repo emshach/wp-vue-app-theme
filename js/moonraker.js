@@ -809,6 +809,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var wp = window.wp;
+var wpApiSettings = window.wpApiSettings;
 /* harmony default export */ __webpack_exports__["default"] = (new Promise(function (resolve, reject) {
   var setup = function setup() {
     var Path = wp.api.models.Post.extend({

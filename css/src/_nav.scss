@@ -221,6 +221,7 @@ button.nav-menu {
   z-index: 21;
   text-shadow: 0 0 2px black;
   opacity: 0.75;
+  color: white;
   &:hover {
     opacity: 1;
   }
@@ -239,7 +240,6 @@ button.nav-menu {
     @include breakpoint( $max-phone ) {
       display: block;
       // float: left;
-      color: white;
       font-weight: bold;
       // border: 1px solid lightgray;
       top: 50%;

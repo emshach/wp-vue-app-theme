@@ -455,7 +455,8 @@ button.nav-menu {
   background: transparent;
   z-index: 21;
   text-shadow: 0 0 2px black;
-  opacity: 0.75; }
+  opacity: 0.75;
+  color: white; }
 
 button.nav-menu:hover {
   opacity: 1; }
@@ -474,7 +475,6 @@ button.nav-menu .navbar-toggle-icon {
 @media (max-width: 600px) {
   button.nav-menu.toggle-mobile {
     display: block;
-    color: white;
     font-weight: bold;
     top: 50%;
     right: 8px; } }
