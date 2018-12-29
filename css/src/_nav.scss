@@ -27,7 +27,7 @@
     position: relative;
     padding: 0;
     width: 100%;
-    margin: 40px auto 0;
+    margin: 48px auto 0;
     >.wrapper {
       position: relative;
       background-color: rgba(0, 0, 0, 0.65);
@@ -211,33 +211,40 @@
   }}
 
 button.nav-menu {
+  position: absolute;
   display: none;
-  @include breakpoint( $max-phone ) {
-    display: block;
-    position: absolute;
-    float: left;
-    background: transparent;
-    color: white;
-    font-weight: bold;
-    // border: 1px solid lightgray;
-    border: 0 none;
-    height: 48px;
-    padding: 8px;
-    width: 48px;
-    top: 50%;
-    right: 8px;
-    opacity: 0.75;
-    z-index: 21;
-    text-shadow: 0 0 2px black;
-    .navbar-toggle-icon {
-      height: 32px;
-      width: 32px;
-      font-size: 32px;
-    }
-    &:hover {
-      opacity: 1;
-    }
+  border: 0 none;
+  height: 48px;
+  padding: 8px;
+  width: 48px;
+  background: transparent;
+  z-index: 21;
+  text-shadow: 0 0 2px black;
+  opacity: 0.75;
+  &:hover {
+    opacity: 1;
   }
+  .navbar-toggle-icon {
+    height: 32px;
+    width: 32px;
+    font-size: 32px;
+  }
+  &.menu-wide {
+    @include breakpoint( $bp-phone ) {
+      display: block;
+      right: 20px;
+      top: -8px;
+    }}
+  &.toggle-mobile {
+    @include breakpoint( $max-phone ) {
+      display: block;
+      // float: left;
+      color: white;
+      font-weight: bold;
+      // border: 1px solid lightgray;
+      top: 50%;
+      right: 8px;
+    }}
 }
 
 

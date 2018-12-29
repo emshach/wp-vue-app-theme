@@ -366,6 +366,18 @@ function mrk_rest_add_thumbnail( $data ) {
 }
 
 /**
+ * Add whether to show the title/caption/description for the media item
+ *
+ * @return post array
+ */
+function mrk_rest_add_show_text( $data ) {
+    if ( empty( $data[ 'id' ]))
+        return $data;
+    $data[ 'show_text'] = !get_field( 'no_text', $data[ 'id' ]);
+    return $data;
+}
+
+/**
  * Set the type of a program object to 'program'
  *
  * @return post array
@@ -1010,6 +1022,7 @@ add_filter( 'mrk_rest_process_media',        'mrk_rest_restrictions',       999,
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_kgvid_meta',      10, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_stats',           10, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_thumbnail',       11, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_add_show_text',       11, 1 );
 add_filter( 'mrk_rest_process_home_page',    'mrk_rest_add_promo_reel',      10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_set_program_type',    10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_add_promo_reel',      10, 1 );

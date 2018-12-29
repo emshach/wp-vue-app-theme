@@ -93,7 +93,7 @@ export default {
         main_title.stop().animate({ bottom: 110 - top }, ease_in );
       },
       function() { //mouse out
-	outer.stop().fadeTo( dur_out * 3, tc_opacity_out, "easeInOutCubic");
+	// outer.stop().fadeTo( dur_out * 3, tc_opacity_out, "easeInOutCubic");
 	menu.stop().animate({ height: 15 }, ease_out );
         main_title.stop().animate({ bottom: 0 }, ease_out );
       }

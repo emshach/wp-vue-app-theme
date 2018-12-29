@@ -1,4 +1,4 @@
-import wpapix from '../../lib/wpapix';
+import _wpapix from '../../lib/wpapix';
 export default {
   template: require( './template.html' ),
   data() {
@@ -10,10 +10,12 @@ export default {
   }, 
   mounted() {
     window.close();
-    var membership = new wpapix.Membership({ path: 'my-level' });
-    membership.fetch().done( res => {
-      this.sstate.user.membership = res;
-      this.membership = res;
+    _wpapix.then( wpapix => {
+      var membership = new wpapix.Membership({ path: 'my-level' });
+      membership.fetch().done( res => {
+        this.sstate.user.membership = res;
+        this.membership = res;
+      });
     });
   },
   methods: {

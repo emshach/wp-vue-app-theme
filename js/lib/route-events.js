@@ -1,13 +1,13 @@
-import wpapix from './wpapix';
+import _wpapix from './wpapix';
 import store from './store';
 import Swal from 'sweetalert2';
 
-const mkApiRequest = ( Type, arg ) => {
+const mkApiRequest = ( type, arg ) => {
   return ( to, from, next ) => {
     console.log( 'this is', this );
     console.log( 'also', { to, from, next });
-    wp.api.loadPromise.done(() => {
-      var object = new Type( arg ? arg( to ): to.params );
+    _wpapix.then(( wpapix ) => {
+      var object = new wpapix[ type ]( arg ? arg( to ): to.params );
       object.fetch({
         success: ( model, result, options ) => {
           console.log( 'got', object, result );
@@ -30,12 +30,12 @@ const mkApiRequest = ( Type, arg ) => {
     });
   };
 };
-const toPreviewRelease = mkApiRequest( wpapix.Preview, to => {
+const toPreviewRelease = mkApiRequest( 'Preview', to => {
   return { path: to.params.program + '/' + to.params.release };
 });
-const toPreview = mkApiRequest( wpapix.Preview );
-const toPath = mkApiRequest( wpapix.Path );
-const toRelease = mkApiRequest( wpapix.Release );
+const toPreview = mkApiRequest( 'Preview' );
+const toPath = mkApiRequest( 'Path' );
+const toRelease = mkApiRequest( 'Release' );
 
 export default {
   mkApiRequest,
