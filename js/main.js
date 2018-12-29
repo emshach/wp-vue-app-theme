@@ -7,7 +7,6 @@ import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
 import VueCarousel from 'vue-carousel';
 import VueLazyload from 'vue-lazyload-img';
-import VueScrollbar from 'vue2-scrollbar';
 import VueScrollto from 'vue-scrollto';
 import store from './lib/store';
 import wpapix from './lib/wpapix';
@@ -15,8 +14,7 @@ import routeEvents from './lib/route-events';
 
 // styles
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import 'vue2-scrollbar/dist/style/vue2-scrollbar.css';
- 
+
 //partial components
 const TheLoop          = () => import( './components/the-loop'          );
 const Sidebar          = () => import( './components/sidebar'           );
@@ -59,6 +57,7 @@ window.Vue = Vue;
 
 // directives
 Vue.config.devtools = true;
+// Vue.use( Vuex );
 Vue.use( VueRouter );
 Vue.use( BootstrapVue );
 Vue.use( VueCarousel );
@@ -66,7 +65,6 @@ Vue.use( VueLazyload, { fade: true });
 Vue.use( VueScrollto );
 
 // init components
-Vue.component( 'vue-scrollbar',     VueScrollbar     );
 Vue.component( 'the-loop',          TheLoop          );
 Vue.component( 'sidebar',           Sidebar          );
 Vue.component( 'wp-footer',         WpFooter         );

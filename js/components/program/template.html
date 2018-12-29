@@ -1,4 +1,4 @@
-<vue-scrollbar class="program post page" :key="postData.id" ref="VueScrollbar">
+<div class="program post page" :key="postData.id">
   <div id="bg-image-wrapper" :class="classes">
     <transition name="fade-in" appear>
       <img id="bg-image" :src="img" :key="img" @load="showImg" v-show="show"/>
@@ -23,4 +23,4 @@
     <comments></comments>
   </main>
   <wp-footer></wp-footer>
-</vue-scrollbar>
+</div>
