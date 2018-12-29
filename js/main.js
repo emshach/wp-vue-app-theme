@@ -7,6 +7,7 @@ import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
 import VueCarousel from 'vue-carousel';
 import VueLazyload from 'vue-lazyload-img';
+import VueScrollbar from 'vue2-scrollbar';
 import VueScrollto from 'vue-scrollto';
 import store from './lib/store';
 import wpapix from './lib/wpapix';
@@ -64,6 +65,7 @@ Vue.use( VueLazyload, { fade: true });
 Vue.use( VueScrollto );
 
 // init components
+Vue.component( 'vue-scrollbar',     VueScrollbar     );
 Vue.component( 'the-loop',          TheLoop          );
 Vue.component( 'sidebar',           Sidebar          );
 Vue.component( 'wp-footer',         WpFooter         );
