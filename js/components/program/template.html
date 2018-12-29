@@ -7,9 +7,8 @@
   <wp-header></wp-header>
   <down-arrow></down-arrow>
   <transition name="fade-in">
-    <div class="featured-wrapper">
-      <mrk-carousel v-if="promos.length" id="featured"
-                    :slides="promos"></mrk-carousel>
+    <div v-if="promos.length" class="featured-wrapper">
+      <mrk-carousel id="featured" :slides="promos"></mrk-carousel>
     </div>
   </transition>
 
