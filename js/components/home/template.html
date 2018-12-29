@@ -6,12 +6,12 @@
   </div>
   <wp-header></wp-header>
   <down-arrow></down-arrow>
-  <div class="featured-wrapper">
-    <transition name="fade-in">
-      <mrk-carousel v-if="promos.length" id="featured"
+  <transition name="fade-in">
+    <div v-if="promos.length" class="featured-wrapper">
+      <mrk-carousel id="featured"
                     :slides="promos"></mrk-carousel>
-    </transition>
-  </div>
+    </div>
+  </transition>
 
   <main role="main">
     <h1 class="title">{{ title }}</h1>
