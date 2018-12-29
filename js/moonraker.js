@@ -902,7 +902,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import Vuex from 'vuex';
 
 
 
@@ -913,10 +912,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // styles
-// import 'bootstrap/dist/css/bootstrap.css';
 
- // import 'swiper/dist/css/swiper.css';
-//partial components
+ //partial components
 
 var TheLoop = function TheLoop() {
   return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/the-loop */ "./js/components/the-loop/index.js"));
@@ -1054,8 +1051,7 @@ var Shop = function Shop() {
 
 window.Vue = vue__WEBPACK_IMPORTED_MODULE_3__["default"]; // directives
 
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].config.devtools = true; // Vue.use( Vuex );
-
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].config.devtools = true;
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_carousel__WEBPACK_IMPORTED_MODULE_7___default.a);

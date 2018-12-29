@@ -6,18 +6,16 @@
   </div>
   <wp-header></wp-header>
   <down-arrow></down-arrow>
-  <div class="featured-wrapper">
-    <transition name="fade-in">
+  <transition name="fade-in">
+    <div class="featured-wrapper">
       <mrk-carousel v-if="promos.length" id="featured"
                     :slides="promos"></mrk-carousel>
-    </transition>
-  </div>
+    </div>
+  </transition>
 
   <main role="main">
     <h1 class="title" v-html="title"></h1>
-    <section class="description"
-             v-html="content"></section>
-    <!-- v-if="postData.promo_reel && postData.promo_reel.length" -->
+    <section class="description" v-html="content"></section>
     <content-section title="Programmes" :episodes="episodes"></content-section>
     <content-section title="Frome the Archive" :episodes="archive"
                      :show-empty="false"></content-section>
