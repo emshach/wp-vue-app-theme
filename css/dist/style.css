@@ -470,7 +470,9 @@ button.nav-menu .navbar-toggle-icon {
   button.nav-menu.menu-wide {
     display: block;
     right: 20px;
-    top: -8px; } }
+    top: -28px; }
+  button.nav-menu.menu-wide.open {
+    top: 0; } }
 
 @media (max-width: 600px) {
   button.nav-menu.toggle-mobile {

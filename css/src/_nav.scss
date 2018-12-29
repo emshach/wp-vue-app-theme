@@ -234,7 +234,10 @@ button.nav-menu {
     @include breakpoint( $bp-phone ) {
       display: block;
       right: 20px;
-      top: -8px;
+      top: -28px;
+      &.open {
+        top: 0;
+      }
     }}
   &.toggle-mobile {
     @include breakpoint( $max-phone ) {

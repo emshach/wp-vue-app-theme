@@ -2,7 +2,6 @@ import 'babel-polyfill';
 import 'es6-promise/auto';
 import axios from 'axios';
 import Vue from 'vue';
-// import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
@@ -14,9 +13,7 @@ import wpapix from './lib/wpapix';
 import routeEvents from './lib/route-events';
 
 // styles
-// import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-// import 'swiper/dist/css/swiper.css';
 
 //partial components
 const TheLoop          = () => import( './components/the-loop'          );
@@ -60,7 +57,6 @@ window.Vue = Vue;
 
 // directives
 Vue.config.devtools = true;
-// Vue.use( Vuex );
 Vue.use( VueRouter );
 Vue.use( BootstrapVue );
 Vue.use( VueCarousel );
