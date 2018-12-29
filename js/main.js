@@ -15,7 +15,8 @@ import routeEvents from './lib/route-events';
 
 // styles
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-
+import 'vue2-scrollbar/dist/style/vue2-scrollbar.css';
+ 
 //partial components
 const TheLoop          = () => import( './components/the-loop'          );
 const Sidebar          = () => import( './components/sidebar'           );

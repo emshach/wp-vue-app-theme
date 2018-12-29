@@ -901,6 +901,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./lib/route-events */ "./js/lib/route-events.js");
 /* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
 /* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var vue2_scrollbar_dist_style_vue2_scrollbar_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vue2-scrollbar/dist/style/vue2-scrollbar.css */ "./node_modules/vue2-scrollbar/dist/style/vue2-scrollbar.css");
+/* harmony import */ var vue2_scrollbar_dist_style_vue2_scrollbar_css__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(vue2_scrollbar_dist_style_vue2_scrollbar_css__WEBPACK_IMPORTED_MODULE_15__);
 
 
 
@@ -915,6 +917,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // styles
+
 
  //partial components
 
@@ -57044,6 +57047,17 @@ Vue.compile = compileToFunctions;
 /* harmony default export */ __webpack_exports__["default"] = (Vue);
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../../usr/local/lib/node_modules/webpack/buildin/global.js */ "../../../../../../../usr/local/lib/node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../../../../../../../../usr/local/lib/node_modules/webpack/node_modules/timers-browserify/main.js */ "../../../../../../../usr/local/lib/node_modules/webpack/node_modules/timers-browserify/main.js").setImmediate))
+
+/***/ }),
+
+/***/ "./node_modules/vue2-scrollbar/dist/style/vue2-scrollbar.css":
+/*!*******************************************************************!*\
+  !*** ./node_modules/vue2-scrollbar/dist/style/vue2-scrollbar.css ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 

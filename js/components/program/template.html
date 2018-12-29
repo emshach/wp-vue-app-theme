@@ -1,4 +1,4 @@
-<vue-scrollbar class="program post page" :key="postData.id">
+<vue-scrollbar class="program post page" :key="postData.id" ref="VueScrollbar">
   <div id="bg-image-wrapper" :class="classes">
     <transition name="fade-in" appear>
       <img id="bg-image" :src="img" :key="img" @load="showImg" v-show="show"/>
