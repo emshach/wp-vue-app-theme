@@ -22,9 +22,9 @@
           </carousel>
         </div>
         <transition name="fade-in">
-          <div v-if="!wideMode" class="col-12 col-md-4">
+          <div v-if="!wideMode" class="col-12 col-md-4 description">
             <div v-html="content"></div>
-            <b-btn variant="warning" size="lg"
+            <b-btn variant="warning" size="lg" class="float-right"
                    v-scroll-to="{ el: 'main', container: '.page',
                                 x: false, y: true }">
               subscribe for full content</b-btn>
