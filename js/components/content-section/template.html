@@ -1,6 +1,6 @@
 <section class="episodes">
-  <template v-if="episodes.length || showEmpty">
-    <h2 class="title">{{ title }}</h2>
+  <template v-if="filteredEpisodes.length || showEmpty">
+    <h2 class="title" v-html="title"></h2>
     <transition-group name="fade-fast">
       <b-card v-for="( episode, index ) in filteredEpisodes" :key="episode.id">
         <b-media no-body>
