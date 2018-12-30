@@ -29,7 +29,7 @@
   </div>
 
   <main role="main">
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="title" v-html="title"></h1>
     <section class="info row">
       <div :class="[ 'views', 'd-flex',
                    { active : postData.my_xp.seen }]">
