@@ -290,6 +290,9 @@ main {
   top: 48px;
   right: 8px; }
 
+#view-switcher * {
+  font-size: 12px; }
+
 /**
  * partials/nav
  * ---

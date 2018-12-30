@@ -17,6 +17,7 @@
       <transition name="fade-in" mode="out-in">
         <router-view></router-view>
       </transition>
+      <view-switcher></view-switcher>
       <nav-menu :menu="menu" :logo="site.logo" :title="site.title"></nav-menu>
     </div><!--app-->
     <?php wp_footer(); ?>
