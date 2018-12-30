@@ -17,8 +17,9 @@
   <main role="main">
     <h1 class="title" v-html="title"></h1>
     <section class="description" v-html="content"></section>
-    <content-section title="Programmes" :episodes="episodes"></content-section>
-    <content-section title="Frome the Archive" :episodes="archive"
+    <content-section :title="episodesTitle"
+                     :episodes="episodes"></content-section>
+    <content-section :="archivesTitle" :episodes="archives"
                      :show-empty="false"></content-section>
     <comments></comments>
   </main>

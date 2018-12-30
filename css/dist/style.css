@@ -529,7 +529,7 @@ main h1.title {
 
 @media (max-width: 600px) {
   main h1.title {
-    font-size: 28px; } }
+    font-size: 32px; } }
 
 #app {
   background: #100; }

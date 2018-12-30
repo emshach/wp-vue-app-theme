@@ -435,14 +435,15 @@ function mrk_rest_add_promo_reel( $data ) {
 }
 
 /**
- * Add releases to a program page object
+ * Add the videos from a collection to the corresponding object element
  *
- * @return post array
+ * @return null
  */
-function mrk_rest_add_releases( $data ) {
-    $collection = get_field( 'releases', $data[ 'id' ]);
-    if ( empty( $collection ))
-        return $data;
+function mrk_add_media_collection( $postdata, $name, $debug = false ) {
+    $collection = get_field( $name, $postdata[ 'id' ]);
+    if ( empty( $collection )) return;
+    // add the title for the collection
+    $postdata[ 'title_' . $name ] = get_field( 'title_' . $name, $postdata[ 'id' ]);
     $posts = get_posts(
         [
             'post_type' => [ 'release', 'attachment' ],
@@ -456,12 +457,14 @@ function mrk_rest_add_releases( $data ) {
             ]
         ]
     );
-    $data[ 'debug' ] = [];
-    $data[ 'debug' ][ 'collection' ] = var_export( $collection, true );
-    $data[ 'debug' ][ 'releases' ] = var_export( $posts, true );
-    if ( empty( $posts ))
-        return $data;
-    $data[ 'releases' ] = [];
+    if ( $debug ) {
+        if (! isset( $postdata[ 'debug' ]))
+            $postdata[ 'debug' ] = [];
+        $postdata[ 'debug' ][ 'collection-' . $name ] = var_export( $collection, true );
+        $postdata[ 'debug' ][ $name ] = var_export( $posts, true );
+    }
+    if ( empty( $posts )) return;
+    $postdata[ $name ] = [];
     foreach ( $posts as $post ) {
         if ( $post->post_type == 'attachment' )
             $postdata = mrk_rest_get_media( $post );
@@ -469,8 +472,20 @@ function mrk_rest_add_releases( $data ) {
             $postdata = mrk_rest_get_post( $post );
         if (! is_array( $postdata ))
             continue;
-        $data[ 'releases' ][] = $postdata;
+        $postdata[ $name ][] = $postdata;
     }
+}
+
+/**
+ * Add releases to a program page object
+ *
+ * @return post array
+ */
+function mrk_rest_add_releases( $data ) {
+    // add the collections
+    mrk_add_media_collection( $data, 'releases' );
+    mrk_add_media_collection( $data, 'archives' );
+    // and the corresponding titles
     return $data;
 }
 

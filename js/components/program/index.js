@@ -38,8 +38,14 @@ export default {
     episodes() {
       return this.postData.releases || [];
     },
-    archive() {
-      return this.postData.archive || [];
+    episodesTitle() {
+      return this.postData.title_releases || 'Programmes';
+    },
+    archives() {
+      return this.postData.archives || [];
+    },
+    archivesTitle() {
+      return this.postData.title_archives || 'From the Archives';
     },
     content() {
       return this.postData.content && this.postData.content.rendered || '';
