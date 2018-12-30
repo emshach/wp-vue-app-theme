@@ -32,7 +32,7 @@ export default {
         var rst = episode.restrictions;
         if ( as.admin || rst.public )
           return true;
-        if ( as.subscriber && rst.member )
+        if ( as.subscriber && rst.members )
           return true;
         if ( as.logged_in && rst.auth )
           return true;

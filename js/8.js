@@ -49,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
         var as = this.user.as;
         var rst = episode.restrictions;
         if (as.admin || rst.public) return true;
-        if (as.subscriber && rst.member) return true;
+        if (as.subscriber && rst.members) return true;
         if (as.logged_in && rst.auth) return true;
         return false;
       }
