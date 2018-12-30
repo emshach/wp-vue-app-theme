@@ -439,7 +439,7 @@ function mrk_rest_add_promo_reel( $data ) {
  *
  * @return null
  */
-function mrk_add_media_collection( $postdata, $name, $debug = false ) {
+function mrk_add_media_collection( &$postdata, $name, $debug = false ) {
     $collection = get_field( $name, $postdata[ 'id' ]);
     if ( empty( $collection )) return;
     // add the title for the collection
