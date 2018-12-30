@@ -1125,9 +1125,9 @@ var routes = [{
   name: 'preview-release',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_12__["default"].toPreviewRelease
 }, {
-  path: '/preview/:path/',
-  component: VPreviewProgram,
-  name: 'preview-program',
+  path: '/preview/:path',
+  component: VPreviewRelease,
+  name: 'preview',
   beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_12__["default"].toPreview
 }, {
   path: '/page/:path',

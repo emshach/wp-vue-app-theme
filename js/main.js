@@ -120,8 +120,8 @@ const routes = [
     beforeEnter: routeEvents.toPreviewRelease },
 
 
-  { path: '/preview/:path/',     component: VPreviewProgram,
-    name: 'preview-program',
+  { path: '/preview/:path',     component: VPreviewRelease,
+    name: 'preview',
     beforeEnter: routeEvents.toPreview },
 
   { path: '/page/:path',         component: VPage,    name: 'page',
