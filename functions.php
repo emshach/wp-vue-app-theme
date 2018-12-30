@@ -467,12 +467,12 @@ function mrk_add_media_collection( &$postdata, $name, $debug = false ) {
     $postdata[ $name ] = [];
     foreach ( $posts as $post ) {
         if ( $post->post_type == 'attachment' )
-            $postdata = mrk_rest_get_media( $post );
+            $obj = mrk_rest_get_media( $post );
         else
-            $postdata = mrk_rest_get_post( $post );
-        if (! is_array( $postdata ))
+            $obj = mrk_rest_get_post( $post );
+        if (! is_array( $obj ))
             continue;
-        $postdata[ $name ][] = $postdata;
+        $postdata[ $name ][] = $obj;
     }
 }
 
