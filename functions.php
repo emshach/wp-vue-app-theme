@@ -218,6 +218,8 @@ function mrk_get_post_restrictions( $id, $type = 'post' ) {
  * @return post array
  */
 function mrk_rest_add_bg_image( $data ) {
+    if (! is_array( $data ))
+        return $data;
     if (! empty( $data[ 'featured_media' ]))
         $data[ 'background_image' ] = wp_get_attachment_url( $data[ 'featured_media' ]);
     if ( empty( $data[ 'background_image' ])) {
@@ -727,6 +729,8 @@ function mrk_get_preview_by_program_name( $data ) {
  * @return array
  */
 function mrk_get_preview_by_name( $data ) {
+    if (! preg_match( '/-preview$/', $data[ 'release' ]))
+        $data[ 'release' ] = $data[ 'release' ]. '-preview';
     $result = mrk_get_release_by_name( $data );
     if (! is_array( $result ))
         return $result;
@@ -1004,8 +1008,6 @@ function mrk_register_menus() {
     )
   );
 }
-add_action( 'init', 'register_my_menus' );
-
 add_theme_support( 'post-thumbnails' );
 add_action( 'rest_api_init',                 'mrk_register_endpoint'               );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_scripts'                 );
