@@ -170,7 +170,14 @@ function mrk_get_current_user_info() {
                 'name' => $user->membership_level->name,
                 'debug' => $user->membership_level
             ]
-            : false )
+            : false ),
+        'as' => ( current_user_can( 'see_all_content' )
+                  ? [
+                      'logged_in'  => true,
+                      'subscriber' => true,
+                      'premium'    => true,
+                      'admin'      => true,
+                  ] : false )
     ];
 }
 
@@ -259,9 +266,11 @@ function mrk_rest_restrictions( $data ) {
         ? $user->membership_level->name
         : '';
     $redir = '';
-    $data[ 'debug' ][ 'restrictions' ] = $rst;
-    // if ( $rst[ 'public' ] || current_user_can( 'see_all_content' ))
-    if ( $rst[ 'public' ])
+    if ( current_user_can( 'see_all_content' )) {
+        $data[ 'restrictions' ] = $rst;
+        return $data;
+    }
+    elseif ( $rst[ 'public' ])
         return $data;
     if ( in_array( $user->ID, $rst[ 'users' ]))
         return $data;

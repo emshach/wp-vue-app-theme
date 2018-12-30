@@ -31,6 +31,7 @@ const ContentSection   = () => import( './components/content-section'   );
 const Filmstrip        = () => import( './components/filmstrip'         );
 const NavMenu          = () => import( './components/nav-menu'          );
 const SubscriptionMenu = () => import( './components/subscription-menu' );
+const ViewSwitcher     = () => import( './components/view-switcher'     );
 // const             = () => import( './components/'             );
 
 // const components with routes
@@ -81,7 +82,7 @@ Vue.component( 'content-section',   ContentSection   );
 Vue.component( 'filmstrip',         Filmstrip        );
 Vue.component( 'nav-menu',          NavMenu          );
 Vue.component( 'subscription-menu', SubscriptionMenu );
-Vue.component( 'member-confirm',    MemberConfirm    );
+Vue.component( 'view-switcher',     ViewSwitcher     );
 // Vue.component( '',                             );
 
 //components with routes

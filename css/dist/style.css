@@ -114,6 +114,8 @@ body {
   height: 100%; }
 
 .page {
+  overflow-x: hidden;
+  overflow-y: scroll;
   perspective: 2px;
   height: 100%; }
 
@@ -282,6 +284,11 @@ main {
 
 #eu-cookie-law.negative {
   background-color: rgba(0, 0, 0, 0.8); }
+
+#view-switcher {
+  position: fixed;
+  top: 48px;
+  right: 8px; }
 
 /**
  * partials/nav
