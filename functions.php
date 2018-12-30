@@ -268,7 +268,7 @@ function mrk_rest_restrictions( $data ) {
     $redir = '';
     $data[ 'restrictions' ] = $rst;
     if ( isset( $rst[ 'preview' ]))
-        $data[ 'preview' ] = $rst[ 'preview' ];
+        $data[ 'preview' ] = '/preview/' . $rst[ 'preview' ]->ID;
     if ( current_user_can( 'see_all_content' ) || $rst[ 'public' ])
         return $data;
     if ( in_array( $user->ID, $rst[ 'users' ]))
