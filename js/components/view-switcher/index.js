@@ -1,8 +1,10 @@
 import store from '../../lib/store';
 export default {
   template: require( './template.html' ),
-  data: {
-    user: {}
+  data() {
+    return {
+      user: {}
+    };
   },
   mounted() {
     this.user = store.state.user;

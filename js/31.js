@@ -13,8 +13,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/view-switcher/template.html"),
-  data: {
-    user: {}
+  data: function data() {
+    return {
+      user: {}
+    };
   },
   mounted: function mounted() {
     this.user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
