@@ -3,7 +3,8 @@ export default {
   template: require( './template.html' ),
   data() {
     return {
-      user: {}
+      user: {},
+      viewingAs: 'admin'
     };
   },
   mounted() {
@@ -13,6 +14,7 @@ export default {
     setAs ( name ) {
       var as = this.user.as;
       as.logged_in = as.subscriber = as.premium = as.admin = false;
+      this.viewingAs = name;
       switch ( name ) {
       case 'admin':
         as.admin = true;
@@ -20,7 +22,7 @@ export default {
         as.premium = true;
       case 'subscriber':
         as.subscriber = true;
-      case 'logged-in':
+      case 'logged-in user':
         as.logged_in = true;
       }
     }

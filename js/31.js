@@ -15,7 +15,8 @@ __webpack_require__.r(__webpack_exports__);
   template: __webpack_require__(/*! ./template.html */ "./js/components/view-switcher/template.html"),
   data: function data() {
     return {
-      user: {}
+      user: {},
+      viewingAs: 'admin'
     };
   },
   mounted: function mounted() {
@@ -25,6 +26,7 @@ __webpack_require__.r(__webpack_exports__);
     setAs: function setAs(name) {
       var as = this.user.as;
       as.logged_in = as.subscriber = as.premium = as.admin = false;
+      this.viewingAs = name;
 
       switch (name) {
         case 'admin':
@@ -36,7 +38,7 @@ __webpack_require__.r(__webpack_exports__);
         case 'subscriber':
           as.subscriber = true;
 
-        case 'logged-in':
+        case 'logged-in user':
           as.logged_in = true;
       }
     }
@@ -52,7 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<b-dd id=\"view-switcher\" :text=\"'Viewing as ' + viewingAs\"\n      :class=\"{ hidden : !user.as }\">\n  <b-dd-item @click=\"setAs('public')\">public</b-dd-item>\n  <b-dd-item @click=\"setAs('logged-in')\">logged-in</b-dd-item>\n  <b-dd-item @click=\"setAs('subscriber')\">subscriber</b-dd-item>\n  <b-dd-item @click=\"setAs('admin')\">admin</b-dd-item>\n</b-dd>\n";
+module.exports = "<b-dd id=\"view-switcher\" :text=\"'Viewing as ' + viewingAs\"\n      :class=\"{ hidden : !user.as }\">\n  <b-dd-item @click=\"setAs('public')\">public</b-dd-item>\n  <b-dd-item @click=\"setAs('logged-in user')\">logged-in user</b-dd-item>\n  <b-dd-item @click=\"setAs('subscriber')\">subscriber</b-dd-item>\n  <b-dd-item @click=\"setAs('admin')\">admin</b-dd-item>\n</b-dd>\n";
 
 /***/ })
 
