@@ -21,6 +21,7 @@
       </div>
     </div>
     <div v-else class="row" key="select">
+      <div class="description"><slot></slot></div>
       <div v-for="level in memberLevels" :key="level.id"
            class="col-12 col-md-4">
         <b-card no-body class="member-level" :header="level.name">
