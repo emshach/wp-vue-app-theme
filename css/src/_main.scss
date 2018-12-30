@@ -24,6 +24,9 @@ main {
     margin-top: -1.6em;
     color: white;
     text-shadow: 0 1px 2px rgba(0,0,0,0.75);
+    @include breakpoint( $max-phone ) {
+      font-size: 28px;
+    }
   }}
 #app {
   background: #100;
