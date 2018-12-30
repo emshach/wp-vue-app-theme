@@ -267,6 +267,8 @@ function mrk_rest_restrictions( $data ) {
         : '';
     $redir = '';
     $data[ 'restrictions' ] = $rst;
+    if ( isset( $rst[ 'preview' ]))
+        $data[ 'preview' ] = $rst[ 'preview' ];
     if ( current_user_can( 'see_all_content' ) || $rst[ 'public' ])
         return $data;
     if ( in_array( $user->ID, $rst[ 'users' ]))
@@ -296,7 +298,7 @@ function mrk_rest_restrictions( $data ) {
     $stub = [ 'redirect' => $redir ];
     $keys = [ 'id', 'excerpt', 'path', 'background_image', 'menu_order', 'title',
               'author', 'debug', 'parent', 'thumbnail', 'caption', 'stats', 'my_xp',
-              'type', 'media_type', 'slug' ];
+              'type', 'media_type', 'slug', 'preview' ];
     // strip out some things (or only keep some things)
     foreach ( $keys as $key )
         if ( array_key_exists( $key, $data ))

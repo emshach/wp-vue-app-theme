@@ -596,6 +596,9 @@ section.episodes .card h5 {
 .media .media-body > .info .comments.active {
   color: purple; }
 
+.media .btn.watch {
+  float: right; }
+
 .page.release section.info {
   color: #aaa;
   margin: 0 0 10px; }

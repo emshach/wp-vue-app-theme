@@ -1,7 +1,8 @@
 <section class="episodes">
   <template v-if="episodes.length || showEmpty">
     <h2 class="title">{{ title }}</h2>
-    <b-card v-for="( episode, index ) in filteredEpisodes" :key="episode.id">
+    <transition-group name="fade-fast">
+      <b-card v-for="( episode, index ) in filteredEpisodes" :key="episode.id">
         <b-media no-body>
           <b-media-aside>
             <b-img :src="episode.thumbnail" width="128" height="96" />
@@ -38,18 +39,19 @@
               </div>
             </div>
             <div v-html="episode.caption.rendered"></div>
-            <b-btn v-if="canWatchNow( episode )" :to="episode.path"
+            <b-btn v-if="canWatchNow( episode )" :to="episode.path" size="lg"
                    class="watch watch-now" variant="primary">watch now</b-btn>
-            <b-btn v-else-if="needsSubscription( episode )"
-                      :to="episode.preview
-                           ||{ path: '/members', query: { then: episode.path }}"
-                      class="watch subscribe-to-watch"
-                      variant="warning">subscribe to watch</b-btn>
-            <b-btn v-if="episode.preview" class="to-preview"
+            <b-btn v-else-if="needsSubscription( episode )" size="lg"
+                   :to="episode.preview
+                        ||{ path: '/members', query: { then: episode.path }}"
+                   class="watch subscribe-to-watch"
+                   variant="warning">subscribe to watch</b-btn>
+            <b-btn v-if="episode.preview" class="watch watch-preview" size="lg"
                    :to="episode.preview" variant="link">watch preview</b-btn>
           </b-media-body>
         </b-media>
-    </b-card>
+      </b-card>
+    </transition-group>
     <div class="message" v-if="!episodes.length">Coming Soon!</div>
   </template>
 </section>
