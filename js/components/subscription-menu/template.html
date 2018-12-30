@@ -13,11 +13,11 @@
       <b-table striped hover :items="order" :fields="order_fields" stacked="sm"
                class="order"></b-table>
       <div class="actions">
-        <b-button class="col-2 submit confirm checkout paypal paypal-express"
-                  @click.stop="getConfirmation"
-                  variant="warning">checkout</b-button>
-        <b-button class="col-2 cancel" @click.stop="unsetLevel"
-                  variant="link">go back</b-button>
+        <b-btn class="col-2 submit confirm checkout paypal paypal-express"
+               @click.stop="getConfirmation"
+               variant="warning">checkout</b-btn>
+        <b-btn class="col-2 cancel" @click.stop="unsetLevel"
+               variant="link">go back</b-btn>
       </div>
     </div>
     <div v-else class="row" key="select">

@@ -155,8 +155,11 @@
 #view-switcher {
   position: fixed;
   top: 48px;
-  right: 8px;
+  right: 20px;
   * {
     font-size: 12px;
+  }
+  .dropdown-toggle:after {
+    margin-left: 0.5em;
   }
 }

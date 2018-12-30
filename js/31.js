@@ -54,7 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<b-dd id=\"view-switcher\" :text=\"'Viewing as ' + viewingAs\"\n      :class=\"{ hidden : !user.as }\">\n  <b-dd-item @click=\"setAs('public')\">public</b-dd-item>\n  <b-dd-item @click=\"setAs('logged-in user')\">logged-in user</b-dd-item>\n  <b-dd-item @click=\"setAs('subscriber')\">subscriber</b-dd-item>\n  <b-dd-item @click=\"setAs('admin')\">admin</b-dd-item>\n</b-dd>\n";
+module.exports = "<b-dd id=\"view-switcher\" :text=\"'Viewing as ' + viewingAs\" right\n      :class=\"{ hidden : !user.as }\">\n  <b-dd-item @click=\"setAs('public')\">public</b-dd-item>\n  <b-dd-item @click=\"setAs('logged-in user')\">logged-in user</b-dd-item>\n  <b-dd-item @click=\"setAs('subscriber')\">subscriber</b-dd-item>\n  <b-dd-item @click=\"setAs('admin')\">admin</b-dd-item>\n</b-dd>\n";
 
 /***/ })
 

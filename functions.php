@@ -266,11 +266,8 @@ function mrk_rest_restrictions( $data ) {
         ? $user->membership_level->name
         : '';
     $redir = '';
-    if ( current_user_can( 'see_all_content' )) {
-        $data[ 'restrictions' ] = $rst;
-        return $data;
-    }
-    elseif ( $rst[ 'public' ])
+    $data[ 'restrictions' ] = $rst;
+    if ( current_user_can( 'see_all_content' ) || $rst[ 'public' ])
         return $data;
     if ( in_array( $user->ID, $rst[ 'users' ]))
         return $data;

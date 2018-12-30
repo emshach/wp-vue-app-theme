@@ -1,4 +1,4 @@
-<b-dd id="view-switcher" :text="'Viewing as ' + viewingAs"
+<b-dd id="view-switcher" :text="'Viewing as ' + viewingAs" right
       :class="{ hidden : !user.as }">
   <b-dd-item @click="setAs('public')">public</b-dd-item>
   <b-dd-item @click="setAs('logged-in user')">logged-in user</b-dd-item>
