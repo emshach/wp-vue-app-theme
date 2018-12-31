@@ -37,6 +37,20 @@
                 <span class="dashicons dashicons-admin-comments"></span>
                 <span class="count">{{ episode.stats.comments || 0 }}</span>
               </div>
+              <template v-if="user.as">
+                <div v-if="episode.restrictions.private"
+                     class="d-flex">private</div>
+                <div v-if="episode.restrictions.public"
+                     class="d-flex">public</div>
+                <div v-if="episode.restrictions.auth"
+                     class="d-flex">logged-in</div>
+                <div v-if="episode.restrictions.payperview"
+                     class="d-flex">payperview</div>
+                <div v-if="episode.restrictions.members"
+                     class="d-flex">subscribers</div>
+                <!-- <div v-if="episode.restrictions.premium"
+                     class="d-flex">premium</div> -->
+              </template>
             </div>
             <div v-html="episode.caption.rendered"></div>
             <b-btn v-if="canWatchNow( episode )" :to="episode.path" size="lg"

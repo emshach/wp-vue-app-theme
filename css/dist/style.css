@@ -560,7 +560,8 @@ section.episodes .card h5 {
 .media > .d-flex .info {
   position: absolute;
   bottom: 1px;
-  padding: 1px 4px 0; }
+  padding: 1px 4px 0;
+  text-transform: uppercase; }
 
 .media > .d-flex .info.length {
   border-top-left-radius: 4px;
