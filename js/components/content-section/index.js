@@ -13,6 +13,10 @@ export default {
     showEmpty: {
       type: Boolean,
       default: true
+    },
+    coming: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -23,6 +27,9 @@ export default {
   computed: {
     filteredEpisodes() {
       return this.episodes.filter( x => this.canWatchNow(x) || x.restrictions.show );
+    },
+    dateComing() {
+      return this.coming ? ( 'in ' + this.coming ) : 'Soon';
     }
   },
   methods: {

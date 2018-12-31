@@ -487,6 +487,8 @@ function mrk_rest_add_releases( $data ) {
     mrk_add_media_collection( $data, 'archives' );
     // and the release date
     $data[ 'release_date' ] = get_field( 'release_date', $data[ 'id' ]);
+    if (! $data[ 'release_date' ])
+        $data[ 'release_date' ] = '';
     return $data;
 }
 
