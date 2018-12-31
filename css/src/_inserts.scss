@@ -24,7 +24,11 @@
     >.info {
       color: #aaa;
       margin: 0 0 10px;
-      text-transform: uppercase;
+      .admin {
+        font-size: smaller;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
       .dashicons {
         margin-right: 1px;
         font-size: 18px;

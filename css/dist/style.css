@@ -572,7 +572,11 @@ section.episodes .card h5 {
 
 .media .media-body > .info {
   color: #aaa;
-  margin: 0 0 10px;
+  margin: 0 0 10px; }
+
+.media .media-body > .info .admin {
+  font-size: smaller;
+  font-weight: bold;
   text-transform: uppercase; }
 
 .media .media-body > .info .dashicons {

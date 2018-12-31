@@ -39,17 +39,17 @@
               </div>
               <template v-if="user.as">
                 <div v-if="episode.restrictions.private"
-                     class="d-flex">private</div>
+                     class="d-flex admin">private</div>
                 <div v-if="episode.restrictions.public"
-                     class="d-flex">public</div>
+                     class="d-flex admin">public</div>
                 <div v-if="episode.restrictions.auth"
-                     class="d-flex">logged-in</div>
+                     class="d-flex admin">logged-in</div>
                 <div v-if="episode.restrictions.payperview"
-                     class="d-flex">payperview</div>
+                     class="d-flex admin">payperview</div>
                 <div v-if="episode.restrictions.members"
-                     class="d-flex">subscribers</div>
+                     class="d-flex admin">subscribers</div>
                 <!-- <div v-if="episode.restrictions.premium"
-                     class="d-flex">premium</div> -->
+                     class="d-flex admin">premium</div> -->
               </template>
             </div>
             <div v-html="episode.caption.rendered"></div>
