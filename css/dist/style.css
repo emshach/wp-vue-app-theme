@@ -560,8 +560,7 @@ section.episodes .card h5 {
 .media > .d-flex .info {
   position: absolute;
   bottom: 1px;
-  padding: 1px 4px 0;
-  text-transform: uppercase; }
+  padding: 1px 4px 0; }
 
 .media > .d-flex .info.length {
   border-top-left-radius: 4px;
@@ -573,7 +572,8 @@ section.episodes .card h5 {
 
 .media .media-body > .info {
   color: #aaa;
-  margin: 0 0 10px; }
+  margin: 0 0 10px;
+  text-transform: uppercase; }
 
 .media .media-body > .info .dashicons {
   margin-right: 1px;
