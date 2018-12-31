@@ -48,6 +48,9 @@
                      class="d-flex admin">payperview</div>
                 <div v-if="episode.restrictions.members"
                      class="d-flex admin">subscribers</div>
+                <div v-if="!episode.restrictions.show
+                           && !episode.retrictions.pbulic"
+                     class="d-flex admin">hidden</div>
                 <!-- <div v-if="episode.restrictions.premium"
                      class="d-flex admin">premium</div> -->
               </template>
