@@ -32,6 +32,7 @@ const Filmstrip        = () => import( './components/filmstrip'         );
 const NavMenu          = () => import( './components/nav-menu'          );
 const SubscriptionMenu = () => import( './components/subscription-menu' );
 const ViewSwitcher     = () => import( './components/view-switcher'     );
+const UserBlock        = () => import( './components/user-block'        );
 // const             = () => import( './components/'             );
 
 // const components with routes
@@ -83,6 +84,7 @@ Vue.component( 'filmstrip',         Filmstrip        );
 Vue.component( 'nav-menu',          NavMenu          );
 Vue.component( 'subscription-menu', SubscriptionMenu );
 Vue.component( 'view-switcher',     ViewSwitcher     );
+Vue.component( 'user-block',        UserBlock        );
 // Vue.component( '',                             );
 
 //components with routes

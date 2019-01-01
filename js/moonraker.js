@@ -924,7 +924,7 @@ var Sidebar = function Sidebar() {
 };
 
 var WpFooter = function WpFooter() {
-  return __webpack_require__.e(/*! import() */ 32).then(__webpack_require__.bind(null, /*! ./components/wp-footer */ "./js/components/wp-footer/index.js"));
+  return __webpack_require__.e(/*! import() */ 33).then(__webpack_require__.bind(null, /*! ./components/wp-footer */ "./js/components/wp-footer/index.js"));
 };
 
 var NoPost = function NoPost() {
@@ -932,7 +932,7 @@ var NoPost = function NoPost() {
 };
 
 var WpHeader = function WpHeader() {
-  return __webpack_require__.e(/*! import() */ 33).then(__webpack_require__.bind(null, /*! ./components/wp-header */ "./js/components/wp-header/index.js"));
+  return __webpack_require__.e(/*! import() */ 34).then(__webpack_require__.bind(null, /*! ./components/wp-header */ "./js/components/wp-header/index.js"));
 };
 
 var DownArrow = function DownArrow() {
@@ -976,7 +976,11 @@ var SubscriptionMenu = function SubscriptionMenu() {
 };
 
 var ViewSwitcher = function ViewSwitcher() {
-  return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! ./components/view-switcher */ "./js/components/view-switcher/index.js"));
+  return __webpack_require__.e(/*! import() */ 32).then(__webpack_require__.bind(null, /*! ./components/view-switcher */ "./js/components/view-switcher/index.js"));
+};
+
+var UserBlock = function UserBlock() {
+  return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! ./components/user-block */ "./js/components/user-block/index.js"));
 }; // const             = () => import( './components/'             );
 // const components with routes
 
@@ -1002,7 +1006,7 @@ var Contact = function Contact() {
 };
 
 var Single = function Single() {
-  return __webpack_require__.e(/*! import() */ 34).then(__webpack_require__.bind(null, /*! ./components/single */ "./js/components/single/index.js"));
+  return __webpack_require__.e(/*! import() */ 35).then(__webpack_require__.bind(null, /*! ./components/single */ "./js/components/single/index.js"));
 };
 
 var Page = function Page() {
@@ -1081,7 +1085,8 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('content-section', Content
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('filmstrip', Filmstrip);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('nav-menu', NavMenu);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('subscription-menu', SubscriptionMenu);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('view-switcher', ViewSwitcher); // Vue.component( '',                             );
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('view-switcher', ViewSwitcher);
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('user-block', UserBlock); // Vue.component( '',                             );
 //components with routes
 
 var VPageNotFound = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('page-not-found', PageNotFound);

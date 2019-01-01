@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[31],{
 
-/***/ "./js/components/view-switcher/index.js":
-/*!**********************************************!*\
-  !*** ./js/components/view-switcher/index.js ***!
-  \**********************************************/
+/***/ "./js/components/user-block/index.js":
+/*!*******************************************!*\
+  !*** ./js/components/user-block/index.js ***!
+  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12,49 +12,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/view-switcher/template.html"),
+  template: __webpack_require__(/*! ./template.html */ "./js/components/user-block/template.html"),
   data: function data() {
     return {
-      user: {},
-      viewingAs: 'admin'
+      user: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user,
+      loginForm: {
+        user: '',
+        pass: '',
+        credType: 'link',
+        options: [{
+          text: 'Send login token',
+          value: 'link'
+        }, {
+          text: 'Enter password',
+          value: 'pass'
+        }],
+        link: true
+      }
     };
   },
-  mounted: function mounted() {
-    this.user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
-  },
   methods: {
-    setAs: function setAs(name) {
-      var as = this.user.as;
-      as.logged_in = as.subscriber = as.premium = as.admin = false;
-      this.viewingAs = name;
-
-      switch (name) {
-        case 'admin':
-          as.admin = true;
-
-        case 'premium':
-          as.premium = true;
-
-        case 'subscriber':
-          as.subscriber = true;
-
-        case 'logged-in user':
-          as.logged_in = true;
-      }
+    login: function login() {},
+    logout: function logout() {}
+  },
+  computed: {
+    loggedIn: function loggedIn() {
+      return this.user && this.user.id;
     }
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/view-switcher/template.html":
-/*!***************************************************!*\
-  !*** ./js/components/view-switcher/template.html ***!
-  \***************************************************/
+/***/ "./js/components/user-block/template.html":
+/*!************************************************!*\
+  !*** ./js/components/user-block/template.html ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<b-dd id=\"view-switcher\" :text=\"'Viewing as ' + viewingAs\" right\n      :class=\"{ hidden : !user.as }\">\n  <b-dd-item @click=\"setAs('public')\">public</b-dd-item>\n  <b-dd-item @click=\"setAs('logged-in user')\">logged-in user</b-dd-item>\n  <b-dd-item @click=\"setAs('subscriber')\">subscriber</b-dd-item>\n  <b-dd-item @click=\"setAs('admin')\">admin</b-dd-item>\n</b-dd>\n";
+module.exports = "<b-dd>\n  <template slot=\"button-content\">\n    <span class=\"dashicons dashicons-admin-users\"></span>\n    {{ loggedIn ? user.display_name: 'sign in' }}\n  </template>\n  <b-dd-item v-if=\"loggedIn\" @click=\"logout\">log out</b-dd-item>\n  <b-form v-else>\n    <b-form-group id=\"login-username\"\n                  label=\"username or email address\"\n                  label-for=\"username\">\n      <b-form-input id=\"username\"\n                    type=\"email\"\n                    v-model=\"loginForm.user\"\n                    required></b-form-input>\n    </b-form-group>\n    <b-form-radio-group v-model=\"credType\" :options=\"options\">\n    </b-form-radio-group>\n    <b-form-group v-if=\"credType == 'pass'\"\n                  id=\"login-password\"\n                  label=\"or enter password\"\n                  label-for=\"username\">\n      <b-form-input id=\"password\"\n                    type=\"password\"\n                    :disabled=\"loginForm.link\"\n                    v-model=\"loginForm.pass\"\n                    required></b-form-input>\n    </b-form-group>\n    <b-btn type=\"submit\">login</b-btn> or <b-btn tyye=\"submit\">sign-up</b-btn>\n  </b-form>\n</b-dd>\n";
 
 /***/ })
 
