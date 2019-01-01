@@ -1,7 +1,8 @@
-<input class="form-control input-sm search-box"
-       type="text" name="search"
-       placeholder="search term..."
-       @keyup.enter="doSearch"
-       v-model="searchTerm"
-/>
+<div class="search-wrapper col-3">
+  <input class="form-control input-sm search-box"
+         type="text" name="search"
+         placeholder="search term..."
+         @keyup.enter="doSearch"
+         v-model="searchTerm" />
+</div>
 <!-- TODO: make into select-list -->

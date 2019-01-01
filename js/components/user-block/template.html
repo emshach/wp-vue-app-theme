@@ -1,0 +1,30 @@
+<b-dd>
+  <template slot="button-content">
+    <span class="dashicons dashicons-admin-users"></span>
+    {{ loggedIn ? user.display_name: 'sign in' }}
+  </template>
+  <b-dd-item v-if="loggedIn" @click="logout">log out</b-dd-item>
+  <b-form v-else>
+    <b-form-group id="login-username"
+                  label="username or email address"
+                  label-for="username">
+      <b-form-input id="username"
+                    type="email"
+                    v-model="loginForm.user"
+                    required></b-form-input>
+    </b-form-group>
+    <b-form-radio-group v-model="credType" :options="options">
+    </b-form-radio-group>
+    <b-form-group v-if="credType == 'pass'"
+                  id="login-password"
+                  label="or enter password"
+                  label-for="username">
+      <b-form-input id="password"
+                    type="password"
+                    :disabled="loginForm.link"
+                    v-model="loginForm.pass"
+                    required></b-form-input>
+    </b-form-group>
+    <b-btn type="submit">login</b-btn> or <b-btn tyye="submit">sign-up</b-btn>
+  </b-form>
+</b-dd>

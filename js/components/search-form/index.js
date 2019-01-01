@@ -1,5 +1,13 @@
 export default {
   template: require( './template.html' ),
+  data() {
+    var searchTerm = this.$route.query.term 
+        ? this.$route.query.term : ""; 
+    return {
+      searchTerm : searchTerm,
+      open: !!searchTerm
+    };
+  }, 
   methods : {
     doSearch() { 
       this.$router.push(
@@ -7,15 +15,11 @@ export default {
             query: {    
               term: this.searchTerm
             }}); 
+    },
+    toggle() {
+      this.open = !this.open;
     }
   },
-  data() {
-    var searchTerm = this.$route.query.term 
-        ? this.$route.query.term : ""; 
-    return {
-      searchTerm : searchTerm          
-    };
-  }, 
   watch : {
     '$route'( to, from ) {    
       var searchTerm = to.query.term || ""; 

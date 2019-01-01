@@ -152,11 +152,17 @@ main {
 #banner-notices {
   width: 100%; }
 
+.action-bar {
+  display: flex;
+  float: right; }
+
+.action-bar > * {
+  float: right; }
+
 .search-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  float: right;
   overflow: hidden; }
 
 .search-wrapper > .search-box {

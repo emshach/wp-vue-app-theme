@@ -12,11 +12,17 @@
 #banner-notices {
   width: 100%
 }
+.action-bar {
+  display:flex;
+  float: right;
+  > * {
+    float: right;
+  }
+}
 .search-wrapper {
   display:flex;
   align-items: center;
   justify-content: center;
-  float: right;
   overflow: hidden;
   >.search-box {
     margin-top: 1em;
