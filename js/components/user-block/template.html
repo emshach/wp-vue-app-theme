@@ -16,15 +16,15 @@
     <b-form-radio-group v-model="credType" :options="options">
     </b-form-radio-group>
     <b-form-group v-if="credType == 'pass'"
-                  id="login-password"
-                  label="or enter password"
-                  label-for="username">
+                  id="login-password">
       <b-form-input id="password"
                     type="password"
                     :disabled="loginForm.link"
                     v-model="loginForm.pass"
                     required></b-form-input>
     </b-form-group>
-    <b-btn type="submit">login</b-btn> or <b-btn tyye="submit">sign-up</b-btn>
+    <b-form-group class="login-actions">
+      <b-btn type="submit">login</b-btn> or <b-btn tyye="submit">sign-up</b-btn>
+    </b-form-group>
   </b-form>
 </b-dd>

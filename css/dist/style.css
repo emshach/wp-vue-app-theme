@@ -160,10 +160,22 @@ main {
 .action-bar > * {
   float: right; }
 
+#user * {
+  font-size: 14px;
+  font-weight: normal; }
+
 #user > button {
   background: transparent;
   border: 0 none;
   text-shadow: 0 0px 2px rgba(0, 0, 0, 0.3); }
+
+#user form {
+  padding: 10px;
+  min-width: 16em; }
+
+#user form .login-actions {
+  display: flex;
+  margin: 0 auto; }
 
 .search-wrapper {
   position: relative;
