@@ -154,25 +154,36 @@ main {
 
 .action-bar {
   display: flex;
-  float: right; }
+  float: right;
+  padding-top: 1em; }
 
 .action-bar > * {
   float: right; }
 
 .search-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden; }
 
 .search-wrapper > .search-box {
-  margin-top: 1em;
   margin-right: -3em;
   padding-left: 30px;
   padding-right: 3em;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
   width: 20em; }
+
+.search-wrapper > .dashicons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 26px;
+  height: 30px;
+  width: 30px;
+  padding: 3px;
+  vertical-align: middle; }
 
 #bg-image-wrapper {
   position: absolute;
