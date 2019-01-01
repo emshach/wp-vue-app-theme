@@ -6,12 +6,11 @@ export default {
       user: store.state.user,
       loginForm: {
         user: '',
-        pass: '',
-        credType: 'link',
-        options: [{ text: 'Send login token', value: 'link' },
-                  { text: 'Enter password', value: 'pass' }],
-        link: true
-      }
+        pass: ''
+      },
+      credType: 'link',
+      options: [{ text: 'Send login token', value: 'link' },
+                { text: 'Enter password', value: 'pass' }]
     };
   },
   methods: {

@@ -18,17 +18,16 @@ __webpack_require__.r(__webpack_exports__);
       user: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user,
       loginForm: {
         user: '',
-        pass: '',
-        credType: 'link',
-        options: [{
-          text: 'Send login token',
-          value: 'link'
-        }, {
-          text: 'Enter password',
-          value: 'pass'
-        }],
-        link: true
-      }
+        pass: ''
+      },
+      credType: 'link',
+      options: [{
+        text: 'Send login token',
+        value: 'link'
+      }, {
+        text: 'Enter password',
+        value: 'pass'
+      }]
     };
   },
   methods: {
