@@ -170,12 +170,18 @@ main {
   text-shadow: 0 0px 2px rgba(0, 0, 0, 0.3); }
 
 #user form {
-  padding: 10px;
+  padding: 10px 10px 0;
   min-width: 16em; }
 
 #user form .login-actions {
-  display: flex;
-  margin: 0 auto; }
+  margin: 10px auto 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+
+#user form .login-actions .btn {
+  padding: 3px 16px;
+  margin: 0 5px;
+  width: 40%; }
 
 .search-wrapper {
   position: relative;
