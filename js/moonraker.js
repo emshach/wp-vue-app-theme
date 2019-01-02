@@ -980,7 +980,7 @@ var ViewSwitcher = function ViewSwitcher() {
 };
 
 var UserBlock = function UserBlock() {
-  return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! ./components/user-block */ "./js/components/user-block/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, /*! ./components/user-block */ "./js/components/user-block/index.js"));
 }; // const             = () => import( './components/'             );
 // const components with routes
 

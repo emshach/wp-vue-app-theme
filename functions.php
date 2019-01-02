@@ -171,7 +171,7 @@ function mrk_get_current_user_info() {
                 'debug' => $user->membership_level
             ]
             : false ),
-        'logout' => urldecode( wp_logout_url( home_url() )),
+        'logout' => wp_logout_url( home_url() ),
         'as' => ( current_user_can( 'see_all_content' )
                   ? [
                       'logged_in'  => true,

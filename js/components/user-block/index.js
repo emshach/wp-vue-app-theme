@@ -1,4 +1,5 @@
 import store from '../../lib/store';
+import he from 'he';
 export default {
   template: require( './template.html' ),
   data() {
@@ -15,8 +16,6 @@ export default {
   methods: {
     login() {
     },
-    logout() {
-    },
     nolink() {
       this.loginForm.link = false;
     },
@@ -30,6 +29,9 @@ export default {
   computed: {
     loggedIn() {
       return this.user && this.user.id;
+    },
+    logoutLink() {
+      return he.decode( this.user.logout );
     }
   }
 };
