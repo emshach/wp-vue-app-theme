@@ -8,7 +8,8 @@ export default {
         user: '',
         pass: '',
         link: true
-      }
+      },
+      tokenLogin: false
     };
   },
   methods: {
@@ -18,6 +19,12 @@ export default {
     },
     nolink() {
       this.loginForm.link = false;
+    },
+    sendLink() {
+      this.loginToken = true;
+    },
+    enterPass() {
+      this.loginToken = false;
     }
   },
   computed: {

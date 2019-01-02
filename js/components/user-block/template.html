@@ -13,17 +13,25 @@
                     v-model="loginForm.user"
                     required></b-form-input>
     </b-form-group>
-    <b-form-group id="login-password"
-                  label="password"
-                  label-for="username">
-      <b-form-input id="password"
-                    type="password"
-                    @click="nolink"
-                    v-model="loginForm.pass"
-                    required></b-form-input>
-    </b-form-group>
-    <b-form-checkbox v-model="loginForm.link">
-      or send login link</b-form-checkbox>
+    <transition-group name="fade-fast" mode="out-in">
+      <template v-if="tokenLogin">
+        <b-alert show>An email will be sent with a link that will log you in
+          when you click it. This link will expire in 10 minutes.</b-alert>
+        <b-btn variant="link" @click="enterPass">enter password instead</b-btn>
+      </template>
+      <template v-else>
+        <b-form-group id="login-password"
+                      label="password"
+                      label-for="username">
+          <b-form-input id="password"
+                        type="password"
+                        @click="nolink"
+                        v-model="loginForm.pass"
+                        required></b-form-input>
+        </b-form-group>
+        <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
+      </template>
+    </transition-group>
     <b-form-group class="login-actions">
       <b-btn type="submit" variant="primary">login</b-btn>
       or
