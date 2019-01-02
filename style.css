@@ -188,7 +188,8 @@ main {
   font-size: large; }
 
 #user form #login-password {
-  min-height: 7.5em; }
+  min-height: 7.5em;
+  margin-bottom: 10px; }
 
 #user form #login-password .alert {
   margin-bottom: 0; }
