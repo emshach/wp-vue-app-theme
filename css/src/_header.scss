@@ -84,11 +84,11 @@
   }
   &.open {
     >.search-box {
-      animation: close-search-input 1s ease;
+      animation: open-search-input 1s ease;
       width: 20em;
     }
     >.icon {
-      animation: close-search-icon 1s ease;
+      animation: open-search-icon 1s ease;
     }
   }
 }

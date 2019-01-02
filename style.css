@@ -222,11 +222,11 @@ main {
   text-decoration: none !important; }
 
 .search-wrapper.open > .search-box {
-  animation: close-search-input 1s ease;
+  animation: open-search-input 1s ease;
   width: 20em; }
 
 .search-wrapper.open > .icon {
-  animation: close-search-icon 1s ease; }
+  animation: open-search-icon 1s ease; }
 
 #bg-image-wrapper {
   position: absolute;
