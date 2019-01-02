@@ -3,8 +3,8 @@
     <span class="dashicons dashicons-admin-users"></span>
     {{ loggedIn ? user.display_name: 'sign in' }}
   </template>
-  <b-dd-item v-if="loggedIn" @click="logout">log out</b-dd-item>
-  <b-form v-else>
+  <b-dd-item v-if="loggedIn" :href="user.logout">log out</b-dd-item>
+  <b-form v-else @submit="login">
     <b-form-group id="login-username"
                   label="username or email address"
                   label-for="username">

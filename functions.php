@@ -157,20 +157,21 @@ function mrk_get_current_user_info() {
     if (! is_user_logged_in()) return '';
     $user = wp_get_current_user();
     return [
-        'id' => $user->ID,
-        'name' => $user->user_login,
-        'first_name' => $user->user_firstname,
-        'last_name' => $user->user_lastname,
+        'id'           => $user->ID,
+        'name'         => $user->user_login,
+        'first_name'   => $user->user_firstname,
+        'last_name'    => $user->user_lastname,
         'display_name' => $user->display_name,
-        'email' => $user->user_email,
-        'membership' => (
+        'email'        => $user->user_email,
+        'membership'   => (
             $user->membership_level && $user->membership_level->id
             ? [
-                'id'   => $user->membership_level->id,
-                'name' => $user->membership_level->name,
+                'id'    => $user->membership_level->id,
+                'name'  => $user->membership_level->name,
                 'debug' => $user->membership_level
             ]
             : false ),
+        'logout' => wp_logout_url( home_url() ),
         'as' => ( current_user_can( 'see_all_content' )
                   ? [
                       'logged_in'  => true,
