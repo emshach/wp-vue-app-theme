@@ -48,7 +48,7 @@
       font-size: large;
     }
     #login-password {
-      min-height: 7.5em;
+      min-height: 8.5em;
       margin-bottom: 10px;
       .alert {
         margin-bottom: 0;
@@ -64,13 +64,13 @@
         width: 43%;
       }
     }
-    .rc-anchor.rc-anchor-normal {
-      border: 0 none;
-      background: transparent;
-      box-shadow: none;
-      border-radius: 0;
-    }
   }
+}
+.rc-anchor.rc-anchor-normal {
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
 }
 .search-wrapper {
   position: relative;

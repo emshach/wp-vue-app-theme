@@ -188,7 +188,7 @@ main {
   font-size: large; }
 
 #user form #login-password {
-  min-height: 7.5em;
+  min-height: 8.5em;
   margin-bottom: 10px; }
 
 #user form #login-password .alert {
@@ -204,7 +204,7 @@ main {
   margin: 0 5px;
   width: 43%; }
 
-#user form .rc-anchor.rc-anchor-normal {
+.rc-anchor.rc-anchor-normal {
   border: 0 none;
   background: transparent;
   box-shadow: none;
