@@ -8,6 +8,7 @@ import { FlowerSpinner } from 'epic-spinners';
 import VueCarousel from 'vue-carousel';
 import VueLazyload from 'vue-lazyload-img';
 import VueScrollto from 'vue-scrollto';
+import VueRecaptcha from 'vue-recaptcha';
 import store from './lib/store';
 import wpapix from './lib/wpapix';
 import routeEvents from './lib/route-events';
@@ -85,6 +86,7 @@ Vue.component( 'nav-menu',          NavMenu          );
 Vue.component( 'subscription-menu', SubscriptionMenu );
 Vue.component( 'view-switcher',     ViewSwitcher     );
 Vue.component( 'user-block',        UserBlock        );
+Vue.componentt( 'vue-recaptcha',    VueRecaptcha     );
 // Vue.component( '',                             );
 
 //components with routes

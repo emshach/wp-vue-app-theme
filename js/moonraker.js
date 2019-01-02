@@ -894,11 +894,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_lazyload_img__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_lazyload_img__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-scrollto */ "./node_modules/vue-scrollto/vue-scrollto.js");
 /* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_scrollto__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./lib/store */ "./js/lib/store.js");
-/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./lib/wpapix */ "./js/lib/wpapix.js");
-/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./lib/route-events */ "./js/lib/route-events.js");
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./lib/store */ "./js/lib/store.js");
+/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./lib/wpapix */ "./js/lib/wpapix.js");
+/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./lib/route-events */ "./js/lib/route-events.js");
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14__);
+
 
 
 
@@ -1086,7 +1088,8 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('filmstrip', Filmstrip);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('nav-menu', NavMenu);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('subscription-menu', SubscriptionMenu);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('view-switcher', ViewSwitcher);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('user-block', UserBlock); // Vue.component( '',                             );
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('user-block', UserBlock);
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].componentt('vue-recaptcha', vue_recaptcha__WEBPACK_IMPORTED_MODULE_10__["default"]); // Vue.component( '',                             );
 //components with routes
 
 var VPageNotFound = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('page-not-found', PageNotFound);
@@ -1107,7 +1110,7 @@ var VMembers = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('members', 
 var VMemberConfirm = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('member-confirm', MemberConfirm);
 var VUpload = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('upload', Upload);
 var VShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop);
-window.store = _lib_store__WEBPACK_IMPORTED_MODULE_10__["default"]; // Define some routes
+window.store = _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"]; // Define some routes
 
 var routes = [{
   path: '/',
@@ -1128,22 +1131,22 @@ var routes = [{
   path: '/preview/:program/:release',
   component: VPreviewRelease,
   name: 'preview-release',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_12__["default"].toPreviewRelease
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreviewRelease
 }, {
   path: '/preview/:path',
   component: VPreviewRelease,
   name: 'preview',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_12__["default"].toPreview
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreview
 }, {
   path: '/page/:path',
   component: VPage,
   name: 'page',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_12__["default"].toPath
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: '/post/:path',
   component: VPost,
   name: 'post',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_12__["default"].toPath
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: '/category/:category',
   component: VArchive,
@@ -1198,12 +1201,12 @@ var routes = [{
   path: '/:program/:release',
   component: VRelease,
   name: 'release',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_12__["default"].toRelease
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toRelease
 }, {
   path: '/:path',
   component: VSingle,
   name: 'single',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_12__["default"].toPath
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
 }, {
   path: "*",
   component: VPageNotFound
@@ -1216,7 +1219,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
 // fetch post first so we can decide some more specific routing
 
 router.beforeEach(function (to, from, next) {
-  if (to.meta.auth && !_lib_store__WEBPACK_IMPORTED_MODULE_10__["default"].state.user) {
+  if (to.meta.auth && !_lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.user) {
     next({
       path: '/login' + to.path
     });
@@ -1233,7 +1236,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
       "url": "",
       "description": ""
     },
-    sstate: _lib_store__WEBPACK_IMPORTED_MODULE_10__["default"].state,
+    sstate: _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state,
     user: {},
     menu: []
   },
@@ -42964,6 +42967,180 @@ function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var defer = function defer() {
+  var state = false; // Resolved or not
+  var callbacks = [];
+  var resolve = function resolve(val) {
+    if (state) {
+      return;
+    }
+
+    state = true;
+    for (var i = 0, len = callbacks.length; i < len; i++) {
+      callbacks[i](val);
+    }
+  };
+
+  var then = function then(cb) {
+    if (!state) {
+      callbacks.push(cb);
+      return;
+    }
+    cb();
+  };
+
+  var deferred = {
+    resolved: function resolved() {
+      return state;
+    },
+
+    resolve: resolve,
+    promise: {
+      then: then
+    }
+  };
+  return deferred;
+};
+
+function createRecaptcha() {
+  var deferred = defer();
+
+  return {
+    notify: function notify() {
+      deferred.resolve();
+    },
+    wait: function wait() {
+      return deferred.promise;
+    },
+    render: function render(ele, options, cb) {
+      this.wait().then(function () {
+        cb(window.grecaptcha.render(ele, options));
+      });
+    },
+    reset: function reset(widgetId) {
+      if (typeof widgetId === 'undefined') {
+        return;
+      }
+
+      this.assertLoaded();
+      this.wait().then(function () {
+        return window.grecaptcha.reset(widgetId);
+      });
+    },
+    execute: function execute(widgetId) {
+      if (typeof widgetId === 'undefined') {
+        return;
+      }
+
+      this.assertLoaded();
+      this.wait().then(function () {
+        return window.grecaptcha.execute(widgetId);
+      });
+    },
+    checkRecaptchaLoad: function checkRecaptchaLoad() {
+      if (window.hasOwnProperty('grecaptcha') && window.grecaptcha.hasOwnProperty('render')) {
+        this.notify();
+      }
+    },
+    assertLoaded: function assertLoaded() {
+      if (!deferred.resolved()) {
+        throw new Error('ReCAPTCHA has not been loaded');
+      }
+    }
+  };
+}
+
+var recaptcha = createRecaptcha();
+
+if (typeof window !== 'undefined') {
+  window.vueRecaptchaApiLoaded = recaptcha.notify;
+}
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var VueRecaptcha = {
+  name: 'VueRecaptcha',
+  props: {
+    sitekey: {
+      type: String,
+      required: true
+    },
+    theme: {
+      type: String
+    },
+    badge: {
+      type: String
+    },
+    type: {
+      type: String
+    },
+    size: {
+      type: String
+    },
+    tabindex: {
+      type: String
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    recaptcha.checkRecaptchaLoad();
+    var opts = _extends({}, this.$props, {
+      callback: this.emitVerify,
+      'expired-callback': this.emitExpired
+    });
+    var container = this.$slots.default ? this.$el.children[0] : this.$el;
+    recaptcha.render(container, opts, function (id) {
+      _this.$widgetId = id;
+      _this.$emit('render', id);
+    });
+  },
+
+  methods: {
+    reset: function reset() {
+      recaptcha.reset(this.$widgetId);
+    },
+    execute: function execute() {
+      recaptcha.execute(this.$widgetId);
+    },
+    emitVerify: function emitVerify(response) {
+      this.$emit('verify', response);
+    },
+    emitExpired: function emitExpired() {
+      this.$emit('expired');
+    }
+  },
+  render: function render(h) {
+    return h('div', {}, this.$slots.default);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (VueRecaptcha);
 
 
 /***/ }),

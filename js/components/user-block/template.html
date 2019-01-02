@@ -30,6 +30,8 @@
                       required></b-form-input>
         <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
       </b-form-group>
+      <b-form-group>
+        <vue-recaptcha sitekey="recaptcha.key"></vue-recaptcha>
     </transition>
     <b-form-group class="login-actions">
       <b-btn type="submit" variant="primary">login</b-btn>

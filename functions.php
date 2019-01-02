@@ -999,7 +999,8 @@ function mrk_enqueue_scripts() {
         'menus' => [
             'nav' => mrk_filter_menu_items( wp_get_nav_menu_items( 'nav' ))
         ],
-        'user' =>  mrk_get_current_user_info()
+        'user' =>  mrk_get_current_user_info(),
+        'recaptcha-key' => get_option( 'wr_no_captcha_site_key' )
     ];
     wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 }

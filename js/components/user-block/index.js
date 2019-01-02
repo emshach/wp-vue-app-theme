@@ -5,6 +5,9 @@ export default {
   data() {
     return {
       user: store.state.user,
+      recaptcha: {
+        key: store.state.recaptcha_key
+      },
       loginForm: {
         user: '',
         pass: '',
