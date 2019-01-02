@@ -204,7 +204,7 @@ main {
   margin: 0 5px;
   width: 43%; }
 
-.rc-anchor.rc-anchor-normal {
+.rc-anchor.rc-anchor-normal.rc-anchor-light {
   border: 0 none;
   background: transparent;
   box-shadow: none;
