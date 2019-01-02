@@ -178,6 +178,18 @@ main {
   padding: 10px 10px 0;
   min-width: 16em; }
 
+#user form label {
+  font-size: small;
+  padding-bottom: 0;
+  color: grey; }
+
+#user form input {
+  height: 2.5em;
+  font-size: large; }
+
+#user form #login-password {
+  min-height: 7.5em; }
+
 #user form .login-actions {
   margin: 10px auto 0;
   padding-top: 10px;
@@ -187,6 +199,12 @@ main {
   padding: 3px 16px;
   margin: 0 5px;
   width: 43%; }
+
+#user form .rc-anchor.rc-anchor-normal {
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0; }
 
 .search-wrapper {
   position: relative;

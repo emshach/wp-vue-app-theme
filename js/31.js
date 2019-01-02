@@ -12,6 +12,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
 /* harmony import */ var he__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! he */ "./node_modules/he/he.js");
 /* harmony import */ var he__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(he__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -24,15 +30,25 @@ __webpack_require__.r(__webpack_exports__);
         response: null
       },
       loginForm: {
-        user: '',
-        pass: '',
-        link: true
+        log: '',
+        pwd: '',
+        'g-recaptcha-response': ''
       },
       tokenLogin: false
     };
   },
   methods: {
-    login: function login() {},
+    login: function login() {
+      if (this.tokenLogin) {// passwordless-login
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/wp-login.php', this.loginForm).then(function (response) {
+          // success!
+          sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()('Successfully logged in! Welcome!');
+          window.location.reload();
+        }).catch(function (error) {// sorry! try again
+        });
+      }
+    },
     nolink: function nolink() {
       this.loginForm.link = false;
     },
@@ -65,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<b-dd id=\"user\">\n  <template slot=\"button-content\">\n    <span class=\"dashicons dashicons-admin-users\"></span>\n    {{ loggedIn ? user.display_name: 'sign in' }}\n  </template>\n  <b-dd-item v-if=\"loggedIn\" :href=\"logoutLink\">log out</b-dd-item>\n  <b-form v-else @submit=\"login\">\n    <b-form-group id=\"login-username\"\n                  label=\"username or email address\"\n                  label-for=\"username\">\n      <b-form-input id=\"username\"\n                    type=\"email\"\n                    v-model=\"loginForm.user\"\n                    required></b-form-input>\n    </b-form-group>\n    <transition name=\"fade-fast\" mode=\"out-in\">\n      <div v-if=\"tokenLogin\">\n        <b-alert show>An email will be sent with a link that will log you in\n          when you click it. This link will expire in 10 minutes.</b-alert>\n        <b-btn variant=\"link\" @click=\"enterPass\">enter password instead</b-btn>\n      </div>\n      <b-form-group v-else\n                    id=\"login-password\"\n                    label=\"password\"\n                    label-for=\"username\">\n        <b-form-input id=\"password\"\n                      type=\"password\"\n                      @click=\"nolink\"\n                      v-model=\"loginForm.pass\"\n                      required></b-form-input>\n        <b-btn variant=\"link\" @click=\"sendLink\">email login link instead</b-btn>\n      </b-form-group>\n    </transition>\n    <b-form-group>\n      <vue-recaptcha :sitekey=\"recaptcha.key\" @verify=\"recaptchaSuccess\">\n      </vue-recaptcha>\n    </b-form-group>\n    <b-form-group class=\"login-actions\">\n      <b-btn type=\"submit\" variant=\"primary\">login</b-btn>\n      or\n      <b-btn type=\"submit\" variant=\"success\">sign-up</b-btn>\n    </b-form-group>\n  </b-form>\n</b-dd>\n";
+module.exports = "<b-dd id=\"user\">\n  <template slot=\"button-content\">\n    <span class=\"dashicons dashicons-admin-users\"></span>\n    {{ loggedIn ? user.display_name: 'sign in' }}\n  </template>\n  <b-dd-item v-if=\"loggedIn\" :href=\"logoutLink\">log out</b-dd-item>\n  <b-form v-else @submit=\"login\">\n    <b-form-group id=\"login-username\"\n                  label=\"username or email address\"\n                  label-for=\"username\">\n      <b-form-input id=\"username\"\n                    type=\"email\"\n                    v-model=\"loginForm.user\"\n                    required></b-form-input>\n    </b-form-group>\n    <transition name=\"fade-fast\" mode=\"out-in\">\n      <div id=\"login-password\" v-if=\"tokenLogin\">\n        <b-alert show>An email will be sent with a link that will log you in\n          when you click it. This link will expire in 10 minutes.</b-alert>\n        <b-btn variant=\"link\" @click=\"enterPass\">enter password instead</b-btn>\n      </div>\n      <b-form-group v-else\n                    id=\"login-password\"\n                    label=\"password\"\n                    label-for=\"username\">\n        <b-form-input id=\"password\"\n                      type=\"password\"\n                      @click=\"nolink\"\n                      v-model=\"loginForm.pass\"\n                      required></b-form-input>\n        <b-btn variant=\"link\" @click=\"sendLink\">email login link instead</b-btn>\n      </b-form-group>\n    </transition>\n    <b-form-group>\n      <vue-recaptcha :sitekey=\"recaptcha.key\" @verify=\"recaptchaSuccess\">\n      </vue-recaptcha>\n    </b-form-group>\n    <b-form-group class=\"login-actions\">\n      <b-btn type=\"submit\" variant=\"primary\">login</b-btn>\n      or\n      <b-btn type=\"submit\" variant=\"success\">sign-up</b-btn>\n    </b-form-group>\n  </b-form>\n</b-dd>\n";
 
 /***/ })
 

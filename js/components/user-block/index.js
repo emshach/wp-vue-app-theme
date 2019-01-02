@@ -1,5 +1,7 @@
 import store from '../../lib/store';
 import he from 'he';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 export default {
   template: require( './template.html' ),
   data() {
@@ -10,15 +12,29 @@ export default {
         response: null
       },
       loginForm: {
-        user: '',
-        pass: '',
-        link: true
+        log: '',
+        pwd: '',
+        'g-recaptcha-response':''
       },
       tokenLogin: false
     };
   },
   methods: {
     login() {
+      if ( this.tokenLogin ) {
+        // passwordless-login
+      }
+      else {
+        axios.post ('/wp-login.php', this.loginForm )
+           .then( response => {
+             // success!
+             Swal( 'Successfully logged in! Welcome!' );
+             window.location.reload();
+           })
+           .catch( error => {
+             // sorry! try again
+           });
+      }
     },
     nolink() {
       this.loginForm.link = false;

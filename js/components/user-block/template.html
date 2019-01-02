@@ -14,7 +14,7 @@
                     required></b-form-input>
     </b-form-group>
     <transition name="fade-fast" mode="out-in">
-      <div v-if="tokenLogin">
+      <div id="login-password" v-if="tokenLogin">
         <b-alert show>An email will be sent with a link that will log you in
           when you click it. This link will expire in 10 minutes.</b-alert>
         <b-btn variant="link" @click="enterPass">enter password instead</b-btn>
