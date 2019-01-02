@@ -21,10 +21,10 @@ export default {
       this.loginForm.link = false;
     },
     sendLink() {
-      this.loginToken = true;
+      this.tokenLogin = true;
     },
     enterPass() {
-      this.loginToken = false;
+      this.tokenLogin = false;
     }
   },
   computed: {

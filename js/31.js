@@ -31,10 +31,10 @@ __webpack_require__.r(__webpack_exports__);
       this.loginForm.link = false;
     },
     sendLink: function sendLink() {
-      this.loginToken = true;
+      this.tokenLogin = true;
     },
     enterPass: function enterPass() {
-      this.loginToken = false;
+      this.tokenLogin = false;
     }
   },
   computed: {
