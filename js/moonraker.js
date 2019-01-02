@@ -1089,7 +1089,7 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('nav-menu', NavMenu);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('subscription-menu', SubscriptionMenu);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('view-switcher', ViewSwitcher);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('user-block', UserBlock);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].componentt('vue-recaptcha', vue_recaptcha__WEBPACK_IMPORTED_MODULE_10__["default"]); // Vue.component( '',                             );
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('vue-recaptcha', vue_recaptcha__WEBPACK_IMPORTED_MODULE_10__["default"]); // Vue.component( '',                             );
 //components with routes
 
 var VPageNotFound = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('page-not-found', PageNotFound);

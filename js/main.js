@@ -86,7 +86,7 @@ Vue.component( 'nav-menu',          NavMenu          );
 Vue.component( 'subscription-menu', SubscriptionMenu );
 Vue.component( 'view-switcher',     ViewSwitcher     );
 Vue.component( 'user-block',        UserBlock        );
-Vue.componentt( 'vue-recaptcha',    VueRecaptcha     );
+Vue.component( 'vue-recaptcha',     VueRecaptcha     );
 // Vue.component( '',                             );
 
 //components with routes
