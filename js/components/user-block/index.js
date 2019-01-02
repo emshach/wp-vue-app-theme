@@ -6,7 +6,8 @@ export default {
     return {
       user: store.state.user,
       recaptcha: {
-        key: store.state.recaptcha_key
+        key: store.state.recaptcha_key,
+        response: null
       },
       loginForm: {
         user: '',
@@ -27,6 +28,9 @@ export default {
     },
     enterPass() {
       this.tokenLogin = false;
+    },
+    recaptchaSuccess( response ) {
+      this.recaptcha.response = response;
     }
   },
   computed: {

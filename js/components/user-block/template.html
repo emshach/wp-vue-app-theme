@@ -32,7 +32,8 @@
       </b-form-group>
     </transition>
     <b-form-group>
-      <vue-recaptcha :sitekey="recaptcha.key"></vue-recaptcha>
+      <vue-recaptcha :sitekey="recaptcha.key" @verify="recaptchaSuccess">
+      </vue-recaptcha>
     </b-form-group>
     <b-form-group class="login-actions">
       <b-btn type="submit" variant="primary">login</b-btn>
