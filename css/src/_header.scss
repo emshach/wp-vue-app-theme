@@ -49,6 +49,9 @@
     }
     #login-password {
       min-height: 7.5em;
+      .alert {
+        margin-bottom: 0;
+      }
     }
     .login-actions {
       margin: 10px auto 0;
