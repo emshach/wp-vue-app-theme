@@ -229,7 +229,8 @@ main {
   opacity: 1; }
 
 .search-wrapper.open > .icon {
-  animation: open-search-icon 0.3s ease; }
+  animation: open-search-icon 0.3s ease;
+  color: grey; }
 
 #bg-image-wrapper {
   position: absolute;
