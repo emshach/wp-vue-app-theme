@@ -208,14 +208,16 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 26px;
-  height: 30px;
-  width: 30px;
   padding: 3px;
   vertical-align: middle;
   color: grey;
   text-shadow: 0 0px 2px rgba(0, 0, 0, 0.3);
   animation: close-search-icon 1s ease; }
+
+.search-wrapper > .icon .dashicon {
+  font-size: 26px;
+  height: 30px;
+  width: 30px; }
 
 .search-wrapper.open > .search-box {
   animation: close-search-input 1s ease; }
