@@ -214,7 +214,8 @@ main {
   color: white;
   text-shadow: 0 0px 2px rgba(0, 0, 0, 0.3);
   animation: close-search-icon 1s ease;
-  text-decoration: none !important; }
+  text-decoration: none !important;
+  z-index: 20; }
 
 .search-wrapper > .icon .dashicons {
   font-size: 26px;
@@ -224,7 +225,8 @@ main {
 
 .search-wrapper.open > .search-box {
   animation: open-search-input 0.3s ease;
-  width: 20em; }
+  width: 20em;
+  opacity: 1; }
 
 .search-wrapper.open > .icon {
   animation: open-search-icon 0.3s ease; }
