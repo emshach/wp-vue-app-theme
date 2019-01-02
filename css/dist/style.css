@@ -204,7 +204,7 @@ main {
   width: 20em;
   animation: close-search-input 1s ease; }
 
-.search-wrapper > .dashicons {
+.search-wrapper > .icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -220,7 +220,7 @@ main {
 .search-wrapper.open > .search-box {
   animation: close-search-input 1s ease; }
 
-.search-wrapper.open > .dashicons {
+.search-wrapper.open > .icon {
   animation: close-search-icon 1s ease; }
 
 #bg-image-wrapper {

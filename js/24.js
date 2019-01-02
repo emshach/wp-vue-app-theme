@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div :class=\"[ 'search-form', 'search-wrapper', { open: open }]\">\n  <a href=\"#\" @click.stop=\"toggle\">\n    <span class=\"dashicons dashicons-search\"></span>\n  </a>\n  <input class=\"form-control input-sm search-box\"\n         type=\"text\" name=\"search\"\n         placeholder=\"search term...\"\n         @keyup.enter=\"doSearch\"\n         v-model=\"searchTerm\" />\n</div>\n<!-- TODO: make into select-list -->\n";
+module.exports = "<div :class=\"[ 'search-form', 'search-wrapper', { open: open }]\">\n  <a class=\"icon\" href=\"#\" @click.stop=\"toggle\">\n    <span class=\"dashicons dashicons-search\"></span>\n  </a>\n  <input class=\"form-control input-sm search-box\"\n         type=\"text\" name=\"search\"\n         placeholder=\"search term...\"\n         @keyup.enter=\"doSearch\"\n         v-model=\"searchTerm\" />\n</div>\n<!-- TODO: make into select-list -->\n";
 
 /***/ })
 

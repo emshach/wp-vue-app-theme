@@ -65,7 +65,7 @@
     width: 20em;
     animation: close-search-input 1s ease;
   }
-  >.dashicons {
+  >.icon {
     position: absolute;
     top: 0;
     left: 0;
@@ -82,7 +82,7 @@
     >.search-box {
       animation: close-search-input 1s ease;
     }
-    >.dashicons {
+    >.icon {
       animation: close-search-icon 1s ease;
     }
   }
