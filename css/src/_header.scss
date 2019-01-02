@@ -15,7 +15,7 @@
 .action-bar {
   display: flex;
   float: right;
-  padding-top: 1em;
+  padding: 1em 0 1em 10px;
   > * {
     float: right;
   }
@@ -30,9 +30,9 @@
     border: 0 none;
     text-shadow: 0 0px 2px rgba(0,0,0,0.3);
     > .dashicons {
-      font-size: 20px;
-      height: 20px;
-      width: 20px;
+      font-size: 21px;
+      height: 21px;
+      width: 21px;
     }
   }
   form {
@@ -63,6 +63,7 @@
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
     width: 20em;
+    animation: close-search-input 1s ease;
   }
   >.dashicons {
     position: absolute;
@@ -73,6 +74,17 @@
     width: 30px;
     padding: 3px;
     vertical-align: middle;
+    color: grey;
+    text-shadow: 0 0px 2px rgba(0,0,0,0.3);
+    animation: close-search-icon 1s ease;
+  }
+  &.open {
+    >.search-box {
+      animation: close-search-input 1s ease;
+    }
+    >.dashicons {
+      animation: close-search-icon 1s ease;
+    }
   }
 }
 #bg-image-wrapper {
@@ -210,4 +222,16 @@
   .dropdown-toggle:after {
     margin-left: 0.5em;
   }
+}
+@keyframes open-search-input {
+  to { width: 20em; }
+}
+@keyframes close-search-input {
+  to { width: 30px; }
+}
+@keyframes open-search-icon {
+  to { color: grey; }
+}
+@keyframes close-search-icon {
+  to { color: white; }
 }
