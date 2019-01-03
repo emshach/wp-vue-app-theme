@@ -1,6 +1,7 @@
 import store from '../../lib/store';
 import he from 'he';
-import request from 'request-promise-native';
+import qs from 'qs';
+import axios from 'axios';
 import Swal from 'sweetalert2';
 export default {
   template: require( './template.html' ),
@@ -48,7 +49,10 @@ export default {
       }
       this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
       this.loginForm.token = this.tokenLogin;
-      request.post( this.ajaxUrl, this.loginForm )
+      axios.post( this.ajaxUrl, qs.stringify(this.loginForm), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        }})
          .then( response => {
            console.log( 'login response', response );
            return;
