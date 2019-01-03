@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
           this.loginForm.login = '';
         }
 
-        return;
+        return false;
       }
 
       if (!this.recaptcha.response) {

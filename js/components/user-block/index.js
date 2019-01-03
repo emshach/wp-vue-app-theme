@@ -39,7 +39,7 @@ export default {
           this.loginForm.email = this.loginForm.login;
           this.loginForm.login = '';
         }
-        return;
+        return false;
       }
       if (! this.recaptcha.response ) {
         // TODO: warn
