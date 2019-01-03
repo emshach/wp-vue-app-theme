@@ -1127,8 +1127,8 @@ function mrk_ajax_register() {
 }
 
 function mrk_ajax_login_init() {
-    add_action( 'wp_aja_nopriv_mrklogin',    'mrk_ajax_login'    );
-    add_action( 'wp_aja_nopriv_mrkregister', 'mrk_ajax_register' );
+    add_action( 'wp_ajax_nopriv_mrklogin',    'mrk_ajax_login'    );
+    add_action( 'wp_ajax_nopriv_mrkregister', 'mrk_ajax_register' );
 }
 
 
