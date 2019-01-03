@@ -50,6 +50,8 @@ export default {
       this.loginForm.token = this.tokenLogin;
       axios.post( this.ajaxUrl, this.loginForm )
          .then( response => {
+           console.log( 'login response', response );
+           return;
            switch ( response.next ) {
            case 'wrong-password':
              this.action = 'login';

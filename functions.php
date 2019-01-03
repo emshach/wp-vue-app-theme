@@ -1045,10 +1045,85 @@ function mrk_register_menus() {
 
 function mrk_ajax_login() {
     check_ajax_referer( 'wp-bsh-ajax-security', 'sec_token' );
+    return( $_REQUEST );
     // TODO: check recaptcha
     $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
     $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
     $pass  = ( isset( $_REQUEST[ 'pass' ])  ? $_REQUEST[ 'pass' ]  : '' );
+    $token = ( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '' );
+    if ( preg_match( '/.+@.+\..+/', $login )) {
+        $email = $login;
+        $login = '';
+    }
+    if ( $email ) {
+        if ( email_exists( $email )) {
+            if ( $token ) {
+                // passwordless-login to email
+            } elseif ( $pass ) {
+                $user = wp_signon([ 'user_login'    => $email,
+                                    'user_password' => $pass,
+                                    'remember'      => true ], false );
+                if ( is_wp_error( $user )) {
+                    // wrong password
+                } else {
+                    // success, logged in
+                }
+            } else {
+                // wrong password
+            }
+        } elseif ( $pass ) {
+            // register user with new password
+        } elseif ( $token ) {
+            // register default
+        }
+    } elseif ( $login ) {
+        if ( username_exists( $login )) {
+            if ( $token ) {
+                // passwordless-login
+            } elseif ( $pass ) {
+                $user = wp_signon([ 'user_login'    => $login,
+                                    'user_password' => $pass,
+                                    'remember'      => true ], false );
+                if ( is_wp_error( $user )) {
+                    // wrong password
+                } else {
+                    // success, logged in
+                }
+            } else {
+                // wrong password
+            }
+        }
+    } else {
+        // no login given, what?
+    }
+}
+
+function mrk_ajax_register() {
+    check_ajax_referer( 'wp-bsh-ajax-security', 'sec_token' );
+    return( $_REQUEST );
+    // TODO: check recaptcha
+    $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
+    $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
+    $pass  = ( isset( $_REQUEST[ 'pass' ])  ? $_REQUEST[ 'pass' ]  : '' );
+    $token = ( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '' );
+    if ( email_exists( $email )) {
+        if ( $pass ) {
+            $user = wp_signon([ 'user_login'    => $email,
+                                'user_password' => $pass,
+                                'remember'      => true ], false );
+            if ( is_wp_error( $user )) {
+                // user exists, wrong password
+            } else {
+                // success, logged in
+            }
+        }
+    } elseif( username_exists( $login )) {
+        // username exists
+    } elseif ( $pass ) {
+        // register new user with password
+    } else {
+        // register default
+    }
 }
 
 function mrk_ajax_login_init() {

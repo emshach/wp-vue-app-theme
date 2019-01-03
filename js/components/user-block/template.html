@@ -3,6 +3,9 @@
     <span class="dashicons dashicons-admin-users"></span>
     {{ loggedIn ? user.display_name: 'sign in' }}
   </template>
+  <!-- <transition name="fast-fade">
+    <b-dd-item v-if="loggedIn" :href=""></b-dd-item>
+  </transition> -->
   <transition name="fast-fade" mode="out-in">
     <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
     <b-form v-else-if="action == 'unknown-user'" @submit="login"
