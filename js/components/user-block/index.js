@@ -6,7 +6,7 @@ export default {
   template: require( './template.html' ),
   data() {
     return {
-      user: store.state.user,
+      sstate: store.state,
       action: 'login',
       userExists: false,
       recaptcha: {
@@ -110,9 +110,28 @@ export default {
     },
     showFormEmail() {
       this.action = 'unknown-email';
+    },
+    clearForm() {
+      this.loginForm = {
+        action: 'mrklogin',
+        login: '',
+        email: '',
+        pass: '',
+        remember: true,
+        'g-recaptcha-response': '',
+        token: false,
+        sec_token: store.state.ajax.sec
+      };
+      this.action = 'login';
+      this.confirmUser = '';
+      this.confirmPass = '';
+      this.tokenLogin = false;
     }
   },
   computed: {
+    user() {
+      return store.state.user;
+    },
     loggedIn() {
       return this.user && this.user.id;
     },

@@ -5,7 +5,8 @@
   </template>
   <transition name="fast-fade" mode="out-in">
     <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
-    <b-form v-else-if="action == 'unknown-user'" @submit="login">
+    <b-form v-else-if="action == 'unknown-user'" @submit="login"
+            :class="[ 'login', action ]">
       <b-alert show variant="warning">We're sorry, we don't have that username
         on record. Please check and re-enter the username or use your email
         address. Hit sign-up to create a new account.</b-alert>
@@ -27,7 +28,8 @@
                @click="actionRegister">sign-up</b-btn>
       </b-form-group>
     </b-form>
-    <b-form v-else-if="action == 'unknown-email'" @submit="login">
+    <b-form v-else-if="action == 'unknown-email'" @submit="login"
+            :class="[ 'login', action ]">
       <b-alert show variant="warning">We're sorry, we have no record of that
       email address. If you entered the email incorrectly you can re-enter it
       below to retry. or hit sign-up to create an account</b-alert>
@@ -49,7 +51,8 @@
                @click="actionRegister">sign-up</b-btn>
       </b-form-group>
     </b-form>
-    <b-form v-else @submit="login">
+    <b-form v-else @submit="login"
+            :class="[ 'login', action ]">
       <b-form-group id="login-username"
                     :label="action == 'register' ? 'username'
                             : 'username or email address'"
@@ -116,6 +119,8 @@
         <b-btn v-if="action != 'register'" type="submit" variant="primary"
                name="wp-submit" class="login-button" value="Log in"
                @click="actionLogin">login</b-btn>
+        <b-btn v-else variant="link" @click="clearForm"
+               class="login-button">cancel</b-btn>
         <span v-if="action != 'register'">or</span>
         <b-btn type="submit" variant="success" name="wp-submit"
                class="register-button" value="Register"

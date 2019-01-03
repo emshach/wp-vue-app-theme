@@ -54,6 +54,9 @@
         margin-bottom: 0;
       }
     }
+    &.register #login-password {
+      min-height: 13em;
+    }
     .login-actions {
       margin: 10px auto 0;
       padding-top: 10px;

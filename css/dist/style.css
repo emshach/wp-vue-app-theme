@@ -194,6 +194,9 @@ main {
 #user form #login-password .alert {
   margin-bottom: 0; }
 
+#user form.register #login-password {
+  min-height: 13em; }
+
 #user form .login-actions {
   margin: 10px auto 0;
   padding-top: 10px;
