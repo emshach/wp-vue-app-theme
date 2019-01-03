@@ -76,7 +76,7 @@
       </transition>
       <transition name="fade-fast" mode="out-in">
         <div id="login-password" v-if="tokenLogin">
-          <b-alert v-if="action == register" show>A password will be generated
+          <b-alert v-if="action == 'register'" show>A password will be generated
           for you and sent with your confirmation email.</b-alert>
           <b-alert v-else show>An email will be sent with a link that will log
             you in when you click it. This link will expire in 10
