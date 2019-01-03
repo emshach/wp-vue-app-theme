@@ -57,14 +57,16 @@
             </div>
             <div v-html="episode.caption.rendered"></div>
             <b-btn v-if="canWatchNow( episode )" :to="episode.path" size="lg"
-                   class="watch watch-now" variant="primary">watch now</b-btn>
+                   class="watch watch-now" variant="primary">
+              {{ sayAction( episode )}} now</b-btn>
             <b-btn v-else-if="needsSubscription( episode )" size="lg"
                    :to="episode.preview
                         ||{ path: '/members', query: { then: episode.path }}"
                    class="watch subscribe-to-watch"
-                   variant="warning">subscribe to watch</b-btn>
+                   variant="warning">subscribe to {{ sayAction( episode ) }}</b-btn>
             <b-btn v-if="episode.preview" class="watch watch-preview" size="lg"
-                   :to="episode.preview" variant="link">watch preview</b-btn>
+                   :to="episode.preview" variant="link">
+              {{ sayAction( episode, true ) }} preview</b-btn>
           </b-media-body>
         </b-media>
       </b-card>

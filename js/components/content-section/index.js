@@ -50,6 +50,12 @@ export default {
     needsSubscription ( episode ) {
       return ( episode.restrictions.members
                && ( !this.user.as || !this.user.as.subscriber ));
+    },
+    sayAction( episode, trans ) {
+      return ( episode.mime_type.indexOf( 'video' ) == 0 ? 'watch'
+               : episode.mime_type.indexOf( 'audio' ) == 0
+               ? ( trans ? 'listen to' : 'listen' )
+               : 'see' );
     }
   }
 };
