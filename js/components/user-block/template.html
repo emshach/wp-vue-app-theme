@@ -3,43 +3,123 @@
     <span class="dashicons dashicons-admin-users"></span>
     {{ loggedIn ? user.display_name: 'sign in' }}
   </template>
-  <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
-  <b-form v-else @submit="login">
-    <b-form-group id="login-username"
-                  label="username or email address"
-                  label-for="username">
-      <b-form-input id="username"
-                    type="email"
-                    v-model="loginForm.user"
-                    required></b-form-input>
-    </b-form-group>
-    <transition name="fade-fast" mode="out-in">
-      <div id="login-password" v-if="tokenLogin">
-        <b-alert show>An email will be sent with a link that will log you in
-          when you click it. This link will expire in 10 minutes.</b-alert>
-        <b-btn variant="link" @click="enterPass">enter password instead</b-btn>
-      </div>
-      <b-form-group v-else
-                    id="login-password"
-                    label="password"
+  <transition name="fast-fade" mode="out-in">
+    <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
+    <b-form v-else-if="action == 'unknown-user'" @submit="login">
+      <b-alert show variant="warning">We're sorry, we don't have that username
+        on record. Please check and re-enter the username or use your email
+        address. Hit sign-up to create a new account.</b-alert>
+      <b-form-group id="login-username"
+                    label="email address"
                     label-for="username">
-        <b-form-input id="password"
-                      type="password"
-                      @click="nolink"
-                      v-model="loginForm.pass"
+        <b-form-input id="username"
+                      type="email"
+                      v-model="loginForm.login"
                       required></b-form-input>
-        <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
       </b-form-group>
-    </transition>
-    <b-form-group>
-      <vue-recaptcha :sitekey="recaptcha.key"
-                     @verify="recaptchaSuccess"
-                     theme="dark"></vue-recaptcha>
-    </b-form-group>
-    <b-form-group class="login-actions">
-      <b-btn type="submit" variant="primary">login</b-btn>
-      or
-      <b-btn type="submit" variant="success">sign-up</b-btn>
-    </b-form-group>
-  </b-form>
+      <b-form-group class="login-actions">
+        <b-btn v-if="action != 'register'" type="submit" variant="primary"
+               name="wp-submit" class="login-button" value="Log in"
+               @click="actionLogin">try again</b-btn>
+        <span v-if="action != 'register'">or</span>
+        <b-btn type="submit" variant="success" name="wp-submit"
+               class="register-button" value="Register"
+               @click="actionRegister">sign-up</b-btn>
+      </b-form-group>
+    </b-form>
+    <b-form v-else-if="action == 'unknown-email" @submit="login">
+      <b-alert show variant="warning">We're sorry, we have no record of that
+      email address. If you entered the email incorrectly you can re-enter it
+      below to retry. or hit sign-up to create an account</b-alert>
+      <b-form-group id="login-email"
+                    label="email address"
+                    label-for="email">
+        <b-form-input id="email"
+                      type="email"
+                      v-model="loginForm.email"
+                      required></b-form-input>
+      </b-form-group>
+      <b-form-group class="login-actions">
+        <b-btn v-if="action != 'register'" type="submit" variant="primary"
+               name="wp-submit" class="login-button" value="Log in"
+               @click="actionLogin">try again</b-btn>
+        <span v-if="action != 'register'">or</span>
+        <b-btn type="submit" variant="success" name="wp-submit"
+               class="register-button" value="Register"
+               @click="actionRegister">sign-up</b-btn>
+      </b-form-group>
+    </b-form>
+    <b-form v-else @submit="login">
+      <b-form-group id="login-username"
+                    :label="action == 'register' ? 'username'
+                            : 'username or email address'"
+                    label-for="username">
+        <b-form-input id="username"
+                      :type="action == 'register' ? 'text' : 'email'"
+                      v-model="loginForm.login"
+                      required></b-form-input>
+      </b-form-group>
+      <transition name="fade-fast">
+        <b-form-group v-if="action == 'register'"
+                      id="login-email"
+                      label="email address"
+                      label-for="email">
+          <b-form-input id="email"
+                        type="email"
+                        v-model="loginForm.email"
+                        required></b-form-input>
+        </b-form-group>
+      </transition>
+      <transition name="fade-fast" mode="out-in">
+        <div id="login-password" v-if="tokenLogin">
+          <b-alert show>An email will be sent with a link that will log you in
+            when you click it. This link will expire in 10 minutes.</b-alert>
+          <b-btn variant="link" @click="enterPass">enter password instead</b-btn>
+        </div>
+        <b-form-group v-else-if="action == 'register'">
+          <b-form-group id="login-password"
+                        label="password"
+                        label-for="password">
+            <b-form-input id="password"
+                          type="password"
+                          v-model="loginForm.pass"
+                          required></b-form-input>
+          </b-form-group>
+          <b-form-group id="login-confirm-password"
+                        label="password"
+                        label-for="confirm-password">
+            <b-form-input id="confirm-password"
+                          type="password"
+                          v-model="confirmPass"
+                          required></b-form-input>
+          </b-form-group>
+          <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
+        </b-form-group>
+        <b-form-group v-else
+                      id="login-password"
+                      label="password"
+                      label-for="password">
+          <b-form-input id="password"
+                        type="password"
+                        v-model="loginForm.pass"
+                        required></b-form-input>
+          <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
+        </b-form-group>
+      </transition>
+      <b-form-group>
+        <vue-recaptcha :sitekey="recaptcha.key"
+                       @verify="recaptchaSuccess"
+                       theme="dark"></vue-recaptcha>
+      </b-form-group>
+      <b-form-group class="login-actions">
+        <b-btn v-if="action != 'register'" type="submit" variant="primary"
+               name="wp-submit" class="login-button" value="Log in"
+               @click="actionLogin">login</b-btn>
+        <span v-if="action != 'register'">or</span>
+        <b-btn type="submit" variant="success" name="wp-submit"
+               class="register-button" value="Register"
+               @click="actionRegister">sign-up</b-btn>
+      </b-form-group>
+    </b-form>
+  </transition>
 </b-dd>

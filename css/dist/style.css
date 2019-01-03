@@ -202,7 +202,24 @@ main {
 #user form .login-actions .btn {
   padding: 3px 16px;
   margin: 0 5px;
-  width: 43%; }
+  width: 40%; }
+
+#user form .login-actions .btn .login-button {
+  float: left; }
+
+#user form .login-actions .btn .register-button {
+  float: right; }
+
+#user form .login-actions span {
+  margin: 0 auto;
+  display: block;
+  float: left;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: 1.5em;
+  padding: 4px;
+  width: 13%; }
 
 .rc-anchor.rc-anchor-normal.rc-anchor-light {
   border: 0 none;

@@ -7,37 +7,77 @@ export default {
   data() {
     return {
       user: store.state.user,
+      action: 'login',
+      userExists: false,
       recaptcha: {
         key: store.state.recaptcha_key,
         response: null
       },
       loginForm: {
-        log: '',
-        pwd: '',
-        'g-recaptcha-response':''
+        action: 'mrklogin',
+        login: '',
+        email: '',
+        pass: '',
+        remember: true,
+        'g-recaptcha-response': '',
+        token: false,
+        sec_token: store.state.ajax.sec
       },
-      tokenLogin: false
+      confirmUser: '',
+      confirmPass: '',
+      tokenLogin: false,
+      // urlLogin: store.state.login,
+      // urlRegister: store.state.register
+      ajaxUrl: store.state.ajax.url
     };
   },
   methods: {
     login() {
-      if ( this.tokenLogin ) {
-        // passwordless-login
+      if ( this.action != 'register' && this.loginForm.action == 'mrkregister' ) {
+        this.action = 'register';
+        if ( /.+@.+\..+/.test( this.loginForm.login )) {
+          this.loginForm.email = this.loginForm.login;
+          this.loginForm.login = '';
+        }
+        return;
       }
-      else {
-        axios.post ('/wp-login.php', this.loginForm )
-           .then( response => {
+      if (! this.recaptcha.response ) {
+        // TODO: warn
+        return;
+      }
+      this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
+      this.loginForm.token = this.tokenLogin;
+      axios.post( this.ajaxUrl, this.loginForm )
+         .then( response => {
+           switch ( response.next ) {
+           case 'wrong-password':
+             this.action = 'login';
+             break;
+           case 'unknown-user':
+             this.action = 'unknown-user';
+             break;
+           case 'unknown-email':
+             this.action = 'unknown-email';
+             break;
+           case 'link-sent':
+             this.waitLogin();
+             // TODO: close form
+             break;
+           case 'success':
              // success!
              Swal( 'Successfully logged in! Welcome!' );
              window.location.reload();
-           })
-           .catch( error => {
-             // sorry! try again
-           });
-      }
+           }
+         })
+         .catch( error => {
+           // sorry! try again
+           // if user doesn't exist, do register instead
+           // if (! /.+@.+\..+/.test( this.loginForm.log ))
+           //   Swal(  "email address please" ); // .then( x => this.loginForm.log = x )
+           Swal( "We're sorry! There was some problem. Please try again later" );
+         });
     },
-    nolink() {
-      this.loginForm.link = false;
+    waitLogin() {
     },
     sendLink() {
       this.tokenLogin = true;
@@ -47,6 +87,27 @@ export default {
     },
     recaptchaSuccess( response ) {
       this.recaptcha.response = response;
+    },
+    recaptchaExpire( response ) {
+      this.recaptcha.response = '';
+    },
+    actionLogin() {
+      this.loginForm.action = 'mrklogin';
+    },
+    actionRegister() {
+      this.loginForm.action = 'mrkregister';
+    },
+    showFormRegister() {
+      this.action = 'register';
+    },
+    showFormLogin() {
+      this.action = 'login';
+    },
+    showFormUser() {
+      this.action = 'unknown-user';
+    },
+    showFormEmail() {
+      this.action = 'unknown-email';
     }
   },
   computed: {

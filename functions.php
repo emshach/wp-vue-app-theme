@@ -163,6 +163,7 @@ function mrk_get_current_user_info() {
         'last_name'    => $user->user_lastname,
         'display_name' => $user->display_name,
         'email'        => $user->user_email,
+        'logout'       => wp_logout_url( home_url() ),
         'membership'   => (
             $user->membership_level && $user->membership_level->id
             ? [
@@ -171,7 +172,6 @@ function mrk_get_current_user_info() {
                 'debug' => $user->membership_level
             ]
             : false ),
-        'logout' => wp_logout_url( home_url() ),
         'as' => ( current_user_can( 'see_all_content' )
                   ? [
                       'logged_in'  => true,
@@ -999,8 +999,13 @@ function mrk_enqueue_scripts() {
         'menus' => [
             'nav' => mrk_filter_menu_items( wp_get_nav_menu_items( 'nav' ))
         ],
-        'user' =>  mrk_get_current_user_info(),
-        'recaptcha_key' => get_option( 'wr_no_captcha_site_key' )
+        'user'          =>  mrk_get_current_user_info(),
+        'recaptcha_key' => get_option( 'wr_no_captcha_site_key' ),
+        'login'         => LoginWithAjax::$url_login,
+        'register'      => LoginWithAjax::$url_register,
+        'ajax'          => [
+            'url' => admin_url( 'admin-ajax.php' ),
+            'sec' => wp_create_nonce( 'wp-bsh-ajax-security' )]
     ];
     wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 }
@@ -1037,7 +1042,24 @@ function mrk_register_menus() {
     )
   );
 }
-add_theme_support( 'post-thumbnails' );
+
+function mrk_ajax_login() {
+    check_ajax_referer( 'wp-bsh-ajax-security', 'sec_token' );
+    // TODO: check recaptcha
+    $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
+    $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
+    $pass  = ( isset( $_REQUEST[ 'pass' ])  ? $_REQUEST[ 'pass' ]  : '' );
+}
+
+function mrk_ajax_login_init() {
+    add_action( 'wp_aja_nopriv_mrklogin',    'mrk_ajax_login'    );
+    add_action( 'wp_aja_nopriv_mrkregister', 'mrk_ajax_register' );
+}
+
+
+if (! is_user_logged_in() )
+    add_action( 'init',                      'mrk_ajax_login_init'                 );
+add_theme_support( 'post-thumbnails'                                               );
 add_action( 'rest_api_init',                 'mrk_register_endpoint'               );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_scripts'                 );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_styles',          999    );
