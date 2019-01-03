@@ -1,5 +1,6 @@
 import store from '../../lib/store';
 import he from 'he';
+import qs from 'qs';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 export default {
@@ -48,7 +49,7 @@ export default {
       }
       this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
       this.loginForm.token = this.tokenLogin;
-      axios.post( this.ajaxUrl, this.loginForm, {
+      axios.post( this.ajaxUrl, qs.stringify(this.loginForm), {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }})
