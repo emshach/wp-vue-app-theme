@@ -66,7 +66,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!this.recaptcha.response) {
         // TODO: warn
-        return;
+        return false;
       }
 
       this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
@@ -103,6 +103,7 @@ __webpack_require__.r(__webpack_exports__);
         //   Swal(  "email address please" ); // .then( x => this.loginForm.log = x )
         sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()("We're sorry! There was some problem. Please try again later");
       });
+      return false;
     },
     waitLogin: function waitLogin() {},
     sendLink: function sendLink() {

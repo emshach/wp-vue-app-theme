@@ -43,7 +43,7 @@ export default {
       }
       if (! this.recaptcha.response ) {
         // TODO: warn
-        return;
+        return false;
       }
       this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
       this.loginForm.token = this.tokenLogin;
@@ -76,6 +76,7 @@ export default {
            //   Swal(  "email address please" ); // .then( x => this.loginForm.log = x )
            Swal( "We're sorry! There was some problem. Please try again later" );
          });
+      return false;
     },
     waitLogin() {
     },

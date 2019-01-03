@@ -204,10 +204,10 @@ main {
   margin: 0 5px;
   width: 40%; }
 
-#user form .login-actions .btn .login-button {
+#user form .login-actions .btn.login-button {
   float: left; }
 
-#user form .login-actions .btn .register-button {
+#user form .login-actions .btn.register-button {
   float: right; }
 
 #user form .login-actions span {
