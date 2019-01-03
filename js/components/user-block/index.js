@@ -32,7 +32,8 @@ export default {
     };
   },
   methods: {
-    login() {
+    login(e) {
+      e.preventDefault();
       if ( this.action != 'register' && this.loginForm.action == 'mrkregister' ) {
         this.action = 'register';
         if ( /.+@.+\..+/.test( this.loginForm.login )) {

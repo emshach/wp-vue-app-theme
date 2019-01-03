@@ -50,8 +50,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    login: function login() {
+    login: function login(e) {
       var _this = this;
+
+      e.preventDefault();
 
       if (this.action != 'register' && this.loginForm.action == 'mrkregister') {
         this.action = 'register';
