@@ -1045,7 +1045,9 @@ function mrk_register_menus() {
 
 function mrk_ajax_login() {
     check_ajax_referer( 'wp-bsh-ajax-security', 'sec_token' );
-    return( $_REQUEST );
+    error_log( var_export( $_REQUEST, true ));
+    echo json_encode( $_REQUEST );
+    die();
     // TODO: check recaptcha
     $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
     $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
@@ -1100,7 +1102,8 @@ function mrk_ajax_login() {
 
 function mrk_ajax_register() {
     check_ajax_referer( 'wp-bsh-ajax-security', 'sec_token' );
-    return( $_REQUEST );
+    echo json_encode( $_REQUEST );
+    die;
     // TODO: check recaptcha
     $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
     $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
