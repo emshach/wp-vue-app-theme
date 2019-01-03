@@ -1133,8 +1133,6 @@ function mrk_ajax_login_init() {
     error_log( 'adding ajax hooks' );
     add_action( 'wp_ajax_mrklogin',    'mrk_ajax_login'    );
     add_action( 'wp_ajax_mrkregister', 'mrk_ajax_register' );
-    add_action( 'wp_ajax_nopriv_mrklogin',    'mrk_ajax_login'    );
-    add_action( 'wp_ajax_nopriv_mrkregister', 'mrk_ajax_register' );
 }
 
 
@@ -1146,6 +1144,8 @@ add_action( 'wp_enqueue_scripts',            'mrk_enqueue_scripts'              
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_styles',          999    );
 add_action( 'init',                          'mrk_register_menus'                  );
 add_action( 'widgets_init',                  'mrk_widgets_init'                    );
+add_action( 'wp_ajax_nopriv_mrklogin',    'mrk_ajax_login'    );
+add_action( 'wp_ajax_nopriv_mrkregister', 'mrk_ajax_register' );
 add_filter( 'excerpt_length',                'mrk_excerpt_length',          999    );
 add_filter( 'rest_allow_anonymous_comments', 'allow_anonymous_comments'            );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_add_bg_image',        10, 1 );
