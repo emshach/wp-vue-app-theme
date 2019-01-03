@@ -8,9 +8,14 @@
             <img v-if="slide.media_type == 'image'" :src="slide.source_url"
                  class="media" />
             <video v-else-if="slide.mime_type.indexOf( 'video' ) == 0"
-                   :src="slide.source_url" class="media" controls>
+                   :src="slide.source_url" class="media"
+                   controls autoplay muted>
               {{ slide.alt_text }}
             </video>
+            <audio v-else-if="slide.mime_type.indexOf( 'audio' ) == 0"
+                   :src="slide.source_url" class="media" controls>
+              {{ slide.alt_text }}
+            </audio>
           </template>
         </div>
         <div v-if="slide.show_text" class="col-12 col-md-4">

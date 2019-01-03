@@ -49,14 +49,14 @@ export default {
       }
       this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
       this.loginForm.token = this.tokenLogin;
-      axios.post( this.ajaxUrl, qs.stringify(this.loginForm), {
+      axios.post( this.ajaxUrl, qs.stringify( this.loginForm ), {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }})
          .then( response => {
-           console.log( 'login response', response );
-           return;
-           switch ( response.next ) {
+           var d = response.data;
+           console.log( 'loginForm response', d );
+           switch ( d.next ) {
            case 'wrong-password':
              this.action = 'login';
              break;

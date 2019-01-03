@@ -81,10 +81,10 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
       }).then(function (response) {
-        console.log('login response', response);
-        return;
+        var d = response.data;
+        console.log('loginForm response', d);
 
-        switch (response.next) {
+        switch (d.next) {
           case 'wrong-password':
             _this.action = 'login';
             break;

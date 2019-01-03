@@ -153,9 +153,8 @@ function mrk_filter_menu_items( $menu ) {
 /**
  * get current user info
  */
-function mrk_get_current_user_info() {
-    if (! is_user_logged_in()) return '';
-    $user = wp_get_current_user();
+function mrk_get_user_info( $user ) {
+    if (! $user->ID ) return '';
     return [
         'id'           => $user->ID,
         'name'         => $user->user_login,
@@ -180,6 +179,12 @@ function mrk_get_current_user_info() {
                       'admin'      => true,
                   ] : false )
     ];
+}
+
+function mrk_get_current_user_info() {
+    if (! is_user_logged_in()) return '';
+    $user = wp_get_current_user();
+    return mrk_get_user_info( $user );
 }
 
 /**
@@ -1044,15 +1049,13 @@ function mrk_register_menus() {
 }
 
 function mrk_ajax_login() {
-    error_log( var_export( $_REQUEST, true ));
-    echo json_encode( $_REQUEST );
-    wp_die();
     check_ajax_referer( 'wp-bsh-ajax-security', 'sec_token' );
     // TODO: check recaptcha
     $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
     $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
     $pass  = ( isset( $_REQUEST[ 'pass' ])  ? $_REQUEST[ 'pass' ]  : '' );
     $token = ( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '' );
+    $res = [];
     if ( preg_match( '/.+@.+\..+/', $login )) {
         $email = $login;
         $login = '';
@@ -1061,54 +1064,68 @@ function mrk_ajax_login() {
         if ( email_exists( $email )) {
             if ( $token ) {
                 // passwordless-login to email
+                $res[ 'next' ] = 'wait';
             } elseif ( $pass ) {
                 $user = wp_signon([ 'user_login'    => $email,
                                     'user_password' => $pass,
                                     'remember'      => true ], false );
                 if ( is_wp_error( $user )) {
                     // wrong password
+                    $res[ 'next' ] = 'wrong-password';
                 } else {
                     // success, logged in
+                    $res[ 'next' ] = 'success';
+                    $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
                 }
             } else {
                 // wrong password
+                $res[ 'next' ] = '';
             }
         } elseif ( $pass ) {
             // register user with new password
+            $res[ 'next' ] = '';
         } elseif ( $token ) {
             // register default
+            $res[ 'next' ] = '';
         }
     } elseif ( $login ) {
         if ( username_exists( $login )) {
             if ( $token ) {
                 // passwordless-login
+                $res[ 'next' ] = 'wait';
             } elseif ( $pass ) {
                 $user = wp_signon([ 'user_login'    => $login,
                                     'user_password' => $pass,
                                     'remember'      => true ], false );
                 if ( is_wp_error( $user )) {
                     // wrong password
+                    $res[ 'next' ] = '';
                 } else {
                     // success, logged in
+                    $res[ 'next' ] = 'success';
+                    $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
                 }
             } else {
                 // wrong password
+                $res[ 'next' ] = '';
             }
         }
     } else {
         // no login given, what?
+        $res[ 'next' ] = '';
     }
+    echo json_encode( $res );
+    wp_die();
 }
 
 function mrk_ajax_register() {
-    echo json_encode( $_REQUEST );
-    wp_die();
     check_ajax_referer( 'wp-bsh-ajax-security', 'sec_token' );
     // TODO: check recaptcha
     $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
     $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
     $pass  = ( isset( $_REQUEST[ 'pass' ])  ? $_REQUEST[ 'pass' ]  : '' );
     $token = ( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '' );
+    $res = [];
     if ( email_exists( $email )) {
         if ( $pass ) {
             $user = wp_signon([ 'user_login'    => $email,
@@ -1116,36 +1133,37 @@ function mrk_ajax_register() {
                                 'remember'      => true ], false );
             if ( is_wp_error( $user )) {
                 // user exists, wrong password
+                $res[ 'next' ] = 'wrong-password';
             } else {
                 // success, logged in
+                $res[ 'next' ] = 'success';
+                $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
             }
         }
     } elseif( username_exists( $login )) {
         // username exists
+        $res[ 'next' ] = '';
     } elseif ( $pass ) {
         // register new user with password
+        $res[ 'next' ] = '';
     } else {
         // register default
+        $res[ 'next' ] = '';
     }
+    echo json_encode( $res );
+    wp_die();
 }
 
-function mrk_ajax_login_init() {
-    error_log( 'adding ajax hooks' );
-}
-
-
-// if (! is_user_logged_in() )
-//     add_action( 'init',                      'mrk_ajax_login_init'                 );
 add_theme_support( 'post-thumbnails'                                               );
 add_action( 'rest_api_init',                 'mrk_register_endpoint'               );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_scripts'                 );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_styles',          999    );
 add_action( 'init',                          'mrk_register_menus'                  );
 add_action( 'widgets_init',                  'mrk_widgets_init'                    );
-add_action( 'wp_ajax_mrklogin',    'mrk_ajax_login'    );
-add_action( 'wp_ajax_mrkregister', 'mrk_ajax_register' );
-add_action( 'wp_ajax_nopriv_mrklogin',    'mrk_ajax_login'    );
-add_action( 'wp_ajax_nopriv_mrkregister', 'mrk_ajax_register' );
+add_action( 'wp_ajax_mrklogin',              'mrk_ajax_login'                      );
+add_action( 'wp_ajax_mrkregister',           'mrk_ajax_register'                   );
+add_action( 'wp_ajax_nopriv_mrklogin',       'mrk_ajax_login'                      );
+add_action( 'wp_ajax_nopriv_mrkregister',    'mrk_ajax_register'                   );
 add_filter( 'excerpt_length',                'mrk_excerpt_length',          999    );
 add_filter( 'rest_allow_anonymous_comments', 'allow_anonymous_comments'            );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_add_bg_image',        10, 1 );
