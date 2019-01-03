@@ -76,19 +76,20 @@
             when you click it. This link will expire in 10 minutes.</b-alert>
           <b-btn variant="link" @click="enterPass">enter password instead</b-btn>
         </div>
-        <b-form-group v-else-if="action == 'register'">
-          <b-form-group id="login-password"
+        <b-form-group v-else-if="action == 'register'"
+                      id="login-password">
+          <b-form-group id="login-password1"
                         label="password"
-                        label-for="password">
-            <b-form-input id="password"
+                        label-for="password1">
+            <b-form-input id="password1"
                           type="password"
                           v-model="loginForm.pass"
                           required></b-form-input>
           </b-form-group>
-          <b-form-group id="login-confirm-password"
-                        label="password"
-                        label-for="confirm-password">
-            <b-form-input id="confirm-password"
+          <b-form-group id="login-password1"
+                        label="confirm password"
+                        label-for="password2">
+            <b-form-input id="password2"
                           type="password"
                           v-model="confirmPass"
                           required></b-form-input>
