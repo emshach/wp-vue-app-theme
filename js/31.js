@@ -73,7 +73,11 @@ __webpack_require__.r(__webpack_exports__);
 
       this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
       this.loginForm.token = this.tokenLogin;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(this.ajaxUrl, this.loginForm).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(this.ajaxUrl, this.loginForm, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        }
+      }).then(function (response) {
         console.log('login response', response);
         return;
 

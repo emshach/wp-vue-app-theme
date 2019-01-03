@@ -48,7 +48,10 @@ export default {
       }
       this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
       this.loginForm.token = this.tokenLogin;
-      axios.post( this.ajaxUrl, this.loginForm )
+      axios.post( this.ajaxUrl, this.loginForm, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        }})
          .then( response => {
            console.log( 'login response', response );
            return;
