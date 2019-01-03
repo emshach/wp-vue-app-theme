@@ -1131,6 +1131,8 @@ function mrk_ajax_register() {
 
 function mrk_ajax_login_init() {
     error_log( 'adding ajax hooks' );
+    add_action( 'wp_ajax_mrklogin',    'mrk_ajax_login'    );
+    add_action( 'wp_ajax_mrkregister', 'mrk_ajax_register' );
     add_action( 'wp_ajax_nopriv_mrklogin',    'mrk_ajax_login'    );
     add_action( 'wp_ajax_nopriv_mrkregister', 'mrk_ajax_register' );
 }
