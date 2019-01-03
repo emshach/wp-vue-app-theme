@@ -1,312 +1,241 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
 
-/***/ "./js/components/nav-menu/index.js":
-/*!*****************************************!*\
-  !*** ./js/components/nav-menu/index.js ***!
-  \*****************************************/
+/***/ "./js/components/user-block/index.js":
+/*!*******************************************!*\
+  !*** ./js/components/user-block/index.js ***!
+  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/nav-slider */ "./js/lib/nav-slider.js");
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var he__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! he */ "./node_modules/he/he.js");
+/* harmony import */ var he__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(he__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var request_promise_native__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! request-promise-native */ "./node_modules/request-promise-native/lib/rp.js");
+/* harmony import */ var request_promise_native__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(request_promise_native__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/nav-menu/template.html"),
-  props: {
-    menu: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    logo: {
-      type: String,
-      default: ""
-    },
-    title: {
-      type: String,
-      default: ""
-    }
-  },
+  template: __webpack_require__(/*! ./template.html */ "./js/components/user-block/template.html"),
   data: function data() {
     return {
-      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_1__["default"].state,
-      menuOpen: false
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      action: 'login',
+      userExists: false,
+      recaptcha: {
+        key: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.recaptcha_key,
+        response: null
+      },
+      loginForm: {
+        action: 'mrklogin',
+        login: '',
+        email: '',
+        pass: '',
+        remember: true,
+        'g-recaptcha-response': '',
+        token: false,
+        sec_token: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.ajax.sec
+      },
+      confirmUser: '',
+      confirmPass: '',
+      tokenLogin: false,
+      // urlLogin: store.state.login,
+      // urlRegister: store.state.register
+      ajaxUrl: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.ajax.url
     };
   },
-  mounted: function mounted() {
-    this.$nextTick(function () {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init();
-    });
-  },
-  updated: function updated() {
-    this.$nextTick(function () {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init();
-    });
-  },
   methods: {
-    toggleMenu: function toggleMenu() {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].toggleMenu(this.menuOpen = !this.menuOpen);
+    login: function login(e) {
+      var _this = this;
+
+      e.preventDefault();
+
+      if (this.action != 'register' && this.loginForm.action == 'mrkregister') {
+        this.action = 'register';
+
+        if (/.+@.+\..+/.test(this.loginForm.login)) {
+          this.loginForm.email = this.loginForm.login;
+          this.loginForm.login = '';
+        }
+
+        return false;
+      }
+
+      if (!this.recaptcha.response) {
+        // TODO: warn
+        return false;
+      }
+
+      this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
+      this.loginForm.token = this.tokenLogin;
+      request_promise_native__WEBPACK_IMPORTED_MODULE_2___default.a.post(this.ajaxUrl, this.loginForm).then(function (response) {
+        console.log('login response', response);
+        return;
+
+        switch (response.next) {
+          case 'wrong-password':
+            _this.action = 'login';
+            break;
+
+          case 'unknown-user':
+            _this.action = 'unknown-user';
+            break;
+
+          case 'unknown-email':
+            _this.action = 'unknown-email';
+            break;
+
+          case 'link-sent':
+            _this.waitLogin(); // TODO: close form
+
+
+            break;
+
+          case 'success':
+            // success!
+            sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()('Successfully logged in! Welcome!');
+            window.location.reload();
+        }
+      }).catch(function (error) {
+        // sorry! try again
+        // if user doesn't exist, do register instead
+        // if (! /.+@.+\..+/.test( this.loginForm.log ))
+        //   Swal(  "email address please" ); // .then( x => this.loginForm.log = x )
+        sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()("We're sorry! There was some problem. Please try again later");
+      });
+      return false;
     },
-    closeMenu: function closeMenu() {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].toggleMenu(this.menuOpen = false, 150);
+    waitLogin: function waitLogin() {},
+    sendLink: function sendLink() {
+      this.tokenLogin = true;
+    },
+    enterPass: function enterPass() {
+      this.tokenLogin = false;
+    },
+    recaptchaSuccess: function recaptchaSuccess(response) {
+      this.recaptcha.response = response;
+    },
+    recaptchaExpire: function recaptchaExpire(response) {
+      this.recaptcha.response = '';
+    },
+    actionLogin: function actionLogin() {
+      this.loginForm.action = 'mrklogin';
+    },
+    actionRegister: function actionRegister() {
+      this.loginForm.action = 'mrkregister';
+    },
+    showFormRegister: function showFormRegister() {
+      this.action = 'register';
+    },
+    showFormLogin: function showFormLogin() {
+      this.action = 'login';
+    },
+    showFormUser: function showFormUser() {
+      this.action = 'unknown-user';
+    },
+    showFormEmail: function showFormEmail() {
+      this.action = 'unknown-email';
+    },
+    clearForm: function clearForm() {
+      this.loginForm = {
+        action: 'mrklogin',
+        login: '',
+        email: '',
+        pass: '',
+        remember: true,
+        'g-recaptcha-response': '',
+        token: false,
+        sec_token: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.ajax.sec
+      };
+      this.action = 'login';
+      this.confirmUser = '';
+      this.confirmPass = '';
+      this.tokenLogin = false;
+    }
+  },
+  computed: {
+    user: function user() {
+      return _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
+    },
+    loggedIn: function loggedIn() {
+      return this.user && this.user.id;
+    },
+    logoutLink: function logoutLink() {
+      return he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.user.logout);
     }
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/nav-menu/template.html":
-/*!**********************************************!*\
-  !*** ./js/components/nav-menu/template.html ***!
-  \**********************************************/
+/***/ "./js/components/user-block/template.html":
+/*!************************************************!*\
+  !*** ./js/components/user-block/template.html ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <button class=\"menu-toggle menu-wide nav-menu\" type=\"button\"\n          @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n    <transition name=\"fade-fast\" mode=\"out-in\">\n      <span v-if=\"menuOpen\" key=\"menu\"\n            class=\"dashicons dashicons-arrow-down-alt2 navbar-toggle-icon open\"\n            aria-hidden=\"true\"></span>\n      <span v-else key=\"close\"\n            class=\"dashicons dashicons-arrow-up-alt2 navbar-toggle-icon\"\n            aria-hidden=\"true\"></span>\n    </transition>\n  </button>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div @click.stop=\"closeMenu\" id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n        <transition name=\"fade-fast\" mode=\"out-in\">\n          <span v-if=\"menuOpen\" key=\"menu\"\n                class=\"dashicons dashicons-arrow-left-alt2 navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n          <span v-else key=\"close\"\n                class=\"dashicons dashicons-menu navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n        </transition>\n      </button>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\" @click.native=\"closeMenu\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\" v-html=\"item.title\"></span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
+module.exports = "<b-dd id=\"user\">\n  <template slot=\"button-content\">\n    <span class=\"dashicons dashicons-admin-users\"></span>\n    {{ loggedIn ? user.display_name: 'sign in' }}\n  </template>\n  <!-- <transition name=\"fast-fade\">\n    <b-dd-item v-if=\"loggedIn\" :href=\"\"></b-dd-item>\n  </transition> -->\n  <transition name=\"fast-fade\" mode=\"out-in\">\n    <b-dd-item v-if=\"loggedIn\" :href=\"logoutLink\">log out</b-dd-item>\n    <b-form v-else-if=\"action == 'unknown-user'\" @submit=\"login\"\n            :class=\"[ 'login', action ]\">\n      <b-alert show variant=\"warning\">We're sorry, we don't have that username\n\n        on record. Please check and re-enter the username or use your email\n        address. Hit sign-up to create a new account.</b-alert>\n      <b-form-group id=\"login-username\"\n                    label=\"email address\"\n                    label-for=\"username\">\n        <b-form-input id=\"username\"\n                      type=\"text\"\n                      v-model=\"loginForm.login\"\n                      required></b-form-input>\n      </b-form-group>\n      <b-form-group class=\"login-actions\">\n        <b-btn v-if=\"action != 'register'\" type=\"submit\" variant=\"primary\"\n               name=\"wp-submit\" class=\"login-button\" value=\"Log in\"\n               @click=\"actionLogin\">try again</b-btn>\n        <span v-if=\"action != 'register'\">or</span>\n        <b-btn type=\"submit\" variant=\"success\" name=\"wp-submit\"\n               class=\"register-button\" value=\"Register\"\n               @click=\"actionRegister\">sign-up</b-btn>\n      </b-form-group>\n    </b-form>\n    <b-form v-else-if=\"action == 'unknown-email'\" @submit=\"login\"\n            :class=\"[ 'login', action ]\">\n      <b-alert show variant=\"warning\">We're sorry, we have no record of that\n      email address. If you entered the email incorrectly you can re-enter it\n      below to retry. or hit sign-up to create an account</b-alert>\n      <b-form-group id=\"login-email\"\n                    label=\"email address\"\n                    label-for=\"email\">\n        <b-form-input id=\"email\"\n                      type=\"email\"\n                      v-model=\"loginForm.email\"\n                      required></b-form-input>\n      </b-form-group>\n      <b-form-group class=\"login-actions\">\n        <b-btn v-if=\"action != 'register'\" type=\"submit\" variant=\"primary\"\n               name=\"wp-submit\" class=\"login-button\" value=\"Log in\"\n               @click=\"actionLogin\">try again</b-btn>\n        <span v-if=\"action != 'register'\">or</span>\n        <b-btn type=\"submit\" variant=\"success\" name=\"wp-submit\"\n               class=\"register-button\" value=\"Register\"\n               @click=\"actionRegister\">sign-up</b-btn>\n      </b-form-group>\n    </b-form>\n    <b-form v-else @submit=\"login\"\n            :class=\"[ 'login', action ]\">\n      <b-form-group id=\"login-username\"\n                    :label=\"action == 'register' ? 'username'\n                            : 'username or email address'\"\n                    label-for=\"username\">\n        <b-form-input id=\"username\"\n                      type=\"text\"\n                      v-model=\"loginForm.login\"\n                      required></b-form-input>\n      </b-form-group>\n      <transition name=\"fade-fast\">\n        <b-form-group v-if=\"action == 'register'\"\n                      id=\"login-email\"\n                      label=\"email address\"\n                      label-for=\"email\">\n          <b-form-input id=\"email\"\n                        type=\"email\"\n                        v-model=\"loginForm.email\"\n                        required></b-form-input>\n        </b-form-group>\n      </transition>\n      <transition name=\"fade-fast\" mode=\"out-in\">\n        <div id=\"login-password\" v-if=\"tokenLogin\">\n          <b-alert v-if=\"action == 'register'\" show>A password will be generated\n          for you and sent with your confirmation email.</b-alert>\n          <b-alert v-else show>An email will be sent with a link that will log\n            you in when you click it. This link will expire in 10\n            minutes.</b-alert>\n          <b-btn variant=\"link\" @click=\"enterPass\">set password now</b-btn>\n        </div>\n        <b-form-group v-else-if=\"action == 'register'\"\n                      id=\"login-password\">\n          <b-form-group id=\"login-password1\"\n                        label=\"password\"\n                        label-for=\"password1\">\n            <b-form-input id=\"password1\"\n                          type=\"password\"\n                          v-model=\"loginForm.pass\"\n                          required></b-form-input>\n          </b-form-group>\n          <b-form-group id=\"login-password1\"\n                        label=\"confirm password\"\n                        label-for=\"password2\">\n            <b-form-input id=\"password2\"\n                          type=\"password\"\n                          v-model=\"confirmPass\"\n                          required></b-form-input>\n          </b-form-group>\n          <b-btn variant=\"link\" @click=\"sendLink\">don't set password now</b-btn>\n        </b-form-group>\n        <b-form-group v-else\n                      id=\"login-password\"\n                      label=\"password\"\n                      label-for=\"password\">\n          <b-form-input id=\"password\"\n                        type=\"password\"\n                        v-model=\"loginForm.pass\"\n                        required></b-form-input>\n          <b-btn variant=\"link\" @click=\"sendLink\">email login link instead</b-btn>\n        </b-form-group>\n      </transition>\n      <b-form-group>\n        <vue-recaptcha :sitekey=\"recaptcha.key\"\n                       @verify=\"recaptchaSuccess\"\n                       theme=\"dark\"></vue-recaptcha>\n      </b-form-group>\n      <b-form-group class=\"login-actions\">\n        <b-btn v-if=\"action != 'register'\" type=\"submit\" variant=\"primary\"\n               name=\"wp-submit\" class=\"login-button\" value=\"Log in\"\n               @click=\"actionLogin\">login</b-btn>\n        <b-btn v-else variant=\"link\" @click=\"clearForm\"\n               class=\"login-button\">cancel</b-btn>\n        <span v-if=\"action != 'register'\">or</span>\n        <b-btn type=\"submit\" variant=\"success\" name=\"wp-submit\"\n               class=\"register-button\" value=\"Register\"\n               @click=\"actionRegister\">sign-up</b-btn>\n      </b-form-group>\n    </b-form>\n  </transition>\n</b-dd>\n";
 
 /***/ }),
 
-/***/ "./js/lib/nav-slider.js":
-/*!******************************!*\
-  !*** ./js/lib/nav-slider.js ***!
-  \******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 0:
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function get_pos(obj) {
-  var curleft = 0,
-      curtop = 0;
+/* (ignored) */
 
-  if (obj.offsetParent) {
-    curleft = obj.offsetLeft;
-    curtop = obj.offsetTop;
+/***/ }),
 
-    while (obj = obj.offsetParent) {
-      curleft += obj.offsetLeft;
-      curtop += obj.offsetTop;
-    }
-  }
+/***/ 1:
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-  return {
-    top: curtop,
-    left: curleft
-  };
-}
+/* (ignored) */
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  init: function init() {
-    (function ($) {
-      //function to find element Position
-      var ts_margin = 30; //first and last thumbnail margin (for better cursor interaction) 
+/***/ }),
 
-      var ts_easing = {
-        duration: 1000,
-        easing: "easeOutCirc"
-      };
-      var t_opacity = 0.8; //thumbnails default opacity
+/***/ 2:
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-      var tcur_opacity = 0.9; //thumbnails default opacity for current element
+/* (ignored) */
 
-      var tc_opacity_out = 0.075; //thumbnails area opacity on mouse out
-      //cache vars
+/***/ }),
 
-      if ($(window).innerWidth() < 600) {
-        return;
-      }
+/***/ 3:
+/*!************************!*\
+  !*** crypto (ignored) ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-      var menu = $("#header-menu");
-      var outer = $("#main-nav");
-      var scroll = $("#main-nav > .wrapper");
-      var ts_bg = $("#bg-nav");
-      var ts_container = $("#menu-nav");
-      var thumb = $("#menu-nav > .menu-item");
-      var t_current = $("#menu-nav > .current-menu-item");
-      var main_title = $("main > h1.title");
-      var $menu = menu.get(0);
-      var menu_height = menu.innerHeight(); //thumbnail scroller
+/* (ignored) */
 
-      var ts_left = ts_container.position().left;
-      var ts_width = outer.width();
-      var t_count = 0;
-      var dur_in = 200;
-      var dur_out = 1000;
-      var t_dur_in = 350;
-      var t_dur_out = 500;
-      var pos = get_pos($menu);
-      var bg_pad = 400;
-      var ease_in = {
-        duration: dur_in,
-        easing: "easeOutBack",
-        queue: false
-      };
-      var ease_out = {
-        duration: dur_out,
-        easing: "easeOutExpo",
-        queue: false
-      };
-      var t_ease_in = {
-        duration: t_dur_in,
-        easing: "easeOutElastic",
-        queue: false
-      };
-      var t_ease_out = {
-        duration: t_dur_out,
-        easing: "easeOutBounce",
-        queue: false
-      };
-      var tt_ease_in = {
-        duration: t_dur_in,
-        easing: "easeOutCubic",
-        queue: false
-      };
-      var tt_ease_out = {
-        duration: t_dur_out,
-        easing: "easeOutCubic",
-        queue: false
-      };
-      var tt_ease_in1 = {
-        duration: t_dur_in,
-        easing: "easeInCubic",
-        queue: false
-      };
-      var tt_ease_out1 = {
-        duration: t_dur_out,
-        easing: "easeInCubic",
-        queue: false
-      };
-      ts_container.css("margingLeft", ts_margin + "px"); //add margin
+/***/ }),
 
-      scroll.css("width", ts_width);
-      thumb.each(function () {
-        var $this = $(this);
-        t_count += $this.innerWidth();
-        $this.children().children().children(".thumb").fadeTo(dur_out, t_opacity);
-      });
-      ts_container.css("width", t_count + 10);
-      ts_bg.css("width", t_count + 2 * bg_pad);
-      scroll.mousemove(function (e) {
-        var pos0;
+/***/ 4:
+/*!************************!*\
+  !*** crypto (ignored) ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-        if (ts_container.width() > ts_width) {
-          var cur = e.pageX - pos.left;
-          var m_clamp = cur / ts_width;
-          var dest = -(t_count + 2 * (ts_margin - ts_width)) * m_clamp;
-          pos0 = Math.abs(cur - dest) - ts_margin;
-        } else {
-          pos0 = (t_count + ts_margin * 2 - ts_width) / 2; // pos0 = ( ts_width - t_count ) / 2;
-          // pos0 = ( ts_width - ( t_count - ts_margin * 2 )) / 2;
-        }
-
-        if (Math.abs(pos0 - ts_container.position().left) > 20) {
-          ts_bg.stop().animate({
-            left: -pos0 / 2 - bg_pad
-          }, ts_easing);
-          ts_container.stop().animate({
-            left: -pos0
-          }, ts_easing);
-        }
-      });
-      outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
-      menu.hover(function () {
-        //mouse over
-        outer.stop().fadeTo(dur_in, 1);
-        menu.stop().animate({
-          height: menu_height
-        }, ease_in);
-        var top = $("#app>.page").scrollTop();
-        main_title.stop().animate({
-          bottom: 110 - top
-        }, ease_in);
-      }, function () {
-        //mouse out
-        // outer.stop().fadeTo( dur_out * 3, tc_opacity_out, "easeInOutCubic");
-        menu.stop().animate({
-          height: 15
-        }, ease_out);
-        main_title.stop().animate({
-          bottom: 0
-        }, ease_out);
-      });
-      thumb.not(t_current).hover(function () {
-        //mouse over
-        $(this).stop().fadeTo(dur_in, 1).animate({
-          top: -12
-        }, t_ease_in).find(".text").stop().animate({
-          bottom: "95%"
-        }, tt_ease_in).animate({
-          opacity: 1
-        }, tt_ease_in1);
-      }, function () {
-        //mouse out
-        $(this).stop().fadeTo(t_dur_out, t_opacity).animate({
-          top: 0
-        }, t_ease_out).find(".text").stop().animate({
-          bottom: 0
-        }, tt_ease_out1).animate({
-          opacity: 0
-        }, tt_ease_out);
-      });
-      t_current.hover(function () {
-        //mouse over
-        $(this).stop().fadeTo(t_dur_in, 1).animate({
-          top: -12
-        }, t_ease_in).find(".text").stop().animate({
-          bottom: "95%"
-        }, tt_ease_in).animate({
-          opacity: 1
-        }, tt_ease_in1);
-      }, function () {
-        //mouse out
-        $(this).stop().fadeTo(t_dur_out, tcur_opacity).animate({
-          top: 0
-        }, t_ease_out).find(".text").stop().animate({
-          bottom: 0
-        }, tt_ease_out1).animate({
-          opacity: 0
-        }, tt_ease_out);
-      }); //on window resize scale image and reset thumbnail scroller
-
-      $(window).resize(function () {
-        // FullScreenBackground("#bgimg",$bgimg.data("newImageW"),$bgimg.data("newImageH"));
-        ts_container.stop().animate({
-          left: ts_left
-        }, 400, "easeOutCirc");
-        var newWidth = outer.width();
-        scroll.css("width", newWidth);
-        ts_width = newWidth;
-        pos = get_pos($menu);
-      }); // TODO: unbind if < 600px
-    })(jQuery);
-  },
-  toggleMenu: function toggleMenu(open, duration) {
-    if (!duration) duration = 400;
-    var $ = jQuery;
-
-    if ($(window).innerWidth() >= 600) {
-      return;
-    }
-
-    $("#main-nav button.toggle-mobile").blur();
-
-    if (open) {
-      $("#main-nav").stop().animate({
-        right: 48
-      }, duration);
-      $("#bg-nav").stop().fadeIn(duration);
-    } else {
-      $("#main-nav").stop().animate({
-        right: '100%'
-      }, duration);
-      $("#bg-nav").stop().fadeOut(duration);
-    }
-  }
-});
+/* (ignored) */
 
 /***/ })
 
