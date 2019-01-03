@@ -13,7 +13,7 @@
                     label="email address"
                     label-for="username">
         <b-form-input id="username"
-                      type="email"
+                      type="text"
                       v-model="loginForm.login"
                       required></b-form-input>
       </b-form-group>
@@ -55,7 +55,7 @@
                             : 'username or email address'"
                     label-for="username">
         <b-form-input id="username"
-                      :type="action == 'register' ? 'text' : 'email'"
+                      type="text"
                       v-model="loginForm.login"
                       required></b-form-input>
       </b-form-group>
