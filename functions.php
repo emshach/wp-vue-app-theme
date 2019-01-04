@@ -419,7 +419,8 @@ function mrk_rest_add_promo_reel( $data ) {
     $posts = get_posts(
         [
             'post_type' => [ 'post', 'page', 'release', 'attachment' ],
-            'nopaging' => true,
+            'nopaging'  => true,
+            'orderby'   => 'menu_order',
             'tax_query' => [
                 [
                     'taxonomy' => $collection->taxonomy,
@@ -655,6 +656,7 @@ function mrk_get_release_by_program_id( $data ) {
         [
             'post_type' => [ 'release', 'attachment' ],
             'nopaaging' => true,
+            'orderby'   => 'menu_order',
             'tax_query' => [
                 [
                     'taxonomy' => 'attachment_category',
@@ -1221,11 +1223,19 @@ function mrk_ajax_register() {
     wp_die();
 }
 
+function mrk_add_menu_order() {
+    add_post_type_support( 'post', 'page-attributes' );
+    add_post_type_support( 'page', 'page-attributes' );
+    add_post_type_support( 'release', 'page-attributes' );
+    add_post_type_support( 'attachment', 'page-attributes' );
+}
+
 add_theme_support( 'post-thumbnails'                                               );
 add_action( 'rest_api_init',                 'mrk_register_endpoint'               );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_scripts'                 );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_styles',          999    );
 add_action( 'init',                          'mrk_register_menus'                  );
+add_action( 'init',                          'mrk_add_menu_order'                  );
 add_action( 'widgets_init',                  'mrk_widgets_init'                    );
 add_action( 'wp_ajax_mrklogin',              'mrk_ajax_login'                      );
 add_action( 'wp_ajax_mrkregister',           'mrk_ajax_register'                   );
