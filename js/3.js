@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     sayAction: function sayAction(episode, trans) {
-      return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' == 0 ? trans ? 'listen to' : 'listen' : 'see';
+      return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'see';
     }
   }
 });
