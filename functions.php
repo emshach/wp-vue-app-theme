@@ -373,7 +373,10 @@ function mrk_rest_add_stats( $data ) {
 function mrk_rest_add_thumbnail( $data ) {
     if ( empty( $data[ 'id' ]))
         return $data;
-    $data[ 'thumbnail'] = wp_get_attachment_thumb_url( $data[ 'id' ]);
+    $thumb_id = get_post_thumbnail_id( $data[ 'id' ]);
+    if ( !$thumb_id )
+        $thumb_id = $data[ 'id' ];
+    $data[ 'thumbnail'] = wp_get_attachment_thumb_url( $thumb_id );
     if (! empty( $data[ 'thumbnail' ]))
         return $data;
     if (! empty( $data[ 'kgvid_meta' ]) && ! empty( $data[ 'kgvid_meta' ][ 'poster' ]))
