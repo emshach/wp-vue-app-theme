@@ -938,7 +938,7 @@ var WpHeader = function WpHeader() {
 };
 
 var DownArrow = function DownArrow() {
-  return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/down-arrow */ "./js/components/down-arrow/index.js"));
+  return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/down-arrow */ "./js/components/down-arrow/index.js"));
 };
 
 var SearchForm = function SearchForm() {
@@ -946,31 +946,31 @@ var SearchForm = function SearchForm() {
 };
 
 var CommentForm = function CommentForm() {
-  return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/comment-form */ "./js/components/comment-form/index.js"));
+  return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/comment-form */ "./js/components/comment-form/index.js"));
 };
 
 var Comments = function Comments() {
-  return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/comments */ "./js/components/comments/index.js"));
+  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/comments */ "./js/components/comments/index.js"));
 };
 
 var Carousel = function Carousel() {
-  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/mrk-carousel */ "./js/components/mrk-carousel/index.js"));
+  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/mrk-carousel */ "./js/components/mrk-carousel/index.js"));
 };
 
 var ContentList = function ContentList() {
-  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/content-list */ "./js/components/content-list/index.js"));
+  return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/content-list */ "./js/components/content-list/index.js"));
 };
 
 var ContentSection = function ContentSection() {
-  return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/content-section */ "./js/components/content-section/index.js"));
+  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/content-section */ "./js/components/content-section/index.js"));
 };
 
 var Filmstrip = function Filmstrip() {
-  return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/filmstrip */ "./js/components/filmstrip/index.js"));
+  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/filmstrip */ "./js/components/filmstrip/index.js"));
 };
 
 var NavMenu = function NavMenu() {
-  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/nav-menu */ "./js/components/nav-menu/index.js"));
+  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/nav-menu */ "./js/components/nav-menu/index.js"));
 };
 
 var SubscriptionMenu = function SubscriptionMenu() {
@@ -992,19 +992,19 @@ var PageNotFound = function PageNotFound() {
 };
 
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./components/home */ "./js/components/home/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ./components/home */ "./js/components/home/index.js"));
 };
 
 var Login = function Login() {
-  return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./components/login */ "./js/components/login/index.js"));
+  return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./components/login */ "./js/components/login/index.js"));
 };
 
 var About = function About() {
-  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/about */ "./js/components/about/index.js"));
+  return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/about */ "./js/components/about/index.js"));
 };
 
 var Contact = function Contact() {
-  return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/contact */ "./js/components/contact/index.js"));
+  return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/contact */ "./js/components/contact/index.js"));
 };
 
 var Single = function Single() {
@@ -1020,7 +1020,7 @@ var Post = function Post() {
 };
 
 var Archive = function Archive() {
-  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/archive */ "./js/components/archive/index.js"));
+  return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/archive */ "./js/components/archive/index.js"));
 };
 
 var Search = function Search() {
@@ -1044,11 +1044,11 @@ var PreviewRelease = function PreviewRelease() {
 };
 
 var Members = function Members() {
-  return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./components/members */ "./js/components/members/index.js"));
+  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/members */ "./js/components/members/index.js"));
 };
 
 var MemberConfirm = function MemberConfirm() {
-  return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./components/member-confirm */ "./js/components/member-confirm/index.js"));
+  return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./components/member-confirm */ "./js/components/member-confirm/index.js"));
 };
 
 var Upload = function Upload() {

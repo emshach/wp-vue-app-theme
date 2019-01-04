@@ -1,6 +1,8 @@
 import store from '../../lib/store';
+import media_actions from '../../mixins/media-actions';
 export default {
   template: require( './template.html' ),
+  mixins: [ media_actions ],
   props: {
     title: {
       type: String,
@@ -50,12 +52,6 @@ export default {
     needsSubscription ( episode ) {
       return ( episode.restrictions.members
                && ( !this.user.as || !this.user.as.subscriber ));
-    },
-    sayAction( episode, trans ) {
-      return ( episode.mime_type.indexOf( 'video' ) == 0 ? 'watch'
-               : episode.mime_type.indexOf( 'audio' ) == 0
-               ? ( trans ? 'listen to' : 'listen' )
-               : 'see' );
     }
   }
 };

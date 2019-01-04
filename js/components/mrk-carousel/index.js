@@ -1,6 +1,8 @@
+import media_actions from '../../mixins/media-actions';
 var carousels = 0;
 export default {
   template: require( './template.html' ),
+  mixins: [ media_actions ],
   props: {
     topic: {
       type: String,
@@ -52,11 +54,6 @@ export default {
       if (! this.slides.length && this.topic ) {
         // TODO: search using topic, get posts
       }
-    },
-    sayAction( episode ) {
-      return ( episode.mime_type.indexOf( 'video' ) == 0 ? 'watch'
-               : episode.mime_type.indexOf( 'audio' ) == 0 ? 'listen'
-               : 'see' );
     }
   }
 };
