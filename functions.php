@@ -421,6 +421,7 @@ function mrk_rest_add_promo_reel( $data ) {
             'post_type' => [ 'post', 'page', 'release', 'attachment' ],
             'nopaging'  => true,
             'orderby'   => 'menu_order',
+            'order'     => 'ASC',
             'tax_query' => [
                 [
                     'taxonomy' => $collection->taxonomy,
@@ -657,6 +658,7 @@ function mrk_get_release_by_program_id( $data ) {
             'post_type' => [ 'release', 'attachment' ],
             'nopaaging' => true,
             'orderby'   => 'menu_order',
+            'order'     => 'ASC',
             'tax_query' => [
                 [
                     'taxonomy' => 'attachment_category',
