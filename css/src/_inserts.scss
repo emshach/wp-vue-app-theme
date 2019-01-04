@@ -3,6 +3,7 @@
  * ---
  */
 .media {
+  
   > .d-flex {
     position: relative;
     margin-right: 10px;
@@ -21,6 +22,9 @@
     }
   }
   .media-body {
+    >.episode-num {
+      text-transform: uppercase;
+    }
     >.info {
       color: #aaa;
       margin: 0 0 10px;
@@ -94,6 +98,6 @@
     color: purple;
   }
 }
-.episodes>.title {
+.episodes>.title,  {
   text-transform: uppercase;
 }

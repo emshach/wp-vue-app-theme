@@ -695,6 +695,9 @@ section.episodes .card h5 {
   font-weight: bold;
   right: 1px; }
 
+.media .media-body > .episode-num {
+  text-transform: uppercase; }
+
 .media .media-body > .info {
   color: #aaa;
   margin: 0 0 10px; }
