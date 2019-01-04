@@ -9,7 +9,7 @@
   <transition name="fast-fade" mode="out-in">
     <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
     <b-form v-else-if="action == 'unknown-user'" @submit="login"
-            @click="clickForm"
+            @click="formClick"
             :class="[ 'login', action ]">
       <b-alert show variant="warning">We're sorry, we don't have that username
 
@@ -34,7 +34,7 @@
       </b-form-group>
     </b-form>
     <b-form v-else-if="action == 'unknown-email'" @submit="login"
-            @click="clickForm"
+            @click="formClick"
             :class="[ 'login', action ]">
       <b-alert show variant="warning">We're sorry, we have no record of that
       email address. If you entered the email incorrectly you can re-enter it
@@ -58,7 +58,7 @@
       </b-form-group>
     </b-form>
     <b-form v-else @submit="login"
-            @click="clickForm"
+            @click="formClick"
             :class="[ 'login', action ]">
       <b-form-group id="login-username"
                     :label="action == 'register' ? 'username'
