@@ -64,7 +64,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      return !!episode.redirect;
+      return !episode.redirect;
     },
     needsSubscription: function needsSubscription(episode) {
       return episode.restrictions.members && (!this.user.as || !this.user.as.subscriber);

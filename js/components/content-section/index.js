@@ -47,7 +47,7 @@ export default {
           return true;
         return false;
       }
-      return !!episode.redirect;
+      return !episode.redirect;
     },
     needsSubscription ( episode ) {
       return ( episode.restrictions.members
