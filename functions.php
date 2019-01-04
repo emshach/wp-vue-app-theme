@@ -1131,7 +1131,7 @@ function mrk_ajax_login() {
         if ( $uid = username_exists( $login )) {
             if ( $token ) {
                 // passwordless-login
-                $res = mrk_send_login_token( $email, $uid, $res );
+                $res = mrk_send_login_token( $login, $uid, $res );
             } elseif ( $pass ) {
                 $user = wp_signon([ 'user_login'    => $login,
                                     'user_password' => $pass,

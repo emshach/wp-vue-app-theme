@@ -82,12 +82,17 @@
       </transition>
       <transition name="fade-fast" mode="out-in">
         <div id="login-password" v-if="tokenLogin">
-          <b-alert v-if="action == 'register'" show>A password will be generated
-          for you and sent with your confirmation email.</b-alert>
-          <b-alert v-else show>An email will be sent with a link that will log
-            you in when you click it. This link will expire in 10
-            minutes.</b-alert>
-          <b-btn variant="link" @click="enterPass">set password now</b-btn>
+          <template v-if="action == 'register'">
+            <b-alert show>A password will be generated
+              for you and sent with your confirmation email.</b-alert>
+            <b-btn variant="link" @click="enterPass">set password now</b-btn>
+          </template>
+          <template v-else>
+            <b-alert show>An email will be sent with a link that will log
+              you in when you click it. This link will expire in 10
+              minutes.</b-alert>
+            <b-btn variant="link" @click="enterPass">enter password instead</b-btn>
+          </template>
         </div>
         <b-form-group v-else-if="action == 'register'"
                       id="login-password">
