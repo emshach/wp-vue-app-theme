@@ -1093,6 +1093,7 @@ function mrk_ajax_login() {
                 if ( is_wp_error( $user )) {
                     // wrong password
                     $res[ 'next' ] = 'wrong-password';
+                    $res[ 'error' ] = $user;
                 } else {
                     // success, logged in
                     $res[ 'next' ] = 'success';
@@ -1135,6 +1136,7 @@ function mrk_ajax_login() {
                 if ( is_wp_error( $user )) {
                     // wrong password
                     $res[ 'next' ] = 'wrong-password';
+                    $res[ 'error' ] = $user;
                 } else {
                     // success, logged in
                     $res[ 'next' ] = 'success';
