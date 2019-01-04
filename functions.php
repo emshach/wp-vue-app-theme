@@ -1052,14 +1052,14 @@ function mrk_register_menus() {
   );
 }
 
-function mrk_send_login_token( $email, $uid = 0, &$res = [] ) {
+function mrk_send_login_token( $email, $uid = 0, $res ) {
     $nonce = wp_create_nonce( 'wpa_passwordless_login_request' );
     $uri = $_SERVER[ 'REQUEST_URI' ];
     // Hack REQUEST_URI because passwordless-login plugin does some _garbage_
     $_SERVER[ 'REQUEST_URI' ] = '/login';
     $link = wpa_send_link( $email, $nonce );
     $_SERVER[ 'REQUEST_URI' ] = $uri;
-    if ( empty( $res ))
+    if ( !$uid )
         return $link;
     if ( is_wp_error( $link )) {
         $res[ 'next' ] = 'error';
@@ -1088,8 +1088,7 @@ function mrk_ajax_login() {
         if ( $uid = email_exists( $email )) {
             if ( $token ) {
                 // passwordless-login to email
-                mrk_send_login_token( $email, $uid, $res );
-                $res[ 'next' ] = 'link-sent';
+                $res = mrk_send_login_token( $email, $uid, $res );
             } elseif ( $pass ) {
                 $user = wp_signon([ 'user_login'    => $email,
                                     'user_password' => $pass,
@@ -1132,7 +1131,7 @@ function mrk_ajax_login() {
         if ( $uid = username_exists( $login )) {
             if ( $token ) {
                 // passwordless-login
-                mrk_send_login_token( $email, $uid, $res );
+                $res = mrk_send_login_token( $email, $uid, $res );
             } elseif ( $pass ) {
                 $user = wp_signon([ 'user_login'    => $login,
                                     'user_password' => $pass,
@@ -1189,7 +1188,7 @@ function mrk_ajax_register() {
             }
         } elseif ( $token ) {
             if ( $confirm )
-                mrk_send_login_token( $email, $uid, $res );
+                $res = mrk_send_login_token( $email, $uid, $res );
             else
                 $res[ 'next' ] = 'email-exists';
         } else
