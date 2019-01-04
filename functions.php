@@ -304,7 +304,8 @@ function mrk_rest_restrictions( $data ) {
     $stub = [ 'redirect' => $redir ];
     $keys = [ 'id', 'excerpt', 'path', 'background_image', 'menu_order', 'title',
               'author', 'debug', 'parent', 'thumbnail', 'caption', 'stats', 'my_xp',
-              'type', 'release_type', 'media_type', 'slug', 'preview' ];
+              'type', 'release_type', 'media_type', 'slug', 'preview',
+              'restrictions' ];
     // strip out some things (or only keep some things)
     foreach ( $keys as $key )
         if ( array_key_exists( $key, $data ))
