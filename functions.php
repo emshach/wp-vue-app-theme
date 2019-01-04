@@ -1073,7 +1073,8 @@ function mrk_ajax_login() {
     $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
     $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
     $pass  = ( isset( $_REQUEST[ 'pass' ])  ? $_REQUEST[ 'pass' ]  : '' );
-    $token = ( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '' );
+    $token = filter_var( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '',
+                         FILTER_VALIDATE_BOOLEAN );
     $res = [];
     if ( preg_match( '/.+@.+\..+/', $login )) {
         $email = $login;
@@ -1084,6 +1085,7 @@ function mrk_ajax_login() {
             if ( $token ) {
                 // passwordless-login to email
                 mrk_send_login_token( $email, $uid, $res );
+                $res[ 'next' ] = 'link-sent';
             } elseif ( $pass ) {
                 $user = wp_signon([ 'user_login'    => $email,
                                     'user_password' => $pass,
@@ -1117,7 +1119,6 @@ function mrk_ajax_login() {
                 $res[ 'next' ] = 'error';
                 $res[ 'error' ] = $uid;
             } else {
-                wp_new_user_notification( $uid, null, 'both' );
                 $res[ 'next' ] = 'success-email';
             }
         } else
@@ -1159,8 +1160,10 @@ function mrk_ajax_register() {
     $login = ( isset( $_REQUEST[ 'login' ]) ? $_REQUEST[ 'login' ] : '' );
     $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
     $pass  = ( isset( $_REQUEST[ 'pass' ])  ? $_REQUEST[ 'pass' ]  : '' );
-    $token = ( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '' );
-    $confirm = ( isset( $_REQUEST[ 'confirm' ]) ? $_REQUEST[ 'confirm' ] : '' );
+    $token = filter_var( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '',
+                         FILTER_VALIDATE_BOOLEAN );
+    $confirm = filter_var( isset( $_REQUEST[ 'confirm' ]) ? $_REQUEST[ 'confirm' ] : '',
+                           FILTER_VALIDATE_BOOLEAN );
     $res = [];
     if ( $uid = email_exists( $email )) {
         if ( $pass ) {
