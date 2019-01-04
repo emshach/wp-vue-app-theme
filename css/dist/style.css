@@ -766,6 +766,9 @@ section.episodes .card h5 {
 .page.release section.info .comments.active {
   color: purple; }
 
+.episodes > .title {
+  text-transform: uppercase; }
+
 /**
  * shop: styles for shopping elements
  * ---
