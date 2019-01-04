@@ -1056,7 +1056,7 @@ function mrk_send_login_token( $email, $uid = 0, $res ) {
     $nonce = wp_create_nonce( 'wpa_passwordless_login_request' );
     $uri = $_SERVER[ 'REQUEST_URI' ];
     // Hack REQUEST_URI because passwordless-login plugin does some _garbage_
-    $_SERVER[ 'REQUEST_URI' ] = '/login';
+    $_SERVER[ 'REQUEST_URI' ] = '/';
     $link = wpa_send_link( $email, $nonce );
     $_SERVER[ 'REQUEST_URI' ] = $uri;
     if ( !$uid )
