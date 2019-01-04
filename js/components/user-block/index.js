@@ -70,6 +70,18 @@ export default {
              this.waitLogin();
              // TODO: close form
              break;
+           case 'user-exists':
+             break;
+           case 'email-exists':
+             break;
+           case 'success-email':
+             break;
+           case 'forgot-password':
+             break;
+           case 'not-registered':
+             break;
+           case 'error':
+             break;
            case 'success':
              // success!
              Swal( 'Successfully logged in! Welcome!' );
@@ -116,6 +128,9 @@ export default {
     },
     showFormEmail() {
       this.action = 'unknown-email';
+    },
+    formClick(e) {
+      e.stopPropagation();
     },
     clearForm() {
       this.loginForm = {

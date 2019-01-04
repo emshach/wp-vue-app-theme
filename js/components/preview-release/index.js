@@ -41,6 +41,9 @@ export default {
     img() {
       return this.postData.background_image || '';
     },
+    fullContent() {
+      return this.postData.full_content;
+    },
     promos() {
       return [{
         id: this.postData.id,

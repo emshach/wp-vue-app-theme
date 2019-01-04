@@ -51,6 +51,9 @@ __webpack_require__.r(__webpack_exports__);
     img: function img() {
       return this.postData.background_image || '';
     },
+    fullContent: function fullContent() {
+      return this.postData.full_content;
+    },
     promos: function promos() {
       return [{
         id: this.postData.id,

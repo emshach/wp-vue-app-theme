@@ -1048,6 +1048,25 @@ function mrk_register_menus() {
   );
 }
 
+function mrk_send_login_token( $email, $uid = 0, &$res = [] ) {
+    $nonce = wp_create_nonce( 'wpa_passwordless_login_request' );
+    $uri = $_SERVER[ 'REQUEST_URI' ];
+    // Hack REQUEST_URI because passwordless-login plugin does some _garbage_
+    $_SERVER[ 'REQUEST_URI' ] = '/login';
+    $link = wpa_send_link( $email, $nonce );
+    $_SERVER[ 'REQUEST_URI' ] = $uri;
+    if ( empty( $res ))
+        return $link;
+    if ( is_wp_error( $link )) {
+        $res[ 'next' ] = 'error';
+        $res[ 'error' ] = $link;
+    } else {
+        $res[ 'next' ] = 'link-sent';
+        $res[ 'uid' ] = $uid;
+    }
+    return $res;    
+}
+
 function mrk_ajax_login() {
     check_ajax_referer( 'wp-bsh-ajax-security', 'sec_token' );
     // TODO: check recaptcha
@@ -1061,10 +1080,10 @@ function mrk_ajax_login() {
         $login = '';
     }
     if ( $email ) {
-        if ( email_exists( $email )) {
+        if ( $uid = email_exists( $email )) {
             if ( $token ) {
                 // passwordless-login to email
-                $res[ 'next' ] = 'wait';
+                mrk_send_login_token( $email, $uid, $res );
             } elseif ( $pass ) {
                 $user = wp_signon([ 'user_login'    => $email,
                                     'user_password' => $pass,
@@ -1079,27 +1098,42 @@ function mrk_ajax_login() {
                 }
             } else {
                 // wrong password
-                $res[ 'next' ] = '';
+                $res[ 'next' ] = 'wrong-password';
             }
         } elseif ( $pass ) {
             // register user with new password
-            $res[ 'next' ] = '';
+            $uid = wp_create_user( $login, $pass, $email );
+            if ( is_wp_error( $uid )) {
+                $res[ 'next' ] = 'error';
+                $res[ 'error' ] = $uid;
+            } else {
+                wp_new_user_notification( $uid, null, 'both' );
+                $res[ 'next' ] = 'success-email';
+            }
         } elseif ( $token ) {
             // register default
-            $res[ 'next' ] = '';
-        }
+            $uid = register_new_user( $login, $email );
+            if ( is_wp_error( $uid )) {
+                $res[ 'next' ] = 'error';
+                $res[ 'error' ] = $uid;
+            } else {
+                wp_new_user_notification( $uid, null, 'both' );
+                $res[ 'next' ] = 'success-email';
+            }
+        } else
+              $res[ 'next' ] = 'not-registered';
     } elseif ( $login ) {
-        if ( username_exists( $login )) {
+        if ( $uid = username_exists( $login )) {
             if ( $token ) {
                 // passwordless-login
-                $res[ 'next' ] = 'wait';
+                mrk_send_login_token( $email, $uid, $res );
             } elseif ( $pass ) {
                 $user = wp_signon([ 'user_login'    => $login,
                                     'user_password' => $pass,
                                     'remember'      => true ], false );
                 if ( is_wp_error( $user )) {
                     // wrong password
-                    $res[ 'next' ] = '';
+                    $res[ 'next' ] = 'wrong-password';
                 } else {
                     // success, logged in
                     $res[ 'next' ] = 'success';
@@ -1107,12 +1141,13 @@ function mrk_ajax_login() {
                 }
             } else {
                 // wrong password
-                $res[ 'next' ] = '';
+                $res[ 'next' ] = 'wrong-password';
             }
-        }
+        } else
+            $res[ 'next' ] = 'not-registered';
     } else {
         // no login given, what?
-        $res[ 'next' ] = '';
+        $res[ 'next' ] = 'error';
     }
     echo json_encode( $res );
     wp_die();
@@ -1125,30 +1160,54 @@ function mrk_ajax_register() {
     $email = ( isset( $_REQUEST[ 'email' ]) ? $_REQUEST[ 'email' ] : '' );
     $pass  = ( isset( $_REQUEST[ 'pass' ])  ? $_REQUEST[ 'pass' ]  : '' );
     $token = ( isset( $_REQUEST[ 'token' ]) ? $_REQUEST[ 'token' ] : '' );
+    $confirm = ( isset( $_REQUEST[ 'confirm' ]) ? $_REQUEST[ 'confirm' ] : '' );
     $res = [];
-    if ( email_exists( $email )) {
+    if ( $uid = email_exists( $email )) {
         if ( $pass ) {
             $user = wp_signon([ 'user_login'    => $email,
                                 'user_password' => $pass,
                                 'remember'      => true ], false );
             if ( is_wp_error( $user )) {
-                // user exists, wrong password
-                $res[ 'next' ] = 'wrong-password';
+                if ( $confirm ) {
+                    $res[ 'next' ] = 'forgot-password';
+                } else
+                    // user exists, wrong password
+                    $res[ 'next' ] = 'email-exists';
             } else {
                 // success, logged in
                 $res[ 'next' ] = 'success';
                 $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
             }
-        }
+        } elseif ( $token ) {
+            if ( $confirm )
+                mrk_send_login_token( $email, $uid, $res );
+            else
+                $res[ 'next' ] = 'email-exists';
+        } else
+              $res[ 'next' ] = 'email-exists';
     } elseif( username_exists( $login )) {
         // username exists
-        $res[ 'next' ] = '';
+        $res[ 'next' ] = 'user-exists';
     } elseif ( $pass ) {
         // register new user with password
-        $res[ 'next' ] = '';
+        $uid = wp_create_user( $login, $pass, $email );
+        if ( is_wp_error( $uid )) {
+            $res[ 'next' ] = 'error';
+            $res[ 'error' ] = $uid;
+        } else {
+            wp_new_user_notification( $uid, null, 'both' );
+            $res[ 'next' ] = 'success-email';
+        }
     } else {
         // register default
-        $res[ 'next' ] = '';
+        $uid = register_new_user( $login, $email );
+        if ( is_wp_error( $uid )) {
+            $res[ 'next' ] = 'error';
+            $res[ 'error' ] = $uid;
+        } else {
+            wp_new_user_notification( $uid, null, 'both' );
+            $res[ 'next' ] = 'success-email';
+        }
     }
     echo json_encode( $res );
     wp_die();
