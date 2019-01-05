@@ -62,6 +62,8 @@ __webpack_require__.r(__webpack_exports__);
       return this.postData.title_archives || 'From the Archives';
     },
     content: function content() {
+      var user = this.sstate.user;
+      if (this.postData.member_content && (user.membership || user.as && user.as.subscriber)) return this.postData.member_content;
       return this.postData.content && this.postData.content.rendered || '';
     },
     classes: function classes() {

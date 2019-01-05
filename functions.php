@@ -460,6 +460,18 @@ function mrk_rest_add_promo_reel( $data ) {
 }
 
 /**
+ * Add member-only content to program pages
+ *
+ * @return post array
+ */
+function mrk_rest_add_member_content( $data ) {
+    if ( empty( $data[ 'id' ]))
+        return $data;
+    $data[ 'member_content' ] = get_field( 'member_content', $data[ 'id' ]);
+    return $data;
+}
+
+/**
  * Add the videos from a collection to the corresponding object element
  *
  * @return null
@@ -1094,6 +1106,7 @@ function mrk_send_login_token( $email, $uid = 0, $res ) {
         return $link;
     if ( is_wp_error( $link )) {
         $res[ 'next' ] = 'error';
+
         $res[ 'error' ] = $link;
     } else {
         $res[ 'next' ] = 'link-sent';
@@ -1286,6 +1299,7 @@ add_filter( 'mrk_rest_process_media',        'mrk_rest_add_full_content',    10,
 add_filter( 'mrk_rest_process_home_page',    'mrk_rest_add_promo_reel',      10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_set_program_type',    10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_add_promo_reel',      10, 1 );
+add_filter( 'mrk_rest_process_program',      'mrk_rest_add_member_content',  10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_add_releases',        10, 1 );
 add_filter( 'mrk_rest_process_release',      'mrk_rest_add_bg_image',        10, 1 );
 add_filter( 'mrk_rest_process_release',      'mrk_rest_set_release_type',    10, 1 );

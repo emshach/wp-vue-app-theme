@@ -48,6 +48,10 @@ export default {
       return this.postData.title_archives || 'From the Archives';
     },
     content() {
+      const user = this.sstate.user;
+      if ( this.postData.member_content
+           && ( user.membership || ( user.as && user.as.subscriber )))
+        return this.postData.member_content;
       return this.postData.content && this.postData.content.rendered || '';
     },
     classes() {
