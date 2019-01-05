@@ -1,5 +1,6 @@
 import store from '../../lib/store';
 import media_actions from '../../mixins/media-actions';
+import _ from 'lodash';
 export default {
   template: require( './template.html' ),
   mixins: [ media_actions ],
@@ -19,6 +20,10 @@ export default {
     coming: {
       type: String,
       default: ''
+    },
+    labels: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -28,6 +33,7 @@ export default {
   },
   computed: {
     filteredEpisodes() {
+      var episodes = _.orderBy( this.episodes, [ 'release_number' ], [ 'asc' ]);
       return this.episodes.filter( x => this.canWatchNow(x) || x.restrictions.show );
     },
     dateComing() {

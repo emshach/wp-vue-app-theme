@@ -398,6 +398,18 @@ function mrk_rest_add_show_text( $data ) {
 }
 
 /**
+ * Add whether to show the title/caption/description for the media item
+ *
+ * @return post array
+ */
+function mrk_rest_add_release_number( $data ) {
+    if ( empty( $data[ 'id' ]))
+        return $data;
+    $data[ 'release_number'] = get_field( 'release_number', $data[ 'id' ]);
+    return $data;
+}
+
+/**
  * Set the type of a program object to 'program'
  *
  * @return post array
@@ -1227,7 +1239,6 @@ function mrk_ajax_register() {
 
 function mrk_add_menu_order() {
     add_post_type_support( 'post', 'page-attributes' );
-    add_post_type_support( 'page', 'page-attributes' );
     add_post_type_support( 'release', 'page-attributes' );
     add_post_type_support( 'attachment', 'page-attributes' );
 }
@@ -1255,12 +1266,14 @@ add_filter( 'mrk_rest_process_media',        'mrk_rest_add_stats',           10,
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_thumbnail',       11, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_show_text',       11, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_set_release_type',    10, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_add_release_number',  10, 1 );
 add_filter( 'mrk_rest_process_home_page',    'mrk_rest_add_promo_reel',      10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_set_program_type',    10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_add_promo_reel',      10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_add_releases',        10, 1 );
 add_filter( 'mrk_rest_process_release',      'mrk_rest_add_bg_image',        10, 1 );
 add_filter( 'mrk_rest_process_release',      'mrk_rest_set_release_type',    10, 1 );
+add_filter( 'mrk_rest_process_release',      'mrk_rest_add_release_number',  10, 1 );
 add_filter( 'mrk_rest_process_preview',      'mrk_rest_rm_preview_redirect', 10, 1 );
 
 ?>

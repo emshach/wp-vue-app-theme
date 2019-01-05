@@ -962,7 +962,7 @@ var ContentList = function ContentList() {
 };
 
 var ContentSection = function ContentSection() {
-  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/content-section */ "./js/components/content-section/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(36), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/content-section */ "./js/components/content-section/index.js"));
 };
 
 var Filmstrip = function Filmstrip() {
@@ -1008,7 +1008,7 @@ var Contact = function Contact() {
 };
 
 var Single = function Single() {
-  return __webpack_require__.e(/*! import() */ 36).then(__webpack_require__.bind(null, /*! ./components/single */ "./js/components/single/index.js"));
+  return __webpack_require__.e(/*! import() */ 37).then(__webpack_require__.bind(null, /*! ./components/single */ "./js/components/single/index.js"));
 };
 
 var Page = function Page() {

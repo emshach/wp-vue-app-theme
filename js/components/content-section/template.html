@@ -11,7 +11,9 @@
               }}</div>
           </b-media-aside>
           <b-media-body>
-            <h5 class="mt-0 episode-num">Programme {{ index + 1 }}</h5>
+            <h5 v-if="labels && episode.release_number"
+                class="mt-0 episode-num">Programme {{
+              episode.release_number }}</h5>
             <h5 class="mt-0" v-html="episode.title.rendered"></h5>
             <div class="info row">
               <div :class="[ 'views', 'd-flex',
