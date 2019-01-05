@@ -42,21 +42,6 @@
 
   <main role="main">
     <h1 class="title" v-html="title"></h1>
-    <transition name="fade-in">
-      <section v-if="wideMode" class="description">
-        <div v-html="content"></div>
-        <b-btn v-if="postData.full_content
-                     && canWatchNow( postData.full_content )"
-               variant="primary" :to="postData.full_content.path" size="lg"
-               class="float-right">{{
-          sayAction( postData.full_content )}} now</b-btn>
-        <b-btn v-else variant="warning"
-               size="lg" class="float-right"
-               v-scroll-to="{ el: 'main', container: '.page',
-                            x: false, y: true }">
-          subscribe for full content</b-btn>
-      </section>
-    </transition>
     <section class="info row">
       <div :class="[ 'views', 'd-flex',
                    { active : postData.my_xp.seen }]">
@@ -88,7 +73,12 @@
     </section>
     <!-- TODO: strips for related, series -->
     <section class="description" v-if="wideMode" v-html="content"></section>
-    <section class="subscriptions">
+    <b-btn v-if="postData.full_content
+                 && canWatchNow( postData.full_content )"
+           variant="primary" :to="postData.full_content.path" size="lg"
+           class="float-right">{{
+      sayAction( postData.full_content )}} now</b-btn>
+    <section v-else class="subscriptions">
       <subscription-menu :target="postData.path">
         Select one of the subscription plans to see the full content.
       </subscription-menu>
