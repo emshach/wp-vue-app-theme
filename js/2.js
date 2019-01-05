@@ -91,12 +91,12 @@ module.exports = "<section class=\"episodes\">\n  <template v-if=\"filteredEpiso
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module '../../lib/store'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/store */ "./js/lib/store.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     canWatchNow: function canWatchNow(episode) {
-      var user = !(function webpackMissingModule() { var e = new Error("Cannot find module '../../lib/store'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).state.user;
+      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
 
       if (user.as) {
         var as = user.as;
