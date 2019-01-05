@@ -1282,6 +1282,7 @@ add_filter( 'mrk_rest_process_media',        'mrk_rest_add_thumbnail',       11,
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_show_text',       11, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_set_release_type',    10, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_release_number',  10, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_add_full_content',    10, 1 );
 add_filter( 'mrk_rest_process_home_page',    'mrk_rest_add_promo_reel',      10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_set_program_type',    10, 1 );
 add_filter( 'mrk_rest_process_program',      'mrk_rest_add_promo_reel',      10, 1 );
