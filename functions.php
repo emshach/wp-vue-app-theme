@@ -274,8 +274,8 @@ function mrk_rest_restrictions( $data ) {
     $redir = '';
     $data[ 'restrictions' ] = $rst;
     if (! empty( $rst[ 'preview' ]))
-        $data[ 'preview' ] = '/preview/'
-            . wp_make_link_relative( get_permalink ( $rst[ 'preview' ]));
+        $data[ 'preview' ] = '/preview/' . $rst[ 'preview' ]->ID;
+            // . wp_make_link_relative( get_permalink ( $rst[ 'preview' ]));
     if ( current_user_can( 'see_all_content' ) || $rst[ 'public' ])
         return $data;
     if ( in_array( $user->ID, $rst[ 'users' ]))
