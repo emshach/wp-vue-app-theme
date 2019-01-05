@@ -29,7 +29,7 @@ __webpack_require__.r(__webpack_exports__);
       show: false,
       prev: 0,
       next: 0,
-      wideMode: 0
+      wideMode: true
     };
   },
   beforeRouteUpdate: _lib_route_events__WEBPACK_IMPORTED_MODULE_0__["default"].toRelease,

@@ -13,7 +13,7 @@ export default {
       show: false,
       prev: 0,
       next: 0,
-      wideMode: 0,
+      wideMode: true
     };
   },
   beforeRouteUpdate: routeEvents.toPreviewRelease,

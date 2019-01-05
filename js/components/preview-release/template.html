@@ -10,11 +10,11 @@
       <div class="row">
         <div :class="[ 'media-wrapper', 'col-12', wideMode ? '' : 'col-md-8']">
           <video v-if="postData.release_type == 'video'"
-                 :src="postData.source_url" class="media" controls>
+                 :src="postData.source_url" class="media" autoplay controls>
             {{ postData.alt_text }}
           </video>
           <audio v-else-if="postData.release_type == 'audio'"
-                 :src="postData.source_url" class="media" controls>
+                 :src="postData.source_url" class="media" autoplay controls>
             {{ postData.alt_text }}
           </audio>
           <carousel v-else-if="postData.release_type == 'gallery'">
