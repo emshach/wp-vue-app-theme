@@ -34,7 +34,7 @@ export default {
   computed: {
     filteredEpisodes() {
       var episodes = _.orderBy( this.episodes, [ 'release_number' ], [ 'asc' ]);
-      return this.episodes.filter( x => this.canWatchNow(x) || x.restrictions.show );
+      return episodes.filter( x => this.canWatchNow(x) || x.restrictions.show );
     },
     dateComing() {
       return this.coming ? ( 'in ' + this.coming ) : 'Soon';
