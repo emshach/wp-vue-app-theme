@@ -95,11 +95,15 @@ module.exports = "<carousel :autoplay=\"true\" :per-page=\"1\" :autoplay-timeout
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module '../../lib/store'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     canWatchNow: function canWatchNow(episode) {
-      if (this.user.as) {
-        var as = this.user.as;
+      var user = !(function webpackMissingModule() { var e = new Error("Cannot find module '../../lib/store'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).state.user;
+
+      if (user.as) {
+        var as = user.as;
         var rst = episode.restrictions;
         if (as.admin || rst.public) return true;
         if (as.subscriber && rst.members) return true;

@@ -1,8 +1,10 @@
+import store from '../../lib/store';
 export default {
   methods: {
     canWatchNow ( episode ) {
-      if ( this.user.as ) {
-        var as  = this.user.as;
+      var user = store.state.user;
+      if ( user.as ) {
+        var as  = user.as;
         var rst = episode.restrictions;
         if ( as.admin || rst.public )
           return true;
