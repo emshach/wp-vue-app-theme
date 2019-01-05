@@ -54,7 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var episodes = lodash__WEBPACK_IMPORTED_MODULE_2___default.a.orderBy(this.episodes, ['release_number'], ['asc']);
 
-      return this.episodes.filter(function (x) {
+      return episodes.filter(function (x) {
         return _this.canWatchNow(x) || x.restrictions.show;
       });
     },
