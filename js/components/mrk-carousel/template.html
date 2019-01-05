@@ -29,9 +29,16 @@
           <router-link v-if="slide.read_more"
                        :to="slide.full_content.path"
                        class="read-more">read_more</router-link>
-          <router-link v-else-if="slide.full_content"
-                       :to="slide.full_content.path"
-                       class="watch-now">watch now</router-link>
+          <b-btn v-if="slide.full_content
+                       && canWatchNow( slide.full_content )"
+                 variant="primary" :to="slide.full_content.path" size="lg"
+                 class="float-right">{{
+            sayAction( slide.full_content )}} now</b-btn>
+          <b-btn v-else variant="warning"
+                 size="lg" class="float-right"
+                 v-scroll-to="{ el: 'main', container: '.page',
+                              x: false, y: true }">
+            subscribe for full content</b-btn>
         </div>
         <!-- TODO: if paid content, this link should be different, maybe it's
              own component -->
