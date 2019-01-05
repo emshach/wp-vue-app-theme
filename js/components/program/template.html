@@ -21,7 +21,8 @@
                      :labels="postData.episode_labels"
                      :episodes="episodes"></content-section>
     <content-section :title="archivesTitle" :episodes="archives"
-                     :labels="false" :show-empty="false"></content-section>
+                     :labels="postData.episode_labels"
+                     :show-empty="false"></content-section>
     <comments></comments>
   </main>
   <wp-footer></wp-footer>
