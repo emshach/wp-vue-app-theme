@@ -26,7 +26,7 @@
             <div v-html="content"></div>
             <b-btn v-if="postData.full_content
                          && canWatchNow( postData.full_content )"
-                   variant="primary" :to="postData" size="lg"
+                   variant="primary" :to="postData.full_content.path" size="lg"
                    class="float-right">{{
               sayAction( postData.full_content )}} now</b-btn>
             <b-btn v-else variant="warning"
@@ -47,7 +47,7 @@
         <div v-html="content"></div>
         <b-btn v-if="postData.full_content
                      && canWatchNow( postData.full_content )"
-               variant="primary" :to="postData" size="lg"
+               variant="primary" :to="postData.full_content.path" size="lg"
                class="float-right">{{
           sayAction( postData.full_content )}} now</b-btn>
         <b-btn v-else variant="warning"
