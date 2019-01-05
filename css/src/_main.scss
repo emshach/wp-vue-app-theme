@@ -27,6 +27,11 @@ main {
     @include breakpoint( $max-phone ) {
       font-size: 32px;
     }
+  }
+  .description {
+    a:link {
+      color: #008;
+    }
   }}
 #app {
   background: #100;
