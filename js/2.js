@@ -63,18 +63,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    canWatchNow: function canWatchNow(episode) {
-      if (this.user.as) {
-        var as = this.user.as;
-        var rst = episode.restrictions;
-        if (as.admin || rst.public) return true;
-        if (as.subscriber && rst.members) return true;
-        if (as.logged_in && rst.auth) return true;
-        return false;
-      }
-
-      return !episode.redirect;
-    },
     needsSubscription: function needsSubscription(episode) {
       return episode.restrictions.members && (!this.user.as || !this.user.as.subscriber);
     }
@@ -105,6 +93,18 @@ module.exports = "<section class=\"episodes\">\n  <template v-if=\"filteredEpiso
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
+    canWatchNow: function canWatchNow(episode) {
+      if (this.user.as) {
+        var as = this.user.as;
+        var rst = episode.restrictions;
+        if (as.admin || rst.public) return true;
+        if (as.subscriber && rst.members) return true;
+        if (as.logged_in && rst.auth) return true;
+        return false;
+      }
+
+      return !episode.redirect;
+    },
     sayAction: function sayAction(episode, trans) {
       return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'see';
     }

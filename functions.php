@@ -518,6 +518,19 @@ function mrk_rest_add_releases( $data ) {
 }
 
 /**
+ * Add a link to the full content from a preview
+ *
+ * @return post array
+ */
+function mrk_rest_add_full_content( $data ) {
+    // add the collections
+    $full = get_field( 'full_content', $data[ 'id' ]);
+    if ( $full )
+    $data[ 'full_content' ] = mrk_rest_get_media( $full );
+    return $data;
+}
+
+/**
  *  Get post data, passing it through the rest controller
  *
  * @return post array
@@ -1276,5 +1289,6 @@ add_filter( 'mrk_rest_process_release',      'mrk_rest_add_bg_image',        10,
 add_filter( 'mrk_rest_process_release',      'mrk_rest_set_release_type',    10, 1 );
 add_filter( 'mrk_rest_process_release',      'mrk_rest_add_release_number',  10, 1 );
 add_filter( 'mrk_rest_process_preview',      'mrk_rest_rm_preview_redirect', 10, 1 );
+add_filter( 'mrk_rest_process_preview',      'mrk_rest_add_full_content',    10, 1 );
 
 ?>
