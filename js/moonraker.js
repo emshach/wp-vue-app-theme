@@ -1244,6 +1244,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
     this.getSiteInfo();
     this.getUserData();
     this.getMenu();
+    this.hijackHrefs();
   },
   created: function created() {
     window.addEventListener('resize', this.handleResize);
@@ -1266,6 +1267,45 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
     getUserData: function getUserData() {},
     getMenu: function getMenu() {
       this.menu = this.sstate.menus.nav || [];
+    },
+    hijackHrefs: function hijackHrefs() {
+      var _this = this;
+
+      window.addEventListener('click', function (event) {
+        var target = event.target; // handle only links that do not reference external resources
+
+        if (target && target.matches("a:not([href*='://'])") && target.href) {
+          // some sanity checks taken from vue-router:
+          // https://github.com/vuejs/vue-router/blob/dev/src/components/link.js#L106
+          var altKey = event.altKey,
+              ctrlKey = event.ctrlKey,
+              metaKey = event.metaKey,
+              shiftKey = event.shiftKey,
+              button = event.button,
+              defaultPrevented = event.defaultPrevented; // don't handle with control keys
+
+          if (metaKey || altKey || ctrlKey || shiftKey) return; // don't handle when preventDefault called
+
+          if (defaultPrevented) return; // don't handle right clicks
+
+          if (button !== undefined && button !== 0) return; // don't handle if `target="_blank"`
+
+          if (target && target.getAttribute) {
+            var linkTarget = target.getAttribute('target');
+            if (/\b_blank\b/i.test(linkTarget)) return;
+          } // don't handle same page links/anchors
+
+
+          var url = new URL(target.href);
+          var to = url.pathname;
+
+          if (window.location.pathname !== to && event.preventDefault) {
+            event.preventDefault();
+
+            _this.$router.push(to + url.search + url.hash);
+          }
+        }
+      });
     }
   }
 }).$mount('#app'); // Now the app has started!
