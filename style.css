@@ -656,7 +656,7 @@ main h1.title {
   main h1.title {
     font-size: 32px; } }
 
-main .description a:link {
+main .description a:link, main .description a:visited {
   color: #008; }
 
 #app {
