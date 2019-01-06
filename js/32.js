@@ -110,9 +110,9 @@ __webpack_require__.r(__webpack_exports__);
           case 'success-email':
           case 'not-registered':
             var $el = _this.$refs.loginForm;
-            _this.messageStyle.minHeighct = $el.clientHeight + 'px';
-            _this.feedbackStyle.minHeighct = $el.clientHeight - 50 + 'px';
-            _this.messageStyle.minWidth = $el.clientWidth + 'px';
+            _this.feedbackStyle.minHeighct = $el.clientHeight + 'px';
+            _this.messageStyle.minHeighct = $el.clientHeight - 50 + 'px';
+            _this.feedbackStyle.minWidth = $el.clientWidth + 'px';
             _this.action = d.next;
             break;
 

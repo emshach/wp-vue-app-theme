@@ -79,9 +79,9 @@ export default {
            case 'success-email':
            case 'not-registered':
              var $el = this.$refs.loginForm;
-             this.messageStyle.minHeighct = $el.clientHeight + 'px';
-             this.feedbackStyle.minHeighct = $el.clientHeight - 50 + 'px';
-             this.messageStyle.minWidth = $el.clientWidth + 'px';
+             this.feedbackStyle.minHeighct = $el.clientHeight + 'px';
+             this.messageStyle.minHeighct = $el.clientHeight - 50 + 'px';
+             this.feedbackStyle.minWidth = $el.clientWidth + 'px';
              this.action = d.next;
              break;
            case 'link-sent':
