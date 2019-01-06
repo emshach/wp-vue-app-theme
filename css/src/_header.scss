@@ -42,6 +42,14 @@
         font-size: larger;
         color: grey;
         padding: 15px;
+        strong {
+          font-size: large;
+          font-weight: bold;
+          color: #444;
+        }
+      }
+      .login-actions .btn {
+        width: 46%;
       }
     }
     padding: 10px 10px 0;

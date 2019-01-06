@@ -214,6 +214,14 @@ main {
   color: grey;
   padding: 15px; }
 
+#user #login.feedback .message strong {
+  font-size: large;
+  font-weight: bold;
+  color: #444; }
+
+#user #login.feedback .login-actions .btn {
+  width: 46%; }
+
 #user #login label {
   font-size: small;
   padding-bottom: 0;

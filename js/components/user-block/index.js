@@ -80,7 +80,7 @@ export default {
            case 'not-registered':
              var $el = this.$refs.loginForm;
              this.feedbackStyle.minHeight = $el.clientHeight + 'px';
-             this.messageStyle.minHeight = $el.clientHeight - 50 + 'px';
+             this.messageStyle.minHeight = $el.clientHeight - 60 + 'px';
              this.feedbackStyle.minWidth = $el.clientWidth + 'px';
              this.action = d.next;
              break;
