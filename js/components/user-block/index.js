@@ -18,9 +18,12 @@ export default {
       errors: [],
       usernameTaken: false,
       emailTaken: false,
+      feedbackStyle: {
+        minHeight: 'auto',
+        minWidth: 'auto'
+      },
       messageStyle: {
-        height: 'auto',
-        width: 'auto'
+        minHeight: 'auto',
       },
       loginForm: {
         action: 'mrklogin',
@@ -76,8 +79,9 @@ export default {
            case 'success-email':
            case 'not-registered':
              var $el = this.$refs.loginForm;
-             this.messageStyle.height = $el.clientHeight + 'px';
-             this.messageStyle.width = $el.clientWidth + 'px';
+             this.messageStyle.minHeighct = $el.clientHeight + 'px';
+             this.feedbackStyle.minHeighct = $el.clientHeight - 50 + 'px';
+             this.messageStyle.minWidth = $el.clientWidth + 'px';
              this.action = d.next;
              break;
            case 'link-sent':
@@ -97,7 +101,6 @@ export default {
              this.action = 'success';
              this.reload();
            }
-           this.focusFirst();
          })
          .catch( error => {
            console.warn( 'server error', error );
@@ -205,6 +208,12 @@ export default {
     },
     logoutLink() {
       return he.decode( this.user.logout );
+    }
+  },
+  watch: {
+    action( newVal, oldVal ) {
+      if ( newVal != oldVal )
+        this.focusFirst();
     }
   }
 };

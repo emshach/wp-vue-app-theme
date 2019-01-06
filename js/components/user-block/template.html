@@ -9,9 +9,10 @@
   <transition name="fast-fade" mode="out-in">
     <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
     <div v-else-if="action == 'success'" id="login" class="feedback"
-         :style="messageStyle">
-      <div class="message">Success! The page should reload with you logged in.
-        If it takes too long, click the button to reload.</div>
+         :style="feedbackStyle">
+      <div class="message" :style="messageStyle">Success! The page should reload
+        with you logged in. If it takes too long, click the button to
+        reload.</div>
       <b-btn variant="primary" @click="reload"
              class="mid-button">reload</b-btn>
       <!-- <b-btn type="submit" variant="success" name="wp-submit" -->
@@ -19,28 +20,29 @@
       <!--        @click="actionRegister">sign-up</b-btn> -->
     </div>
     <div v-else-if="action == 'success-email'" id="login" class="feedback"
-         :style="messageStyle">
-      <div class="message">Success! Please check your mail and follow the
-        confirmation link to complete registration</div>
+         :style="feedbackStyle">
+      <div class="message" :style="messageStyle">Success! Please check your mail
+        and follow the confirmation link to complete registration</div>
       <div class="login-actions">
         <b-btn v-if="loginConfirmed" variant="primary"
                class="mid-button">OK</b-btn>
       </div>
     </div>
     <div v-else-if="action == 'link-sent'" id="login" class="feedback"
-         :style="messageStyle">
-      <div class="message">Your login link has been sent. This page
-        should reload once you've been logged in. If not, click the button to
-        reload</div>
+         :style="feedbackStyle">
+      <div class="message" :style="messageStyle">Your login link has been sent.
+        This page should reload once you've been logged in. If not, click the
+        button to reload</div>
       <div class="login-actions">
         <b-btn v-if="loginConfirmed" variant="primary" @click="reload"
                class="mid-button">reload</b-btn>
       </div>
     </div>
     <div v-else-if="action == 'not-registered'" id="login" class="feedback"
-         :style="messageStyle">
-      <div class="message">The username <strong>{{ loginForm.login }}</strong>
-        is not registered. Would you like to sign up?</div>
+         :style="feedbackStyle">
+      <div class="message" :style="messageStyle">The username <strong>{{
+        loginForm.login }}</strong> is not registered. Would you like to sign
+        up?</div>
       <div class="login-actions">
         <b-btn variant="link" @click="goBack"
                class="login-button">go back</b-btn>
@@ -49,9 +51,9 @@
       </div>
     </div>
     <div v-else-if="action == 'email-exists'" id="login" class="feedback"
-         :style="messageStyle">
+         :style="feedbackStyle">
       <template v-if="loginForm.token">
-        <div class="message">The email
+        <div class="message" :style="messageStyle">The email
           <strong>{{ loginForm.email }}</strong> is already registered. If this
           email is correct, click confirm to get your login link, or go back to
           change it</div>
@@ -63,7 +65,7 @@
         </div>
       </template>
       <template v-else>
-        <div class="message">The email
+        <div class="message" :style="messageStyle">The email
           <strong>{{ loginForm.email }}</strong> is already registered but does
           not match the password given. If this email is correct, click login to
           try again, or click forgot password and a login link will be sent to
