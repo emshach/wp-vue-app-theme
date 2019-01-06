@@ -34,14 +34,13 @@
     </div>
     <div v-else-if="action == 'not-registered'" class="feedback"
          :style="messageStyle">
-      <template v-if="loginForm.token">
-        <div class="message">The username <strong>{{ loginForm.login }}</strong>
+      <div class="message">The username <strong>{{ loginForm.login }}</strong>
         is not registered. Would you like to sign up?</div>
-        <b-btn v-if="loginForm.token" variant="link" @click="goBack"
-               class="login-button">go back</b-btn>
-        <b-btn v-if="loginForm.token" variant="success" @click="actionRegister"
-               class="register-button">sign-up</b-btn>
-      </template>
+      <b-btn v-if="loginForm.token" variant="link" @click="goBack"
+             class="login-button">go back</b-btn>
+      <b-btn v-if="loginForm.token" variant="success" @click="actionRegister"
+             class="register-button">sign-up</b-btn>
+    </div>
     <div v-else-if="action == 'email-exists'" class="feedback"
          :style="messageStyle">
       <template v-if="loginForm.token">

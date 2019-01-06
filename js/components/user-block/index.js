@@ -73,6 +73,9 @@ export default {
            case 'unknown-email':
            case 'email-exists':
            case 'success-email':
+             var $el = this.refs.loginForm;
+             this.messageStyle.height = $el.clientHeight + 'px';
+             this.messageStyle.width = $el.clientWidth + 'px';
              this.action = d.next;
              break;
            case 'link-sent':
