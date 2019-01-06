@@ -38,7 +38,7 @@
         is not registered. Would you like to sign up?</div>
       <b-btn variant="link" @click="goBack"
              class="login-button">go back</b-btn>
-      <b-btn variant="success" @click="actionRegister"
+      <b-btn variant="success" @click="register"
              class="register-button">sign-up</b-btn>
     </div>
     <div v-else-if="action == 'email-exists'" class="feedback"
@@ -50,7 +50,7 @@
           change it</div>
         <b-btn variant="link" @click="goBack"
                class="login-button">go back</b-btn>
-        <b-btn variant="success" @click="register"
+        <b-btn variant="success" @click="confirm"
                class="register-button">confirm</b-btn>
       </template>
       <template v-else>
