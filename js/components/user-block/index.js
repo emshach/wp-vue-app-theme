@@ -18,7 +18,8 @@ export default {
       usernameTaken: false,
       emailTaken: false,
       messageStyle: {
-        height: 'auto'
+        height: 'auto',
+        width: 'auto'
       },
       loginForm: {
         action: 'mrklogin',
@@ -69,22 +70,18 @@ export default {
              this.errors.push( "the password you entered was incorrect" );
              break;
            case 'unknown-user':
-             this.action = 'unknown-user';
-             break;
            case 'unknown-email':
-             this.action = 'unknown-email';
+           case 'email-exists':
+           case 'success-email':
+             this.action = d.next;
              break;
            case 'link-sent':
+             this.action = 'link-sent';
              this.waitLogin();
              // TODO: close form
              break;
            case 'user-exists':
              this.usernameTaken = true;
-             break;
-           case 'email-exists':
-             this.action = 'email-exists';
-             break;
-           case 'success-email':
              break;
            case 'forgot-password':
              break;
@@ -162,7 +159,10 @@ export default {
     },
     goBack(e) {
       e.stopPropagation();
-      this.action = 'register';
+      if ( this.action == 'not-registered' )
+        this.action = 'login';
+      else 
+        this.action = 'register';
     },
     goToLogin(e) {
       e.stopPropagation();
