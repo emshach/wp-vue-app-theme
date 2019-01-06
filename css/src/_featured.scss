@@ -49,7 +49,7 @@
         height: 100%;
       }
       @include breakpoint( $max-phone ) {
-        > .col-md-8 {
+        > .media-wrapper {
           height: 70%;
         }
         > .col-md-4 {

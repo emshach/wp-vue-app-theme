@@ -4,7 +4,8 @@
   <slide v-for="( slide, index ) in slides" :key="slide.id">
     <div class="container">
       <div class="row">
-        <div :class="[ 'col', 'col-12', { 'col-md-8': slide.show_text }]">
+        <div :class="[ 'media-wrapper', 'col', 'col-12',
+                       { 'col-md-8': slide.show_text }]">
           <template v-if="slide.type == 'attachment'">
             <img v-if="slide.media_type == 'image'" :src="slide.source_url"
                  class="media" />
