@@ -28,6 +28,9 @@
     margin: 0 auto;
     height: 100%;
   }
+  .media-wrapper {
+    padding: 0;
+  }
 }
 #featured {
   height: 100%;
@@ -44,8 +47,13 @@
       > .col {
         position: relative;
         height: 100%;
-        @breakpoint( $max-phone ) {
-          height: 50%;
+      }
+      @include breakpoint( $max-phone ) {
+        > .col-md-8 {
+          height: 70%;
+        }
+        > .col-md-4 {
+          height: 30%;
         }
       }
     }

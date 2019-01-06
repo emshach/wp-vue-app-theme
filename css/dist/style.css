@@ -99,6 +99,9 @@ h1 {
   margin: 0 auto;
   height: 100%; }
 
+.featured-wrapper .media-wrapper {
+  padding: 0; }
+
 #featured {
   height: 100%; }
 
@@ -118,9 +121,11 @@ h1 {
   position: relative;
   height: 100%; }
 
-@breakpoint ( $max-phone ) {
-  #featured .VueCarousel-slide > .container > .row > .col {
-    height: 50%; } }
+@media (max-width: 600px) {
+  #featured .VueCarousel-slide > .container > .row > .col-md-8 {
+    height: 70%; }
+  #featured .VueCarousel-slide > .container > .row > .col-md-4 {
+    height: 30%; } }
 
 /**
  * parallax
