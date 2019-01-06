@@ -208,6 +208,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     goToLogin: function goToLogin(e) {
       e.stopPropagation();
+      this.loginForm.login = this.loginForm.email;
+      this.loginForm.email = '';
       this.action = 'login';
     },
     confirm: function confirm(e) {

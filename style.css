@@ -202,6 +202,10 @@ main {
   height: 21px;
   width: 21px; }
 
+#user .feedback {
+  padding: 10px;
+  min-width: 16em; }
+
 #user form {
   padding: 10px 10px 0;
   min-width: 16em; }

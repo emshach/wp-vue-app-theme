@@ -166,6 +166,8 @@ export default {
     },
     goToLogin(e) {
       e.stopPropagation();
+      this.loginForm.login = this.loginForm.email;
+      this.loginForm.email = '';
       this.action = 'login';
     },
     confirm(e) {
