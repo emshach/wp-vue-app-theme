@@ -97,10 +97,7 @@ export default {
              this.action = 'success';
              this.reload();
            }
-           this.$nextTick(() => {
-             if ( this.$refs.firstInput )
-               this.$refs.firstInput.focus();
-           })
+           this.focusFirst();
          })
          .catch( error => {
            console.warn( 'server error', error );
@@ -191,6 +188,12 @@ export default {
     register(e) {
       e.stopPropagation();
       this.action = 'register';
+    },
+    focusFirst() {
+      this.$nextTick(() => {
+        if ( this.$refs.firstInput )
+          this.$refs.firstInput.focus();
+      });
     }
   },
   computed: {
