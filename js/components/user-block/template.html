@@ -110,7 +110,7 @@
             :class="[ 'login', action ]">
       <transition name="fade-fast">
         <b-form-group v-if="errors.length">
-          <b-alert v-for="error in erros" variant="danger"
+          <b-alert v-for="error in errors" variant="danger"
                    v-html="error"></b-alert>
         </b-form-group>
       </transition>
