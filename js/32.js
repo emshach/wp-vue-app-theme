@@ -110,8 +110,8 @@ __webpack_require__.r(__webpack_exports__);
           case 'success-email':
           case 'not-registered':
             var $el = _this.$refs.loginForm;
-            _this.feedbackStyle.minHeighct = $el.clientHeight + 'px';
-            _this.messageStyle.minHeighct = $el.clientHeight - 50 + 'px';
+            _this.feedbackStyle.minHeight = $el.clientHeight + 'px';
+            _this.messageStyle.minHeight = $el.clientHeight - 50 + 'px';
             _this.feedbackStyle.minWidth = $el.clientWidth + 'px';
             _this.action = d.next;
             break;
@@ -237,9 +237,9 @@ __webpack_require__.r(__webpack_exports__);
     focusFirst: function focusFirst() {
       var _this3 = this;
 
-      this.$nextTick(function () {
+      window.setTimeout(function () {
         if (_this3.$refs.firstInput) _this3.$refs.firstInput.focus();
-      });
+      }, 150);
     }
   },
   computed: {

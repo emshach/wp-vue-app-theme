@@ -79,8 +79,8 @@ export default {
            case 'success-email':
            case 'not-registered':
              var $el = this.$refs.loginForm;
-             this.feedbackStyle.minHeighct = $el.clientHeight + 'px';
-             this.messageStyle.minHeighct = $el.clientHeight - 50 + 'px';
+             this.feedbackStyle.minHeight = $el.clientHeight + 'px';
+             this.messageStyle.minHeight = $el.clientHeight - 50 + 'px';
              this.feedbackStyle.minWidth = $el.clientWidth + 'px';
              this.action = d.next;
              break;
@@ -193,10 +193,10 @@ export default {
       this.action = 'register';
     },
     focusFirst() {
-      this.$nextTick(() => {
+      window.setTimeout(() => {
         if ( this.$refs.firstInput )
           this.$refs.firstInput.focus();
-      });
+      }, 150 );
     }
   },
   computed: {
