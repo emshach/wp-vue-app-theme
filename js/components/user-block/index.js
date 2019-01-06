@@ -176,6 +176,10 @@ export default {
       this.loginForm.action = 'mrklogin';
       this.loginForm.token = true;
       this.login(e);
+    },
+    register(e) {
+      e.stopPropagation();
+      this.action = 'register';
     }
   },
   computed: {

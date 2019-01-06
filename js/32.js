@@ -212,6 +212,10 @@ __webpack_require__.r(__webpack_exports__);
       this.loginForm.action = 'mrklogin';
       this.loginForm.token = true;
       this.login(e);
+    },
+    register: function register(e) {
+      e.stopPropagation();
+      this.action = 'register';
     }
   },
   computed: {
