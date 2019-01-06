@@ -104,6 +104,7 @@ __webpack_require__.r(__webpack_exports__);
           case 'unknown-email':
           case 'email-exists':
           case 'success-email':
+          case 'not-registered':
             var $el = _this.refs.loginForm;
             _this.messageStyle.height = $el.clientHeight + 'px';
             _this.messageStyle.width = $el.clientWidth + 'px';
@@ -123,9 +124,6 @@ __webpack_require__.r(__webpack_exports__);
             break;
 
           case 'forgot-password':
-            break;
-
-          case 'not-registered':
             break;
 
           case 'error':

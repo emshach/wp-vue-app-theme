@@ -73,6 +73,7 @@ export default {
            case 'unknown-email':
            case 'email-exists':
            case 'success-email':
+           case 'not-registered':
              var $el = this.refs.loginForm;
              this.messageStyle.height = $el.clientHeight + 'px';
              this.messageStyle.width = $el.clientWidth + 'px';
@@ -87,8 +88,6 @@ export default {
              this.usernameTaken = true;
              break;
            case 'forgot-password':
-             break;
-           case 'not-registered':
              break;
            case 'error':
              break;
