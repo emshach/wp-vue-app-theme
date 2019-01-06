@@ -94,6 +94,9 @@ __webpack_require__.r(__webpack_exports__);
         switch (d.next) {
           case 'wrong-password':
             _this.action = 'login';
+
+            _this.errors.push("the password you entered was incorrect");
+
             break;
 
           case 'unknown-user':

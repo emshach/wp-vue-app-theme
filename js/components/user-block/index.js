@@ -66,6 +66,7 @@ export default {
            switch ( d.next ) {
            case 'wrong-password':
              this.action = 'login';
+             this.errors.push( "the password you entered was incorrect" );
              break;
            case 'unknown-user':
              this.action = 'unknown-user';
