@@ -8,7 +8,8 @@
   </transition> -->
   <transition name="fast-fade" mode="out-in">
     <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
-    <div v-else-if="action == 'success'" class="feedback" :style="messageStyle">
+    <div v-else-if="action == 'success'" id="login" class="feedback"
+         :style="messageStyle">
       <div class="message">Success! The page should reload with you logged in.
         If it takes too long, click the button to reload.</div>
       <b-btn variant="primary" @click="reload"
@@ -17,41 +18,49 @@
       <!--        class="register-button" value="Register" -->
       <!--        @click="actionRegister">sign-up</b-btn> -->
     </div>
-    <div v-else-if="action == 'success-email'" class="feedback"
+    <div v-else-if="action == 'success-email'" id="login" class="feedback"
          :style="messageStyle">
       <div class="message">Success! Please check your mail and follow the
         confirmation link to complete registration</div>
-      <b-btn v-if="loginConfirmed" variant="primary"
-             class="mid-button">OK</b-btn>
+      <div class="login-actions">
+        <b-btn v-if="loginConfirmed" variant="primary"
+               class="mid-button">OK</b-btn>
+      </div>
     </div>
-    <div v-else-if="action == 'link-sent'" class="feedback"
+    <div v-else-if="action == 'link-sent'" id="login" class="feedback"
          :style="messageStyle">
       <div class="message">Your login link has been sent. This page
         should reload once you've been logged in. If not, click the button to
         reload</div>
-      <b-btn v-if="loginConfirmed" variant="primary" @click="reload"
-             class="mid-button">reload</b-btn>
+      <div class="login-actions">
+        <b-btn v-if="loginConfirmed" variant="primary" @click="reload"
+               class="mid-button">reload</b-btn>
+      </div>
     </div>
-    <div v-else-if="action == 'not-registered'" class="feedback"
+    <div v-else-if="action == 'not-registered'" id="login" class="feedback"
          :style="messageStyle">
       <div class="message">The username <strong>{{ loginForm.login }}</strong>
         is not registered. Would you like to sign up?</div>
-      <b-btn variant="link" @click="goBack"
-             class="login-button">go back</b-btn>
-      <b-btn variant="success" @click="register"
-             class="register-button">sign-up</b-btn>
+      <div class="login-actions">
+        <b-btn variant="link" @click="goBack"
+               class="login-button">go back</b-btn>
+        <b-btn variant="success" @click="register"
+               class="register-button">sign-up</b-btn>
+      </div>
     </div>
-    <div v-else-if="action == 'email-exists'" class="feedback"
+    <div v-else-if="action == 'email-exists'" id="login" class="feedback"
          :style="messageStyle">
       <template v-if="loginForm.token">
         <div class="message">The email
           <strong>{{ loginForm.email }}</strong> is already registered. If this
           email is correct, click confirm to get your login link, or go back to
           change it</div>
-        <b-btn variant="link" @click="goBack"
-               class="login-button">go back</b-btn>
-        <b-btn variant="success" @click="confirm"
-               class="register-button">confirm</b-btn>
+        <div class="login-actions">
+          <b-btn variant="link" @click="goBack"
+                 class="login-button">go back</b-btn>
+          <b-btn variant="success" @click="confirm"
+                 class="register-button">confirm</b-btn>
+        </div>
       </template>
       <template v-else>
         <div class="message">The email
@@ -59,14 +68,16 @@
           not match the password given. If this email is correct, click login to
           try again, or click forgot password and a login link will be sent to
           you.</div>
-        <b-btn variant="link" @click="goToLogin"
-               class="login-button">login</b-btn>
-        <b-btn variant="success" @click="confirm"
-               class="register-button">forgot password</b-btn>
+        <div class="login-actions">
+          <b-btn variant="link" @click="goToLogin"
+                 class="login-button">login</b-btn>
+          <b-btn variant="success" @click="confirm"
+                 class="register-button">forgot password</b-btn>
+        </div>
       </template>
     </div>
     <b-form v-else-if="action == 'unknown-user'" @submit="login"
-            id="login-form" ref="loginForm"
+            id="login" ref="loginForm"
             @click="formClick"
             :class="[ 'login', action ]">
       <b-alert show variant="warning">We're sorry, we don't have that username
@@ -75,7 +86,7 @@
       <b-form-group id="login-username"
                     label="email address"
                     label-for="username">
-        <b-form-input id="username"
+        <b-form-input id="username" ref="firstInput"
                       type="text"
                       v-model="loginForm.login"
                       required></b-form-input>
@@ -90,7 +101,7 @@
       </b-form-group>
     </b-form>
     <b-form v-else-if="action == 'unknown-email'" @submit="login"
-            id="login-form" ref="loginForm"
+            id="login" ref="loginForm"
             @click="formClick"
             :class="[ 'login', action ]">
       <b-alert show variant="warning">We're sorry, we have no record of that
@@ -99,7 +110,7 @@
       <b-form-group id="login-email"
                     label="email address"
                     label-for="email">
-        <b-form-input id="email"
+        <b-form-input id="email" ref="firstInput"
                       type="email"
                       v-model="loginForm.email"
                       required></b-form-input>
@@ -114,7 +125,7 @@
       </b-form-group>
     </b-form>
     <b-form v-else @submit="login"
-            id="login-form" ref="loginForm"
+            id="login" ref="loginForm"
             @click="formClick"
             :class="[ 'login', action ]">
       <transition name="fade-fast">
@@ -127,7 +138,7 @@
                     :label="action == 'register' ? 'username'
                             : 'username or email address'"
                     label-for="username">
-        <b-form-input id="username"
+        <b-form-input id="username" ref="firstInput"
                       type="text"
                       v-model="loginForm.login"
                       required></b-form-input>
@@ -188,7 +199,7 @@
           <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
         </b-form-group>
       </transition>
-      <transition name="fade-fast">
+      <transition name="fade-in">
         <b-form-group v-if="recaptcha.show || !recaptcha.response">
           <vue-recaptcha :sitekey="recaptcha.key"
                          @rendered="recaptchaShow"

@@ -97,6 +97,10 @@ export default {
              this.action = 'success';
              this.reload();
            }
+           this.$nextTick(() => {
+             if ( this.$refs.firstInput )
+               this.$refs.firstInput.focus();
+           })
          })
          .catch( error => {
            console.warn( 'server error', error );
@@ -114,12 +118,13 @@ export default {
       this.tokenLogin = false;
     },
     recaptchaShow() {
+      this.recaptcha.response = '';
       this.recaptcha.show = true;
     },
     recaptchaSuccess( response ) {
       this.errors = this.errors.filter( x => !/captcha/.test(x) );
       this.recaptcha.response = response;
-      window.setTimeout( () => { this.recaptcha.show = false; }, 1000 );
+      window.setTimeout( () => { this.recaptcha.show = false; }, 2000 );
       window.setTimeout( () => { this.recaptcha.response = ''; }, 100000 );
     },
     recaptchaExpired() {

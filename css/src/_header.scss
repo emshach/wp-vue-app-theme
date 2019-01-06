@@ -35,13 +35,16 @@
       width: 21px;
     }
   }
-  .feedback {
-    padding: 10px;
-    min-width:  16em;
-  }
-  form {
+  #login {
+    &.feedback {
+      padding: 10px;
+      .message {
+        font-size: larger;
+        color: grey;
+      }
+    }
     padding: 10px 10px 0;
-    min-width:  16em;
+    min-width:  23em;
     label {
       font-size: small;
       padding-bottom: 0;

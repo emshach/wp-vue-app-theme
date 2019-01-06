@@ -202,50 +202,53 @@ main {
   height: 21px;
   width: 21px; }
 
-#user .feedback {
-  padding: 10px;
-  min-width: 16em; }
-
-#user form {
+#user #login {
   padding: 10px 10px 0;
-  min-width: 16em; }
+  min-width: 23em; }
 
-#user form label {
+#user #login.feedback {
+  padding: 10px; }
+
+#user #login.feedback .message {
+  font-size: larger;
+  color: grey; }
+
+#user #login label {
   font-size: small;
   padding-bottom: 0;
   color: grey; }
 
-#user form input {
+#user #login input {
   height: 2.5em;
   font-size: large; }
 
-#user form #login-password {
+#user #login #login-password {
   min-height: 8.5em;
   margin-bottom: 10px; }
 
-#user form #login-password .alert {
+#user #login #login-password .alert {
   margin-bottom: 0; }
 
-#user form.register #login-password {
+#user #login.register #login-password {
   min-height: 13.5em; }
 
-#user form .login-actions {
+#user #login .login-actions {
   margin: 10px auto 0;
   padding-top: 10px;
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
-#user form .login-actions .btn {
+#user #login .login-actions .btn {
   padding: 3px 16px;
   margin: 0 5px;
   width: 40%; }
 
-#user form .login-actions .btn.login-button {
+#user #login .login-actions .btn.login-button {
   float: left; }
 
-#user form .login-actions .btn.register-button {
+#user #login .login-actions .btn.register-button {
   float: right; }
 
-#user form .login-actions span {
+#user #login .login-actions span {
   margin: 0 auto;
   display: block;
   float: left;
