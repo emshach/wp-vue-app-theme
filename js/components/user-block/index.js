@@ -14,6 +14,12 @@ export default {
         key: store.state.recaptcha_key,
         response: null
       },
+      errors: [],
+      usernameTaken: false,
+      emailTaken: false,
+      messageStyle: {
+        height: 'auto'
+      },
       loginForm: {
         action: 'mrklogin',
         login: '',
@@ -37,6 +43,7 @@ export default {
       e.preventDefault();
       if ( this.action != 'register' && this.loginForm.action == 'mrkregister' ) {
         this.action = 'register';
+        this.errors = [];
         if ( /.+@.+\..+/.test( this.loginForm.login )) {
           this.loginForm.email = this.loginForm.login;
           this.loginForm.login = '';
@@ -71,8 +78,10 @@ export default {
              // TODO: close form
              break;
            case 'user-exists':
+             this.usernameTaken = true;
              break;
            case 'email-exists':
+             this.action = 'email-exists';
              break;
            case 'success-email':
              break;
@@ -84,16 +93,14 @@ export default {
              break;
            case 'success':
              // success!
-             Swal( 'Successfully logged in! Welcome!' );
-             window.location.reload();
+             this.action = 'success';
+             this.reload();
            }
          })
          .catch( error => {
-           // sorry! try again
-           // if user doesn't exist, do register instead
-           // if (! /.+@.+\..+/.test( this.loginForm.log ))
-           //   Swal(  "email address please" ); // .then( x => this.loginForm.log = x )
-           Swal( "We're sorry! There was some problem. Please try again later" );
+           console.warn( 'server error', error );
+           this.action = 'system-error';
+           // Swal( "We're sorry! There was some problem. Please try again later" );
          });
       return false;
     },
@@ -106,9 +113,10 @@ export default {
       this.tokenLogin = false;
     },
     recaptchaSuccess( response ) {
+      this.errors = this.errors.filter( x => !/captcha/.test(x) );
       this.recaptcha.response = response;
     },
-    recaptchaExpire( response ) {
+    recaptchaExpired() {
       this.recaptcha.response = '';
     },
     actionLogin() {
@@ -147,6 +155,22 @@ export default {
       this.confirmUser = '';
       this.confirmPass = '';
       this.tokenLogin = false;
+    },
+    reload() {
+      window.location.reload();
+    },
+    goBack(e) {
+      e.stopPropagation();
+      this.action = 'register';
+    },
+    goToLogin(e) {
+      e.stopPropagation();
+      this.action = 'login';
+    },
+    confirm(e) {
+      this.loginForm.action = 'mrklogin';
+      this.loginForm.token = true;
+      this.login(e);
     }
   },
   computed: {

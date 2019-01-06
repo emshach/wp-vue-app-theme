@@ -8,11 +8,59 @@
   </transition> -->
   <transition name="fast-fade" mode="out-in">
     <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
+    <div v-else-if="action == 'success'" class="feedback" :style="messageStyle">
+      <div class="message">Success! The page should reload with you logged in.
+        If it takes too long, click the button to reload.</div>
+      <b-btn variant="primary" @click="reload"
+             class="mid-button">reload</b-btn>
+      <!-- <b-btn type="submit" variant="success" name="wp-submit" -->
+      <!--        class="register-button" value="Register" -->
+      <!--        @click="actionRegister">sign-up</b-btn> -->
+    </div>
+    <div v-else-if="action == 'success-email'" class="feedback"
+         :style="messageStyle">
+      <div class="message">Success! Please check your mail and follow the
+        confirmation link to complete registration</div>
+      <b-btn v-if="loginConfirmed" variant="primary"
+             class="mid-button">OK</b-btn>
+    </div>
+    <div v-else-if="action == 'link-sent'" class="feedback"
+         :style="messageStyle">
+      <div class="message">Your login link has been sent. This page
+        should reload once you've been logged in. If not, click the button to
+        reload</div>
+      <b-btn v-if="loginConfirmed" variant="primary" @click="reload"
+             class="mid-button">reload</b-btn>
+    </div>
+    <div v-else-if="action == 'email-exists'" class="feedback"
+         :style="messageStyle">
+      <template v-if="loginForm.token">
+        <div class="message">The email
+          <strong>{{ loginForm.email }}</strong> is already registered. If this
+          email is correct, click confirm to get your login link, or go back to
+          change it</div>
+        <b-btn v-if="loginForm.token" variant="link" @click="goBack"
+               class="login-button">go back</b-btn>
+        <b-btn v-if="loginForm.token" variant="success" @click="confirm"
+               class="register-button">confirm</b-btn>
+      </template>
+      <template v-else>
+        <div class="message">The email
+          <strong>{{ loginForm.email }}</strong> is already registered but does
+          not match the password given. If this email is correct, click login to
+          try again, or click forgot password and a login link will be sent to
+          you.</div>
+        <b-btn variant="link" @click="goToLogin"
+               class="login-button">login</b-btn>
+        <b-btn variant="success" @click="confirm"
+               class="register-button">forgot password</b-btn>
+      </template>
+    </div>
     <b-form v-else-if="action == 'unknown-user'" @submit="login"
+            id="login-form"
             @click="formClick"
             :class="[ 'login', action ]">
       <b-alert show variant="warning">We're sorry, we don't have that username
-
         on record. Please check and re-enter the username or use your email
         address. Hit sign-up to create a new account.</b-alert>
       <b-form-group id="login-username"
@@ -24,16 +72,16 @@
                       required></b-form-input>
       </b-form-group>
       <b-form-group class="login-actions">
-        <b-btn v-if="action != 'register'" type="submit" variant="primary"
+        <b-btn type="submit" variant="primary"
                name="wp-submit" class="login-button" value="Log in"
                @click="actionLogin">try again</b-btn>
-        <span v-if="action != 'register'">or</span>
         <b-btn type="submit" variant="success" name="wp-submit"
                class="register-button" value="Register"
                @click="actionRegister">sign-up</b-btn>
       </b-form-group>
     </b-form>
     <b-form v-else-if="action == 'unknown-email'" @submit="login"
+            id="login-form"
             @click="formClick"
             :class="[ 'login', action ]">
       <b-alert show variant="warning">We're sorry, we have no record of that
@@ -48,18 +96,24 @@
                       required></b-form-input>
       </b-form-group>
       <b-form-group class="login-actions">
-        <b-btn v-if="action != 'register'" type="submit" variant="primary"
+        <b-btn type="submit" variant="primary"
                name="wp-submit" class="login-button" value="Log in"
                @click="actionLogin">try again</b-btn>
-        <span v-if="action != 'register'">or</span>
         <b-btn type="submit" variant="success" name="wp-submit"
                class="register-button" value="Register"
                @click="actionRegister">sign-up</b-btn>
       </b-form-group>
     </b-form>
     <b-form v-else @submit="login"
+            id="login-form"
             @click="formClick"
             :class="[ 'login', action ]">
+      <transition name="fade-fast">
+        <b-form-group v-if="errors.length">
+          <b-alert v-for="error in erros" variant="danger"
+                   v-html="error"></b-alert>
+        </b-form-group>
+      </transition>
       <b-form-group id="login-username"
                     :label="action == 'register' ? 'username'
                             : 'username or email address'"
@@ -128,6 +182,7 @@
       <b-form-group>
         <vue-recaptcha :sitekey="recaptcha.key"
                        @verify="recaptchaSuccess"
+                       @expired="recaptchaExpired"
                        theme="dark"></vue-recaptcha>
       </b-form-group>
       <b-form-group class="login-actions">

@@ -97,7 +97,30 @@ h1 {
 .featured-wrapper .media {
   max-width: 100%;
   margin: 0 auto;
-  max-height: 600px; }
+  height: 100%; }
+
+#featured {
+  height: 100%; }
+
+#featured .VueCarousel-wrapper, #featured .VueCarousel-inner {
+  position: relative;
+  height: 100% !important; }
+
+#featured .VueCarousel-slide > .container {
+  position: relative;
+  height: 100%; }
+
+#featured .VueCarousel-slide > .container > .row {
+  position: relative;
+  height: 100%; }
+
+#featured .VueCarousel-slide > .container > .row > .col {
+  position: relative;
+  height: 100%; }
+
+@breakpoint ( $max-phone ) {
+  #featured .VueCarousel-slide > .container > .row > .col {
+    height: 50%; } }
 
 /**
  * parallax

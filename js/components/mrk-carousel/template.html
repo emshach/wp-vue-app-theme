@@ -10,7 +10,7 @@
                  class="media" />
             <video v-else-if="slide.mime_type.indexOf( 'video' ) == 0"
                    :src="slide.source_url" class="media"
-                   controls autoplay muted>
+                   controls autoplay>
               {{ slide.alt_text }}
             </video>
             <audio v-else-if="slide.mime_type.indexOf( 'audio' ) == 0"
