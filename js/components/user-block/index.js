@@ -74,7 +74,7 @@ export default {
            case 'email-exists':
            case 'success-email':
            case 'not-registered':
-             var $el = this.refs.loginForm;
+             var $el = this.$refs.loginForm;
              this.messageStyle.height = $el.clientHeight + 'px';
              this.messageStyle.width = $el.clientWidth + 'px';
              this.action = d.next;

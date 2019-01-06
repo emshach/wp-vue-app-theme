@@ -105,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
           case 'email-exists':
           case 'success-email':
           case 'not-registered':
-            var $el = _this.refs.loginForm;
+            var $el = _this.$refs.loginForm;
             _this.messageStyle.height = $el.clientHeight + 'px';
             _this.messageStyle.width = $el.clientWidth + 'px';
             _this.action = d.next;
