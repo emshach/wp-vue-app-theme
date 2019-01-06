@@ -211,7 +211,8 @@ main {
 
 #user #login.feedback .message {
   font-size: larger;
-  color: grey; }
+  color: grey;
+  padding: 15px; }
 
 #user #login label {
   font-size: small;
