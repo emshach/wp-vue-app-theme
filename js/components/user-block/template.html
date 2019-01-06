@@ -188,12 +188,15 @@
           <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
         </b-form-group>
       </transition>
-      <b-form-group>
-        <vue-recaptcha :sitekey="recaptcha.key"
-                       @verify="recaptchaSuccess"
-                       @expired="recaptchaExpired"
-                       theme="dark"></vue-recaptcha>
-      </b-form-group>
+      <transition name="fade-fast">
+        <b-form-group v-if="recaptcha.show || !recaptcha.response">
+          <vue-recaptcha :sitekey="recaptcha.key"
+                         @rendered="recaptchaShow"
+                         @verify="recaptchaSuccess"
+                         @expired="recaptchaExpired"
+                         theme="dark"></vue-recaptcha>
+        </b-form-group>
+      </transition>
       <b-form-group class="login-actions">
         <b-btn v-if="action != 'register'" type="submit" variant="primary"
                name="wp-submit" class="login-button" value="Log in"

@@ -12,7 +12,8 @@ export default {
       userExists: false,
       recaptcha: {
         key: store.state.recaptcha_key,
-        response: null
+        response: null,
+        show: false
       },
       errors: [],
       usernameTaken: false,
@@ -112,9 +113,14 @@ export default {
     enterPass() {
       this.tokenLogin = false;
     },
+    recaptchaShow() {
+      this.recaptcha.show = true;
+    },
     recaptchaSuccess( response ) {
       this.errors = this.errors.filter( x => !/captcha/.test(x) );
       this.recaptcha.response = response;
+      window.setTimeout( () => { this.recaptcha.show = false; }, 1000 );
+      window.setTimeout( () => { this.recaptcha.response = ''; }, 100000 );
     },
     recaptchaExpired() {
       this.recaptcha.response = '';
