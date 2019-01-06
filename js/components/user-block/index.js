@@ -51,7 +51,7 @@ export default {
         return false;
       }
       if (! this.recaptcha.response ) {
-        // TODO: warn
+        this.errors.push( "captcha: are you a robot?" );
         return false;
       }
       this.loginForm['g-recaptcha-response'] = this.recaptcha.response;
