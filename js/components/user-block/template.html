@@ -36,9 +36,9 @@
          :style="messageStyle">
       <div class="message">The username <strong>{{ loginForm.login }}</strong>
         is not registered. Would you like to sign up?</div>
-      <b-btn v-if="loginForm.token" variant="link" @click="goBack"
+      <b-btn variant="link" @click="goBack"
              class="login-button">go back</b-btn>
-      <b-btn v-if="loginForm.token" variant="success" @click="actionRegister"
+      <b-btn variant="success" @click="actionRegister"
              class="register-button">sign-up</b-btn>
     </div>
     <div v-else-if="action == 'email-exists'" class="feedback"
@@ -48,9 +48,9 @@
           <strong>{{ loginForm.email }}</strong> is already registered. If this
           email is correct, click confirm to get your login link, or go back to
           change it</div>
-        <b-btn v-if="loginForm.token" variant="link" @click="goBack"
+        <b-btn variant="link" @click="goBack"
                class="login-button">go back</b-btn>
-        <b-btn v-if="loginForm.token" variant="success" @click="confirm"
+        <b-btn variant="success" @click="confirm"
                class="register-button">confirm</b-btn>
       </template>
       <template v-else>
