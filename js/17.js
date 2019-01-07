@@ -19,9 +19,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      storedPost: {},
       promos: [],
-      img: '',
-      title: '',
       show: false
     };
   },
@@ -54,6 +53,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     promos_reel: function promos_reel() {
       return this.postData.promo_reel || [];
+    },
+    content: function content() {
+      var user = this.sstate.user;
+      if (this.postData.member_content && (user.as ? user.as.subscriber : user.membership)) return this.postData.member_content;
+      return this.postData.content && this.postData.content.rendered || '';
+    },
+    user: function user() {
+      return this.sstate.user;
     }
   }
 });
@@ -67,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"program post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\" :class=\"classes\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n    <transition name=\"fade-in\">\n      <div v-if=\"promos.length\" class=\"featured-wrapper\">\n        <mrk-carousel id=\"featured\" :slides=\"promos\"></mrk-carousel>\n      </div>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section v-else class=\"subscriptions\">\n      <subscription-menu :target=\"postData.path\">\n        Select one of the subscription plans become a member.\n      </subscription-menu>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"program post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\" :class=\"classes\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n    <transition name=\"fade-in\">\n      <div v-if=\"promos.length\" class=\"featured-wrapper\">\n        <mrk-carousel id=\"featured\" :slides=\"promos\"></mrk-carousel>\n      </div>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <section class=\"subscriptions\">\n      <subscription-menu v-if=\"user && user.membership\" :target=\"postData.path\">\n        Change your subscription plan below.\n      </subscription-menu>\n      <subscription-menu v-else :target=\"postData.path\">\n        Select one of the subscription plans become a member.\n      </subscription-menu>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 

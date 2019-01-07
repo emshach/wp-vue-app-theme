@@ -5,9 +5,8 @@ export default {
   data () {
     return {
       sstate: store.state,
+      storedPost: {},
       promos: [],
-      img: '',
-      title: '',
       show: false
     };
   },
@@ -38,6 +37,16 @@ export default {
     },
     promos_reel() {
       return this.postData.promo_reel || [];
+    },
+    content() {
+      const user = this.sstate.user;
+      if ( this.postData.member_content
+           && ( user.as ? user.as.subscriber : user.membership ))
+        return this.postData.member_content;
+      return this.postData.content && this.postData.content.rendered || '';
+    },
+    user() {
+      return this.sstate.user;
     }
   }
 };

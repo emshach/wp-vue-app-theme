@@ -16,8 +16,12 @@
 
   <main role="main">
     <h1 class="title" v-html="title"></h1>
-    <section v-else class="subscriptions">
-      <subscription-menu :target="postData.path">
+    <section class="description" v-html="content"></section>
+    <section class="subscriptions">
+      <subscription-menu v-if="user && user.membership" :target="postData.path">
+        Change your subscription plan below.
+      </subscription-menu>
+      <subscription-menu v-else :target="postData.path">
         Select one of the subscription plans become a member.
       </subscription-menu>
     </section>
