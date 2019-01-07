@@ -66,7 +66,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <button class=\"menu-toggle menu-wide nav-menu\" type=\"button\"\n          @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n    <transition name=\"fade-fast\" mode=\"out-in\">\n      <span v-if=\"menuOpen\" key=\"menu\"\n            class=\"dashicons dashicons-arrow-down-alt2 navbar-toggle-icon open\"\n            aria-hidden=\"true\"></span>\n      <span v-else key=\"close\"\n            class=\"dashicons dashicons-arrow-up-alt2 navbar-toggle-icon\"\n            aria-hidden=\"true\"></span>\n    </transition>\n  </button>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div @click.stop=\"closeMenu\" id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n        <transition name=\"fade-fast\" mode=\"out-in\">\n          <span v-if=\"menuOpen\" key=\"menu\"\n                class=\"dashicons dashicons-arrow-left-alt2 navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n          <span v-else key=\"close\"\n                class=\"dashicons dashicons-menu navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n        </transition>\n      </button>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\" @click.native=\"closeMenu\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\" v-html=\"item.title\"></span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
+module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <button class=\"menu-toggle menu-wide nav-menu\" type=\"button\"\n          :class=\"{ open: menuOpen }\"\n          @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n    <transition name=\"fade-fast\" mode=\"out-in\">\n      <span v-if=\"menuOpen\" key=\"menu\"\n            class=\"dashicons dashicons-arrow-down-alt2 navbar-toggle-icon open\"\n            aria-hidden=\"true\"></span>\n      <span v-else key=\"close\"\n            class=\"dashicons dashicons-arrow-up-alt2 navbar-toggle-icon\"\n            aria-hidden=\"true\"></span>\n    </transition>\n  </button>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div @click.stop=\"closeMenu\" id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n        <transition name=\"fade-fast\" mode=\"out-in\">\n          <span v-if=\"menuOpen\" key=\"menu\"\n                class=\"dashicons dashicons-arrow-left-alt2 navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n          <span v-else key=\"close\"\n                class=\"dashicons dashicons-menu navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n        </transition>\n      </button>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\" @click.native=\"closeMenu\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\" v-html=\"item.title\"></span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
 
 /***/ }),
 
@@ -99,7 +99,9 @@ function get_pos(obj) {
   };
 }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+var NavSlider;
+NavSlider = {
+  wide: true,
   init: function init() {
     (function ($) {
       //function to find element Position
@@ -180,9 +182,14 @@ function get_pos(obj) {
         easing: "easeInCubic",
         queue: false
       };
-      ts_container.css("margingLeft", ts_margin + "px"); //add margin
 
-      scroll.css("width", ts_width);
+      var _init = function _init() {
+        ts_container.css("margingLeft", ts_margin + "px"); //add margin
+
+        scroll.css("width", ts_width);
+        outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
+      };
+
       thumb.each(function () {
         var $this = $(this);
         t_count += $this.innerWidth();
@@ -191,6 +198,7 @@ function get_pos(obj) {
       ts_container.css("width", t_count + 10);
       ts_bg.css("width", t_count + 2 * bg_pad);
       scroll.mousemove(function (e) {
+        if (NavSlider.wide) return;
         var pos0;
 
         if (ts_container.width() > ts_width) {
@@ -199,22 +207,14 @@ function get_pos(obj) {
           var dest = -(t_count + 2 * (ts_margin - ts_width)) * m_clamp;
           pos0 = Math.abs(cur - dest) - ts_margin;
         } else {
-          pos0 = (t_count + ts_margin * 2 - ts_width) / 2; // pos0 = ( ts_width - t_count ) / 2;
-          // pos0 = ( ts_width - ( t_count - ts_margin * 2 )) / 2;
+          pos0 = (t_count + ts_margin * 2 - ts_width) / 2;
         }
 
-        if (Math.abs(pos0 - ts_container.position().left) > 20) {
-          ts_bg.stop().animate({
-            left: -pos0 / 2 - bg_pad
-          }, ts_easing);
-          ts_container.stop().animate({
-            left: -pos0
-          }, ts_easing);
-        }
+        if (Math.abs(pos0 - ts_container.position().left) > 20) {}
       });
-      outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
       menu.hover(function () {
         //mouse over
+        if (NavSlider.wide) return;
         outer.stop().fadeTo(dur_in, 1);
         menu.stop().animate({
           height: menu_height
@@ -225,7 +225,7 @@ function get_pos(obj) {
         }, ease_in);
       }, function () {
         //mouse out
-        // outer.stop().fadeTo( dur_out * 3, tc_opacity_out, "easeInOutCubic");
+        if (NavSlider.wide) return;
         menu.stop().animate({
           height: 15
         }, ease_out);
@@ -235,6 +235,7 @@ function get_pos(obj) {
       });
       thumb.not(t_current).hover(function () {
         //mouse over
+        if (NavSlider.wide) return;
         $(this).stop().fadeTo(dur_in, 1).animate({
           top: -12
         }, t_ease_in).find(".text").stop().animate({
@@ -244,6 +245,7 @@ function get_pos(obj) {
         }, tt_ease_in1);
       }, function () {
         //mouse out
+        if (NavSlider.wide) return;
         $(this).stop().fadeTo(t_dur_out, t_opacity).animate({
           top: 0
         }, t_ease_out).find(".text").stop().animate({
@@ -254,6 +256,7 @@ function get_pos(obj) {
       });
       t_current.hover(function () {
         //mouse over
+        if (NavSlider.wide) return;
         $(this).stop().fadeTo(t_dur_in, 1).animate({
           top: -12
         }, t_ease_in).find(".text").stop().animate({
@@ -263,6 +266,7 @@ function get_pos(obj) {
         }, tt_ease_in1);
       }, function () {
         //mouse out
+        if (NavSlider.wide) return;
         $(this).stop().fadeTo(t_dur_out, tcur_opacity).animate({
           top: 0
         }, t_ease_out).find(".text").stop().animate({
@@ -273,7 +277,17 @@ function get_pos(obj) {
       }); //on window resize scale image and reset thumbnail scroller
 
       $(window).resize(function () {
-        // FullScreenBackground("#bgimg",$bgimg.data("newImageW"),$bgimg.data("newImageH"));
+        var wwidth = $(window).width();
+        var wasWide = NavSlider.wide;
+
+        if (!(NavSlider.wide = wwidth >= 600)) {
+          ts_container.css('left', null);
+          scroll.css('width', null);
+          return;
+        }
+
+        if (!wasWide) _init(); // FullScreenBackground("#bgimg",$bgimg.data("newImageW"),$bgimg.data("newImageH"));
+
         ts_container.stop().animate({
           left: ts_left
         }, 400, "easeOutCirc");
@@ -281,7 +295,8 @@ function get_pos(obj) {
         scroll.css("width", newWidth);
         ts_width = newWidth;
         pos = get_pos($menu);
-      }); // TODO: unbind if < 600px
+      });
+      if ($(window).width() >= 600) _init();
     })(jQuery);
   },
   toggleMenu: function toggleMenu(open, duration) {
@@ -306,7 +321,8 @@ function get_pos(obj) {
       $("#bg-nav").stop().fadeOut(duration);
     }
   }
-});
+};
+/* harmony default export */ __webpack_exports__["default"] = (NavSlider);
 
 /***/ })
 

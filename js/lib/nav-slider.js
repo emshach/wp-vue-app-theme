@@ -10,8 +10,10 @@ function get_pos( obj ) {
   }
   return { top: curtop, left: curleft };
 }
-    
-export default {
+
+var NavSlider;
+NavSlider = {
+  wide: true,
   init() {
   (function($) {
     //function to find element Position
@@ -54,10 +56,13 @@ export default {
     var tt_ease_out = { duration: t_dur_out, easing: "easeOutCubic", queue: false };
     var tt_ease_in1 = { duration: t_dur_in, easing: "easeInCubic", queue: false };
     var tt_ease_out1 = { duration: t_dur_out, easing: "easeInCubic", queue: false };
-    
-    ts_container.css( "margingLeft", ts_margin + "px" ); //add margin
-    scroll.css( "width", ts_width );
 
+    var _init = function () {
+      ts_container.css( "margingLeft", ts_margin + "px" ); //add margin
+      scroll.css( "width", ts_width );
+      outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
+    };
+    
     thumb.each( function () {
       var $this = $( this );
       t_count += $this.innerWidth();
@@ -67,6 +72,7 @@ export default {
     ts_bg.css( "width", t_count + 2 * bg_pad );
 
     scroll.mousemove( function(e) {
+      if ( NavSlider.wide ) return;
       var pos0;
       if ( ts_container.width() > ts_width ) {
 	var cur = ( e.pageX - pos.left );
@@ -75,25 +81,20 @@ export default {
 	pos0 = Math.abs( cur - dest ) - ts_margin;
       } else {
         pos0 = (( t_count + ts_margin * 2 ) - ts_width ) / 2;
-        // pos0 = ( ts_width - t_count ) / 2;
-        // pos0 = ( ts_width - ( t_count - ts_margin * 2 )) / 2;
       }
       if (Math.abs( pos0 - ts_container.position().left ) > 20 ){
-	ts_bg.stop().animate({ left: -pos0/2 - bg_pad }, ts_easing );
-	ts_container.stop().animate({ left: -pos0 }, ts_easing );
       }});
-    
-    outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
     
     menu.hover(
       function() { //mouse over
+        if ( NavSlider.wide ) return;
 	outer.stop().fadeTo( dur_in, 1 );
 	menu.stop().animate({ height: menu_height }, ease_in );
         var top = $( "#app>.page" ).scrollTop();
         main_title.stop().animate({ bottom: 110 - top }, ease_in );
       },
       function() { //mouse out
-	// outer.stop().fadeTo( dur_out * 3, tc_opacity_out, "easeInOutCubic");
+        if ( NavSlider.wide ) return;
 	menu.stop().animate({ height: 15 }, ease_out );
         main_title.stop().animate({ bottom: 0 }, ease_out );
       }
@@ -101,6 +102,7 @@ export default {
 
     thumb.not( t_current ).hover(
       function(){ //mouse over
+        if ( NavSlider.wide ) return;
         $( this ).stop()
            .fadeTo( dur_in, 1 )
            .animate({ top: -12 }, t_ease_in)
@@ -109,6 +111,7 @@ export default {
            .animate({ opacity: 1 }, tt_ease_in1 );
       },
       function(){ //mouse out
+        if ( NavSlider.wide ) return;
 	$( this ).stop()
            .fadeTo( t_dur_out, t_opacity )
            .animate({ top: 0 }, t_ease_out )
@@ -119,6 +122,7 @@ export default {
     );
     t_current.hover(
       function(){ //mouse over
+        if ( NavSlider.wide ) return;
 	$(this).stop()
            .fadeTo( t_dur_in, 1 )
            .animate({ top: -12 }, t_ease_in )
@@ -127,6 +131,7 @@ export default {
            .animate({ opacity: 1 }, tt_ease_in1 );
       },
       function(){ //mouse out
+        if ( NavSlider.wide ) return;
         $(this).stop()
            .fadeTo( t_dur_out, tcur_opacity )
            .animate({ top: 0 }, t_ease_out )
@@ -135,15 +140,26 @@ export default {
            .animate({ opacity: 0 }, tt_ease_out );
       }
     );
+
     //on window resize scale image and reset thumbnail scroller
-    $(window).resize(function() {
+    $( window ).resize( function() {
+      var wwidth = $( window ).width();
+      var wasWide = NavSlider.wide;
+      if (!( NavSlider.wide = wwidth >= 600 )) {
+        ts_container.css( 'left', null );
+        scroll.css( 'width', null );
+        return;
+      }
+      if ( !wasWide ) _init();
       // FullScreenBackground("#bgimg",$bgimg.data("newImageW"),$bgimg.data("newImageH"));
       ts_container.stop().animate({ left: ts_left }, 400, "easeOutCirc" ); 
       var newWidth = outer.width();
       scroll.css( "width", newWidth );
       ts_width = newWidth;
       pos = get_pos($menu);
-    });                         // TODO: unbind if < 600px
+    });
+    if ( $( window ).width() >= 600 )
+      _init();
   })( jQuery );
   },
   toggleMenu ( open, duration ) {
@@ -163,3 +179,4 @@ export default {
     }
   }
 };
+export default NavSlider;

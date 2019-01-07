@@ -2,6 +2,7 @@
      :class="['header-menu', { mobile: sstate.window.width < 601 }]">
   <div id="feature-tray"><div id="feature-tray-inner"></div></div>
   <button class="menu-toggle menu-wide nav-menu" type="button"
+          :class="{ open: menuOpen }"
           @click="toggleMenu" aria-label="Toggle Navigation">
     <transition name="fade-fast" mode="out-in">
       <span v-if="menuOpen" key="menu"
