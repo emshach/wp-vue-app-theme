@@ -45,7 +45,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log('got home page', rpost);
         _this.title = rpost.title.rendered;
         _this.img = rpost.background_image || '';
-        _this.promos = rpost.promo_reel || [];
+        window.setTimeout(function () {
+          _this.promos = rpost.promo_reel || [];
+        }, 3000);
       });
     });
   },

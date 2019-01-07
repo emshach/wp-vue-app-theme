@@ -7,12 +7,16 @@ export default {
     return {
       sstate: store.state,
       storedPost: {},
+      promos: [],
       show: false
     };
   },
   mounted() {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
+    window.setTimeout(() => {
+      this.promos = this.promo_reel;
+    }, 3000);
   },
   updated() {
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
@@ -32,7 +36,7 @@ export default {
     img() {
       return this.postData.background_image || '';
     },
-    promos() {
+    promos_reel() {
       return this.postData.promo_reel || [];
     },
     episodes() {

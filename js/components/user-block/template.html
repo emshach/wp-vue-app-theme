@@ -24,8 +24,7 @@
       <div class="message" :style="messageStyle">Success! Please check your mail
         and follow the confirmation link to complete registration</div>
       <div class="login-actions">
-        <b-btn v-if="loginConfirmed" variant="primary"
-               class="mid-button">OK</b-btn>
+        <b-btn variant="primary" @click="reload" class="mid-button">OK</b-btn>
       </div>
     </div>
     <div v-else-if="action == 'link-sent'" id="login" class="feedback"
@@ -34,8 +33,7 @@
         This page should reload once you've been logged in. If not, click the
         button to reload</div>
       <div class="login-actions">
-        <b-btn v-if="loginConfirmed" variant="primary" @click="reload"
-               class="mid-button">reload</b-btn>
+        <b-btn variant="primary" @click="reload" class="mid-button">reload</b-btn>
       </div>
     </div>
     <div v-else-if="action == 'not-registered'" id="login" class="feedback"

@@ -27,7 +27,9 @@ export default {
         console.log( 'got home page', rpost );
         this.title = rpost.title.rendered;
         this.img = rpost.background_image || '';
-        this.promos = rpost.promo_reel || [];
+        window.setTimeout(() => {
+          this.promos = rpost.promo_reel || [];
+        }, 3000 );
       });
     });
   },

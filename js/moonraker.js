@@ -1044,7 +1044,7 @@ var PreviewRelease = function PreviewRelease() {
 };
 
 var Members = function Members() {
-  return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./components/members */ "./js/components/members/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ./components/members */ "./js/components/members/index.js"));
 };
 
 var MemberConfirm = function MemberConfirm() {

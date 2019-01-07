@@ -1229,7 +1229,12 @@ function mrk_ajax_register() {
             $res[ 'error' ] = $uid;
         } else {
             wp_new_user_notification( $uid, null, 'both' );
+            $user = wp_signon([ 'user_login'    => $email,
+                                'user_password' => $pass,
+                                'remember'      => true ], false );
             $res[ 'next' ] = 'success-email';
+            if (! is_wp_error( $user ))
+                $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
         }
     } else {
         // register default
