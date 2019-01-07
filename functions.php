@@ -1150,27 +1150,8 @@ function mrk_ajax_login() {
                 // wrong password
                 $res[ 'next' ] = 'wrong-password';
             }
-        } elseif ( $pass ) {
-            // register user with new password
-            $uid = wp_create_user( $login, $pass, $email );
-            if ( is_wp_error( $uid )) {
-                $res[ 'next' ] = 'error';
-                $res[ 'error' ] = $uid;
-            } else {
-                wp_new_user_notification( $uid, null, 'both' );
-                $res[ 'next' ] = 'success-email';
-            }
-        } elseif ( $token ) {
-            // register default
-            $uid = register_new_user( $login, $email );
-            if ( is_wp_error( $uid )) {
-                $res[ 'next' ] = 'error';
-                $res[ 'error' ] = $uid;
-            } else {
-                $res[ 'next' ] = 'success-email';
-            }
         } else
-              $res[ 'next' ] = 'not-registered';
+            $res[ 'next' ] = 'not-registered';
     } elseif ( $login ) {
         if ( $uid = username_exists( $login )) {
             if ( $token ) {
