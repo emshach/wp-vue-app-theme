@@ -234,6 +234,7 @@ __webpack_require__.r(__webpack_exports__);
       e.stopPropagation();
       this.action = 'login';
       this.loginForm.action = 'mrkregister';
+      this.login(e);
     },
     focusFirst: function focusFirst() {
       var _this3 = this;

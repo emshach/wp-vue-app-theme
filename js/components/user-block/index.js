@@ -192,6 +192,7 @@ export default {
       e.stopPropagation();
       this.action = 'login';
       this.loginForm.action = 'mrkregister';
+      this.login(e);
     },
     focusFirst() {
       window.setTimeout(() => {
