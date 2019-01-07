@@ -43,5 +43,10 @@ export default {
     closeMenu() {
       navSlider.toggleMenu( this.menuOpen = false, 150 );
     }
+  },
+  watch: {
+    'slider.open' ( val ) {
+      this.menuOpen = val;
+    }
   }
 };

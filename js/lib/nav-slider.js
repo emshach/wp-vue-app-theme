@@ -92,6 +92,7 @@ NavSlider = {
     menu.hover(
       function() { //mouse over
         if ( !self.wide ) return;
+        self.open = true;
 	outer.stop().fadeTo( dur_in, 1 );
 	menu.stop().animate({ height: menu_height }, ease_in );
         var top = $( "#app>.page" ).scrollTop();
@@ -99,6 +100,7 @@ NavSlider = {
       },
       function() { //mouse out
         if ( !self.wide ) return;
+        self.open = false;
 	menu.stop().animate({ height: 15 }, ease_out );
         main_title.stop().animate({ bottom: 0 }, ease_out );
       }

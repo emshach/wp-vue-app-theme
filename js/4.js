@@ -59,6 +59,11 @@ __webpack_require__.r(__webpack_exports__);
     closeMenu: function closeMenu() {
       _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].toggleMenu(this.menuOpen = false, 150);
     }
+  },
+  watch: {
+    'slider.open': function sliderOpen(val) {
+      this.menuOpen = val;
+    }
   }
 });
 
@@ -224,6 +229,7 @@ NavSlider = {
       menu.hover(function () {
         //mouse over
         if (!self.wide) return;
+        self.open = true;
         outer.stop().fadeTo(dur_in, 1);
         menu.stop().animate({
           height: menu_height
@@ -235,6 +241,7 @@ NavSlider = {
       }, function () {
         //mouse out
         if (!self.wide) return;
+        self.open = false;
         menu.stop().animate({
           height: 15
         }, ease_out);
