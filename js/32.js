@@ -111,7 +111,7 @@ __webpack_require__.r(__webpack_exports__);
           case 'not-registered':
             var $el = _this.$refs.loginForm;
             _this.feedbackStyle.minHeight = $el.clientHeight + 'px';
-            _this.messageStyle.minHeight = $el.clientHeight - 50 + 'px';
+            _this.messageStyle.minHeight = $el.clientHeight - 60 + 'px';
             _this.feedbackStyle.minWidth = $el.clientWidth + 'px';
             _this.action = d.next;
             break;
@@ -232,7 +232,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     register: function register(e) {
       e.stopPropagation();
-      this.action = 'register';
+      this.action = 'login';
+      this.loginForm.action = 'mrkregister';
     },
     focusFirst: function focusFirst() {
       var _this3 = this;
