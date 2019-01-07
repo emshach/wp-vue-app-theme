@@ -14,8 +14,11 @@ function get_pos( obj ) {
 var NavSlider;
 NavSlider = {
   wide: true,
+  open: true,
+  menu: null,
   init() {
   (function($) {
+    const self = NavSlider;
     //function to find element Position
     var ts_margin  = 30; //first and last thumbnail margin (for better cursor interaction) 
     var ts_easing      = { duration: 1000, easing: "easeOutCirc" };
@@ -62,6 +65,7 @@ NavSlider = {
       scroll.css( "width", ts_width );
       outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
     };
+    self.menu = menu;
     
     thumb.each( function () {
       var $this = $( this );
@@ -72,7 +76,7 @@ NavSlider = {
     ts_bg.css( "width", t_count + 2 * bg_pad );
 
     scroll.mousemove( function(e) {
-      if ( !NavSlider.wide ) return;
+      if ( !self.wide ) return;
       var pos0;
       if ( ts_container.width() > ts_width ) {
 	var cur = ( e.pageX - pos.left );
@@ -87,14 +91,14 @@ NavSlider = {
     
     menu.hover(
       function() { //mouse over
-        if ( !NavSlider.wide ) return;
+        if ( !self.wide ) return;
 	outer.stop().fadeTo( dur_in, 1 );
 	menu.stop().animate({ height: menu_height }, ease_in );
         var top = $( "#app>.page" ).scrollTop();
         main_title.stop().animate({ bottom: 110 - top }, ease_in );
       },
       function() { //mouse out
-        if ( !NavSlider.wide ) return;
+        if ( !self.wide ) return;
 	menu.stop().animate({ height: 15 }, ease_out );
         main_title.stop().animate({ bottom: 0 }, ease_out );
       }
@@ -102,7 +106,7 @@ NavSlider = {
 
     thumb.not( t_current ).hover(
       function(){ //mouse over
-        if ( !NavSlider.wide ) return;
+        if ( !self.wide ) return;
         $( this ).stop()
            .fadeTo( dur_in, 1 )
            .animate({ top: -12 }, t_ease_in)
@@ -111,7 +115,7 @@ NavSlider = {
            .animate({ opacity: 1 }, tt_ease_in1 );
       },
       function(){ //mouse out
-        if ( !NavSlider.wide ) return;
+        if ( !self.wide ) return;
 	$( this ).stop()
            .fadeTo( t_dur_out, t_opacity )
            .animate({ top: 0 }, t_ease_out )
@@ -122,7 +126,7 @@ NavSlider = {
     );
     t_current.hover(
       function(){ //mouse over
-        if ( !NavSlider.wide ) return;
+        if ( !self.wide ) return;
 	$(this).stop()
            .fadeTo( t_dur_in, 1 )
            .animate({ top: -12 }, t_ease_in )
@@ -131,7 +135,7 @@ NavSlider = {
            .animate({ opacity: 1 }, tt_ease_in1 );
       },
       function(){ //mouse out
-        if ( !NavSlider.wide ) return;
+        if ( !self.wide ) return;
         $(this).stop()
            .fadeTo( t_dur_out, tcur_opacity )
            .animate({ top: 0 }, t_ease_out )
@@ -144,8 +148,8 @@ NavSlider = {
     //on window resize scale image and reset thumbnail scroller
     $( window ).resize( function() {
       var wwidth = $( window ).width();
-      var wasWide = NavSlider.wide;
-      if (!( NavSlider.wide = wwidth >= 600 )) {
+      var wasWide = self.wide;
+      if (!( self.wide = wwidth >= 600 )) {
         ts_container.css( 'left', null );
         scroll.css( 'width', null );
         return;
@@ -158,15 +162,25 @@ NavSlider = {
       ts_width = newWidth;
       pos = get_pos($menu);
     });
-      if (( NavSlider.wide = $( window ).width() >= 600 ))
-      _init();
+      if (( self.wide = $( window ).width() >= 600 )) 
+        _init();
+    else
+      self.open = false;
+
   })( jQuery );
   },
   toggleMenu ( open, duration ) {
     if (! duration )
       duration = 400;
     var $ = jQuery;
-    if ( $( window ).innerWidth() >= 600 ) { return; }
+    if ( $( window ).innerWidth() >= 600 ) {
+      if ( open && NavSlider.menu ) {
+        self.menu.mouseenter();
+      } else {
+        self.menu.mouseleave();
+      }
+      return;
+    }
     $("#main-nav button.toggle-mobile").blur();
     if ( open ) {
       $( "#main-nav" ).stop()

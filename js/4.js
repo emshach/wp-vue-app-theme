@@ -107,9 +107,12 @@ function get_pos(obj) {
 var NavSlider;
 NavSlider = {
   wide: true,
+  open: true,
+  menu: null,
   init: function init() {
     (function ($) {
-      //function to find element Position
+      var self = NavSlider; //function to find element Position
+
       var ts_margin = 30; //first and last thumbnail margin (for better cursor interaction) 
 
       var ts_easing = {
@@ -195,6 +198,7 @@ NavSlider = {
         outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
       };
 
+      self.menu = menu;
       thumb.each(function () {
         var $this = $(this);
         t_count += $this.innerWidth();
@@ -203,7 +207,7 @@ NavSlider = {
       ts_container.css("width", t_count + 10);
       ts_bg.css("width", t_count + 2 * bg_pad);
       scroll.mousemove(function (e) {
-        if (!NavSlider.wide) return;
+        if (!self.wide) return;
         var pos0;
 
         if (ts_container.width() > ts_width) {
@@ -219,7 +223,7 @@ NavSlider = {
       });
       menu.hover(function () {
         //mouse over
-        if (!NavSlider.wide) return;
+        if (!self.wide) return;
         outer.stop().fadeTo(dur_in, 1);
         menu.stop().animate({
           height: menu_height
@@ -230,7 +234,7 @@ NavSlider = {
         }, ease_in);
       }, function () {
         //mouse out
-        if (!NavSlider.wide) return;
+        if (!self.wide) return;
         menu.stop().animate({
           height: 15
         }, ease_out);
@@ -240,7 +244,7 @@ NavSlider = {
       });
       thumb.not(t_current).hover(function () {
         //mouse over
-        if (!NavSlider.wide) return;
+        if (!self.wide) return;
         $(this).stop().fadeTo(dur_in, 1).animate({
           top: -12
         }, t_ease_in).find(".text").stop().animate({
@@ -250,7 +254,7 @@ NavSlider = {
         }, tt_ease_in1);
       }, function () {
         //mouse out
-        if (!NavSlider.wide) return;
+        if (!self.wide) return;
         $(this).stop().fadeTo(t_dur_out, t_opacity).animate({
           top: 0
         }, t_ease_out).find(".text").stop().animate({
@@ -261,7 +265,7 @@ NavSlider = {
       });
       t_current.hover(function () {
         //mouse over
-        if (!NavSlider.wide) return;
+        if (!self.wide) return;
         $(this).stop().fadeTo(t_dur_in, 1).animate({
           top: -12
         }, t_ease_in).find(".text").stop().animate({
@@ -271,7 +275,7 @@ NavSlider = {
         }, tt_ease_in1);
       }, function () {
         //mouse out
-        if (!NavSlider.wide) return;
+        if (!self.wide) return;
         $(this).stop().fadeTo(t_dur_out, tcur_opacity).animate({
           top: 0
         }, t_ease_out).find(".text").stop().animate({
@@ -283,9 +287,9 @@ NavSlider = {
 
       $(window).resize(function () {
         var wwidth = $(window).width();
-        var wasWide = NavSlider.wide;
+        var wasWide = self.wide;
 
-        if (!(NavSlider.wide = wwidth >= 600)) {
+        if (!(self.wide = wwidth >= 600)) {
           ts_container.css('left', null);
           scroll.css('width', null);
           return;
@@ -301,7 +305,7 @@ NavSlider = {
         ts_width = newWidth;
         pos = get_pos($menu);
       });
-      if (NavSlider.wide = $(window).width() >= 600) _init();
+      if (self.wide = $(window).width() >= 600) _init();else self.open = false;
     })(jQuery);
   },
   toggleMenu: function toggleMenu(open, duration) {
@@ -309,6 +313,12 @@ NavSlider = {
     var $ = jQuery;
 
     if ($(window).innerWidth() >= 600) {
+      if (open && NavSlider.menu) {
+        self.menu.mouseenter();
+      } else {
+        self.menu.mouseleave();
+      }
+
       return;
     }
 
