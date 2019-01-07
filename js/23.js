@@ -52,7 +52,7 @@ __webpack_require__.r(__webpack_exports__);
     img: function img() {
       return this.postData.background_image || '';
     },
-    promos_reel: function promos_reel() {
+    promo_reel: function promo_reel() {
       return this.postData.promo_reel || [];
     },
     episodes: function episodes() {

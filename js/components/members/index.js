@@ -23,7 +23,7 @@ export default {
         document.title = he.decode( rpost.title.rendered + ' | '
                                     + this.sstate.site.title );
         window.setTimeout(() => {
-          this.promos = rpost.promo_reel || [];
+          this.promos = rpost.promo_reel;
         }, 3000 );
       });
     });
@@ -46,7 +46,7 @@ export default {
     img() {
       return this.postData.background_image || '';
     },
-    promos_reel() {
+    promo_reel() {
       return this.postData.promo_reel || [];
     },
     content() {

@@ -42,7 +42,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.storedPost = rpost;
         document.title = he__WEBPACK_IMPORTED_MODULE_2___default.a.decode(rpost.title.rendered + ' | ' + _this.sstate.site.title);
         window.setTimeout(function () {
-          _this.promos = rpost.promo_reel || [];
+          _this.promos = rpost.promo_reel;
         }, 3000);
       });
     });
@@ -65,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
     img: function img() {
       return this.postData.background_image || '';
     },
-    promos_reel: function promos_reel() {
+    promo_reel: function promo_reel() {
       return this.postData.promo_reel || [];
     },
     content: function content() {

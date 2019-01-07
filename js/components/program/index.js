@@ -36,7 +36,7 @@ export default {
     img() {
       return this.postData.background_image || '';
     },
-    promos_reel() {
+    promo_reel() {
       return this.postData.promo_reel || [];
     },
     episodes() {
