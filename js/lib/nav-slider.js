@@ -177,9 +177,9 @@ NavSlider = {
     var $ = jQuery;
     if ( $( window ).innerWidth() >= 600 ) {
       if ( open && NavSlider.menu ) {
-        self.menu.mouseenter();
+        NavSlider.menu.mouseenter();
       } else {
-        self.menu.mouseleave();
+        NavSlider.menu.mouseleave();
       }
       return;
     }
