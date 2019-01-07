@@ -6,6 +6,7 @@ export default {
     return {
       sstate: store.state,
       storedPost: {},
+      classes: [],
       promos: [],
       show: false
     };
@@ -14,7 +15,7 @@ export default {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
     window.setTimeout(() => {
-      this.promos = this.promo_reel;
+      this.promos = this.promo_reel || [];
     }, 3000);
   },
   updated() {

@@ -20,6 +20,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       storedPost: {},
+      classes: [],
       promos: [],
       show: false
     };
@@ -30,7 +31,7 @@ __webpack_require__.r(__webpack_exports__);
     this.storedPost = Object.assign({}, this.sstate.nextpost);
     document.title = he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.title + ' | ' + this.sstate.site.title);
     window.setTimeout(function () {
-      _this.promos = _this.promo_reel;
+      _this.promos = _this.promo_reel || [];
     }, 3000);
   },
   updated: function updated() {
