@@ -203,7 +203,7 @@ NavSlider = {
       ts_container.css("width", t_count + 10);
       ts_bg.css("width", t_count + 2 * bg_pad);
       scroll.mousemove(function (e) {
-        if (NavSlider.wide) return;
+        if (!NavSlider.wide) return;
         var pos0;
 
         if (ts_container.width() > ts_width) {
@@ -219,7 +219,7 @@ NavSlider = {
       });
       menu.hover(function () {
         //mouse over
-        if (NavSlider.wide) return;
+        if (!NavSlider.wide) return;
         outer.stop().fadeTo(dur_in, 1);
         menu.stop().animate({
           height: menu_height
@@ -230,7 +230,7 @@ NavSlider = {
         }, ease_in);
       }, function () {
         //mouse out
-        if (NavSlider.wide) return;
+        if (!NavSlider.wide) return;
         menu.stop().animate({
           height: 15
         }, ease_out);
@@ -240,7 +240,7 @@ NavSlider = {
       });
       thumb.not(t_current).hover(function () {
         //mouse over
-        if (NavSlider.wide) return;
+        if (!NavSlider.wide) return;
         $(this).stop().fadeTo(dur_in, 1).animate({
           top: -12
         }, t_ease_in).find(".text").stop().animate({
@@ -250,7 +250,7 @@ NavSlider = {
         }, tt_ease_in1);
       }, function () {
         //mouse out
-        if (NavSlider.wide) return;
+        if (!NavSlider.wide) return;
         $(this).stop().fadeTo(t_dur_out, t_opacity).animate({
           top: 0
         }, t_ease_out).find(".text").stop().animate({
@@ -261,7 +261,7 @@ NavSlider = {
       });
       t_current.hover(function () {
         //mouse over
-        if (NavSlider.wide) return;
+        if (!NavSlider.wide) return;
         $(this).stop().fadeTo(t_dur_in, 1).animate({
           top: -12
         }, t_ease_in).find(".text").stop().animate({
@@ -271,7 +271,7 @@ NavSlider = {
         }, tt_ease_in1);
       }, function () {
         //mouse out
-        if (NavSlider.wide) return;
+        if (!NavSlider.wide) return;
         $(this).stop().fadeTo(t_dur_out, tcur_opacity).animate({
           top: 0
         }, t_ease_out).find(".text").stop().animate({
