@@ -25,6 +25,8 @@ export default {
   mounted() {
     this.$nextTick(() => {
       navSlider.init();
+      if ( window.innerWidth >= 600 )
+        this.menuOpen = true;
     });
   },
   updated() {

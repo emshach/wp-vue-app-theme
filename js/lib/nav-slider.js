@@ -158,7 +158,7 @@ NavSlider = {
       ts_width = newWidth;
       pos = get_pos($menu);
     });
-    if ( $( window ).width() >= 600 )
+      if (( NavSlider.wide = $( window ).width() >= 600 ))
       _init();
   })( jQuery );
   },

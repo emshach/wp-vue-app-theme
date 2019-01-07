@@ -38,8 +38,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$nextTick(function () {
       _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init();
+      if (window.innerWidth >= 600) _this.menuOpen = true;
     });
   },
   updated: function updated() {
@@ -296,7 +299,7 @@ NavSlider = {
         ts_width = newWidth;
         pos = get_pos($menu);
       });
-      if ($(window).width() >= 600) _init();
+      if (NavSlider.wide = $(window).width() >= 600) _init();
     })(jQuery);
   },
   toggleMenu: function toggleMenu(open, duration) {
