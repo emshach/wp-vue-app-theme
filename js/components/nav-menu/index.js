@@ -19,10 +19,12 @@ export default {
   data() {
     return {
       sstate: store.state,
-      menuOpen: false
+      menuOpen: false,
+      slider: null
     };
   },
   mounted() {
+    this.slider = navSlider;
     this.$nextTick(() => {
       navSlider.init();
       if ( window.innerWidth >= 600 )
