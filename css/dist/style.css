@@ -645,7 +645,7 @@ button.nav-menu {
   text-shadow: 0 0 2px black;
   opacity: 0.75;
   color: white !important;
-  text-decoration: noen !important; }
+  text-decoration: none !important; }
 
 button.nav-menu:focus {
   outline: 0 none !important; }
