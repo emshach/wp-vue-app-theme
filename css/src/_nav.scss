@@ -223,7 +223,7 @@ button.nav-menu {
   opacity: 0.75;
   color: white;
   &:focus {
-    outline-color: 0 none !important;
+    outline: 0 none !important;
   }
   &:hover {
     opacity: 1;

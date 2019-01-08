@@ -647,7 +647,7 @@ button.nav-menu {
   color: white; }
 
 button.nav-menu:focus {
-  outline-color: 0 none !important; }
+  outline: 0 none !important; }
 
 button.nav-menu:hover {
   opacity: 1; }
