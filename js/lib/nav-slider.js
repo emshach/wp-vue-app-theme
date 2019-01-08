@@ -91,7 +91,7 @@ NavSlider = {
     self.menu = menu;
     self.openMenu = function() { //mouse over
       if ( !self.wide ) return;
-      if ( self.opening ) return;
+      if ( self.opening || self.closing ) return;
       self.opening = true;
       self.open = true;
       window.setTimeout(() => {
@@ -104,7 +104,7 @@ NavSlider = {
     };
     self.closeMenu = function() { //mouse out
       if ( !self.wide ) return;
-      if ( self.closing ) return;
+      if ( self.opening || self.closing ) return;
       self.closing = true;
       self.open = false;
       window.setTimeout(() => {
