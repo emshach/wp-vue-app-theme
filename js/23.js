@@ -38,6 +38,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     document.title = he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.title + ' | ' + this.sstate.site.title);
+    this.promos = [];
     window.setTimeout(function () {
       _this2.promos = _this2.promo_reel;
     }, 3000);
