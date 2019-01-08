@@ -20,6 +20,9 @@ export default {
   },
   updated() {
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
+    window.setTimeout(() => {
+      this.promos = this.promo_reel;
+    }, 3000 );
   },
   methods: {
     showImg() {

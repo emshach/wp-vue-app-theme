@@ -96,7 +96,6 @@ NavSlider = {
       if ( !self.wide ) return;
       if ( self.opening || self.closing ) return;
       self.opening = true;
-      self.open = true;
       if ( window.requestAnimationFrame )
         window.requestAnimationFrame(()=>{});
       window.setTimeout(() => {
@@ -111,7 +110,6 @@ NavSlider = {
       if ( !self.wide ) return;
       if ( self.opening || self.closing ) return;
       self.closing = true;
-      self.open = false;
       if ( window.requestAnimationFrame )
         window.requestAnimationFrame(()=>{});
       window.setTimeout(() => {
@@ -142,7 +140,13 @@ NavSlider = {
 	ts_container.stop().animate({ left: -pos0 }, ts_easing );
       }});
     
-    menu.hover( self.openMenu, self.closeMenu );
+    menu.hover(() =>{
+      self.openMenu();
+      self.open = true;
+    }, () => {
+      self.closeMenu();
+      self.open = false;
+    });
 
     thumb.not( t_current ).hover(
       function(){ //mouse over

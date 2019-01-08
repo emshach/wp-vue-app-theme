@@ -231,7 +231,6 @@ NavSlider = {
         if (!self.wide) return;
         if (self.opening || self.closing) return;
         self.opening = true;
-        self.open = true;
         if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
         window.setTimeout(function () {
           self.opening = false;
@@ -251,7 +250,6 @@ NavSlider = {
         if (!self.wide) return;
         if (self.opening || self.closing) return;
         self.closing = true;
-        self.open = false;
         if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
         window.setTimeout(function () {
           self.closing = false;
@@ -291,7 +289,13 @@ NavSlider = {
           }, ts_easing);
         }
       });
-      menu.hover(self.openMenu, self.closeMenu);
+      menu.hover(function () {
+        self.openMenu();
+        self.open = true;
+      }, function () {
+        self.closeMenu();
+        self.open = false;
+      });
       thumb.not(t_current).hover(function () {
         //mouse over
         if (!self.wide) return;
