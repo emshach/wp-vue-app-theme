@@ -129,6 +129,8 @@ NavSlider = {
   menu: null,
   openMenu: null,
   closeMenu: null,
+  opening: false,
+  closing: false,
   init: function init() {
     (function ($) {
       var self = NavSlider; //function to find element Position
@@ -224,7 +226,12 @@ NavSlider = {
       self.openMenu = function () {
         //mouse over
         if (!self.wide) return;
+        if (self.opening) return;
+        self.opening = true;
         self.open = true;
+        window.setTimeout(function () {
+          self.opening = false;
+        }, 500);
         outer.stop().fadeTo(dur_in, 1);
         menu.stop().animate({
           height: menu_height
@@ -238,7 +245,12 @@ NavSlider = {
       self.closeMenu = function () {
         //mouse out
         if (!self.wide) return;
+        if (self.closing) return;
+        self.closing = true;
         self.open = false;
+        window.setTimeout(function () {
+          self.closing = false;
+        }, 500);
         menu.stop().animate({
           height: 15
         }, ease_out);
@@ -269,10 +281,7 @@ NavSlider = {
 
         if (Math.abs(pos0 - ts_container.position().left) > 20) {}
       });
-      menu.hover(self.openMenu, function () {
-        alert('mouseout!');
-        self.closeMenu();
-      });
+      menu.hover(self.openMenu, self.closeMenu);
       thumb.not(t_current).hover(function () {
         //mouse over
         if (!self.wide) return;

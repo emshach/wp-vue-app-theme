@@ -36,6 +36,8 @@ NavSlider = {
   menu: null,
   openMenu: null,
   closeMenu: null,
+  opening: false,
+  closing: false,
   init() {
   (function($) {
     const self = NavSlider;
@@ -89,7 +91,12 @@ NavSlider = {
     self.menu = menu;
     self.openMenu = function() { //mouse over
       if ( !self.wide ) return;
+      if ( self.opening ) return;
+      self.opening = true;
       self.open = true;
+      window.setTimeout(() => {
+        self.opening = false;
+      }, 500);
       outer.stop().fadeTo( dur_in, 1 );
       menu.stop().animate({ height: menu_height }, ease_in );
       var top = $( "#app>.page" ).scrollTop();
@@ -97,7 +104,12 @@ NavSlider = {
     };
     self.closeMenu = function() { //mouse out
       if ( !self.wide ) return;
+      if ( self.closing ) return;
+      self.closing = true;
       self.open = false;
+      window.setTimeout(() => {
+        self.closing = false;
+      }, 500);
       menu.stop().animate({ height: 15 }, ease_out );
       main_title.stop().animate({ bottom: 0 }, ease_out );
     };
@@ -124,9 +136,7 @@ NavSlider = {
       if (Math.abs( pos0 - ts_container.position().left ) > 20 ){
       }});
     
-    menu.hover( self.openMenu, function () {
-      alert( 'mouseout!' );
-      self.closeMenu() });
+    menu.hover( self.openMenu, self.closeMenu );
 
     thumb.not( t_current ).hover(
       function(){ //mouse over
