@@ -222,6 +222,7 @@ button.nav-menu {
   text-shadow: 0 0 2px black;
   opacity: 0.75;
   color: white;
+  outline-color: 0 none !important;
   &:hover {
     opacity: 1;
   }

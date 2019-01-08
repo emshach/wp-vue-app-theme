@@ -644,7 +644,8 @@ button.nav-menu {
   z-index: 21;
   text-shadow: 0 0 2px black;
   opacity: 0.75;
-  color: white; }
+  color: white;
+  outline-color: 0 none !important; }
 
 button.nav-menu:hover {
   opacity: 1; }
