@@ -34,15 +34,6 @@ __webpack_require__.r(__webpack_exports__);
       _this.promos = _this.promo_reel;
     }, 3000);
   },
-  updated: function updated() {
-    var _this2 = this;
-
-    document.title = he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.title + ' | ' + this.sstate.site.title);
-    this.promos = [];
-    window.setTimeout(function () {
-      _this2.promos = _this2.promo_reel;
-    }, 5000);
-  },
   methods: {
     showImg: function showImg() {
       this.show = true;
@@ -82,6 +73,17 @@ __webpack_require__.r(__webpack_exports__);
       return {
         small: !!this.promos.length
       };
+    },
+    watch: {
+      $route: function $route(to, from) {
+        var _this2 = this;
+
+        document.title = he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.title + ' | ' + this.sstate.site.title);
+        this.promos = [];
+        window.setTimeout(function () {
+          _this2.promos = _this2.promo_reel;
+        }, 5000);
+      }
     }
   }
 });

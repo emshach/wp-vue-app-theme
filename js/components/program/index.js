@@ -18,13 +18,6 @@ export default {
       this.promos = this.promo_reel;
     }, 3000 );
   },
-  updated() {
-    document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
-    this.promos = [];
-    window.setTimeout(() => {
-      this.promos = this.promo_reel;
-    }, 5000 );
-  },
   methods: {
     showImg() {
       this.show = true;
@@ -64,6 +57,15 @@ export default {
     },
     classes() {
       return { small: !!this.promos.length };
+    },
+    watch: {
+      $route( to, from ) {
+        document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
+        this.promos = [];
+        window.setTimeout(() => {
+          this.promos = this.promo_reel;
+        }, 5000 );
+      }
     }
   }
 };
