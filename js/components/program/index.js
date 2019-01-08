@@ -57,15 +57,16 @@ export default {
     },
     classes() {
       return { small: !!this.promos.length };
-    },
-    watch: {
-      $route( to, from ) {
-        document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
-        this.promos = [];
-        window.setTimeout(() => {
-          this.promos = this.promo_reel;
-        }, 3000 );
-      }
+    }
+  },
+  watch: {
+    $route( to, from ) {
+      this.promos = [];
+      this.storedPost = Object.assign( {}, this.sstate.nextpost );
+      document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
+      window.setTimeout(() => {
+        this.promos = this.promo_reel;
+      }, 3000 );
     }
   }
 };

@@ -73,17 +73,18 @@ __webpack_require__.r(__webpack_exports__);
       return {
         small: !!this.promos.length
       };
-    },
-    watch: {
-      $route: function $route(to, from) {
-        var _this2 = this;
+    }
+  },
+  watch: {
+    $route: function $route(to, from) {
+      var _this2 = this;
 
-        document.title = he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.title + ' | ' + this.sstate.site.title);
-        this.promos = [];
-        window.setTimeout(function () {
-          _this2.promos = _this2.promo_reel;
-        }, 3000);
-      }
+      this.promos = [];
+      this.storedPost = Object.assign({}, this.sstate.nextpost);
+      document.title = he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.title + ' | ' + this.sstate.site.title);
+      window.setTimeout(function () {
+        _this2.promos = _this2.promo_reel;
+      }, 3000);
     }
   }
 });
