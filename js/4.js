@@ -339,10 +339,10 @@ NavSlider = {
         var wasWide = self.wide;
 
         if (!(self.wide = wwidth >= 600)) {
-          ts_container.css('left', null);
-          scroll.css('width', null);
-          ts_container.css("width", null);
-          ts_bg.css("width", null);
+          ts_container.css('left', '');
+          ts_container.css("width", 1);
+          scroll.css('width', '');
+          ts_bg.css("width", '');
           return;
         }
 
