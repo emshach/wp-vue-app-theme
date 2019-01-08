@@ -11,11 +11,31 @@ function get_pos( obj ) {
   return { top: curtop, left: curleft };
 }
 
+// from https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript/4819886#4819886
+function is_touch_device() {
+  var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+  var mq = function(query) {
+    return window.matchMedia(query).matches;
+  };
+
+  if (( 'ontouchstart' in window )
+      || window.DocumentTouch && document instanceof DocumentTouch ) {
+    return true;
+  }
+
+  // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+  // https://git.io/vznFH
+  var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+  return mq(query);
+}
+
 var NavSlider;
 NavSlider = {
   wide: true,
   open: true,
   menu: null,
+  openMenu: null,
+  closeMenu: null,
   init() {
   (function($) {
     const self = NavSlider;
@@ -67,7 +87,21 @@ NavSlider = {
       console.trace( '_init called' );
     };
     self.menu = menu;
-    
+    self.openMenu = function() { //mouse over
+      if ( !self.wide ) return;
+      self.open = true;
+      outer.stop().fadeTo( dur_in, 1 );
+      menu.stop().animate({ height: menu_height }, ease_in );
+      var top = $( "#app>.page" ).scrollTop();
+      main_title.stop().animate({ bottom: 110 - top }, ease_in );
+    };
+    self.closeMenu = function() { //mouse out
+      if ( !self.wide ) return;
+      self.open = false;
+      menu.stop().animate({ height: 15 }, ease_out );
+      main_title.stop().animate({ bottom: 0 }, ease_out );
+    };
+
     thumb.each( function () {
       var $this = $( this );
       t_count += $this.innerWidth();
@@ -90,22 +124,8 @@ NavSlider = {
       if (Math.abs( pos0 - ts_container.position().left ) > 20 ){
       }});
     
-    menu.hover(
-      function() { //mouse over
-        if ( !self.wide ) return;
-        self.open = true;
-	outer.stop().fadeTo( dur_in, 1 );
-	menu.stop().animate({ height: menu_height }, ease_in );
-        var top = $( "#app>.page" ).scrollTop();
-        main_title.stop().animate({ bottom: 110 - top }, ease_in );
-      },
-      function() { //mouse out
-        if ( !self.wide ) return;
-        self.open = false;
-	menu.stop().animate({ height: 15 }, ease_out );
-        main_title.stop().animate({ bottom: 0 }, ease_out );
-      }
-    );
+    if ( !is_touch_device )
+      menu.hover( self.openMenu, self.closeMenu );
 
     thumb.not( t_current ).hover(
       function(){ //mouse over
@@ -174,16 +194,17 @@ NavSlider = {
   })( jQuery );
   },
   toggleMenu ( open, duration ) {
+    const self = NavSlider;
     if (! duration )
       duration = 400;
     var $ = jQuery;
     if ( $( window ).innerWidth() >= 600 ) {
-      if ( NavSlider.menu )
-        if ( open ) {
-          NavSlider.menu.mouseenter();
-        } else {
-          NavSlider.menu.mouseleave();
-        }
+      if ( self.menu ) {
+        if ( open ) 
+          self.openMenu();
+        else
+          self.closeMenu();
+      }
       return;
     }
     $("#main-nav button.toggle-mobile").blur();

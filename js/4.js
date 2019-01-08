@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <button class=\"menu-toggle menu-wide nav-menu\" type=\"button\"\n          :class=\"{ open: menuOpen }\"\n          @mousedown=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n    <transition name=\"fade-fast\" mode=\"out-in\">\n      <span v-if=\"menuOpen\" key=\"menu\"\n            class=\"dashicons dashicons-arrow-down-alt2 navbar-toggle-icon open\"\n            aria-hidden=\"true\"></span>\n      <span v-else key=\"close\"\n            class=\"dashicons dashicons-arrow-up-alt2 navbar-toggle-icon\"\n            aria-hidden=\"true\"></span>\n    </transition>\n  </button>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div @click.stop=\"closeMenu\" id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n        <transition name=\"fade-fast\" mode=\"out-in\">\n          <span v-if=\"menuOpen\" key=\"menu\"\n                class=\"dashicons dashicons-arrow-left-alt2 navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n          <span v-else key=\"close\"\n                class=\"dashicons dashicons-menu navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n        </transition>\n      </button>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\" @click.native=\"closeMenu\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\" v-html=\"item.title\"></span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
+module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <button class=\"menu-toggle menu-wide nav-menu\" type=\"button\"\n          :class=\"{ open: menuOpen }\"\n          @click=\"toggleMenu\" v-tap=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n    <transition name=\"fade-fast\" mode=\"out-in\">\n      <span v-if=\"menuOpen\" key=\"menu\"\n            class=\"dashicons dashicons-arrow-down-alt2 navbar-toggle-icon open\"\n            aria-hidden=\"true\"></span>\n      <span v-else key=\"close\"\n            class=\"dashicons dashicons-arrow-up-alt2 navbar-toggle-icon\"\n            aria-hidden=\"true\"></span>\n    </transition>\n  </button>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div @click.stop=\"closeMenu\" id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n        <transition name=\"fade-fast\" mode=\"out-in\">\n          <span v-if=\"menuOpen\" key=\"menu\"\n                class=\"dashicons dashicons-arrow-left-alt2 navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n          <span v-else key=\"close\"\n                class=\"dashicons dashicons-menu navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n        </transition>\n      </button>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\" class=\"menu-item\">\n            <router-link :to=\"item.url\" @click.native=\"closeMenu\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\" v-html=\"item.title\"></span>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
 
 /***/ }),
 
@@ -102,6 +102,24 @@ function get_pos(obj) {
     top: curtop,
     left: curleft
   };
+} // from https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript/4819886#4819886
+
+
+function is_touch_device() {
+  var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+
+  var mq = function mq(query) {
+    return window.matchMedia(query).matches;
+  };
+
+  if ('ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch) {
+    return true;
+  } // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+  // https://git.io/vznFH
+
+
+  var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+  return mq(query);
 }
 
 var NavSlider;
@@ -109,6 +127,8 @@ NavSlider = {
   wide: true,
   open: true,
   menu: null,
+  openMenu: null,
+  closeMenu: null,
   init: function init() {
     (function ($) {
       var self = NavSlider; //function to find element Position
@@ -200,6 +220,33 @@ NavSlider = {
       };
 
       self.menu = menu;
+
+      self.openMenu = function () {
+        //mouse over
+        if (!self.wide) return;
+        self.open = true;
+        outer.stop().fadeTo(dur_in, 1);
+        menu.stop().animate({
+          height: menu_height
+        }, ease_in);
+        var top = $("#app>.page").scrollTop();
+        main_title.stop().animate({
+          bottom: 110 - top
+        }, ease_in);
+      };
+
+      self.closeMenu = function () {
+        //mouse out
+        if (!self.wide) return;
+        self.open = false;
+        menu.stop().animate({
+          height: 15
+        }, ease_out);
+        main_title.stop().animate({
+          bottom: 0
+        }, ease_out);
+      };
+
       thumb.each(function () {
         var $this = $(this);
         t_count += $this.innerWidth();
@@ -222,29 +269,7 @@ NavSlider = {
 
         if (Math.abs(pos0 - ts_container.position().left) > 20) {}
       });
-      menu.hover(function () {
-        //mouse over
-        if (!self.wide) return;
-        self.open = true;
-        outer.stop().fadeTo(dur_in, 1);
-        menu.stop().animate({
-          height: menu_height
-        }, ease_in);
-        var top = $("#app>.page").scrollTop();
-        main_title.stop().animate({
-          bottom: 110 - top
-        }, ease_in);
-      }, function () {
-        //mouse out
-        if (!self.wide) return;
-        self.open = false;
-        menu.stop().animate({
-          height: 15
-        }, ease_out);
-        main_title.stop().animate({
-          bottom: 0
-        }, ease_out);
-      });
+      if (!is_touch_device) menu.hover(self.openMenu, self.closeMenu);
       thumb.not(t_current).hover(function () {
         //mouse over
         if (!self.wide) return;
@@ -313,15 +338,15 @@ NavSlider = {
     })(jQuery);
   },
   toggleMenu: function toggleMenu(open, duration) {
+    var self = NavSlider;
     if (!duration) duration = 400;
     var $ = jQuery;
 
     if ($(window).innerWidth() >= 600) {
-      if (NavSlider.menu) if (open) {
-        NavSlider.menu.mouseenter();
-      } else {
-        NavSlider.menu.mouseleave();
+      if (self.menu) {
+        if (open) self.openMenu();else self.closeMenu();
       }
+
       return;
     }
 

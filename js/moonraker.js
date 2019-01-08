@@ -895,11 +895,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-scrollto */ "./node_modules/vue-scrollto/vue-scrollto.js");
 /* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_scrollto__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./lib/store */ "./js/lib/store.js");
-/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./lib/wpapix */ "./js/lib/wpapix.js");
-/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./lib/route-events */ "./js/lib/route-events.js");
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var vue_tap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-tap */ "./node_modules/vue-tap/vue-tap.js");
+/* harmony import */ var vue_tap__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue_tap__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./lib/store */ "./js/lib/store.js");
+/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./lib/wpapix */ "./js/lib/wpapix.js");
+/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./lib/route-events */ "./js/lib/route-events.js");
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_15__);
+
 
 
 
@@ -1069,7 +1072,8 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_carousel__WEBPACK_IMPORTED_M
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_lazyload_img__WEBPACK_IMPORTED_MODULE_8___default.a, {
   fade: true
 });
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_scrollto__WEBPACK_IMPORTED_MODULE_9___default.a); // init components
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_scrollto__WEBPACK_IMPORTED_MODULE_9___default.a);
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_tap__WEBPACK_IMPORTED_MODULE_11___default.a); // init components
 
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('the-loop', TheLoop);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('sidebar', Sidebar);
@@ -1110,7 +1114,7 @@ var VMembers = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('members', 
 var VMemberConfirm = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('member-confirm', MemberConfirm);
 var VUpload = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('upload', Upload);
 var VShop = vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('shop', Shop);
-window.store = _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"]; // Define some routes
+window.store = _lib_store__WEBPACK_IMPORTED_MODULE_12__["default"]; // Define some routes
 
 var routes = [{
   path: '/',
@@ -1131,22 +1135,22 @@ var routes = [{
   path: '/preview/:program/:release',
   component: VPreviewRelease,
   name: 'preview-release',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreviewRelease
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_14__["default"].toPreviewRelease
 }, {
   path: '/preview/:path',
   component: VPreviewRelease,
   name: 'preview',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPreview
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_14__["default"].toPreview
 }, {
   path: '/page/:path',
   component: VPage,
   name: 'page',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_14__["default"].toPath
 }, {
   path: '/post/:path',
   component: VPost,
   name: 'post',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_14__["default"].toPath
 }, {
   path: '/category/:category',
   component: VArchive,
@@ -1201,12 +1205,12 @@ var routes = [{
   path: '/:program/:release',
   component: VRelease,
   name: 'release',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toRelease
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_14__["default"].toRelease
 }, {
   path: '/:path',
   component: VSingle,
   name: 'single',
-  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_13__["default"].toPath
+  beforeEnter: _lib_route_events__WEBPACK_IMPORTED_MODULE_14__["default"].toPath
 }, {
   path: "*",
   component: VPageNotFound
@@ -1219,7 +1223,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
 // fetch post first so we can decide some more specific routing
 
 router.beforeEach(function (to, from, next) {
-  if (to.meta.auth && !_lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.user) {
+  if (to.meta.auth && !_lib_store__WEBPACK_IMPORTED_MODULE_12__["default"].state.user) {
     next({
       path: '/login' + to.path
     });
@@ -1236,7 +1240,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
       "url": "",
       "description": ""
     },
-    sstate: _lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state,
+    sstate: _lib_store__WEBPACK_IMPORTED_MODULE_12__["default"].state,
     user: {},
     menu: []
   },
@@ -46310,6 +46314,82 @@ return VueScrollTo$1;
 
 })));
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-tap/vue-tap.js":
+/*!*****************************************!*\
+  !*** ./node_modules/vue-tap/vue-tap.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+;(function() {
+    var vueTap = {};
+
+    vueTap.install = function(Vue) {
+        Vue.directive('tap', {
+
+            isFn: true,
+            acceptStatement: true,
+            priority: Vue.directive('on').priority,
+
+            bind: function() {
+                var self = this;
+
+                self.handler = function() {};
+                self.tapInfo = {};
+                self.touchstartFn = function(e) {
+                    if(self.modifiers.stopPropagation) e.stopPropagation();
+                    if(self.modifiers.preventDefault) e.preventDefault();
+                    self._touchstart(self, e);
+                };
+                self.touchendFn = function(e) {
+                    self._touchend(self, e);
+                };
+
+                this.el.addEventListener('touchstart', self.touchstartFn);
+
+                this.el.addEventListener('touchend', self.touchendFn);
+            },
+
+            _touchstart: function(obj, event) {
+                var touch = event.touches[0];
+                obj.tapInfo.pageX = touch.pageX;
+                obj.tapInfo.pageY = touch.pageY;
+                obj.tapInfo.touchStartTime = (new Date()).getTime();
+            },
+
+            _touchend: function(obj, event) {
+                var touch = event.changedTouches[0];
+                var interval = (new Date()).getTime() - obj.tapInfo.touchStartTime;
+                var disX = touch.pageX - obj.tapInfo.pageX;
+                var disY = touch.pageY - obj.tapInfo.pageY;
+
+                if (interval < 100 && Math.abs(disX) < 2 && Math.abs(disY) < 2) {
+                    obj.handler(event);
+                }
+            },
+
+            update: function(fn) {
+                if (typeof fn != 'function') return console.error('the tap event handler must be function!');
+
+                this.handler = fn;
+            },
+
+            unbind: function() {
+                this.el.removeEventListener('touchstart', this.touchstartFn);
+                this.el.removeEventListener('touchend', this.touchendFn);
+                this.touchstartFn = this.touchendFn = null;
+                this.handler = this.tapInfo = null;
+            }
+        });
+    };
+
+    if (true) {
+        module.exports = vueTap;
+    } else {}
+})();
 
 /***/ }),
 
