@@ -99,7 +99,7 @@ NavSlider = {
       self.open = true;
       window.setTimeout(() => {
         self.opening = false;
-      }, 500);
+      }, 100);
       outer.stop().fadeTo( dur_in, 1 );
       menu.stop().animate({ height: menu_height }, ease_in );
       var top = $( "#app>.page" ).scrollTop();
@@ -112,7 +112,7 @@ NavSlider = {
       self.open = false;
       window.setTimeout(() => {
         self.closing = false;
-      }, 500);
+      }, 100);
       menu.stop().animate({ height: 15 }, ease_out );
       main_title.stop().animate({ bottom: 0 }, ease_out );
     };
@@ -216,11 +216,10 @@ NavSlider = {
     if ( $( window ).innerWidth() >= 600 ) {
       if ( self.menu ) {
         if ( open ) {
-          alert ( 'opening' + self.opening + ', ' + self.closing );
-          self.openMenu(); }
-        else {
-          alert ( 'closing' + self.opening + ', ' + self.closing );
-          self.closeMenu(); }
+          self.openMenu();
+        } else {
+          self.closeMenu();
+        }
       }
       return;
     }
