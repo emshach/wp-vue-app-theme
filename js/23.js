@@ -41,7 +41,7 @@ __webpack_require__.r(__webpack_exports__);
     this.promos = [];
     window.setTimeout(function () {
       _this2.promos = _this2.promo_reel;
-    }, 3000);
+    }, 5000);
   },
   methods: {
     showImg: function showImg() {

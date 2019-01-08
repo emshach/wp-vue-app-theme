@@ -23,7 +23,7 @@ export default {
     this.promos = [];
     window.setTimeout(() => {
       this.promos = this.promo_reel;
-    }, 3000 );
+    }, 5000 );
   },
   methods: {
     showImg() {
