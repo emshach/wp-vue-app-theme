@@ -1,7 +1,7 @@
 <div id="header-menu"
      :class="['header-menu', { mobile: sstate.window.width < 601 }]">
   <div id="feature-tray"><div id="feature-tray-inner"></div></div>
-  <button class="menu-toggle menu-wide nav-menu" type="button"
+  <b-btn class="menu-toggle menu-wide nav-menu" variant="link"
           :class="{ open: menuOpen }"
           @click="toggleMenu" v-tap="toggleMenu" aria-label="Toggle Navigation">
     <transition name="fade-fast" mode="out-in">
@@ -12,7 +12,7 @@
             class="dashicons dashicons-arrow-up-alt2 navbar-toggle-icon"
             aria-hidden="true"></span>
     </transition>
-  </button>
+  </b-btn>
   <!-- nav -->
   <nav id="main-nav" class="nav main-nav" role="navigation">
     <div class="wrapper">
