@@ -269,7 +269,10 @@ NavSlider = {
 
         if (Math.abs(pos0 - ts_container.position().left) > 20) {}
       });
-      if (!is_touch_device) menu.hover(self.openMenu, self.closeMenu);
+      menu.hover(self.openMenu, function () {
+        alert('mouseout!');
+        self.closeMenu();
+      });
       thumb.not(t_current).hover(function () {
         //mouse over
         if (!self.wide) return;
