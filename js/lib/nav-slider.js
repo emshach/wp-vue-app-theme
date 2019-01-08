@@ -211,10 +211,12 @@ NavSlider = {
     var $ = jQuery;
     if ( $( window ).innerWidth() >= 600 ) {
       if ( self.menu ) {
-        if ( open ) 
-          self.openMenu();
-        else
-          self.closeMenu();
+        if ( open ) {
+          alert ( 'opening' + self.opening + ', ' + self.closing );
+          self.openMenu(); }
+        else {
+          alert ( 'opening' + self.opening + ', ' + self.closing );
+          self.closeMenu(); }
       }
       return;
     }
