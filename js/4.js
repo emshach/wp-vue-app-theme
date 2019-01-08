@@ -201,6 +201,7 @@ NavSlider = {
 
         scroll.css("width", ts_width);
         outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
+        console.trace('_init called');
       };
 
       self.menu = menu;
@@ -293,6 +294,7 @@ NavSlider = {
       }); //on window resize scale image and reset thumbnail scroller
 
       $(window).resize(function () {
+        console.log('window resized');
         var wwidth = $(window).width();
         var wasWide = self.wide;
 
@@ -320,12 +322,11 @@ NavSlider = {
     var $ = jQuery;
 
     if ($(window).innerWidth() >= 600) {
-      if (open && NavSlider.menu) {
+      if (NavSlider.menu) if (open) {
         NavSlider.menu.mouseenter();
       } else {
         NavSlider.menu.mouseleave();
       }
-
       return;
     }
 

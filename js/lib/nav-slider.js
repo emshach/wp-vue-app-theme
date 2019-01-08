@@ -64,6 +64,7 @@ NavSlider = {
       ts_container.css( "margingLeft", ts_margin + "px" ); //add margin
       scroll.css( "width", ts_width );
       outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
+      console.trace( '_init called' );
     };
     self.menu = menu;
     
@@ -111,9 +112,9 @@ NavSlider = {
         if ( !self.wide ) return;
         $( this ).stop()
            .fadeTo( dur_in, 1 )
-           .animate({ top: -12 }, t_ease_in)
+           .animate({ top: -12 }, t_ease_in )
            .find( ".text" ).stop()
-           .animate({ bottom: "95%" }, tt_ease_in)
+           .animate({ bottom: "95%" }, tt_ease_in )
            .animate({ opacity: 1 }, tt_ease_in1 );
       },
       function(){ //mouse out
@@ -133,7 +134,7 @@ NavSlider = {
            .fadeTo( t_dur_in, 1 )
            .animate({ top: -12 }, t_ease_in )
            .find(".text").stop()
-           .animate({ bottom: "95%" }, tt_ease_in)
+           .animate({ bottom: "95%" }, tt_ease_in )
            .animate({ opacity: 1 }, tt_ease_in1 );
       },
       function(){ //mouse out
@@ -149,6 +150,7 @@ NavSlider = {
 
     //on window resize scale image and reset thumbnail scroller
     $( window ).resize( function() {
+      console.log ( 'window resized' );
       var wwidth = $( window ).width();
       var wasWide = self.wide;
       if (!( self.wide = wwidth >= 600 )) {
@@ -162,13 +164,13 @@ NavSlider = {
       var newWidth = outer.width();
       scroll.css( "width", newWidth );
       ts_width = newWidth;
-      pos = get_pos($menu);
+      pos = get_pos( $menu );
     });
-      if (( self.wide = $( window ).width() >= 600 )) 
-        _init();
+    if (( self.wide = $( window ).width() >= 600 )) 
+      _init();
     else
       self.open = false;
-
+    
   })( jQuery );
   },
   toggleMenu ( open, duration ) {
@@ -176,11 +178,12 @@ NavSlider = {
       duration = 400;
     var $ = jQuery;
     if ( $( window ).innerWidth() >= 600 ) {
-      if ( open && NavSlider.menu ) {
-        NavSlider.menu.mouseenter();
-      } else {
-        NavSlider.menu.mouseleave();
-      }
+      if ( NavSlider.menu )
+        if ( open ) {
+          NavSlider.menu.mouseenter();
+        } else {
+          NavSlider.menu.mouseleave();
+        }
       return;
     }
     $("#main-nav button.toggle-mobile").blur();
