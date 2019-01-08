@@ -133,7 +133,8 @@ NavSlider = {
   closing: false,
   init: function init() {
     (function ($) {
-      var self = NavSlider; //function to find element Position
+      var self = NavSlider;
+      window.NavSlider = NavSlider; //function to find element Position
 
       var ts_margin = 30; //first and last thumbnail margin (for better cursor interaction) 
 
@@ -267,7 +268,7 @@ NavSlider = {
       ts_container.css("width", t_count + 10);
       ts_bg.css("width", t_count + 2 * bg_pad);
       scroll.mousemove(function (e) {
-        if (!self.wide) return;
+        // if ( !self.wide ) return;
         var pos0;
 
         if (ts_container.width() > ts_width) {
@@ -360,7 +361,7 @@ NavSlider = {
           alert('opening' + self.opening + ', ' + self.closing);
           self.openMenu();
         } else {
-          alert('opening' + self.opening + ', ' + self.closing);
+          alert('closing' + self.opening + ', ' + self.closing);
           self.closeMenu();
         }
       }
