@@ -3,7 +3,7 @@
   <div id="feature-tray"><div id="feature-tray-inner"></div></div>
   <b-btn class="menu-toggle menu-wide nav-menu" variant="link"
           :class="{ open: menuOpen }"
-          @click="toggleMenu" v-tap="toggleMenu" aria-label="Toggle Navigation">
+          @click="toggleMenu" aria-label="Toggle Navigation">
     <transition name="fade-fast" mode="out-in">
       <span v-if="menuOpen" key="menu"
             class="dashicons dashicons-arrow-down-alt2 navbar-toggle-icon open"
