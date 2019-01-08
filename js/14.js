@@ -47,7 +47,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.img = rpost.background_image || '';
         window.setTimeout(function () {
           _this.promos = rpost.promo_reel || [];
-        }, 7000);
+        }, 10000);
       });
     });
   },
