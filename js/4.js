@@ -232,6 +232,7 @@ NavSlider = {
         if (self.opening || self.closing) return;
         self.opening = true;
         self.open = true;
+        if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
         window.setTimeout(function () {
           self.opening = false;
         }, 100);
@@ -251,6 +252,7 @@ NavSlider = {
         if (self.opening || self.closing) return;
         self.closing = true;
         self.open = false;
+        if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
         window.setTimeout(function () {
           self.closing = false;
         }, 100);
@@ -340,7 +342,7 @@ NavSlider = {
 
         if (!(self.wide = wwidth >= 600)) {
           ts_container.css('left', '');
-          ts_container.css("width", 1);
+          ts_container.css("width", '');
           scroll.css('width', '');
           ts_bg.css("width", '');
           return;

@@ -97,6 +97,8 @@ NavSlider = {
       if ( self.opening || self.closing ) return;
       self.opening = true;
       self.open = true;
+      if ( window.requestAnimationFrame )
+        window.requestAnimationFrame(()=>{});
       window.setTimeout(() => {
         self.opening = false;
       }, 100);
@@ -110,6 +112,8 @@ NavSlider = {
       if ( self.opening || self.closing ) return;
       self.closing = true;
       self.open = false;
+      if ( window.requestAnimationFrame )
+        window.requestAnimationFrame(()=>{});
       window.setTimeout(() => {
         self.closing = false;
       }, 100);
@@ -188,7 +192,7 @@ NavSlider = {
       var wasWide = self.wide;
       if (!( self.wide = wwidth >= 600 )) {
         ts_container.css( 'left', '' );
-        ts_container.css( "width", 1 );
+        ts_container.css( "width", '' );
         scroll.css( 'width', '' );
         ts_bg.css( "width", '' );
         return;
