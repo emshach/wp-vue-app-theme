@@ -220,6 +220,8 @@ NavSlider = {
         scroll.css("width", ts_width);
         outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
         console.trace('_init called');
+        ts_container.css("width", t_count + 10);
+        ts_bg.css("width", t_count + 2 * bg_pad);
       };
 
       self.menu = menu;
@@ -265,10 +267,8 @@ NavSlider = {
         t_count += $this.innerWidth();
         $this.children().children().children(".thumb").fadeTo(dur_out, t_opacity);
       });
-      ts_container.css("width", t_count + 10);
-      ts_bg.css("width", t_count + 2 * bg_pad);
       scroll.mousemove(function (e) {
-        // if ( !self.wide ) return;
+        if (!self.wide) return;
         var pos0;
 
         if (ts_container.width() > ts_width) {
@@ -280,7 +280,14 @@ NavSlider = {
           pos0 = (t_count + ts_margin * 2 - ts_width) / 2;
         }
 
-        if (Math.abs(pos0 - ts_container.position().left) > 20) {}
+        if (Math.abs(pos0 - ts_container.position().left) > 20) {
+          ts_bg.stop().animate({
+            left: -pos0 / 2 - bg_pad
+          }, ts_easing);
+          ts_container.stop().animate({
+            left: -pos0
+          }, ts_easing);
+        }
       });
       menu.hover(self.openMenu, self.closeMenu);
       thumb.not(t_current).hover(function () {
@@ -334,6 +341,8 @@ NavSlider = {
         if (!(self.wide = wwidth >= 600)) {
           ts_container.css('left', null);
           scroll.css('width', null);
+          ts_container.css("width", null);
+          ts_bg.css("width", null);
           return;
         }
 
