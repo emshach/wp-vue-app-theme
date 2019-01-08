@@ -1016,7 +1016,9 @@ footer {
 .fade-in-leave-active {
   transition: all 0.6s ease; }
 
-.fade-in-enter, .fade-in-leave-to {
+.fade-in-enter, .fade-in-leave-to,
+.fade-fast-enter, .fade-fast-leave-to,
+.fade-slow-enter, .fade-slow-leave-to {
   opacity: 0; }
 
 .fade-fast-enter-active {
@@ -1025,8 +1027,11 @@ footer {
 .fade-fast-leave-active {
   transition: all 0.15s ease-out; }
 
-.fade-fast-enter, .fade-fast-leave-to {
-  opacity: 0; }
+.fade-slow-enter-active {
+  transition: all 1.5s ease-in; }
+
+.fade-slow-leave-active {
+  transition: all 1.5s ease-out; }
 
 .content {
   margin-bottom: 35px; }

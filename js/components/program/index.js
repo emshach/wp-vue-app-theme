@@ -64,7 +64,7 @@ export default {
         this.promos = [];
         window.setTimeout(() => {
           this.promos = this.promo_reel;
-        }, 5000 );
+        }, 3000 );
       }
     }
   }

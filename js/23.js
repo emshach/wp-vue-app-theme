@@ -82,7 +82,7 @@ __webpack_require__.r(__webpack_exports__);
         this.promos = [];
         window.setTimeout(function () {
           _this2.promos = _this2.promo_reel;
-        }, 5000);
+        }, 3000);
       }
     }
   }

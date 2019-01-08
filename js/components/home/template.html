@@ -7,7 +7,7 @@
   <wp-header></wp-header>
   <down-arrow></down-arrow>
   <div class="featured-outer">
-    <transition name="fade-in">
+    <transition name="fade-slow" appear>
       <div v-if="promos.length" class="featured-wrapper" key="featured">
         <mrk-carousel id="featured"
                       :slides="promos"></mrk-carousel>
