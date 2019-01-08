@@ -31,11 +31,6 @@ export default {
         this.menuOpen = true;
     });
   },
-  updated() {
-    this.$nextTick(() => {
-      navSlider.init();
-    });
-  },
   methods: {
     toggleMenu() {
       navSlider.toggleMenu( this.menuOpen = !this.menuOpen );

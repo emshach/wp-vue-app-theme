@@ -47,11 +47,6 @@ __webpack_require__.r(__webpack_exports__);
       if (window.innerWidth >= 600) _this.menuOpen = true;
     });
   },
-  updated: function updated() {
-    this.$nextTick(function () {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init();
-    });
-  },
   methods: {
     toggleMenu: function toggleMenu() {
       _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].toggleMenu(this.menuOpen = !this.menuOpen);
