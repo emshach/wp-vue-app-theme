@@ -211,8 +211,9 @@ NavSlider = {
       ts_width = newWidth;
       pos = get_pos( $menu );
     });
-    if (( self.wide = $( window ).width() >= 600 )) 
-      _init();
+    if (( self.wide = $( window ).width() >= 600 )) {
+      console.log( 'window width', $( window ).width() );
+      _init();}
     else
       self.open = false;
     
