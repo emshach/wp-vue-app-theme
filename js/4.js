@@ -131,6 +131,8 @@ NavSlider = {
   closeMenu: null,
   opening: false,
   closing: false,
+  dragging: false,
+  accel: 0,
   init: function init() {
     (function ($) {
       var self = NavSlider;
@@ -391,7 +393,7 @@ NavSlider = {
 
     if (open) {
       $("#main-nav").stop().animate({
-        right: 48
+        right: 40
       }, duration);
       $("#bg-nav").stop().fadeIn(duration);
     } else {

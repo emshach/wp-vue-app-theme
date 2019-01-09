@@ -507,15 +507,12 @@ main {
     height: 100%;
     top: 0;
     right: 100%;
-    overflow: hidden;
-    margin-right: -48px; }
+    margin-right: 0; }
   #main-nav > .wrapper {
-    position: absolute;
     height: 100%;
     width: inherit;
     right: 0;
-    margin-right: 0;
-    overflow: hidden; } }
+    margin-right: 0; } }
 
 @media (min-width: 600px) {
   #bg-nav {
@@ -673,7 +670,8 @@ button.nav-menu .navbar-toggle-icon {
     display: block;
     font-weight: bold;
     top: 50%;
-    right: 8px; } }
+    margin-top: -24px;
+    right: -40px; } }
 
 /**
  * main

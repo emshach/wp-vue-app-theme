@@ -235,7 +235,7 @@ NavSlider = {
     $("#main-nav button.toggle-mobile").blur();
     if ( open ) {
       $( "#main-nav" ).stop()
-         .animate({ right: 48 }, duration );
+         .animate({ right: 40 }, duration );
       $( "#bg-nav" ).stop().fadeIn( duration );
     } else {
       $( "#main-nav" ).stop()
