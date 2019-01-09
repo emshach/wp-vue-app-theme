@@ -39,12 +39,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
     this.slider = _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"];
     this.$nextTick(function () {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init();
-      if (window.innerWidth >= 600) _this.menuOpen = true;
+      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init(); // if ( window.innerWidth >= 600 )
+      //   this.menuOpen = true;
     });
   },
   methods: {

@@ -27,8 +27,8 @@ export default {
     this.slider = navSlider;
     this.$nextTick(() => {
       navSlider.init();
-      if ( window.innerWidth >= 600 )
-        this.menuOpen = true;
+      // if ( window.innerWidth >= 600 )
+      //   this.menuOpen = true;
     });
   },
   methods: {
