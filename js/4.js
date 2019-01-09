@@ -217,6 +217,7 @@ NavSlider = {
       };
 
       var _init = function _init() {
+        self.open = true;
         ts_container.css("margingLeft", ts_margin + "px"); //add margin
 
         scroll.css("width", ts_width);

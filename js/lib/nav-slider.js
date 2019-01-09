@@ -86,6 +86,7 @@ NavSlider = {
     var tt_ease_out1 = { duration: t_dur_out, easing: "easeInCubic", queue: false };
 
     var _init = function () {
+      self.open = true;
       ts_container.css( "margingLeft", ts_margin + "px" ); //add margin
       scroll.css( "width", ts_width );
       outer.css( 'right', '' ).fadeTo(10000, tc_opacity_out, "easeInOutCubic");
