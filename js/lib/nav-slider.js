@@ -38,6 +38,8 @@ NavSlider = {
   closeMenu: null,
   opening: false,
   closing: false,
+  dragging: false,
+  accel: 0,
   init() {
   (function($) {
     const self = NavSlider;

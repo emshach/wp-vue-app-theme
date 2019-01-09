@@ -41,14 +41,15 @@
     height: 100%;
     top: 0;
     right: 100%;
-    overflow: auto;
+    overflow: hidden;
     margin-right: -48px;
     >.wrapper {
       position: absolute;
+      height: 100%;
       width: inherit;
       right: 0;
       margin-right: 0;
-      overflow: auto;
+      overflow: hidden;
     }}}
 #bg-nav {
   @include breakpoint( $bp-phone ) {
@@ -76,6 +77,7 @@
     right: 48px;
     padding: 0;
     padding-left: 48px;
+    overflow-y: auto;
   }}
 #menu-nav {
   @include breakpoint( $bp-phone ) {
@@ -237,7 +239,7 @@ button.nav-menu {
   &.menu-wide {
     @include breakpoint( $bp-phone ) {
       display: block;
-      right: 20px;
+      right: 0;
       top: -28px;
       &.open {
         top: 0;
