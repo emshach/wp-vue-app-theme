@@ -538,9 +538,8 @@ main {
     position: absolute;
     height: 100%;
     width: 100%;
-    right: 48px;
     padding: 0;
-    padding-left: 48px;
+    padding-left: 40px;
     overflow-y: auto; } }
 
 @media (min-width: 600px) {
@@ -616,11 +615,11 @@ main {
   #menu-nav > .menu-item {
     margin: 0;
     height: 3em;
-    border-top: 1px solid rgba(0, 0, 0, 0.08); }
+    border-top: 1px solid rgba(0, 0, 0, 0.04); }
   #menu-nav > .menu-item img {
     float: left;
-    height: 1.5em;
-    margin-right: 10px; }
+    height: 2.7em;
+    margin: -0.6em 0.6em -0.6em -0.8em; }
   #menu-nav > .menu-item.current-menu-item {
     background-color: rgba(50, 205, 255, 0.2); }
   #menu-nav > .menu-item:hover img {
