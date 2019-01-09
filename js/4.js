@@ -373,7 +373,10 @@ NavSlider = {
         console.log('window width', $(window).width());
 
         _init();
-      } else self.open = false;
+      } else {
+        console.log('window width', $(window).width(), self, self.wide);
+        self.open = false;
+      }
     })(jQuery);
   },
   toggleMenu: function toggleMenu(open, duration) {

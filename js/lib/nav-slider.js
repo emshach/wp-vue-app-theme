@@ -214,8 +214,10 @@ NavSlider = {
     if (( self.wide = $( window ).width() >= 600 )) {
       console.log( 'window width', $( window ).width() );
       _init();}
-    else
+    else {
+      console.log( 'window width', $( window ).width(), self, self.wide );
       self.open = false;
+    }
     
   })( jQuery );
   },
