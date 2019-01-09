@@ -21,6 +21,10 @@ export default {
       type: String,
       default: ''
     },
+    hideComing: {
+      type: Boolean,
+      default: false
+    },
     labels: {
       type: Boolean,
       default: true

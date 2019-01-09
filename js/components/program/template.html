@@ -17,11 +17,15 @@
   <main role="main">
     <h1 class="title" v-html="title"></h1>
     <section class="description" v-html="content"></section>
-    <content-section :title="episodesTitle" :coming="postData.release_date"
+    <content-section v-if="!postData.hide_programs"
+                     :title="episodesTitle"
+                     :coming="postData.release_date"
+                     :hide-coming="postData.hide_coming"
                      :labels="postData.episode_labels"
                      :episodes="episodes"></content-section>
-    <content-section :title="archivesTitle" :episodes="archives"
-                     :labels="postData.episode_labels"
+    <content-section :title="archivesTitle"
+                     :episodes="archives"
+                     :labels="false"
                      :show-empty="false"></content-section>
     <comments></comments>
   </main>

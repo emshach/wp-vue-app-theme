@@ -100,8 +100,6 @@ NavSlider = {
     };
     self.menu = menu;
     self.openMenu = function(e) { //mouse over
-      console.log ('openMenu', {
-        event: e, opening: self.opening, closing: self.closing });
       if ( !self.wide ) return;
       outer.stop().fadeTo( dur_in, 1 );
       if ( self.open || self.opening || self.closing ) return;
@@ -117,8 +115,6 @@ NavSlider = {
       main_title.stop().animate({ bottom: 110 - top }, ease_in );
     };
     self.closeMenu = function(e) { //mouse out
-      console.log ('closeMenu', {
-        event: e, opening: self.opening, closing: self.closing });
       if ( !self.wide ) return;
       if ( self.opening || self.closing ) return;
       self.open = false;

@@ -525,6 +525,8 @@ function mrk_rest_add_releases( $data ) {
     // and the release date
     $data[ 'release_date' ] = get_field( 'release_date', $data[ 'id' ]);
     $data[ 'episode_labels' ] = get_field( 'episode_labels', $data[ 'id' ]);
+    $data[ 'hide_coming' ] = get_field( 'hide_coming', $data[ 'id' ]);
+    $data[ 'hide_programs' ] = get_field( 'hide_programs', $data[ 'id' ]);
     if (! $data[ 'release_date' ])
         $data[ 'release_date' ] = '';
     return $data;
