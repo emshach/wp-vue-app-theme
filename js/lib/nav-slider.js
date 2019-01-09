@@ -201,6 +201,8 @@ NavSlider = {
         .find(".text").css({ opacity: '', top: '' });
         return;
       }
+      if ( ! menu_height )
+        menu_height = menu.innerHeight();
       if ( !wasWide ) _init();
       // FullScreenBackground("#bgimg",$bgimg.data("newImageW"),$bgimg.data("newImageH"));
       ts_container.stop().animate({ left: ts_left }, 400, "easeOutCirc" ); 
