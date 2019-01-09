@@ -52,7 +52,6 @@ NavSlider = {
     var tc_opacity_out = 0.075; //thumbnails area opacity on mouse out
     
   //cache vars
-    if ( $( window ).innerWidth() < 600 ) { return; }
     var menu         = $( "#header-menu" );
     var outer        = $( "#main-nav" );
     var scroll       = $( "#main-nav > .wrapper" );
@@ -126,7 +125,6 @@ NavSlider = {
       menu.stop().animate({ height: 15 }, ease_out );
       main_title.stop().animate({ bottom: 0 }, ease_out );
     };
-
     thumb.each( function () {
       var $this = $( this );
       t_count += $this.innerWidth();
@@ -147,9 +145,7 @@ NavSlider = {
 	ts_bg.stop().animate({ left: -pos0/2 - bg_pad }, ts_easing );
 	ts_container.stop().animate({ left: -pos0 }, ts_easing );
       }});
-    
     menu.hover( self.openMenu,  self.closeMenu );
-
     thumb.not( t_current ).hover(
       function(){ //mouse over
         if ( !self.wide ) return;

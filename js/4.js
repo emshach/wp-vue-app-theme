@@ -149,10 +149,6 @@ NavSlider = {
       var tc_opacity_out = 0.075; //thumbnails area opacity on mouse out
       //cache vars
 
-      if ($(window).innerWidth() < 600) {
-        return;
-      }
-
       var menu = $("#header-menu");
       var outer = $("#main-nav");
       var scroll = $("#main-nav > .wrapper");
