@@ -226,10 +226,16 @@ NavSlider = {
 
       self.menu = menu;
 
-      self.openMenu = function () {
+      self.openMenu = function (e) {
         //mouse over
+        console.log('openMenu', {
+          event: e,
+          opening: self.opening,
+          closing: self.closing
+        });
         if (!self.wide) return;
         if (self.opening || self.closing) return;
+        self.open = true;
         self.opening = true;
         if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
         window.setTimeout(function () {
@@ -245,10 +251,16 @@ NavSlider = {
         }, ease_in);
       };
 
-      self.closeMenu = function () {
+      self.closeMenu = function (e) {
         //mouse out
+        console.log('closeMenu', {
+          event: e,
+          opening: self.opening,
+          closing: self.closing
+        });
         if (!self.wide) return;
         if (self.opening || self.closing) return;
+        self.open = false;
         self.closing = true;
         if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
         window.setTimeout(function () {
@@ -289,13 +301,7 @@ NavSlider = {
           }, ts_easing);
         }
       });
-      menu.hover(function () {
-        self.openMenu();
-        self.open = true;
-      }, function () {
-        self.closeMenu();
-        self.open = false;
-      });
+      menu.hover(self.openMenu, self.closeMenu);
       thumb.not(t_current).hover(function () {
         //mouse over
         if (!self.wide) return;

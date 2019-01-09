@@ -92,12 +92,15 @@ NavSlider = {
       ts_bg.css( "width", t_count + 2 * bg_pad );
     };
     self.menu = menu;
-    self.openMenu = function() { //mouse over
+    self.openMenu = function(e) { //mouse over
+      console.log ('openMenu', {
+        event: e, opening: self.opening, closing: self.closing });
       if ( !self.wide ) return;
       if ( self.opening || self.closing ) return;
+      self.open = true;
       self.opening = true;
       if ( window.requestAnimationFrame )
-        window.requestAnimationFrame(()=>{});
+        window.requestAnimationFrame( ()=>{} );
       window.setTimeout(() => {
         self.opening = false;
       }, 100);
@@ -106,12 +109,15 @@ NavSlider = {
       var top = $( "#app>.page" ).scrollTop();
       main_title.stop().animate({ bottom: 110 - top }, ease_in );
     };
-    self.closeMenu = function() { //mouse out
+    self.closeMenu = function(e) { //mouse out
+      console.log ('closeMenu', {
+        event: e, opening: self.opening, closing: self.closing });
       if ( !self.wide ) return;
       if ( self.opening || self.closing ) return;
+      self.open = false;
       self.closing = true;
       if ( window.requestAnimationFrame )
-        window.requestAnimationFrame(()=>{});
+        window.requestAnimationFrame( ()=>{} );
       window.setTimeout(() => {
         self.closing = false;
       }, 100);
@@ -135,18 +141,12 @@ NavSlider = {
       } else {
         pos0 = (( t_count + ts_margin * 2 ) - ts_width ) / 2;
       }
-      if (Math.abs( pos0 - ts_container.position().left ) > 20 ){
+      if ( Math.abs( pos0 - ts_container.position().left ) > 20 ){
 	ts_bg.stop().animate({ left: -pos0/2 - bg_pad }, ts_easing );
 	ts_container.stop().animate({ left: -pos0 }, ts_easing );
       }});
     
-    menu.hover(() =>{
-      self.openMenu();
-      self.open = true;
-    }, () => {
-      self.closeMenu();
-      self.open = false;
-    });
+    menu.hover( self.openMenu,  self.closeMenu );
 
     thumb.not( t_current ).hover(
       function(){ //mouse over
