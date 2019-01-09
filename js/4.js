@@ -219,7 +219,6 @@ NavSlider = {
 
         scroll.css("width", ts_width);
         outer.fadeTo(10000, tc_opacity_out, "easeInOutCubic");
-        console.trace('_init called');
         ts_container.css("width", t_count + 10);
         ts_bg.css("width", t_count + 2 * bg_pad);
       };
