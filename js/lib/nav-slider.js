@@ -89,12 +89,12 @@ NavSlider = {
       ts_container.css( "margingLeft", ts_margin + "px" ); //add margin
       scroll.css( "width", ts_width );
       outer.css( 'right', '' ).fadeTo(10000, tc_opacity_out, "easeInOutCubic");
-      t_count = 0;
-      thumb.each( function () {
-        var $this = $( this );
-        t_count += $this.innerWidth();
-        $this.children().children().children( ".thumb" ).fadeTo( dur_out, t_opacity );
-      });
+      if ( !t_count )
+        thumb.each( function () {
+          var $this = $( this );
+          t_count += $this.innerWidth();
+          $this.children().children().children( ".thumb" ).fadeTo( dur_out, t_opacity );
+        });
       ts_container.css( "width", t_count + 10 );
       ts_bg.css( "width", t_count + 2 * bg_pad );
     };
