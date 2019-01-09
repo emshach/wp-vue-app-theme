@@ -233,7 +233,7 @@ NavSlider = {
           closing: self.closing
         });
         if (!self.wide) return;
-        if (self.opening || self.closing) return;
+        if (self.open || self.opening || self.closing) return;
         self.open = true;
         self.opening = true;
         if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
