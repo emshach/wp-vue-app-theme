@@ -32,7 +32,7 @@ __webpack_require__.r(__webpack_exports__);
     document.title = he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.title + ' | ' + this.sstate.site.title);
     window.setTimeout(function () {
       _this.promos = _this.promo_reel;
-    }, 3000);
+    }, 1500);
   },
   methods: {
     showImg: function showImg() {
@@ -84,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
       document.title = he__WEBPACK_IMPORTED_MODULE_1___default.a.decode(this.title + ' | ' + this.sstate.site.title);
       window.setTimeout(function () {
         _this2.promos = _this2.promo_reel;
-      }, 3000);
+      }, 1500);
     }
   }
 });
@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"program post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\" :class=\"classes\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n    <transition name=\"fade-in\">\n      <div v-if=\"promos.length\" class=\"featured-wrapper\">\n        <mrk-carousel id=\"featured\" :slides=\"promos\"></mrk-carousel>\n      </div>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <content-section v-if=\"!postData.hide_programs\"\n                     :title=\"episodesTitle\"\n                     :coming=\"postData.release_date\"\n                     :hide-coming=\"postData.hide_coming\"\n                     :labels=\"postData.episode_labels\"\n                     :episodes=\"episodes\"></content-section>\n    <content-section :title=\"archivesTitle\"\n                     :episodes=\"archives\"\n                     :labels=\"false\"\n                     :show-empty=\"false\"></content-section>\n    <comments></comments>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"program post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\" :class=\"classes\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n    <transition name=\"fade-slow\">\n      <div v-if=\"promos.length\" class=\"featured-wrapper\">\n        <mrk-carousel id=\"featured\" :slides=\"promos\"></mrk-carousel>\n      </div>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <content-section v-if=\"!postData.hide_programs\"\n                     :title=\"episodesTitle\"\n                     :coming=\"postData.release_date\"\n                     :hide-coming=\"postData.hide_coming\"\n                     :labels=\"postData.episode_labels\"\n                     :episodes=\"episodes\"></content-section>\n    <content-section :title=\"archivesTitle\"\n                     :episodes=\"archives\"\n                     :labels=\"false\"\n                     :show-empty=\"false\"></content-section>\n    <comments></comments>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 

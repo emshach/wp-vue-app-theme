@@ -16,7 +16,7 @@ export default {
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
     window.setTimeout(() => {
       this.promos = this.promo_reel;
-    }, 3000 );
+    }, 1500 );
   },
   methods: {
     showImg() {
@@ -66,7 +66,7 @@ export default {
       document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
       window.setTimeout(() => {
         this.promos = this.promo_reel;
-      }, 3000 );
+      }, 1500 );
     }
   }
 };
