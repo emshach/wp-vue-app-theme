@@ -85,7 +85,7 @@ NavSlider = {
     var tt_ease_out1 = { duration: t_dur_out, easing: "easeInCubic", queue: false };
 
     var _init = function () {
-      self.open = true;
+      self.openMenu();
       ts_container.css( "margingLeft", ts_margin + "px" ); //add margin
       scroll.css( "width", ts_width );
       outer.css( 'right', '' ).fadeTo(10000, tc_opacity_out, "easeInOutCubic");
@@ -97,6 +97,7 @@ NavSlider = {
       console.log ('openMenu', {
         event: e, opening: self.opening, closing: self.closing });
       if ( !self.wide ) return;
+      outer.stop().fadeTo( dur_in, 1 );
       if ( self.open || self.opening || self.closing ) return;
       self.open = true;
       self.opening = true;
@@ -105,7 +106,6 @@ NavSlider = {
       window.setTimeout(() => {
         self.opening = false;
       }, 100);
-      outer.stop().fadeTo( dur_in, 1 );
       menu.stop().animate({ height: menu_height }, ease_in );
       var top = $( "#app>.page" ).scrollTop();
       main_title.stop().animate({ bottom: 110 - top }, ease_in );
@@ -197,6 +197,8 @@ NavSlider = {
         ts_container.css( "width", '' );
         scroll.css( 'width', '' );
         ts_bg.css( "width", '' );
+        thumb.css({ opacity: '', top: '' })
+        .find(".text").css({ opacity: '', top: '' });
         return;
       }
       if ( !wasWide ) _init();
@@ -219,10 +221,7 @@ NavSlider = {
   },
   toggleMenu ( open, duration ) {
     const self = NavSlider;
-    if (! duration )
-      duration = 400;
-    var $ = jQuery;
-    if ( $( window ).innerWidth() >= 600 ) {
+    if ( self.wide ) {
       if ( self.menu ) {
         if ( open ) {
           self.openMenu();
@@ -232,6 +231,9 @@ NavSlider = {
       }
       return;
     }
+    const $ = jQuery;
+    if (! duration )
+      duration = 400;
     $("#main-nav button.toggle-mobile").blur();
     if ( open ) {
       $( "#main-nav" ).stop()

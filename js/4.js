@@ -211,7 +211,7 @@ NavSlider = {
       };
 
       var _init = function _init() {
-        self.open = true;
+        self.openMenu();
         ts_container.css("margingLeft", ts_margin + "px"); //add margin
 
         scroll.css("width", ts_width);
@@ -230,6 +230,7 @@ NavSlider = {
           closing: self.closing
         });
         if (!self.wide) return;
+        outer.stop().fadeTo(dur_in, 1);
         if (self.open || self.opening || self.closing) return;
         self.open = true;
         self.opening = true;
@@ -237,7 +238,6 @@ NavSlider = {
         window.setTimeout(function () {
           self.opening = false;
         }, 100);
-        outer.stop().fadeTo(dur_in, 1);
         menu.stop().animate({
           height: menu_height
         }, ease_in);
@@ -351,6 +351,13 @@ NavSlider = {
           ts_container.css("width", '');
           scroll.css('width', '');
           ts_bg.css("width", '');
+          thumb.css({
+            opacity: '',
+            top: ''
+          }).find(".text").css({
+            opacity: '',
+            top: ''
+          });
           return;
         }
 
@@ -377,10 +384,8 @@ NavSlider = {
   },
   toggleMenu: function toggleMenu(open, duration) {
     var self = NavSlider;
-    if (!duration) duration = 400;
-    var $ = jQuery;
 
-    if ($(window).innerWidth() >= 600) {
+    if (self.wide) {
       if (self.menu) {
         if (open) {
           self.openMenu();
@@ -392,6 +397,8 @@ NavSlider = {
       return;
     }
 
+    var $ = jQuery;
+    if (!duration) duration = 400;
     $("#main-nav button.toggle-mobile").blur();
 
     if (open) {
