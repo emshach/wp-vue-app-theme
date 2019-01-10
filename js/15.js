@@ -22,6 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/login-form/template.html"),
+  props: ['shown'],
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
@@ -262,6 +263,9 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     action: function action(newVal, oldVal) {
       if (newVal != oldVal) this.focusFirst();
+    },
+    shown: function shown(val) {
+      if (val) this.focusFirst();
     }
   }
 });

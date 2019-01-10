@@ -4,6 +4,7 @@ import qs from 'qs';
 import axios from 'axios';
 export default {
   template: require( './template.html' ),
+  props: [ 'shown' ],
   data() {
     return {
       sstate: store.state,
@@ -219,6 +220,10 @@ export default {
   watch: {
     action( newVal, oldVal ) {
       if ( newVal != oldVal )
+        this.focusFirst();
+    },
+    shown( val ) {
+      if ( val )
         this.focusFirst();
     }
   }

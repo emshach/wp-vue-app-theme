@@ -26,18 +26,20 @@ __webpack_require__.r(__webpack_exports__);
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       wait: null,
-      allowHide: true
+      allowHide: true,
+      shown: false
     };
   },
   methods: {
-    ddHide: function ddHide(e) {
-      console.log('dd hide', e);
-      if (!this.allowHide) e.preventDefault();
+    shown: function shown() {
+      this.shown = true;
+    },
+    hiding: function hiding(e) {
+      if (this.allowHide) this.shown = false;else e.preventDefault();
     },
     delayClose: function delayClose(e) {
       var _this = this;
 
-      console.log('delay close', e);
       this.allowHide = false;
       if (this.wait) window.clearTimeout(this.wait);
       this.wait = window.setTimeout(function () {
@@ -67,7 +69,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<b-dd id=\"user\" @hide=\"ddHide\">\n  <template slot=\"button-content\">\n    <span class=\"dashicons dashicons-admin-users\"></span>\n    {{ loggedIn ? user.display_name: 'sign in' }}\n  </template>\n  <!-- <transition name=\"fast-fade\">\n    <b-dd-item v-if=\"loggedIn\" :href=\"\"></b-dd-item>\n  </transition> -->\n  <transition name=\"fast-fade\" mode=\"out-in\">\n    <b-dd-item v-if=\"loggedIn\" :href=\"logoutLink\">log out</b-dd-item>\n    <login-form v-else @change=\"delayClose\"></login-form>\n  </transition>\n</b-dd>\n";
+module.exports = "<b-dd id=\"user\" @hide=\"ddHide\">\n  <template slot=\"button-content\">\n    <span class=\"dashicons dashicons-admin-users\"></span>\n    {{ loggedIn ? user.display_name: 'sign in' }}\n  </template>\n  <!-- <transition name=\"fast-fade\">\n    <b-dd-item v-if=\"loggedIn\" :href=\"\"></b-dd-item>\n  </transition> -->\n  <transition name=\"fast-fade\" mode=\"out-in\">\n    <b-dd-item v-if=\"loggedIn\" :href=\"logoutLink\">log out</b-dd-item>\n    <login-form v-else :shown=\"shown\" @change=\"delayClose\"></login-form>\n  </transition>\n</b-dd>\n";
 
 /***/ })
 

@@ -8,17 +8,21 @@ export default {
     return {
       sstate: store.state,
       wait: null,
-      allowHide: true
+      allowHide: true,
+      shown: false
     };
   },
   methods: {
-    ddHide(e) {
-      console.log( 'dd hide', e );
-      if ( !this.allowHide )
+    shown() {
+      this.shown = true;
+    },
+    hiding(e) {
+      if ( this.allowHide )
+        this.shown = false;
+      else
         e.preventDefault();
     },
     delayClose(e) {
-      console.log( 'delay close', e );
       this.allowHide = false;
       if ( this.wait )
         window.clearTimeout( this.wait );
