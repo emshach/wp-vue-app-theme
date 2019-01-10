@@ -210,8 +210,11 @@ const app = new Vue({
       this.menu = this.sstate.menus.nav || [];
     },
     hijackHrefs() {
+      window.addEventListener( 'mousedown', e => {
+        console.log( 'window mousedown', e );
+      });
       window.addEventListener('click', event => {
-        console.log( 'windowClick', event );
+        console.log( 'window click', event );
         const { target } = event;
         // handle only links that do not reference external resources
         if (target && target.matches("a:not([href*='://'])") && target.href) {
