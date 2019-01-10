@@ -1272,6 +1272,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
       var _this = this;
 
       window.addEventListener('click', function (event) {
+        console.log('windowClick', event);
         var target = event.target; // handle only links that do not reference external resources
 
         if (target && target.matches("a:not([href*='://'])") && target.href) {

@@ -211,6 +211,7 @@ const app = new Vue({
     },
     hijackHrefs() {
       window.addEventListener('click', event => {
+        console.log( 'windowClick', event );
         const { target } = event;
         // handle only links that do not reference external resources
         if (target && target.matches("a:not([href*='://'])") && target.href) {
