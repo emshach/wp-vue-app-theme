@@ -34,7 +34,11 @@ main {
       color: #048;
       text-shadow: 0 0 2px skyblue;
     }
-  }}
+  }
+  .login.page & {
+    min-height: 85%;
+  }
+}
 #app {
   background: #100;
 }

@@ -645,6 +645,9 @@ main .description a:link, main .description a:visited {
   color: #048;
   text-shadow: 0 0 2px skyblue; }
 
+.login.page main {
+  min-height: 85%; }
+
 #app {
   background: #100; }
 
