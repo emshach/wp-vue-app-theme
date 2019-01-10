@@ -621,6 +621,10 @@ main {
   background: url(img/assets/bg-white-1.jpg) repeat;
   padding: 1em; }
 
+@media (max-width: 600px) {
+  main {
+    padding: 1em 0 0; } }
+
 main > section {
   position: relative;
   max-width: 750px;
