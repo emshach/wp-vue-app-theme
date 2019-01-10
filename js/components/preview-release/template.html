@@ -5,38 +5,40 @@
     </transition>
   </div>
   <wp-header></wp-header>
-  <div class="featured-wrapper">
-    <div class="container">
-      <div class="row">
-        <div :class="[ 'media-wrapper', 'col', 'col-12',
+  <div id="featured">
+    <div class="featured-wrapper">
+      <div class="container">
+        <div class="row">
+          <div :class="[ 'media-wrapper', 'col', 'col-12',
                        wideMode ? '' : 'col-md-8']">
-          <video v-if="postData.release_type == 'video'"
-                 :src="postData.source_url" class="media" autoplay controls>
-            {{ postData.alt_text }}
-          </video>
-          <audio v-else-if="postData.release_type == 'audio'"
-                 :src="postData.source_url" class="media" autoplay controls>
-            {{ postData.alt_text }}
-          </audio>
-          <carousel v-else-if="postData.release_type == 'gallery'">
-            <slide v-for="( slide, index ) in postData.content" :key="index"></slide>
-          </carousel>
-        </div>
-        <transition name="fade-in">
-          <div v-if="!wideMode" class="col col-12 col-md-4 description">
-            <div v-html="content"></div>
-            <b-btn v-if="postData.full_content
-                         && canWatchNow( postData.full_content )"
-                   variant="primary" :to="postData.full_content.path" size="lg"
-                   class="float-right">{{
-              sayAction( postData.full_content )}} now</b-btn>
-            <b-btn v-else variant="warning"
-                   size="lg" class="float-right"
-                   v-scroll-to="{ el: 'main', container: '.page',
-                                x: false, y: true }">
-              subscribe for full content</b-btn>
+            <video v-if="postData.release_type == 'video'"
+                   :src="postData.source_url" class="media" autoplay controls>
+              {{ postData.alt_text }}
+            </video>
+            <audio v-else-if="postData.release_type == 'audio'"
+                   :src="postData.source_url" class="media" autoplay controls>
+              {{ postData.alt_text }}
+            </audio>
+            <carousel v-else-if="postData.release_type == 'gallery'">
+              <slide v-for="( slide, index ) in postData.content" :key="index"></slide>
+            </carousel>
           </div>
-        </transition>
+          <transition name="fade-in">
+            <div v-if="!wideMode" class="col col-12 col-md-4 description">
+              <div v-html="content"></div>
+              <b-btn v-if="postData.full_content
+                           && canWatchNow( postData.full_content )"
+                     variant="primary" :to="postData.full_content.path" size="lg"
+                     class="float-right">{{
+                sayAction( postData.full_content )}} now</b-btn>
+              <b-btn v-else variant="warning"
+                     size="lg" class="float-right"
+                     v-scroll-to="{ el: 'main', container: '.page',
+                                  x: false, y: true }">
+                subscribe for full content</b-btn>
+            </div>
+          </transition>
+        </div>
       </div>
     </div>
   </div>
