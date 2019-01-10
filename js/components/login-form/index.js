@@ -152,6 +152,9 @@ export default {
       console.log( 'formClick', e );
       e.stopPropagation();
     },
+    changed(e) {
+      this.$emit('change', { orig: e });
+    },
     clearForm() {
       this.formData = {
         action: 'mrklogin',

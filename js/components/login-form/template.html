@@ -81,6 +81,7 @@
         <b-form-input id="username" ref="firstInput"
                       type="text"
                       v-model="formData.login"
+                      @change="changed"
                       required></b-form-input>
       </b-form-group>
       <b-form-group class="login-actions">
@@ -105,6 +106,7 @@
         <b-form-input id="email" ref="firstInput"
                       type="email"
                       v-model="formData.email"
+                      @change="changed"
                       required></b-form-input>
       </b-form-group>
       <b-form-group class="login-actions">
@@ -133,6 +135,7 @@
         <b-form-input id="username" ref="firstInput"
                       type="text"
                       v-model="formData.login"
+                      @change="changed"
                       required></b-form-input>
       </b-form-group>
       <transition name="fade-fast">
@@ -143,6 +146,7 @@
           <b-form-input id="email"
                         type="email"
                         v-model="formData.email"
+                      @change="changed"
                         required></b-form-input>
         </b-form-group>
       </transition>
@@ -168,6 +172,7 @@
             <b-form-input id="password1"
                           type="password"
                           v-model="formData.pass"
+                          @change="changed"
                           required></b-form-input>
           </b-form-group>
           <b-form-group id="login-password2"
@@ -176,6 +181,7 @@
             <b-form-input id="password2"
                           type="password"
                           v-model="confirmPass"
+                          @change="changed"
                           required></b-form-input>
           </b-form-group>
           <b-btn variant="link" @click="sendLink">don't set password now</b-btn>
@@ -187,6 +193,7 @@
           <b-form-input id="password"
                         type="password"
                         v-model="formData.pass"
+                        @change="changed"
                         required></b-form-input>
           <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
         </b-form-group>
