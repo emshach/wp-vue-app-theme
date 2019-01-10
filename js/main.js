@@ -34,6 +34,7 @@ const NavMenu          = () => import( './components/nav-menu'          );
 const SubscriptionMenu = () => import( './components/subscription-menu' );
 const ViewSwitcher     = () => import( './components/view-switcher'     );
 const UserBlock        = () => import( './components/user-block'        );
+const LoginForm        = () => import( './components/login-form'        );
 // const             = () => import( './components/'             );
 
 // const components with routes
@@ -86,6 +87,7 @@ Vue.component( 'nav-menu',          NavMenu          );
 Vue.component( 'subscription-menu', SubscriptionMenu );
 Vue.component( 'view-switcher',     ViewSwitcher     );
 Vue.component( 'user-block',        UserBlock        );
+Vue.component( 'login-form',        LoginForm        );
 Vue.component( 'vue-recaptcha',     VueRecaptcha     );
 // Vue.component( '',                             );
 
