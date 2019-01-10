@@ -116,7 +116,7 @@ window.store = store;
 // Define some routes
 const routes = [
   { path: '/',                   component: VHome },
-  { path: '/login/:then?',       component: VLogin,   name: 'login' },
+  { path: '/login/:then?',       component: VLogin,   name: 'login', props: true },
   { path: '/about/',             component: VAbout,   name: 'about' },
   { path: '/contact/',           component: VContact, name: 'contact' },
 
