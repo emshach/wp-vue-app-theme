@@ -1,4 +1,4 @@
-<b-dd id="user" @hide="ddHide">
+<b-dd id="user" @shown="shown" @hide="hiding">
   <template slot="button-content">
     <span class="dashicons dashicons-admin-users"></span>
     {{ loggedIn ? user.display_name: 'sign in' }}
