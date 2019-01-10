@@ -666,7 +666,7 @@ section.episodes .card h5 {
 main .login-container {
   background: white;
   max-width: 540px;
-  margin: 0 auto;
+  margin: -40px auto 0;
   padding: 10px 20px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.1);

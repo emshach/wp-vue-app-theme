@@ -11,6 +11,8 @@
   <main role="main">
     <h1 class="title">{{ title }}</h1>
     <login-form :redirect="then"></login-form>
+    <div v-if="then" class="message">Please log in or sign up to access that
+      page/content.</div>
   </main>
   <wp-footer></wp-footer>
 </div>
