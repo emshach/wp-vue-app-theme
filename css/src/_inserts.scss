@@ -3,10 +3,15 @@
  * ---
  */
 .media {
-  
   > .d-flex {
     position: relative;
     margin-right: 10px;
+    img {
+      @include breakpoint( $max-phone ) {
+        width: 96px;
+        height: 72px;
+      }
+    }
     .info {
       position: absolute;
       bottom: 1px;

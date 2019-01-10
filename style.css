@@ -112,22 +112,27 @@ h1 {
   position: relative;
   height: 100% !important; }
 
-#featured .VueCarousel-slide > .container {
+#featured .VueCarousel-slide > .container,
+#featured .featured-wrapper > .container {
   position: relative;
   height: 100%; }
 
-#featured .VueCarousel-slide > .container > .row {
+#featured .VueCarousel-slide > .container > .row,
+#featured .featured-wrapper > .container > .row {
   position: relative;
   height: 100%; }
 
-#featured .VueCarousel-slide > .container > .row > .col {
+#featured .VueCarousel-slide > .container > .row > .col,
+#featured .featured-wrapper > .container > .row > .col {
   position: relative;
   height: 100%; }
 
 @media (max-width: 600px) {
-  #featured .VueCarousel-slide > .container > .row > .media-wrapper {
+  #featured .VueCarousel-slide > .container > .row.media-wrapper,
+  #featured .featured-wrapper > .container > .row.media-wrapper {
     height: 70%; }
-  #featured .VueCarousel-slide > .container > .row > .col-md-4 {
+  #featured .VueCarousel-slide > .container > .row.col-md-4,
+  #featured .featured-wrapper > .container > .row.col-md-4 {
     height: 30%; } }
 
 /**
@@ -641,7 +646,7 @@ main > section {
 
 @media (max-width: 600px) {
   main > section {
-    padding: 0 30px; } }
+    padding: 0 4px; } }
 
 main > section.subscriptions {
   max-width: none; }
@@ -664,6 +669,9 @@ main .description a:link, main .description a:visited {
 
 .login.page main {
   min-height: 85%; }
+
+.login.page main .message {
+  padding: 10px; }
 
 #app {
   background: #100; }
@@ -703,6 +711,9 @@ main .login-container {
 
 main #login {
   padding: 0; }
+
+main #login .btn-link {
+  font-size: medium; }
 
 #login.feedback {
   padding: 10px; }
@@ -787,6 +798,11 @@ main #login .login-actions span {
 .media > .d-flex {
   position: relative;
   margin-right: 10px; }
+
+@media (max-width: 600px) {
+  .media > .d-flex img {
+    width: 96px;
+    height: 72px; } }
 
 .media > .d-flex .info {
   position: absolute;

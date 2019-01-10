@@ -19,7 +19,7 @@ main {
     padding: 30px;
     text-align: justify;
     @include breakpoint( $max-phone ) {
-      padding: 0 30px;
+      padding: 0 4px;
     }
     &.subscriptions {
       max-width: none;
@@ -44,6 +44,9 @@ main {
   }
   .login.page & {
     min-height: 85%;
+    .message {
+      padding: 10px;
+    }
   }
 }
 #app {
@@ -84,6 +87,9 @@ main .login-container {
 #login {
   main & {
     padding: 0;
+    .btn-link {
+      font-size: medium;
+    }
   }
   &.feedback {
     padding: 10px;

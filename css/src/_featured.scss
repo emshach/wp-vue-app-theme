@@ -41,7 +41,8 @@
     position: relative;
     height: 100% !important;
   }
-  .VueCarousel-slide > .container {
+  .VueCarousel-slide > .container,
+  .featured-wrapper > .container {
     position: relative;
     height: 100%;
     > .row {
@@ -52,10 +53,10 @@
         height: 100%;
       }
       @include breakpoint( $max-phone ) {
-        > .media-wrapper {
+        &.media-wrapper {
           height: 70%;
         }
-        > .col-md-4 {
+        &.col-md-4 {
           height: 30%;
         }
       }
