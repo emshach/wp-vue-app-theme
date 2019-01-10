@@ -3,6 +3,12 @@ import _wpapix from '../../lib/wpapix';
 import he from 'he';
 export default {
   template: require( './template.html' ),
+  props: {
+    then: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       sstate: store.state,

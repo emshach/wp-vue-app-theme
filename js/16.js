@@ -18,6 +18,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/login/template.html"),
+  props: {
+    then: {
+      type: String,
+      default: ''
+    }
+  },
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
@@ -58,7 +64,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login page\">\n  <div id=\"bg-image-wrapper\" class=\"small\">\n    <transition name=\"fade-in\">\n      <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <login-form></login-form>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"login page\">\n  <div id=\"bg-image-wrapper\" class=\"small\">\n    <transition name=\"fade-in\">\n      <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <login-form :redirect=\"then\"></login-form>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 
