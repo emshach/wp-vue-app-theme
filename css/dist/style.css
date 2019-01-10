@@ -77,6 +77,9 @@ h1 {
   margin: 0;
   padding: 0; }
 
+.featured-outer.small {
+  height: 12em; }
+
 .featured-wrapper {
   position: relative;
   height: 100%;
@@ -202,72 +205,6 @@ main {
   height: 21px;
   width: 21px; }
 
-#user #login {
-  padding: 10px 10px 0;
-  min-width: 23em; }
-
-#user #login.feedback {
-  padding: 10px; }
-
-#user #login.feedback .message {
-  font-size: larger;
-  color: grey;
-  padding: 15px; }
-
-#user #login.feedback .message strong {
-  font-size: large;
-  font-weight: bold;
-  color: #444; }
-
-#user #login.feedback .login-actions .btn {
-  width: 46%; }
-
-#user #login label {
-  font-size: small;
-  padding-bottom: 0;
-  color: grey; }
-
-#user #login input {
-  height: 2.5em;
-  font-size: large; }
-
-#user #login #login-password {
-  min-height: 8.5em;
-  margin-bottom: 10px; }
-
-#user #login #login-password .alert {
-  margin-bottom: 0; }
-
-#user #login.register #login-password {
-  min-height: 13.5em; }
-
-#user #login .login-actions {
-  margin: 10px auto 0;
-  padding-top: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1); }
-
-#user #login .login-actions .btn {
-  padding: 3px 16px;
-  margin: 0 5px;
-  width: 40%; }
-
-#user #login .login-actions .btn.login-button {
-  float: left; }
-
-#user #login .login-actions .btn.register-button {
-  float: right; }
-
-#user #login .login-actions span {
-  margin: 0 auto;
-  display: block;
-  float: left;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  line-height: 1.5em;
-  padding: 4px;
-  width: 13%; }
-
 .rc-anchor.rc-anchor-normal.rc-anchor-light {
   border: 0 none;
   background: transparent;
@@ -337,7 +274,7 @@ main {
     display: none; } }
 
 .site-title, .site-description {
-  margin: 10px;
+  margin: 4px;
   color: white !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
   padding: 0; }
@@ -347,7 +284,7 @@ main {
   color: white !important; }
 
 .site-description {
-  margin: 0 10px;
+  margin: 0 6px;
   padding: 0 10px; }
 
 /* Arrow & Hover Animation */
@@ -725,6 +662,75 @@ section.episodes .card h5 {
 .card-body > a, .card-body > a:hover {
   text-decoration: none;
   cursor: default; }
+
+#login {
+  padding: 10px 10px 0;
+  min-width: 23em; }
+
+main #login {
+  margin: 0 auto; }
+
+#login.feedback {
+  padding: 10px; }
+
+#login.feedback .message {
+  font-size: larger;
+  color: grey;
+  padding: 15px; }
+
+#login.feedback .message strong {
+  font-size: large;
+  font-weight: bold;
+  color: #444; }
+
+#login.feedback .login-actions .btn {
+  width: 46%; }
+
+#login label {
+  font-size: small;
+  padding-bottom: 0;
+  color: grey; }
+
+#login input {
+  height: 2.5em;
+  font-size: large; }
+
+#login #login-password {
+  min-height: 8.5em;
+  margin-bottom: 10px; }
+
+#login #login-password .alert {
+  margin-bottom: 0; }
+
+#login.register #login-password {
+  min-height: 13.5em; }
+
+#login .login-actions {
+  margin: 10px auto 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+
+#login .login-actions .btn {
+  padding: 3px 16px;
+  margin: 0 5px;
+  width: 40%; }
+
+#login .login-actions .btn.login-button {
+  float: left; }
+
+#login .login-actions .btn.register-button {
+  float: right; }
+
+#login .login-actions span {
+  margin: 0 auto;
+  display: block;
+  float: left;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: 1.5em;
+  padding: 4px;
+  width: 13%; }
 
 /**
  * inserts: excerpt and preview-card elements

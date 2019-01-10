@@ -1000,7 +1000,7 @@ var Home = function Home() {
 };
 
 var Login = function Login() {
-  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/login */ "./js/components/login/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ./components/login */ "./js/components/login/index.js"));
 };
 
 var About = function About() {

@@ -40,7 +40,6 @@ __webpack_require__.r(__webpack_exports__);
 
     _lib_wpapix__WEBPACK_IMPORTED_MODULE_1__["default"].then(function (wpapix) {
       var path = new wpapix.Path();
-      console.log('path object', path);
       path.fetch().done(function (rpost) {
         console.log('got home page', rpost);
         _this.title = rpost.title.rendered;

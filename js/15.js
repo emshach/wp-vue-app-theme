@@ -22,7 +22,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: __webpack_require__(/*! ./template.html */ "./js/components/login-form/template.html"),
-  props: ['shown'],
+  props: {
+    shown: {
+      type: Boolean,
+      default: true
+    },
+    redirect: {
+      type: String,
+      default: ''
+    }
+  },
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
@@ -48,6 +57,7 @@ __webpack_require__.r(__webpack_exports__);
         login: '',
         email: '',
         pass: '',
+        redirect_url: '',
         remember: true,
         'g-recaptcha-response': '',
         token: false,
@@ -58,6 +68,9 @@ __webpack_require__.r(__webpack_exports__);
       tokenLogin: false,
       ajaxUrl: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.ajax.url
     };
+  },
+  mounted: function mounted() {
+    this.formData.redirect_url = this.redirect;
   },
   methods: {
     login: function login(e) {

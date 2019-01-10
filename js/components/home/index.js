@@ -22,7 +22,6 @@ export default {
     document.title = he.decode( this.sstate.site.title );
     _wpapix.then( wpapix => {
       var path = new wpapix.Path();
-      console.log( 'path object', path );
       path.fetch().done(( rpost ) => {
         console.log( 'got home page', rpost );
         this.title = rpost.title.rendered;

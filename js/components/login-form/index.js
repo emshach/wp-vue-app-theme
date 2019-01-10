@@ -4,7 +4,16 @@ import qs from 'qs';
 import axios from 'axios';
 export default {
   template: require( './template.html' ),
-  props: [ 'shown' ],
+  props: {
+    shown: {
+      type: Boolean,
+      default: true
+    },
+    redirect: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       sstate: store.state,
@@ -30,6 +39,7 @@ export default {
         login: '',
         email: '',
         pass: '',
+        redirect_url: '',
         remember: true,
         'g-recaptcha-response': '',
         token: false,
@@ -40,6 +50,9 @@ export default {
       tokenLogin: false,
       ajaxUrl: store.state.ajax.url
     };
+  },
+  mounted() {
+    this.formData.redirect_url = this.redirect;
   },
   methods: {
     login(e) {

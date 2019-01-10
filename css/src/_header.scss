@@ -35,72 +35,6 @@
       width: 21px;
     }
   }
-  #login {
-    &.feedback {
-      padding: 10px;
-      .message {
-        font-size: larger;
-        color: grey;
-        padding: 15px;
-        strong {
-          font-size: large;
-          font-weight: bold;
-          color: #444;
-        }
-      }
-      .login-actions .btn {
-        width: 46%;
-      }
-    }
-    padding: 10px 10px 0;
-    min-width:  23em;
-    label {
-      font-size: small;
-      padding-bottom: 0;
-      color: grey;
-    }
-    input {
-      height: 2.5em;
-      font-size: large;
-    }
-    #login-password {
-      min-height: 8.5em;
-      margin-bottom: 10px;
-      .alert {
-        margin-bottom: 0;
-      }
-    }
-    &.register #login-password {
-      min-height: 13.5em;
-    }
-    .login-actions {
-      margin: 10px auto 0;
-      padding-top: 10px;
-      border-top: 1px solid rgba(0,0,0,0.1);
-      .btn {
-        padding: 3px 16px;
-        margin: 0 5px;
-        width: 40%;
-        &.login-button {
-          float: left;
-        }
-        &.register-button {
-          float: right;
-        }
-      }
-      span {
-        margin: 0 auto;
-        display: block;
-        float: left;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: middle;
-        line-height: 1.5em;
-        padding: 4px;
-        width: 13%;
-      }
-    }
-  }
 }
 .rc-anchor.rc-anchor-normal.rc-anchor-light {
   border: 0 none;
@@ -174,7 +108,7 @@
   }}
 .logo-img {}
 .site-title, .site-description {
-  margin: 10px;
+  margin: 4px;
   color: white !important;
   text-shadow: 0 1px 2px rgba(0,0,0,0.75);
   padding: 0;
@@ -184,7 +118,7 @@
   }
 }
 .site-description {
-  margin: 0 10px;
+  margin: 0 6px;
   padding: 0 10px;
 }
 /* Arrow & Hover Animation */
