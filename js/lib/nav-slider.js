@@ -188,8 +188,9 @@ NavSlider = {
     $( window ).resize( function() {
       console.log ( 'window resized' );
       var wwidth = $( window ).width();
+      var wheight = $( window ).height();
       var wasWide = self.wide;
-      if (!( self.wide = wwidth >= 600 )) {
+      if (!( self.wide = wwidth >= 600 && wheight >= 600 )) {
         ts_container.css( 'left', '' );
         ts_container.css( "width", '' );
         scroll.css( 'width', '' );
@@ -208,7 +209,9 @@ NavSlider = {
       ts_width = newWidth;
       pos = get_pos( $menu );
     });
-    if (( self.wide = $( window ).width() >= 600 )) {
+    var wwidth = $( window ).width();
+    var wheight = $( window ).height();
+    if (( self.wide = wwidth >= 600 && wheight >= 600 )) {
       console.log( 'window width', $( window ).width() );
       _init();}
     else {

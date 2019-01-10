@@ -41,8 +41,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.slider = _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"];
     this.$nextTick(function () {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init(); // if ( window.innerWidth >= 600 )
-      //   this.menuOpen = true;
+      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init();
     });
   },
   methods: {
@@ -334,9 +333,10 @@ NavSlider = {
       $(window).resize(function () {
         console.log('window resized');
         var wwidth = $(window).width();
+        var wheight = $(window).height();
         var wasWide = self.wide;
 
-        if (!(self.wide = wwidth >= 600)) {
+        if (!(self.wide = wwidth >= 600 && wheight >= 600)) {
           ts_container.css('left', '');
           ts_container.css("width", '');
           scroll.css('width', '');
@@ -362,8 +362,10 @@ NavSlider = {
         ts_width = newWidth;
         pos = get_pos($menu);
       });
+      var wwidth = $(window).width();
+      var wheight = $(window).height();
 
-      if (self.wide = $(window).width() >= 600) {
+      if (self.wide = wwidth >= 600 && wheight >= 600) {
         console.log('window width', $(window).width());
 
         _init();

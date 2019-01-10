@@ -423,7 +423,7 @@ main {
 #header-menu {
   z-index: 10; }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (min-height: 600px) {
   #header-menu {
     position: fixed;
     bottom: 0;
@@ -437,7 +437,7 @@ main {
     animation-fill-mode: forwards;
     animation-duration: 0.5s; } }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (min-height: 600px) {
   #main-nav {
     position: relative;
     padding: 0;
@@ -450,7 +450,7 @@ main {
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
     width: 100%; } }
 
-@media (max-width: 600px) {
+@media (max-width: 600px), (max-height: 600px) {
   #main-nav {
     position: fixed;
     width: 100%;
@@ -464,7 +464,7 @@ main {
     right: 0;
     margin-right: 0; } }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (min-height: 600px) {
   #bg-nav {
     position: absolute;
     background: url(img/assets/bg-fancy-5.png) top center repeat-x;
@@ -472,7 +472,7 @@ main {
     left: -400px;
     top: -19px; } }
 
-@media (max-width: 600px) {
+@media (max-width: 600px), (max-height: 600px) {
   #bg-nav {
     position: fixed;
     height: inherit;
@@ -483,7 +483,7 @@ main {
 #main-nav > .wrapper, #menu-nav, #menu-nav > .menu-item {
   height: inherit; }
 
-@media (max-width: 600px) {
+@media (max-width: 600px), (max-height: 600px) {
   #nav-main-container {
     position: absolute;
     height: 100%;
@@ -492,7 +492,7 @@ main {
     padding-left: 40px;
     overflow-y: auto; } }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (min-height: 600px) {
   #menu-nav {
     position: relative;
     left: 0;
@@ -546,7 +546,7 @@ main {
     height: 0;
     width: 0; } }
 
-@media (max-width: 600px) {
+@media (max-width: 600px), (max-height: 600px) {
   #menu-nav {
     clear: both;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -577,7 +577,7 @@ main {
   #menu-nav > .menu-item a {
     clear: both; } }
 
-@media (max-width: 600px) {
+@media (max-width: 600px), (max-height: 600px) {
   .mobile-logo {
     height: 40px; } }
 
@@ -606,7 +606,7 @@ button.nav-menu .navbar-toggle-icon {
   width: 32px;
   font-size: 32px; }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (min-height: 600px) {
   button.nav-menu.menu-wide {
     display: block;
     right: 0;
@@ -614,7 +614,7 @@ button.nav-menu .navbar-toggle-icon {
   button.nav-menu.menu-wide.open {
     top: 0; } }
 
-@media (max-width: 600px) {
+@media (max-width: 600px), (max-height: 600px) {
   button.nav-menu.toggle-mobile {
     display: block;
     font-weight: bold;

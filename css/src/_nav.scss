@@ -6,7 +6,7 @@
 
 #header-menu {
   z-index: 10;
-  @include breakpoint( $bp-phone ) {
+  @include breakpoint( $bp-phone-wh ) {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -23,7 +23,7 @@
 .nav {}
 
 #main-nav {
-  @include breakpoint( $bp-phone ) {
+  @include breakpoint( $bp-phone-wh ) {
     position: relative;
     padding: 0;
     width: 100%;
@@ -35,7 +35,7 @@
       box-shadow: 0 -1px 5px rgba(0,0,0,0.5);
       width: 100%;
     }}
-  @include breakpoint( $max-phone ) {
+  @include breakpoint( $max-phone-wh ) {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -49,14 +49,14 @@
       margin-right: 0;
     }}}
 #bg-nav {
-  @include breakpoint( $bp-phone ) {
+  @include breakpoint( $bp-phone-wh ) {
     position: absolute;
     background: url(img/assets/bg-fancy-5.png) top center repeat-x;
     height: 250px;
     left: -400px;
     top: -19px;
   }
-  @include breakpoint( $max-phone ) {
+  @include breakpoint( $max-phone-wh ) {
     position: fixed;
     height: inherit;
     width: 200%;
@@ -67,7 +67,7 @@
   height: inherit;
 }
 #nav-main-container {
-  @include breakpoint( $max-phone ) {
+  @include breakpoint( $max-phone-wh ) {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -76,7 +76,7 @@
     overflow-y: auto;
   }}
 #menu-nav {
-  @include breakpoint( $bp-phone ) {
+  @include breakpoint( $bp-phone-wh ) {
     position: relative;
     left: 0;
     width: 9999px;
@@ -136,7 +136,7 @@
       height: 0;
       width: 0;
     }}
-  @include breakpoint( $max-phone ) {
+  @include breakpoint( $max-phone-wh ) {
     clear: both;
     border-bottom: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 1px 5px rgba(0,0,0,0.3);
@@ -197,14 +197,14 @@
 
 // .navbar-brand {
 //   display: none;
-//   @include breakpoint( $max-phone ) {
+//   @include breakpoint( $max-phone-wh ) {
 //     display: block;
 //     height: 50px;
 //     padding: 5px;
 //     float: right;
 //   }}
 .mobile-logo {
-  @include breakpoint( $max-phone ) {
+  @include breakpoint( $max-phone-wh ) {
     height: 40px;
   }}
 
@@ -233,7 +233,7 @@ button.nav-menu {
     font-size: 32px;
   }
   &.menu-wide {
-    @include breakpoint( $bp-phone ) {
+    @include breakpoint( $bp-phone-wh ) {
       display: block;
       right: 0;
       top: -28px;
@@ -242,7 +242,7 @@ button.nav-menu {
       }
     }}
   &.toggle-mobile {
-    @include breakpoint( $max-phone ) {
+    @include breakpoint( $max-phone-wh ) {
       display: block;
       // float: left;
       font-weight: bold;
