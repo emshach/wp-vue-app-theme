@@ -754,6 +754,10 @@ main #login .login-actions .btn {
   padding: 4px;
   width: 13%; }
 
+main #login .login-actions span {
+  padding: 7px;
+  width: 15.8%; }
+
 /**
  * inserts: excerpt and preview-card elements
  * ---
