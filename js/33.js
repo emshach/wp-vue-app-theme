@@ -42,7 +42,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.wait) window.clearTimeout(this.wait);
       this.wait = window.setTimeout(function () {
         _this.allowHide = true;
-      }, 500);
+      }, 1000);
     }
   },
   computed: {

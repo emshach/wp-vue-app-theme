@@ -24,7 +24,7 @@ export default {
         window.clearTimeout( this.wait );
       this.wait = window.setTimeout(() => {
         this.allowHide = true;
-      }, 500 );
+      }, 1000 );
     }
   },
   computed: {
