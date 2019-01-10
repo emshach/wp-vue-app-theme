@@ -15,6 +15,9 @@ main {
     max-width: 750px;
     padding: 30px;
     text-align: justify;
+    @include breakpoint( $max-phone ) {
+      padding: 0 30px;
+    }
     &.subscriptions {
       max-width: none;
     }
@@ -64,7 +67,7 @@ section.episodes {
 main .login-container {
   background: white;
   max-width: 540px;
-  margin: -40px auto 0;
+  margin: -40px auto 20px;
   padding: 10px 20px;
   border-radius: 3px;
   border: 1px solid rgba(0,0,0,0.1);

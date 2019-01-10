@@ -627,6 +627,10 @@ main > section {
   padding: 30px;
   text-align: justify; }
 
+@media (max-width: 600px) {
+  main > section {
+    padding: 0 30px; } }
+
 main > section.subscriptions {
   max-width: none; }
 
@@ -669,7 +673,7 @@ section.episodes .card h5 {
 main .login-container {
   background: white;
   max-width: 540px;
-  margin: -40px auto 0;
+  margin: -40px auto 20px;
   padding: 10px 20px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.1);
