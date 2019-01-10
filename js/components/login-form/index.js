@@ -41,9 +41,6 @@ export default {
       ajaxUrl: store.state.ajax.url
     };
   },
-  rendered() {
-    this.focusFirst();
-  },
   methods: {
     login(e) {
       e.preventDefault();

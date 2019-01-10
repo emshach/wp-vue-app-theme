@@ -8,6 +8,6 @@
   </transition> -->
   <transition name="fast-fade" mode="out-in">
     <b-dd-item v-if="loggedIn" :href="logoutLink">log out</b-dd-item>
-    <login-form v-else :shown="shown" @change="delayClose"></login-form>
+    <login-form v-else :shown="isShown" @change="delayClose"></login-form>
   </transition>
 </b-dd>

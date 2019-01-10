@@ -59,9 +59,6 @@ __webpack_require__.r(__webpack_exports__);
       ajaxUrl: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.ajax.url
     };
   },
-  rendered: function rendered() {
-    this.focusFirst();
-  },
   methods: {
     login: function login(e) {
       var _this = this;
