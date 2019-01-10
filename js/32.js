@@ -194,6 +194,7 @@ __webpack_require__.r(__webpack_exports__);
       this.action = 'unknown-email';
     },
     formClick: function formClick(e) {
+      console.log('formClick', e);
       e.stopPropagation();
     },
     clearForm: function clearForm() {

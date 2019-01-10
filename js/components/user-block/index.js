@@ -149,6 +149,7 @@ export default {
       this.action = 'unknown-email';
     },
     formClick(e) {
+      console.log( 'formClick', e );
       e.stopPropagation();
     },
     clearForm() {
