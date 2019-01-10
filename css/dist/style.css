@@ -347,6 +347,11 @@ main {
   left: 0;
   width: 30px; }
 
+@media (max-width: 600px), (max-height: 600px) {
+  #down-arrow .arrow:before,
+  #down-arrow .arrow:after {
+    width: 20px; } }
+
 #down-arrow .arrow:before {
   transform: rotate(45deg) translateX(-21%);
   transform-origin: top left;
