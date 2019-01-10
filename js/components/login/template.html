@@ -1,13 +1,12 @@
 <div class="login page">
-  <div id="bg-image-wrapper" class="small">
+  <div id="bg-image-wrapper">
     <transition name="fade-in">
       <img id="bg-image" :src="img" @load="showImg" v-show="show"/>
     </transition>
   </div>
   <wp-header></wp-header>
   <down-arrow></down-arrow>
-  <div class="featured-outer">
-  </div>
+  <div class="featured-outer" class="small"></div>
 
   <main role="main">
     <h1 class="title">{{ title }}</h1>
