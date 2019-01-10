@@ -72,6 +72,9 @@ main .login-container {
   border-radius: 3px;
   border: 1px solid rgba(0,0,0,0.1);
   box-shadow: 0 2px 13px rgba(0,0,0,0.1);
+  @include breakpoint( $max-phone ) {
+    margin: 20px auto;
+  }
 }
 #login {
   main & {
