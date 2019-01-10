@@ -313,6 +313,12 @@ main {
   z-index: 12;
   opacity: 0.5; }
 
+@media (max-width: 600px), (max-height: 600px) {
+  #down-arrow {
+    height: 72px;
+    width: 72px;
+    bottom: -20px; } }
+
 #down-arrow:hover {
   opacity: 1; }
 
@@ -358,11 +364,19 @@ main {
   border-top-left-radius: 1.5px;
   border-bottom-left-radius: 1.5px; }
 
+@media (max-width: 600px), (max-height: 600px) {
+  #down-arrow .arrow:before {
+    transform: rotate(45deg) translateX(-17%); } }
+
 #down-arrow .arrow:after {
   transform: rotate(-45deg) translateX(21%);
   transform-origin: top right;
   border-top-right-radius: 1.5px;
   border-bottom-right-radius: 1.5px; }
+
+@media (max-width: 600px), (max-height: 600px) {
+  #down-arrow .arrow:after {
+    transform: rotate(-45deg) translateX(17%); } }
 
 @keyframes arrow-movement {
   0% {

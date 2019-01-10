@@ -141,6 +141,11 @@
   width: 100px;
   z-index: 12;
   opacity: 0.5;
+  @include breakpoint( $max-phone-wh ) {
+    height: 72px;
+    width: 72px;
+    bottom: -20px;
+  }
   &:hover {
     opacity: 1;
   }
@@ -182,6 +187,9 @@
 
   .arrow:before {
     transform: rotate(45deg) translateX(-21%);
+    @include breakpoint( $max-phone-wh ) {
+      transform: rotate(45deg) translateX(-17%);
+    }
     transform-origin: top left;
     border-top-left-radius: 1.5px;
     border-bottom-left-radius: 1.5px;
@@ -189,6 +197,9 @@
 
   .arrow:after {
     transform: rotate(-45deg) translateX(21%);
+    @include breakpoint( $max-phone-wh ) {
+      transform: rotate(-45deg) translateX(17%);
+    }
     transform-origin: top right;
     border-top-right-radius: 1.5px;
     border-bottom-right-radius: 1.5px;
