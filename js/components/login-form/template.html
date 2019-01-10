@@ -1,6 +1,6 @@
 <div claas="login-container">
   <transition name="fast-fade" mode="out-in">
-    <div if="action == 'success'" id="login" class="feedback"
+    <div v-if="action == 'success'" id="login" class="feedback"
          :style="feedbackStyle">
       <div class="message" :style="messageStyle">Success! The page should reload
         with you logged in. If it takes too long, click the button to
