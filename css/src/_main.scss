@@ -32,7 +32,8 @@ main {
     text-shadow: 0 1px 2px rgba(0,0,0,0.75);
     font-size: 3.2rem;
     @include breakpoint( $max-phone ) {
-      font-size: 2.8em;
+      font-size: 2rem;
+      margin-top: -1.8em;
     }
   }
   .description {
@@ -77,6 +78,7 @@ main .login-container {
   box-shadow: 0 2px 13px rgba(0,0,0,0.1);
   @include breakpoint( $max-phone ) {
     margin: 20px auto;
+    padding: 10px;
   }
 }
 #login {
@@ -154,6 +156,9 @@ main .login-container {
       main & {
         padding: 7px;
         width: 15.8%;
+        @include breakpoint( $max-phone ) {
+          width: 13.5%;
+        }
       }
     }
   }

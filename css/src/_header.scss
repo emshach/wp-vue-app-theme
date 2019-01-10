@@ -117,9 +117,17 @@
     color: white !important;
   }
 }
+.site-title {
+  @include breakpoint( $max-phone ) {
+    font-size: 2rem;
+  }
+}
 .site-description {
   margin: 0 6px;
   padding: 0 10px;
+  @include breakpoint( $max-phone ) {
+    font-size: 1rem;
+  }
 }
 /* Arrow & Hover Animation */
 #down-arrow {

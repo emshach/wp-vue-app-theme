@@ -283,9 +283,17 @@ main {
   padding: 10px;
   color: white !important; }
 
+@media (max-width: 600px) {
+  .site-title {
+    font-size: 2rem; } }
+
 .site-description {
   margin: 0 6px;
   padding: 0 10px; }
+
+@media (max-width: 600px) {
+  .site-description {
+    font-size: 1rem; } }
 
 /* Arrow & Hover Animation */
 #down-arrow {
@@ -647,7 +655,8 @@ main h1.title {
 
 @media (max-width: 600px) {
   main h1.title {
-    font-size: 2.8em; } }
+    font-size: 2rem;
+    margin-top: -1.8em; } }
 
 main .description a:link, main .description a:visited {
   color: #048;
@@ -685,7 +694,8 @@ main .login-container {
 
 @media (max-width: 600px) {
   main .login-container {
-    margin: 20px auto; } }
+    margin: 20px auto;
+    padding: 10px; } }
 
 #login {
   padding: 10px 10px 0;
@@ -765,6 +775,10 @@ main #login .login-actions .btn {
 main #login .login-actions span {
   padding: 7px;
   width: 15.8%; }
+
+@media (max-width: 600px) {
+  main #login .login-actions span {
+    width: 13.5%; } }
 
 /**
  * inserts: excerpt and preview-card elements
