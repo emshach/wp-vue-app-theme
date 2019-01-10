@@ -213,6 +213,9 @@ __webpack_require__.r(__webpack_exports__);
       this.confirmPass = '';
       this.tokenLogin = false;
     },
+    ddHide: function ddHide(e) {
+      console.log('dd hide', e);
+    },
     reload: function reload() {
       window.location.reload();
     },

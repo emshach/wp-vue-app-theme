@@ -168,6 +168,9 @@ export default {
       this.confirmPass = '';
       this.tokenLogin = false;
     },
+    ddHide(e) {
+      console.log( 'dd hide', e );
+    },
     reload() {
       window.location.reload();
     },
