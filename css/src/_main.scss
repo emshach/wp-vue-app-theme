@@ -57,9 +57,18 @@ section.episodes {
     cursor: default;
   }
 }
+main .login-container {
+  background: white;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 13px rgba(0,0,0,0.1);
+}
 #login {
   main & {
-    margin: 0 auto;
+    padding: 0;
   }
   &.feedback {
     padding: 10px;
@@ -95,6 +104,9 @@ section.episodes {
       margin-bottom: 0;
     }
   }
+  #login-recaptcha > div > div > div {
+    margin: 0 auto;
+  }
   &.register #login-password {
     min-height: 13.5em;
   }
@@ -106,6 +118,9 @@ section.episodes {
       padding: 3px 16px;
       margin: 0 5px;
       width: 40%;
+      main & {
+        font-size: large;
+      }
       &.login-button {
         float: left;
       }

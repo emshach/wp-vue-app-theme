@@ -663,12 +663,21 @@ section.episodes .card h5 {
   text-decoration: none;
   cursor: default; }
 
+main .login-container {
+  background: white;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 13px rgba(0, 0, 0, 0.1); }
+
 #login {
   padding: 10px 10px 0;
   min-width: 23em; }
 
 main #login {
-  margin: 0 auto; }
+  padding: 0; }
 
 #login.feedback {
   padding: 10px; }
@@ -702,6 +711,9 @@ main #login {
 #login #login-password .alert {
   margin-bottom: 0; }
 
+#login #login-recaptcha > div > div > div {
+  margin: 0 auto; }
+
 #login.register #login-password {
   min-height: 13.5em; }
 
@@ -714,6 +726,9 @@ main #login {
   padding: 3px 16px;
   margin: 0 5px;
   width: 40%; }
+
+main #login .login-actions .btn {
+  font-size: large; }
 
 #login .login-actions .btn.login-button {
   float: left; }
