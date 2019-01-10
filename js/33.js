@@ -27,15 +27,15 @@ __webpack_require__.r(__webpack_exports__);
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       wait: null,
       allowHide: true,
-      shown: false
+      isShown: false
     };
   },
   methods: {
     shown: function shown() {
-      this.shown = true;
+      this.isShown = true;
     },
     hiding: function hiding(e) {
-      if (this.allowHide) this.shown = false;else e.preventDefault();
+      if (this.allowHide) this.isShown = false;else e.preventDefault();
     },
     delayClose: function delayClose(e) {
       var _this = this;

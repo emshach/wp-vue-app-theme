@@ -9,16 +9,16 @@ export default {
       sstate: store.state,
       wait: null,
       allowHide: true,
-      shown: false
+      isShown: false
     };
   },
   methods: {
     shown() {
-      this.shown = true;
+      this.isShown = true;
     },
     hiding(e) {
       if ( this.allowHide )
-        this.shown = false;
+        this.isShown = false;
       else
         e.preventDefault();
     },
