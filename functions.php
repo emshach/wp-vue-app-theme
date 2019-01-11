@@ -406,7 +406,8 @@ function mrk_rest_add_show_text( $data ) {
 function mrk_rest_add_release_number( $data ) {
     if ( empty( $data[ 'id' ]))
         return $data;
-    $data[ 'release_number'] = get_field( 'release_number', $data[ 'id' ]);
+    $num = get_field( 'release_number', $data[ 'id' ]);
+    $data[ 'release_number'] = ( $num ? $num : 'UNNASIGNED' );
     return $data;
 }
 
