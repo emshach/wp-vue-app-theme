@@ -240,7 +240,7 @@ NavSlider = {
         menu.stop().animate({
           height: menu_height
         }, ease_in);
-        var top = $("#app>.page").scrollTop() + $(window).height() - $('main').position().top;
+        var top = $("#app>.page").scrollTop() + $(window).height() - $("#app>.page>.featured-outer").innerHeight();
         $(main_title).stop().animate({
           bottom: 110 - top
         }, ease_in);

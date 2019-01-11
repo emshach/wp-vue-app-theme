@@ -112,7 +112,7 @@ NavSlider = {
       }, 100);
       menu.stop().animate({ height: menu_height }, ease_in );
       var top = $( "#app>.page" ).scrollTop() + $( window ).height()
-          - $( 'main' ).position().top;
+          - $( "#app>.page>.featured-outer" ).innerHeight();
       $( main_title ).stop().animate({ bottom: 110 - top }, ease_in );
     };
     self.closeMenu = function(e) { //mouse out
