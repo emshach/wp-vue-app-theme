@@ -407,7 +407,7 @@ function mrk_rest_add_release_number( $data ) {
     if ( empty( $data[ 'id' ]))
         return $data;
     $num = get_field( 'release_number', $data[ 'id' ]);
-    $data[ 'release_number'] = ( $num ? $num : 'UNNASIGNED' );
+    $data[ 'release_number'] = ( $num ? (int) $num : 'UNNASIGNED' );
     return $data;
 }
 
