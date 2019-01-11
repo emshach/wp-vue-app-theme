@@ -814,6 +814,7 @@ main #login .login-actions span {
  * ---
  */
 .media-insert.hidden {
+  display: flex !important;
   opacity: 0.75; }
 
 .media > .d-flex {

@@ -4,6 +4,7 @@
  */
 .media-insert {
   &.hidden {
+    display: flex !important;
     opacity: 0.75;
   }
 }
