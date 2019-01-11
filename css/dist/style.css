@@ -697,9 +697,6 @@ main .description a:link, main .description a:visited {
 .login.page main .message {
   padding: 10px; }
 
-main button, main .btn {
-  font-size: medium; }
-
 #app {
   background: #100; }
 
@@ -984,8 +981,9 @@ main #login .login-actions span {
 .subscription-menu .confirm .order .table-secondary {
   font-weight: bold; }
 
-.subscription-menu .confirm .actions a, .subscription-menu .confirm .actions button {
-  float: right; }
+.subscription-menu .confirm .actions a, .subscription-menu .confirm .actions button, .subscription-menu .confirm .actions .btn {
+  float: right;
+  font-size: medium; }
 
 .subscription-menu .description {
   margin-bottom: 2em; }

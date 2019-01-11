@@ -27,7 +27,8 @@
         <b-card no-body class="member-level" :header="level.name">
           <b-card-body>
             <div class="description" v-html="level.description"></div>
-            <div class="price">${{ level.initial_payment || level.billing_amount }}</div>
+            <div class="price">${{
+              level.initial_payment || level.billing_amount }}</div>
           </b-card-body>
           <b-card-footer v-if="currentLevel.id == level.id" class="selected">
             expires {{ user.membership.expires }}

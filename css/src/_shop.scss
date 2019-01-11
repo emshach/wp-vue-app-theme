@@ -66,8 +66,9 @@
       }
     }
     .actions {
-      a, button {
+      a, button, .btn {
         float: right;
+        font-size: medium;
       }
     }
   }
