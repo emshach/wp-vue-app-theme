@@ -2,7 +2,8 @@
   <template v-if="filteredEpisodes.length || showEmpty">
     <h2 class="title" v-html="title"></h2>
     <transition-group name="fade-fast">
-      <b-card v-for="( episode, index ) in filteredEpisodes" :key="episode.id">
+      <b-card v-for="( episode, index ) in filteredEpisodes" :key="episode.id"
+              :class="[ 'media-insert', cardClasses( episode )]">
         <b-media no-body>
           <b-media-aside>
             <b-img :src="episode.thumbnail" width="128" height="96" />

@@ -813,6 +813,9 @@ main #login .login-actions span {
  * inserts: excerpt and preview-card elements
  * ---
  */
+.media-insert.hidden {
+  opacity: 0.75; }
+
 .media > .d-flex {
   position: relative;
   margin-right: 10px; }

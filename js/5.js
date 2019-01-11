@@ -121,6 +121,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     sayAction: function sayAction(episode, trans) {
       return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'see';
+    },
+    cardClasses: function cardClasses(episode) {
+      if (!episode || !episode.restrictions) return {};
+      return {
+        private: episode.restrictions.private,
+        public: episode.restrictions.public,
+        auth: episode.restrictions.auth,
+        payperview: episode.restrictions.payperview,
+        members: episode.restrictions.members,
+        hidden: !episode.restrictions.show && !episode.restrictions.public
+      };
     }
   }
 });
