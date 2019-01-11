@@ -1121,7 +1121,7 @@ var routes = [{
   path: '/',
   component: VHome
 }, {
-  path: '/login/:then?',
+  path: '/login/:then(.+)?',
   component: VLogin,
   name: 'login',
   props: true
