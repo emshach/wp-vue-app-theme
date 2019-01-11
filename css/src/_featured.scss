@@ -11,6 +11,9 @@
   position: relative;
   height: 100%;
   padding: 80px 0 40px;
+  @include breakpoint( $max-phone-wh ) {
+    padding: 45px 0 30px;
+  }
   color: #eee;
   text-shadow: 0 0 2px rgba(0,0,0,0.5);
   background-color: rgba(0,0,0,0.9);

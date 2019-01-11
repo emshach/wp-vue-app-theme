@@ -88,6 +88,10 @@ h1 {
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   background-color: rgba(0, 0, 0, 0.9); }
 
+@media (max-width: 600px), (max-height: 600px) {
+  .featured-wrapper {
+    padding: 45px 0 30px; } }
+
 .featured-wrapper .carousel, .featured-wrapper .carousel-inner, .featured-wrapper .carousel-item {
   height: 100%; }
 
@@ -692,6 +696,9 @@ main .description a:link, main .description a:visited {
 
 .login.page main .message {
   padding: 10px; }
+
+main button, main .btn {
+  font-size: medium; }
 
 #app {
   background: #100; }

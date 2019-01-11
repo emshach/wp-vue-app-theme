@@ -40,6 +40,9 @@ export default {
     },
     logoutLink() {
       return he.decode( this.user.logout );
+    },
+    isLoginRoute() {
+      return this.$route.name == 'login';
     }
   }
 };
