@@ -3,9 +3,12 @@
  * ---
  */
 .media-insert {
+  &.private {
+    background: #fffaf8;
+  }
   &.hidden {
     display: flex !important;
-    opacity: 0.75;
+    opacity: 0.5;
   }
 }
 .media {

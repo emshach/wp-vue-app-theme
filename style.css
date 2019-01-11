@@ -813,9 +813,12 @@ main #login .login-actions span {
  * inserts: excerpt and preview-card elements
  * ---
  */
+.media-insert.private {
+  background: #fffaf8; }
+
 .media-insert.hidden {
   display: flex !important;
-  opacity: 0.75; }
+  opacity: 0.5; }
 
 .media > .d-flex {
   position: relative;
