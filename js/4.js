@@ -155,7 +155,7 @@ NavSlider = {
       var ts_container = $("#menu-nav");
       var thumb = $("#menu-nav > .menu-item");
       var t_current = $("#menu-nav > .current-menu-item");
-      var main_title = $("main > h1.title");
+      var main_title = "main > h1.title";
       var $menu = menu.get(0);
       var menu_height = menu.innerHeight(); //thumbnail scroller
 
@@ -241,7 +241,7 @@ NavSlider = {
           height: menu_height
         }, ease_in);
         var top = $("#app>.page").scrollTop();
-        main_title.stop().animate({
+        $(main_title).stop().animate({
           bottom: 110 - top
         }, ease_in);
       };
@@ -259,7 +259,7 @@ NavSlider = {
         menu.stop().animate({
           height: 15
         }, ease_out);
-        main_title.stop().animate({
+        $(main_title).stop().animate({
           bottom: 0
         }, ease_out);
       };
