@@ -5,22 +5,24 @@
     </transition>
   </div>
   <wp-header></wp-header>
-  <div class="featured-wrapper">
-    <div class="container">
-      <div class="row">
-        <div :class="[ 'media-wrapper', 'col-12', wideMode ? '' : 'col-md-8']">
-          <video v-if="postData.release_type == 'video'"
-                 :src="postData.source_url" class="media" autoplay controls>
-            {{ postData.alt_text }}
-          </video>
-          <audio v-if="postData.release_type == 'audio'"
-                 :src="postData.source_url" class="media" autoplay controls>
-            {{ postData.alt_text }}
-          </audio>
+  <div id="featured">
+    <div class="featured-wrapper">
+      <div class="container">
+        <div class="row">
+          <div :class="[ 'media-wrapper', 'col-12', wideMode ? '' : 'col-md-8']">
+            <video v-if="postData.release_type == 'video'"
+                   :src="postData.source_url" class="media" autoplay controls>
+              {{ postData.alt_text }}
+            </video>
+            <audio v-if="postData.release_type == 'audio'"
+                   :src="postData.source_url" class="media" autoplay controls>
+              {{ postData.alt_text }}
+            </audio>
+          </div>
+          <transition name="fade-in">
+            <div v-if="!wideMode" class="col-12 col-md-4" v-html="content"></div>
+          </transition>
         </div>
-        <transition name="fade-in">
-          <div v-if="!wideMode" class="col-12 col-md-4" v-html="content"></div>
-        </transition>
       </div>
     </div>
   </div>
