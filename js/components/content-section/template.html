@@ -12,7 +12,7 @@
           </b-media-aside>
           <b-media-body>
             <h5 v-if="labels && episode.release_number
-                      && typeOf episode.release_number == 'number'"
+                      && typeof episode.release_number == 'number'"
                 class="mt-0 episode-num">Programme {{
               episode.release_number }}</h5>
             <h5 class="mt-0" v-html="episode.title.rendered"></h5>
