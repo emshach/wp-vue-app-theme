@@ -164,7 +164,7 @@ const router = new VueRouter({
 // fetch post first so we can decide some more specific routing
 router.beforeEach(( to, from, next )  => {
   if ( to.meta.auth && ! store.state.user ) {
-    next({ path: '/login' + to.path });
+    next({ path: '/login' + to.path, query: to.query });
   } else {
     next();
   }

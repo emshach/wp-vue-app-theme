@@ -1227,7 +1227,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
 router.beforeEach(function (to, from, next) {
   if (to.meta.auth && !_lib_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.user) {
     next({
-      path: '/login' + to.path
+      path: '/login' + to.path,
+      query: to.query
     });
   } else {
     next();
