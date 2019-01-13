@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.levels.length ? this.levels : this.storedLevels;
     },
     currentLevel: function currentLevel() {
-      return this.user && this.user.membership || false;
+      return this.user && (!this.user.as || this.user.as.subscriber) && this.user.membership || false;
     },
     targetPost: function targetPost() {
       return this.target;
