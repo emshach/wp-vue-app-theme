@@ -79,7 +79,7 @@
     float: right;
   }
 }
-.page.release section.info {
+section.info {
   color: #aaa;
   margin: 0 0 10px;
   .dashicons {
@@ -96,16 +96,16 @@
   .views.active {
     color: deepskyblue;
   }
-  .likes.active, .likes:hover {
+  .likes.active, .release & .likes:hover {
     color: green;
   }
-  .dislikes.active, .dislikes:hover {
+  .dislikes.active, .release & .dislikes:hover {
     color: red;
   }
-  .favs.active, .favs:hover {
+  .favs.active, .release & .favs:hover {
     color: orange;
   }
-  .likes, .dislikes, .favs {
+  .likes, .dislikes, .release & .favs {
     cursor: pointer;
   }
   .comments.active {

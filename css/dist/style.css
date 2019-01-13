@@ -883,37 +883,37 @@ main #login .login-actions span {
 .media .btn.watch {
   float: right; }
 
-.page.release section.info {
+section.info {
   color: #aaa;
   margin: 0 0 10px; }
 
-.page.release section.info .dashicons {
+section.info .dashicons {
   margin-right: 1px;
   font-size: 18px; }
 
-.page.release section.info .count {
+section.info .count {
   vertical-align: center;
   font-size: 13px; }
 
-.page.release section.info > * {
+section.info > * {
   margin-right: 1em; }
 
-.page.release section.info .views.active {
+section.info .views.active {
   color: deepskyblue; }
 
-.page.release section.info .likes.active, .page.release section.info .likes:hover {
+section.info .likes.active, .release section.info .likes:hover {
   color: green; }
 
-.page.release section.info .dislikes.active, .page.release section.info .dislikes:hover {
+section.info .dislikes.active, .release section.info .dislikes:hover {
   color: red; }
 
-.page.release section.info .favs.active, .page.release section.info .favs:hover {
+section.info .favs.active, .release section.info .favs:hover {
   color: orange; }
 
-.page.release section.info .likes, .page.release section.info .dislikes, .page.release section.info .favs {
+section.info .likes, section.info .dislikes, .release section.info .favs {
   cursor: pointer; }
 
-.page.release section.info .comments.active {
+section.info .comments.active {
   color: purple; }
 
 .episodes > .title {

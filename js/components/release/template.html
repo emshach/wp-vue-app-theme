@@ -16,7 +16,8 @@
               {{ postData.alt_text }}
             </video>
             <audio v-if="postData.release_type == 'audio'"
-                   :src="postData.source_url" class="media" autoplay controls>
+                   :src="postData.source_url" class="media" autoplay controls
+                   controlsList="nodownload">
               {{ postData.alt_text }}
             </audio>
           </div>
