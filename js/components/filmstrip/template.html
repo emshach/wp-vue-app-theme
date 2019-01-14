@@ -8,7 +8,8 @@
       <slide v-for="( item, index ) in contents" :key="index">
         <b-card :title="item.title ? item.title.rendered: ''"
                 :img-src="item.thumbnail"
-                :class="[ 'item', cardClasses( item )]"
+                :class="[ 'item', { current: item.id == current },
+                          cardClasses( item )]"
                 img-top >
           <p class="card-text"
              v-html="item.content ? item.content.rendered
