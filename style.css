@@ -1072,7 +1072,7 @@ section.filmstrip .VueCarousel {
   border-bottom: 1px solid #b00; }
 
 .content-list .card.item, .filmstrip .card.item {
-  width: 15em;
+  width: 16em;
   margin: 2px;
   border: 0 none;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); }
