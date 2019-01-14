@@ -1104,6 +1104,10 @@ section.filmstrip .VueCarousel {
   overflow-y: auto;
   padding: 0 2px; }
 
+.content-list .card.item .watching, .filmstrip .card.item .watching {
+  font-weight: bold;
+  color: orange; }
+
 footer {
   background: #666;
   text-align: center;
