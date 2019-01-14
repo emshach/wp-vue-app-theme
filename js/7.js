@@ -86,9 +86,9 @@ __webpack_require__.r(__webpack_exports__);
     series: function series() {
       var _this = this;
 
-      if (!this.postData || !this.postData.series || !this.postData.series.length) return false;
+      if (!this.postData.series || !this.postData.series.length) return false;
 
-      var episodes = lodash__WEBPACK_IMPORTED_MODULE_4___default.a.orderBy(this.Postdata.series, ['release_number'], ['asc']);
+      var episodes = lodash__WEBPACK_IMPORTED_MODULE_4___default.a.orderBy(this.PostData.series, ['release_number'], ['asc']);
 
       var series = episodes.filter(function (x) {
         return _this.canWatchNow(x) || x.restrictions.show;
