@@ -5,15 +5,17 @@
               :navigation-enabled="true"
               :pagination-enabled="false"
               :scroll-per-page="false">
-      <slide v-for="( item, index ) in contents" :key="index">
-        <b-card :title="item.title ? item.title.rendered: ''"
-                :img-src="item.thumbnail" img-top >
-          <p class="card-text">{{
-            item.content ? item.content.rendered
-            : item.caption ? item.caption.rendered : '' }}</p>
-          <watchbutton :target="item"></watchbutton>
-        </b-card>
-      </slide>
+      <b-card-group deck>
+        <slide v-for="( item, index ) in contents" :key="index">
+          <b-card :title="item.title ? item.title.rendered: ''"
+                  :img-src="item.thumbnail" img-top >
+            <p class="card-text"
+               v-html="item.content ? item.content.rendered
+                       : item.caption ? item.caption.rendered : ''"></p>
+            <watch-button :target="item"></watch-button>
+          </b-card>
+        </slide>
+      </b-card-group>
       <div class="swiper-button-prev" slot="button-prev"></div>
       <div class="swiper-button-next" slot="button-next"></div>
       <div class="swiper-scrollbar"   slot="scrollbar"></div>
