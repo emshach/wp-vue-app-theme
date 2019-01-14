@@ -1091,11 +1091,18 @@ section.filmstrip .VueCarousel {
   object-fit: cover; }
 
 .content-list .card.item .card-title, .filmstrip .card.item .card-title {
-  font-weight: bold; }
+  font-weight: bold;
+  font-variant: small-caps;
+  height: 3em;
+  overflow-y: hidden; }
+
+.content-list .card.item .card-body, .filmstrip .card.item .card-body {
+  padding: 8px; }
 
 .content-list .card.item .card-text, .filmstrip .card.item .card-text {
   height: 9em;
-  overflow-y: auto; }
+  overflow-y: auto;
+  padding: 0 2px; }
 
 footer {
   background: #666;

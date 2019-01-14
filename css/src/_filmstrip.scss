@@ -38,9 +38,16 @@ section.filmstrip {
     }
     .card-title {
       font-weight: bold;
+      font-variant: small-caps;
+      height: 3em;
+      overflow-y: hidden;
+    }
+    .card-body {
+      padding: 8px;
     }
     .card-text {
       height: 9em;
       overflow-y: auto;
+      padding: 0 2px;
     }
   }}
