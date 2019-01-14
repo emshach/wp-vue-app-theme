@@ -6,8 +6,11 @@
               :pagination-enabled="false"
               :scroll-per-page="false">
       <slide v-for="( item, index ) in contents" :key="index">
-        <b-card :title="item.title" :img-src="item.thumbnail" img-top >
-          <p class="card-text">{{ item.desc }}</p>
+        <b-card :title="item.title ? item.title.rendered: ''"
+                :img-src="item.thumbnail" img-top >
+          <p class="card-text">{{
+            item.content ? item.content.rendered
+            : item.caption ? item.caption.rendered : '' }}</p>
           <watchbutton :target="item"></watchbutton>
         </b-card>
       </slide>
