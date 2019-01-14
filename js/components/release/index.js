@@ -63,7 +63,7 @@ export default {
       return { small: !!this.promos.length };
     },
     series() {
-      if ( !this.postData.series || !this.postData.series.length )
+      if ( !this.postData.series || this.postData.series.length < 2 )
         return false;
       var episodes = _.orderBy( this.postData.series, [ 'release_number' ], [ 'asc' ]);
       var series = episodes.filter( x => this.canWatchNow(x) || x.restrictions.show );
