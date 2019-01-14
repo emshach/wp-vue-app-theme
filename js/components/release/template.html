@@ -62,8 +62,7 @@
     </section>
     <!-- TODO: strips for related, series -->
     <section class="description" v-if="wideMode" v-html="content"></section>
-    <filmstrip v-if="postData.series" title="in this series"
-               :contents="postData.series"
+    <filmstrip v-if="series" title="in this series" :contents="series"
                :current="postData.id"></filmstrip>
     <comments></comments>
   </main>

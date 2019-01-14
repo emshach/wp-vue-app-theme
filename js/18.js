@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[18],{
 
-/***/ "./js/components/members/index.js":
-/*!****************************************!*\
-  !*** ./js/components/members/index.js ***!
-  \****************************************/
+/***/ "./js/components/login/index.js":
+/*!**************************************!*\
+  !*** ./js/components/login/index.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17,78 +17,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/members/template.html"),
+  template: __webpack_require__(/*! ./template.html */ "./js/components/login/template.html"),
+  props: {
+    then: {
+      type: String,
+      default: ''
+    }
+  },
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      storedPost: {},
-      classes: [],
-      promos: [],
+      img: '',
+      title: '',
       show: false
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.storedPost = Object.assign({}, this.sstate.nextpost);
+    document.title = he__WEBPACK_IMPORTED_MODULE_2___default.a.decode(this.sstate.site.title);
 
     _lib_wpapix__WEBPACK_IMPORTED_MODULE_1__["default"].then(function (wpapix) {
       var path = new wpapix.Path({
-        path: '/members'
+        path: 'login'
       });
-      console.log('path object', path);
       path.fetch().done(function (rpost) {
-        console.log('got members page', rpost);
-        _this.storedPost = rpost;
-        document.title = he__WEBPACK_IMPORTED_MODULE_2___default.a.decode(rpost.title.rendered + ' | ' + _this.sstate.site.title);
-        window.setTimeout(function () {
-          _this.promos = rpost.promo_reel;
-        }, 3000);
+        console.log('got home page', rpost);
+        _this.title = rpost.title.rendered;
+        _this.img = rpost.background_image || '';
       });
     });
-  },
-  updated: function updated() {
-    document.title = he__WEBPACK_IMPORTED_MODULE_2___default.a.decode(this.title + ' | ' + this.sstate.site.title);
   },
   methods: {
     showImg: function showImg() {
       this.show = true;
-    }
-  },
-  computed: {
-    postData: function postData() {
-      return this.post || this.storedPost;
-    },
-    title: function title() {
-      return this.postData.title && this.postData.title.rendered || '';
-    },
-    img: function img() {
-      return this.postData.background_image || '';
-    },
-    promo_reel: function promo_reel() {
-      return this.postData.promo_reel || [];
-    },
-    content: function content() {
-      var user = this.sstate.user;
-      if (this.postData.member_content && (user.as ? user.as.subscriber : user.membership)) return this.postData.member_content;
-      return this.postData.content && this.postData.content.rendered || '';
-    },
-    user: function user() {
-      return this.sstate.user;
     }
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/members/template.html":
-/*!*********************************************!*\
-  !*** ./js/components/members/template.html ***!
-  \*********************************************/
+/***/ "./js/components/login/template.html":
+/*!*******************************************!*\
+  !*** ./js/components/login/template.html ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"program post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\" :class=\"classes\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n    <transition name=\"fade-in\">\n      <div v-if=\"promos.length\" class=\"featured-wrapper\">\n        <mrk-carousel id=\"featured\" :slides=\"promos\"></mrk-carousel>\n      </div>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <section class=\"subscriptions\">\n      <subscription-menu v-if=\"user && user.membership\" :target=\"postData.path\">\n        Change your subscription plan below.\n      </subscription-menu>\n      <subscription-menu v-else :target=\"postData.path\">\n        Select one of the subscription plans become a member.\n      </subscription-menu>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"login page\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\">\n      <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <wp-header></wp-header>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer small\"></div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <login-form :redirect=\"then\"></login-form>\n    <div v-if=\"then\" class=\"message\">Please log in or sign up to access that\n      page/content.</div>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 

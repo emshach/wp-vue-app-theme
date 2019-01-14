@@ -1,8 +1,11 @@
 import routeEvents from '../../lib/route-events';
 import store from '../../lib/store';
+import media_actions from '../../mixins/media-actions';
 import he from 'he';
+import _ from 'lodash';
 export default {
   template: require( './template.html' ),
+  mixins: [ media_actions ],
   props: [ 'post' ],
   data() {
     return {
@@ -61,6 +64,13 @@ export default {
     },
     classes() {
       return { small: !!this.promos.length };
+    },
+    series() {
+      if ( !this.postData.series || !this.postData.series.length )
+        return false;
+      var episodes = _.orderBy( this.Postdata.series, [ 'release_number' ], [ 'asc' ]);
+      var series = episodes.filter( x => this.canWatchNow(x) || x.restrictions.show );
+      return series.length && series;
     }
   }
 };
