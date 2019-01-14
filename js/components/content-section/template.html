@@ -61,7 +61,7 @@
               </template>
             </div>
             <div v-html="episode.caption.rendered"></div>
-            <watch-button></watch-button>
+            <watch-button :target="episode"></watch-button>
             <b-btn v-if="episode.preview" class="watch watch-preview" size="lg"
                    :to="episode.preview" variant="link">
               {{ sayAction( episode, true ) }} preview</b-btn>

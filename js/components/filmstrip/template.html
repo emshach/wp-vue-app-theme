@@ -8,7 +8,7 @@
       <slide v-for="( item, index ) in contents" :key="index">
         <b-card :title="item.title" :img-src="item.thumbnail" img-top >
           <p class="card-text">{{ item.desc }}</p>
-          <watchbutton></watchbutton>
+          <watchbutton :target="item"></watchbutton>
         </b-card>
       </slide>
       <div class="swiper-button-prev" slot="button-prev"></div>
