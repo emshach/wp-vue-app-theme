@@ -26,7 +26,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<b-btn v-if=\"target && canWatchNow( target )\"\n       variant=\"primary\" :to=\"target.path\" size=\"lg\"\n       class=\"float-right\">{{ sayAction( target )}} now</b-btn>\n<b-btn v-else-if=\"needsSubscription( episode )\" size=\"lg\"\n       :to=\"target.preview ||{ path: '/members', query: { then: target.path }}\"\n       class=\"watch subscribe-to-watch\"\n       variant=\"warning\">subscribe to {{ sayAction( episode ) }}</b-btn>\n";
+module.exports = "<b-btn v-if=\"target && canWatchNow( target )\"\n       variant=\"primary\" :to=\"target.path\" size=\"lg\"\n       class=\"float-right\">{{ sayAction( target )}} now</b-btn>\n<b-btn v-else-if=\"needsSubscription( target )\" size=\"lg\"\n       :to=\"target.preview ||{ path: '/members', query: { then: target.path }}\"\n       class=\"watch subscribe-to-watch\"\n       variant=\"warning\">subscribe to {{ sayAction( target ) }}</b-btn>\n";
 
 /***/ }),
 
