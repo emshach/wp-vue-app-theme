@@ -2,7 +2,7 @@ import store from '../lib/store';
 export default {
   methods: {
     canWatchNow ( episode ) {
-      var user = store.state.user;
+      const user = store.state.user;
       if ( user.as ) {
         var as  = user.as;
         var rst = episode.restrictions;
@@ -33,6 +33,10 @@ export default {
         members: episode.restrictions.members,
         hidden: !episode.restrictions.show && !episode.restrictions.public
       };
+    },
+    needsSubscription ( episode ) {
+      const user = store.state.user;
+      return ( episode.restrictions.members && ( !user.as || !user.as.subscriber ));
     }
   }
 };

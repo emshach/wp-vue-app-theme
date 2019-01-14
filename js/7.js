@@ -151,6 +151,10 @@ __webpack_require__.r(__webpack_exports__);
         members: episode.restrictions.members,
         hidden: !episode.restrictions.show && !episode.restrictions.public
       };
+    },
+    needsSubscription: function needsSubscription(episode) {
+      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
+      return episode.restrictions.members && (!user.as || !user.as.subscriber);
     }
   }
 });

@@ -44,10 +44,4 @@ export default {
       return this.coming ? ( 'in ' + this.coming ) : 'Soon';
     }
   },
-  methods: {
-    needsSubscription ( episode ) {
-      return ( episode.restrictions.members
-               && ( !this.user.as || !this.user.as.subscriber ));
-    }
-  }
 };

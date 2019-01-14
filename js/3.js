@@ -98,11 +98,6 @@ __webpack_require__.r(__webpack_exports__);
     dateComing: function dateComing() {
       return this.coming ? 'in ' + this.coming : 'Soon';
     }
-  },
-  methods: {
-    needsSubscription: function needsSubscription(episode) {
-      return episode.restrictions.members && (!this.user.as || !this.user.as.subscriber);
-    }
   }
 });
 
@@ -159,6 +154,10 @@ __webpack_require__.r(__webpack_exports__);
         members: episode.restrictions.members,
         hidden: !episode.restrictions.show && !episode.restrictions.public
       };
+    },
+    needsSubscription: function needsSubscription(episode) {
+      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
+      return episode.restrictions.members && (!user.as || !user.as.subscriber);
     }
   }
 });
