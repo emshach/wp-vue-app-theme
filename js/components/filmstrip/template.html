@@ -7,11 +7,17 @@
               :scroll-per-page="false">
       <slide v-for="( item, index ) in contents" :key="index">
         <b-card :title="item.title ? item.title.rendered: ''"
-                :img-src="item.thumbnail" img-top >
+                :img-src="item.thumbnail"
+                :class="[ 'item', cardClasses( item )]"
+                img-top >
           <p class="card-text"
              v-html="item.content ? item.content.rendered
                      : item.caption ? item.caption.rendered : ''"></p>
-          <watch-button :target="item"></watch-button>
+          <b-btn v-if="item.id == current" variant="link"
+                 size="lg" class="float-right"
+                 v-scroll-to="{ el: '#featured', container: '.page',
+                                x: false, y: true }">now watching</b-btn>
+          <watch-button v-else :target="item"></watch-button>
         </b-card>
       </slide>
       <div class="swiper-button-prev" slot="button-prev"></div>

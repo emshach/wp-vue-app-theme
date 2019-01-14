@@ -1053,6 +1053,14 @@ section.info .comments.active {
 /**
  * filmstrip
  */
+section.filmstrip {
+  max-width: none; }
+
+section.filmstrip .VueCarousel {
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid white;
+  border-top: 1px solid rgba(0, 0, 0, 0.05); }
+
 .content-list, .filmstrip {
   margin-top: 40px;
   margin-bottom: 40px;
@@ -1062,6 +1070,28 @@ section.info .comments.active {
   text-transform: capitalize;
   padding: 2px;
   border-bottom: 1px solid #b00; }
+
+.content-list .card.item, .filmstrip .card.item {
+  width: 15em;
+  margin: 2px;
+  border: 0 none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); }
+
+.content-list .card.item.hidden, .filmstrip .card.item.hidden {
+  display: flex !important;
+  opacity: 0.5; }
+
+.content-list .card.item .card-img-top, .filmstrip .card.item .card-img-top {
+  margin: 0;
+  height: 10em;
+  object-fit: cover; }
+
+.content-list .card.item .card-title, .filmstrip .card.item .card-title {
+  font-weight: bold; }
+
+.content-list .card.item .card-text, .filmstrip .card.item .card-text {
+  height: 9em;
+  overflow-y: auto; }
 
 footer {
   background: #666;

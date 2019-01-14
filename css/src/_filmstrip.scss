@@ -1,6 +1,14 @@
 /**
  * filmstrip
  */
+section.filmstrip {
+  max-width: none;
+  .VueCarousel {
+    background: rgba(0,0,0,0.05);
+    border-bottom: 1px solid white;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+}
 .content-list, .filmstrip {
   margin-top: 40px;
   margin-bottom: 40px;
@@ -9,4 +17,26 @@
     text-transform: capitalize;
     padding: 2px;
     border-bottom: 1px solid #b00;
+  }
+  .card.item {
+    width: 15em;
+    margin: 2px;
+    border: 0 none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    &.hidden {
+      display: flex !important;
+      opacity: 0.5;
+    }
+    .card-img-top {
+      margin: 0;
+      height: 10em;
+      object-fit: cover;
+    }
+    .card-title {
+      font-weight: bold;
+    }
+    .card-text {
+      height: 9em;
+      overflow-y: auto;
+    }
   }}
