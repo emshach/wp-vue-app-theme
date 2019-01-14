@@ -412,6 +412,20 @@ function mrk_rest_add_release_number( $data ) {
 }
 
 /**
+ * Add the videos in the same series as a release
+ *
+ * @return post array
+ */
+function mrk_rest_add_release_series( $data ) {
+    if ( empty( $data[ 'id' ]) && !isset( $data[ 'post'] ))
+        return $data;
+    $post = mrk_get_post_by_id( [ 'id' => $data[ 'post' ]]);
+    mrk_add_media_collection( $post, 'releases' ); // TODO: if series
+    $data[ 'series'] = $post[ 'releases' ];
+    return $data;
+}
+
+/**
  * Set the type of a program object to 'program'
  *
  * @return post array
@@ -1293,6 +1307,7 @@ add_filter( 'mrk_rest_process_program',      'mrk_rest_add_releases',        10,
 add_filter( 'mrk_rest_process_release',      'mrk_rest_add_bg_image',        10, 1 );
 add_filter( 'mrk_rest_process_release',      'mrk_rest_set_release_type',    10, 1 );
 add_filter( 'mrk_rest_process_release',      'mrk_rest_add_release_number',  10, 1 );
+add_filter( 'mrk_rest_process_release',      'mrk_rest_add_release_series',  10, 1 );
 add_filter( 'mrk_rest_process_preview',      'mrk_rest_rm_preview_redirect', 10, 1 );
 add_filter( 'mrk_rest_process_preview',      'mrk_rest_add_full_content',    10, 1 );
 
