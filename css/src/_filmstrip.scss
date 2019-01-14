@@ -27,6 +27,10 @@ section.filmstrip {
       display: flex !important;
       opacity: 0.5;
     }
+    &.current {
+      background: #444;
+      color: white;
+    }
     .card-img-top {
       margin: 0;
       height: 10em;

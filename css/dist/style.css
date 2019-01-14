@@ -1081,6 +1081,10 @@ section.filmstrip .VueCarousel {
   display: flex !important;
   opacity: 0.5; }
 
+.content-list .card.item.current, .filmstrip .card.item.current {
+  background: #444;
+  color: white; }
+
 .content-list .card.item .card-img-top, .filmstrip .card.item .card-img-top {
   margin: 0;
   height: 10em;

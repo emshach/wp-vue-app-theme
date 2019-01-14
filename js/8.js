@@ -43,9 +43,6 @@ __webpack_require__.r(__webpack_exports__);
     this.storedPost = Object.assign({}, this.sstate.nextpost);
     document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.title + ' | ' + this.sstate.site.title);
   },
-  updated: function updated() {
-    document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.title + ' | ' + this.sstate.site.title);
-  },
   methods: {
     showImg: function showImg() {
       this.show = true;
@@ -94,6 +91,12 @@ __webpack_require__.r(__webpack_exports__);
         return _this.canWatchNow(x) || x.restrictions.show;
       });
       return series.length && series;
+    }
+  },
+  watch: {
+    $route: function $route(to, from) {
+      this.storedPost = Object.assign({}, this.sstate.nextpost);
+      document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.title + ' | ' + this.sstate.site.title);
     }
   }
 });

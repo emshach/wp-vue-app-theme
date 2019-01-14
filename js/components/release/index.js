@@ -25,9 +25,6 @@ export default {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
   },
-  updated() {
-    document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
-  },
   methods: {
     showImg() {
       this.show = true;
@@ -71,6 +68,12 @@ export default {
       var episodes = _.orderBy( this.postData.series, [ 'release_number' ], [ 'asc' ]);
       var series = episodes.filter( x => this.canWatchNow(x) || x.restrictions.show );
       return series.length && series;
+    }
+  },
+  watch: {
+    $route( to, from ) {
+      this.storedPost = Object.assign( {}, this.sstate.nextpost );
+      document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
     }
   }
 };
