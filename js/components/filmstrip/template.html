@@ -5,12 +5,10 @@
               :navigation-enabled="true"
               :pagination-enabled="false"
               :scroll-per-page="false">
-      <slide v-for="( slide, index ) in contents" :key="index">
-        <b-card>
-          <h5 class="mt-0 mb-1">{{ item.title }}</h5>
-          <thumbnail :type="item.mediatype" :src="item.src"></thumbnail>
-          <metadata v-if="item.metadata" :stats="item.metadata"></metadata>
+      <slide v-for="( item, index ) in contents" :key="index">
+        <b-card :title="item.title" :img-src="item.thumbnail" img-top >
           <p class="card-text">{{ item.desc }}</p>
+          <watchbutton></watchbutton>
         </b-card>
       </slide>
       <div class="swiper-button-prev" slot="button-prev"></div>

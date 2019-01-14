@@ -9,6 +9,10 @@ export default {
       type: Array,
       default: () => []
     },
+    current: {
+      type: Number,
+      default: 0
+    },
     query: {
       type: String,
       default: ""

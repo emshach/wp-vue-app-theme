@@ -35,6 +35,7 @@ const SubscriptionMenu = () => import( './components/subscription-menu' );
 const ViewSwitcher     = () => import( './components/view-switcher'     );
 const UserBlock        = () => import( './components/user-block'        );
 const LoginForm        = () => import( './components/login-form'        );
+const WatchButton      = () => import( './components/watch-button'      );
 // const             = () => import( './components/'             );
 
 // const components with routes
@@ -89,6 +90,7 @@ Vue.component( 'view-switcher',     ViewSwitcher     );
 Vue.component( 'user-block',        UserBlock        );
 Vue.component( 'login-form',        LoginForm        );
 Vue.component( 'vue-recaptcha',     VueRecaptcha     );
+Vue.component( 'watch-button',      WatchButton      );
 // Vue.component( '',                             );
 
 //components with routes

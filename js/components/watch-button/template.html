@@ -1,0 +1,7 @@
+<b-btn v-if="target && canWatchNow( target )"
+       variant="primary" :to="target.path" size="lg"
+       class="float-right">{{ sayAction( target )}} now</b-btn>
+<b-btn v-else-if="needsSubscription( episode )" size="lg"
+       :to="target.preview ||{ path: '/members', query: { then: target.path }}"
+       class="watch subscribe-to-watch"
+       variant="warning">subscribe to {{ sayAction( episode ) }}</b-btn>
