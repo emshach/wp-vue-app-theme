@@ -1,7 +1,7 @@
 <section class="filmstrip">
   <h3 class="title" v-if="title">{{ title }}</h3>
   <div class="content" v-if="contents.length > 0">
-    <carousel :per-page="10"
+    <carousel :per-page="Math.max( 2, contents.length - 1 )"
               :navigation-enabled="true"
               :pagination-enabled="false"
               :scroll-per-page="false">
