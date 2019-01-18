@@ -32,6 +32,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     isSubscriber: function isSubscriber() {
       return this.user && (!this.user.as || this.user.as.subscriber) && this.user.membership;
+    },
+    isMembersRoute: function isMembersRoute() {
+      return this.$route.name == 'login' || this.$route.name.indexOf('members') == 0;
     }
   }
 });
