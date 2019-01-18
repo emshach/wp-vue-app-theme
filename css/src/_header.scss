@@ -265,10 +265,12 @@
   from { color: grey; }
 }
 .member-cta {
+  height: 1.6em;
   padding: 0 1em;
   border-radius: 3em;
   font-size: larger;
   color: lightyellow;
+  box-shadow: 0 0 9px lightyellow;
   .page > & {
     position: absolute;
     bottom: 180px;
