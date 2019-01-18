@@ -60,7 +60,7 @@
   }
   >.icon {
     position: absolute;
-    top: 3px;
+    top: 0px;
     left: -4px;
     padding: 3px;
     vertical-align: middle;
@@ -265,6 +265,8 @@
   from { color: grey; }
 }
 .member-cta {
+  padding: 0 1em;
+  border-radius: 3em;
   font-size: larger;
   color: lightyellow;
   .page > & {
