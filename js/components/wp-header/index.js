@@ -24,7 +24,7 @@ export default {
     },
     isMembersRoute() {
       return this.$route.name == 'login'
-         || this.$route.name.indexOf( 'members' ) == 0;
+         || (this.$route.name && this.$route.name.indexOf( 'members' ) == 0);
     }
   }
 };
