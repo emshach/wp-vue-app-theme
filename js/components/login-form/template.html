@@ -161,7 +161,10 @@
             <b-alert show>An email will be sent with a link that will log
               you in when you click it. This link will expire in 10
               minutes.</b-alert>
-            <b-btn variant="link" @click="enterPass">enter password instead</b-btn>
+            <b-btn v-if="passwordWrong" variant="link"
+                   @click="enterPass">try enter password again</b-btn>
+            <b-btn v-else variant="link"
+                   @click="enterPass">enter password instead</b-btn>
           </template>
         </div>
         <b-form-group v-else-if="action == 'register'"
@@ -195,7 +198,10 @@
                         v-model="formData.pass"
                         @change="changed"
                         required></b-form-input>
-          <b-btn variant="link" @click="sendLink">email login link instead</b-btn>
+          <b-btn v-if="passwordWrong" variant="link"
+                 @click="sendLink">forgot password</b-btn>
+          <b-btn v-else variant="link"
+                 @click="sendLink">email login link instead</b-btn>
         </b-form-group>
       </transition>
       <transition name="fade-in">

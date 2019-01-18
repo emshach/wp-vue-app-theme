@@ -264,3 +264,9 @@
 @keyframes close-search-icon {
   from { color: grey; }
 }
+.page > .member-cta {
+  position: absolute;
+  bottom: 150px;
+  font-size: larger;
+  z-index: 25;
+}

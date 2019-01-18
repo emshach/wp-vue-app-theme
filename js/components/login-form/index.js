@@ -26,6 +26,7 @@ export default {
       },
       errors: [],
       usernameTaken: false,
+      passwordWrong: false,
       emailTaken: false,
       feedbackStyle: {
         minHeight: 'auto',
@@ -70,6 +71,8 @@ export default {
         this.errors.push( "captcha: are you a robot?" );
         return false;
       }
+      this.usernameTaken = false;
+      this.passwordWrong = false;
       this.formData['g-recaptcha-response'] = this.recaptcha.response;
       this.formData.token = this.tokenLogin;
       axios.post( this.ajaxUrl, qs.stringify( this.formData ), {
@@ -83,6 +86,7 @@ export default {
            case 'wrong-password':
              this.action = 'login';
              this.errors.push( "the password you entered was incorrect" );
+             this.passwordWrong = true;
              break;
            case 'unknown-user':
            case 'unknown-email':

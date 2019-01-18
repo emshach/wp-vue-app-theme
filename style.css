@@ -432,6 +432,12 @@ main {
   from {
     color: grey; } }
 
+.page > .member-cta {
+  position: absolute;
+  bottom: 150px;
+  font-size: larger;
+  z-index: 25; }
+
 /**
  * partials/nav
  * ---
