@@ -55,7 +55,7 @@ __webpack_require__.r(__webpack_exports__);
       this.show = true;
     }
   },
-  calculated: {
+  computed: {
     user: function user() {
       return this.sstate.user;
     },

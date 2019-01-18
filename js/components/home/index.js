@@ -37,7 +37,7 @@ export default {
       this.show = true;
     }
   },
-  calculated: {
+  computed: {
     user() {
       return this.sstate.user;
     },
