@@ -20,7 +20,7 @@ export default {
       return ( episode.release_type == 'video' ? 'watch'
                : episode.release_type == 'audio'
                ? ( trans ? 'listen to' : 'listen' )
-               : 'see' );
+               : 'view' );
     },
     cardClasses( episode ) {
       if ( !episode || !episode.restrictions )

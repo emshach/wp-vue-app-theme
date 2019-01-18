@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
       return !episode.redirect;
     },
     sayAction: function sayAction(episode, trans) {
-      return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'see';
+      return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'view';
     },
     cardClasses: function cardClasses(episode) {
       if (!episode || !episode.restrictions) return {};

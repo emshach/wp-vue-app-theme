@@ -18,7 +18,8 @@
           <b-btn v-if="item.id == current" variant="link"
                  size="lg" class="float-right watching"
                  v-scroll-to="{ el: '#featured', container: '.page',
-                                x: false, y: true }">now watching</b-btn>
+                                x: false, y: true }">now {{
+            sayAction( item )}}ing</b-btn>
           <watch-button v-else :target="item"></watch-button>
         </b-card>
       </slide>
