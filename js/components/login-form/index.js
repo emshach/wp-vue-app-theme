@@ -150,6 +150,14 @@ export default {
     },
     actionRegister() {
       this.formData.action = 'mrkregister';
+      if ( this.action != 'register') {
+        this.action = 'register';
+        this.errors = [];
+        if ( /.+@.+\..+/.test( this.formData.login )) {
+          this.formData.email = this.formData.login;
+          this.formData.login = '';
+        }
+      }
     },
     showFormRegister() {
       this.action = 'register';
