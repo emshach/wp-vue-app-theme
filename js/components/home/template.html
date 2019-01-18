@@ -14,7 +14,7 @@
       </div>
     </transition>
   </div>
-  <b-btn class="member-cta" variant="warning"
+  <b-btn v-if="!isSubscriber" class="member-cta" variant="warning"
          to="/members">Become A VIP Today!</b-btn>
 
   <main role="main">

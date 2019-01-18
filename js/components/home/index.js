@@ -36,5 +36,14 @@ export default {
     showImg() {
       this.show = true;
     }
+  },
+  calculated: {
+    user() {
+      return this.sstate.user;
+    },
+    isSubscriber() {
+      return this.user && (!this.user.as || this.user.as.subscriber )
+         && this.user.membership;
+    }
   }
 };
