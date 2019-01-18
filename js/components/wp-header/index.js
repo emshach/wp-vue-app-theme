@@ -13,5 +13,14 @@ export default {
     this.title = this.sstate.site.title || '';
     this.description = this.sstate.site.description || '';
     this.logo = this.sstate.site.logo || '';
+  },
+  computed: {
+    user() {
+      return this.sstate.user;
+    },
+    isSubscriber() {
+      return this.user && (!this.user.as || this.user.as.subscriber )
+         && this.user.membership;
+    }
   }
 };
