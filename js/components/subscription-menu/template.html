@@ -24,7 +24,10 @@
       <div class="description col-12"><slot></slot></div>
       <div v-for="level in memberLevels" :key="level.id"
            class="col-12 col-md-4">
-        <b-card no-body class="member-level" :header="level.name">
+        <b-card no-body
+                :class="[ 'member-level', { current: currentLevel.id == level.id }]"
+                :header="level.name"
+                @click="setLevel( level )">
           <b-card-body>
             <div class="description" v-html="level.description"></div>
             <div class="price">${{
