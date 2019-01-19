@@ -10,12 +10,7 @@
   border-bottom-right-radius: 4px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
   border: none;
-  cursor: pointer;
   margin-bottom: 10px;
-  &.current {
-    background: #456;
-    cursor: default;
-  }
   .card-header {
     text-align: center;
     font-size: x-large;
@@ -25,6 +20,23 @@
     color: #fe9;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+  }
+  &.current {
+    background: #324;
+    .card-header {
+      background: #123;
+    }
+  }
+  &:not(.current):hover {
+    cursor: pointer;
+    background: #456;
+    .card-header {
+      background: #345;
+    }
+    .card-footer.buy a {
+      background: #fa0;
+      color: yellow;
+    }
   }
   .description {
     color: #eee;

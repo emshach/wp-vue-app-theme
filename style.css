@@ -945,12 +945,7 @@ section.info .comments.active {
   border-bottom-right-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   border: none;
-  cursor: pointer;
   margin-bottom: 10px; }
-
-.card.member-level.current {
-  background: #456;
-  cursor: default; }
 
 .card.member-level .card-header {
   text-align: center;
@@ -961,6 +956,23 @@ section.info .comments.active {
   color: #fe9;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px; }
+
+.card.member-level.current {
+  background: #324; }
+
+.card.member-level.current .card-header {
+  background: #123; }
+
+.card.member-level:not(.current):hover {
+  cursor: pointer;
+  background: #456; }
+
+.card.member-level:not(.current):hover .card-header {
+  background: #345; }
+
+.card.member-level:not(.current):hover .card-footer.buy a {
+  background: #fa0;
+  color: yellow; }
 
 .card.member-level .description {
   color: #eee;
