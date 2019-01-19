@@ -961,7 +961,7 @@ section.info .comments.active {
   background: #324; }
 
 .card.member-level.current .card-header {
-  background: #123; }
+  background: #213; }
 
 .card.member-level:not(.current):hover {
   cursor: pointer;
