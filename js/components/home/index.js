@@ -28,7 +28,7 @@ export default {
         this.img = rpost.background_image || '';
         window.setTimeout(() => {
           this.promos = rpost.promo_reel || [];
-        }, 6000 );
+        }, 4000 );
       });
     });
   },
