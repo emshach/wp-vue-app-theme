@@ -569,7 +569,7 @@ main {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
     position: relative;
     z-index: 2; }
-  #menu-nav > .menu-item.current-menu-item img {
+  #menu-nav > .menu-item.current-menu-item img, #menu-nav > .menu-item .router-link-active img {
     border: 1px solid rgba(50, 205, 255, 0.2);
     box-shadow: 0 0 20px rgba(50, 205, 255, 0.5); }
   #menu-nav > .menu-item:hover img {
@@ -711,7 +711,7 @@ main h1.title {
   margin-top: -1.6em;
   color: white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
-  font-size: 3.2rem; }
+  font-size: 2.8rem; }
 
 @media (max-width: 600px), (max-height: 600px) {
   main h1.title {
