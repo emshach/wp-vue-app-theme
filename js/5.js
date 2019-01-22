@@ -105,19 +105,18 @@ var ScrollHeader = {
     _.last_scroll = $el.scrollTop();
     $el.off('scroll').scroll(function (e) {
       var last = _.last_scroll;
+      var dir = _.scroll_dir;
       var cur = _.last_scroll = $el.scrollTop();
       var $head = $(header);
 
       if (last < cur) {
-        _.scroll_dir = 'down';
-        $head.stop().animate({
+        if (dir != (_.scroll_dir = 'down')) $head.stop().animate({
           top: -$head.innerHeight() - 10
-        }, 1000);
+        }, 'slow');
       } else if (last > cur) {
-        _.scroll_dir = 'up';
-        $head.stop().animate({
+        if (dir != (_.scroll_dir = 'up')) $head.stop().animate({
           top: 0
-        }, 1000);
+        }, 'slow');
       } else _.scroll_dir = 'none';
 
       var topH = $(top).innerHeight() - $head.innerHeight() + 20;
