@@ -112,16 +112,16 @@ var ScrollHeader = {
         _.scroll_dir = 'down';
         $head.stop().animate({
           top: -$head.innerHeight() - 10
-        });
+        }, 1000);
       } else if (last > cur) {
         _.scroll_dir = 'up';
         $head.stop().animate({
           top: 0
-        });
+        }, 1000);
       } else _.scroll_dir = 'none';
 
       var topH = $(top).innerHeight() - $head.innerHeight() + 20;
-      if (cur > topH) $head.removeClass('bg-clear').addClass('bg-dark');else $head.removeClass('bg-dark').addClass('bg-clear');
+      if (cur > topH) $head.removeClass('mrk-bg-clear').addClass('mrk-bg-dark');else $head.removeClass('mrk-bg-dark').addClass('mrk-bg-clear');
     });
   };
 

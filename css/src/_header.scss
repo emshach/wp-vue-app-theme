@@ -9,11 +9,11 @@
   top: 0;
   width: 100%;
   z-index: 10;
-  &.bg-dark {
+  &.mrk-bg-dark {
     background-color: rgba(0,0,0,0.8);
     animation: darken-header-bg 1s ease;
   }
-  &.bg-clear {
+  &.mrk-bg-clear {
     background-color: transparent;
     animation: lighten-header-bg 1s ease;
   }
