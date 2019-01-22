@@ -1,13 +1,15 @@
-<div>
-  <wp-header></wp-header>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="alert alert-danger" role="alert">
-          Page Not Found!
-        </div>
-      </div>
-    </div>
-  </div><!--end container-->
+<div class="not-found page">
+  <div id="bg-image-wrapper">
+    <!-- <transition name="fade-in"> -->
+    <!--   <img id="bg-image" :src="img" @load="showImg" v-show="show"/> -->
+    <!-- </transition> -->
+  </div>
+  <div class="featured-outer small"></div>
+
+  <main role="main">
+    <h1 class="title">Page Not Found</h1>
+    <div class="message">Very sorry! We couldn't find that page.</div>
+    <!-- TODO: search -->
+  </main>
   <wp-footer></wp-footer>
-<div>
+</div>

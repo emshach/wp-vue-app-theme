@@ -2,7 +2,6 @@
  * filmstrip
  */
 section.filmstrip {
-  max-width: none;
   .VueCarousel {
     background: rgba(0,0,0,0.05);
     border-bottom: 1px solid white;
@@ -13,6 +12,7 @@ section.filmstrip {
   margin-top: 40px;
   margin-bottom: 40px;
   min-height: 100px;
+  max-width: none;
   >.title {
     text-transform: capitalize;
     padding: 2px;

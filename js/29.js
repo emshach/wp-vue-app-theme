@@ -23,7 +23,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <wp-header></wp-header>\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <h1 class=\"main-title\">Search Results</h1>\n        <the-loop :posts=\"posts\" :pagers=\"pagers\"></the-loop>\n      </div><!--end col-lg-12-->\n    </div><!--end row-->\n  </div><!--end container-->\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"search page\">\n  <div id=\"bg-image-wrapper\">\n    <!-- <transition name=\"fade-in\"> -->\n    <!--   <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/> -->\n    <!-- </transition> -->\n  </div>\n  <div class=\"featured-outer small\"></div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">Search</h1> <!-- TODO: {{ search_term ? \" Results\" : ''}} -->\n    <!-- TODO: search results -->\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 

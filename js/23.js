@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <wp-header></wp-header>\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <div class=\"alert alert-danger\" role=\"alert\">\n          Page Not Found!\n        </div>\n      </div>\n    </div>\n  </div><!--end container-->\n  <wp-footer></wp-footer>\n<div>\n";
+module.exports = "<div class=\"not-found page\">\n  <div id=\"bg-image-wrapper\">\n    <!-- <transition name=\"fade-in\"> -->\n    <!--   <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/> -->\n    <!-- </transition> -->\n  </div>\n  <div class=\"featured-outer small\"></div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">Page Not Found</h1>\n    <div class=\"message\">Very sorry! We couldn't find that page.</div>\n    <!-- TODO: search -->\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 

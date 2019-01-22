@@ -1085,9 +1085,6 @@ section.info .comments.active {
 /**
  * filmstrip
  */
-section.filmstrip {
-  max-width: none; }
-
 section.filmstrip .VueCarousel {
   background: rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid white;
@@ -1096,7 +1093,8 @@ section.filmstrip .VueCarousel {
 .content-list, .filmstrip {
   margin-top: 40px;
   margin-bottom: 40px;
-  min-height: 100px; }
+  min-height: 100px;
+  max-width: none; }
 
 .content-list > .title, .filmstrip > .title {
   text-transform: capitalize;
