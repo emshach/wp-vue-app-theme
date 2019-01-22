@@ -111,12 +111,12 @@ var ScrollHeader = {
       if (last < cur) {
         _.scroll_dir = 'down';
         $head.stop().animate({
-          top: 0
+          top: -$head.innerHeight() - 10
         });
       } else if (last > cur) {
         _.scroll_dir = 'up';
         $head.stop().animate({
-          top: -$head.innerHeight() - 10
+          top: 0
         });
       } else _.scroll_dir = 'none';
 
