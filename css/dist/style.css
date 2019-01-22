@@ -196,7 +196,7 @@ main {
 .action-bar {
   display: flex;
   float: right;
-  padding: 1em 0 1em 150px; }
+  padding: 0.5em 0 0.5em 1em; }
 
 .action-bar > * {
   float: right; }
@@ -408,9 +408,8 @@ main {
   background-color: rgba(0, 0, 0, 0.8); }
 
 #view-switcher {
-  position: fixed;
-  top: 48px;
-  right: 20px; }
+  margin-top: 0.5em;
+  float: right; }
 
 #view-switcher * {
   font-size: 12px; }
