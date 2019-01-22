@@ -1,5 +1,4 @@
-<?php $template_dir = get_template_directory_uri();
-?><!doctype html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8">

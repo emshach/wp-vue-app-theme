@@ -938,7 +938,7 @@ var WpHeader = function WpHeader() {
 };
 
 var DownArrow = function DownArrow() {
-  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/down-arrow */ "./js/components/down-arrow/index.js"));
+  return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./components/down-arrow */ "./js/components/down-arrow/index.js"));
 };
 
 var SearchForm = function SearchForm() {
@@ -946,19 +946,19 @@ var SearchForm = function SearchForm() {
 };
 
 var CommentForm = function CommentForm() {
-  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/comment-form */ "./js/components/comment-form/index.js"));
+  return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./components/comment-form */ "./js/components/comment-form/index.js"));
 };
 
 var Comments = function Comments() {
-  return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./components/comments */ "./js/components/comments/index.js"));
+  return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./components/comments */ "./js/components/comments/index.js"));
 };
 
 var Carousel = function Carousel() {
-  return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/mrk-carousel */ "./js/components/mrk-carousel/index.js"));
+  return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/mrk-carousel */ "./js/components/mrk-carousel/index.js"));
 };
 
 var ContentList = function ContentList() {
-  return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./components/content-list */ "./js/components/content-list/index.js"));
+  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/content-list */ "./js/components/content-list/index.js"));
 };
 
 var ContentSection = function ContentSection() {
@@ -970,7 +970,7 @@ var Filmstrip = function Filmstrip() {
 };
 
 var NavMenu = function NavMenu() {
-  return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/nav-menu */ "./js/components/nav-menu/index.js"));
+  return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/nav-menu */ "./js/components/nav-menu/index.js"));
 };
 
 var SubscriptionMenu = function SubscriptionMenu() {
@@ -990,7 +990,7 @@ var LoginForm = function LoginForm() {
 };
 
 var WatchButton = function WatchButton() {
-  return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/watch-button */ "./js/components/watch-button/index.js"));
+  return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/watch-button */ "./js/components/watch-button/index.js"));
 }; // const             = () => import( './components/'             );
 // const components with routes
 
@@ -1000,7 +1000,7 @@ var PageNotFound = function PageNotFound() {
 };
 
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ./components/home */ "./js/components/home/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/home */ "./js/components/home/index.js"));
 };
 
 var Login = function Login() {
@@ -1008,11 +1008,11 @@ var Login = function Login() {
 };
 
 var About = function About() {
-  return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/about */ "./js/components/about/index.js"));
+  return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/about */ "./js/components/about/index.js"));
 };
 
 var Contact = function Contact() {
-  return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./components/contact */ "./js/components/contact/index.js"));
+  return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./components/contact */ "./js/components/contact/index.js"));
 };
 
 var Single = function Single() {
@@ -1028,7 +1028,7 @@ var Post = function Post() {
 };
 
 var Archive = function Archive() {
-  return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/archive */ "./js/components/archive/index.js"));
+  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/archive */ "./js/components/archive/index.js"));
 };
 
 var Search = function Search() {
@@ -1040,7 +1040,7 @@ var Program = function Program() {
 };
 
 var Release = function Release() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./components/release */ "./js/components/release/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./components/release */ "./js/components/release/index.js"));
 };
 
 var PreviewProgram = function PreviewProgram() {
@@ -1048,7 +1048,7 @@ var PreviewProgram = function PreviewProgram() {
 };
 
 var PreviewRelease = function PreviewRelease() {
-  return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/preview-release */ "./js/components/preview-release/index.js"));
+  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/preview-release */ "./js/components/preview-release/index.js"));
 };
 
 var Members = function Members() {

@@ -1,138 +1,136 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./js/components/mrk-carousel/index.js":
-/*!*********************************************!*\
-  !*** ./js/components/mrk-carousel/index.js ***!
-  \*********************************************/
+/***/ "./js/components/home/index.js":
+/*!*************************************!*\
+  !*** ./js/components/home/index.js ***!
+  \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mixins_media_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/media-actions */ "./js/mixins/media-actions.js");
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/wpapix */ "./js/lib/wpapix.js");
+/* harmony import */ var _lib_scroll_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/scroll-header */ "./js/lib/scroll-header.js");
+/* harmony import */ var he__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! he */ "./node_modules/he/he.js");
+/* harmony import */ var he__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(he__WEBPACK_IMPORTED_MODULE_3__);
 
-var carousels = 0;
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/mrk-carousel/template.html"),
-  mixins: [_mixins_media_actions__WEBPACK_IMPORTED_MODULE_0__["default"]],
-  props: {
-    topic: {
-      type: String,
-      default: ""
-    },
-    slides: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    id: {
-      type: String,
-      default: function _default() {
-        return "carousel-" + ++carousels;
-      }
-    },
-    background: {
-      type: String,
-      default: "transparent"
-    },
-    interval: {
-      type: Number,
-      default: 15000
-    }
-  },
+  template: __webpack_require__(/*! ./template.html */ "./js/components/home/template.html"),
   data: function data() {
     return {
-      loading: true,
-      slide: 0,
-      sliding: null // options: {
-      //   pagination: {
-      //     direction: 'horizontal',
-      //     el: '.swiper-pagination',
-      //     speed: 15000,
-      //     loop: true
-      //   }
-      // }
-
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      promos: [],
+      latest: [],
+      trending: [],
+      recent: [],
+      history: [],
+      discovery: [],
+      favs: [],
+      img: '',
+      title: '',
+      show: false
     };
   },
   mounted: function mounted() {
-    this.getSlides();
+    var _this = this;
+
+    document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.sstate.site.title);
+
+    _lib_wpapix__WEBPACK_IMPORTED_MODULE_1__["default"].then(function (wpapix) {
+      var path = new wpapix.Path();
+      path.fetch().done(function (rpost) {
+        console.log('got home page', rpost);
+        _this.title = rpost.title.rendered;
+        _this.img = rpost.background_image || '';
+        window.setTimeout(function () {
+          _this.promos = rpost.promo_reel || [];
+        }, 4000);
+      });
+    });
+
+    this.$nextTick(function () {
+      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_2__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
+    });
   },
   methods: {
-    onSlideStart: function onSlideStart(slide) {
-      this.sliding = true;
+    showImg: function showImg() {
+      this.show = true;
+    }
+  },
+  computed: {
+    user: function user() {
+      return this.sstate.user;
     },
-    onSlideEnd: function onSlideEnd(slide) {
-      this.sliding = false;
-    },
-    getSlides: function getSlides() {
-      if (!this.slides.length && this.topic) {// TODO: search using topic, get posts
-      }
+    isSubscriber: function isSubscriber() {
+      return this.user && (!this.user.as || this.user.as.subscriber) && this.user.membership;
     }
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/mrk-carousel/template.html":
-/*!**************************************************!*\
-  !*** ./js/components/mrk-carousel/template.html ***!
-  \**************************************************/
+/***/ "./js/components/home/template.html":
+/*!******************************************!*\
+  !*** ./js/components/home/template.html ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<carousel :autoplay=\"true\" :per-page=\"1\" :autoplay-timeout=\"15000\" :loop=\"true\"\n          pagination-color=\"#000\" pagination-active-color=\"#fff\"\n          id=\"featured\">\n  <slide v-for=\"( slide, index ) in slides\" :key=\"slide.id\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div :class=\"[ 'media-wrapper', 'col', 'col-12',\n                       { 'col-md-8': slide.show_text }]\">\n          <template v-if=\"slide.type == 'attachment'\">\n            <img v-if=\"slide.media_type == 'image'\" :src=\"slide.source_url\"\n                 class=\"media\" />\n            <video v-else-if=\"slide.mime_type.indexOf( 'video' ) == 0\"\n                   :src=\"slide.source_url\" class=\"media\"\n                   controls autoplay>\n              {{ slide.alt_text }}\n            </video>\n            <audio v-else-if=\"slide.mime_type.indexOf( 'audio' ) == 0\"\n                   :src=\"slide.source_url\" class=\"media\" controls>\n              {{ slide.alt_text }}\n            </audio>\n          </template>\n        </div>\n        <div v-if=\"slide.show_text\" class=\"col col-12 col-md-4\">\n          <h2 v-if=\"slide.title\" v-html=\"slide.title.rendered\"></h2>\n          <div v-if=\"slide.excerpt\" class=\"excerpt\"\n               v-html=\"slide.excerpt.rendered\"></div>\n          <div v-else-if=\"slide.caption\" class=\"caption\"\n               v-html=\"slide.caption.rendered\"></div>\n          <!-- <div v-if=\"slide.description\" class=\"description\" -->\n          <!--      v-html=\"slide.description.rendered\"></div> -->\n          <router-link v-if=\"slide.read_more\"\n                       :to=\"slide.full_content.path\"\n                       class=\"read-more\">read_more</router-link>\n          <b-btn v-if=\"slide.full_content\n                       && canWatchNow( slide.full_content )\"\n                 variant=\"primary\" :to=\"slide.full_content.path\" size=\"lg\"\n                 class=\"float-right\">{{\n            sayAction( slide.full_content )}} now</b-btn>\n          <b-btn v-else variant=\"warning\"\n                 size=\"lg\" class=\"float-right\"\n                 v-scroll-to=\"{ el: 'main', container: '.page',\n                              x: false, y: true }\">\n            subscribe for full content</b-btn>\n        </div>\n        <!-- TODO: if paid content, this link should be different, maybe it's\n             own component -->\n      </div>\n    </div>\n  </slide>\n  <slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </slide>\n</carousel>\n";
+module.exports = "<div class=\"home page\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\">\n      <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n    <transition name=\"fade-slow\" appear>\n      <div v-if=\"promos.length\" class=\"featured-wrapper\" key=\"featured\">\n        <mrk-carousel id=\"featured\"\n                      :slides=\"promos\"></mrk-carousel>\n      </div>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <content-list title=\"latest\" :contents=\"latest\"></content-list>\n    <filmstrip title=\"trending\" :contents=\"trending\"></filmstrip>\n    <filmstrip title=\"recent activity\" :contents=\"recent\"></filmstrip>\n    <filmstrip title=\"pull up\" :contents=\"history\"></filmstrip>\n    <filmstrip title=\"you might like\" :contents=\"discovery\"></filmstrip>\n    <filmstrip title=\"my faves\" :contents=\"favs\"></filmstrip>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ }),
 
-/***/ "./js/mixins/media-actions.js":
-/*!************************************!*\
-  !*** ./js/mixins/media-actions.js ***!
-  \************************************/
+/***/ "./js/lib/scroll-header.js":
+/*!*********************************!*\
+  !*** ./js/lib/scroll-header.js ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/store */ "./js/lib/store.js");
+var ScrollHeader = {
+  last_scroll: 0,
+  scroll_dir: 'none'
+};
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  methods: {
-    canWatchNow: function canWatchNow(episode) {
-      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
+(function ($) {
+  ScrollHeader.init = function (header, top) {
+    var _ = ScrollHeader;
+    var $el = $("#app>.page");
+    _.last_scroll = $el.scrollTop();
+    $el.off('scroll').scroll(function (e) {
+      var last = _.last_scroll;
+      var cur = _.last_scroll = $el.scrollTop();
+      var $head = $(header);
 
-      if (user.as) {
-        var as = user.as;
-        var rst = episode.restrictions;
-        if (as.admin || rst.public) return true;
-        if (as.subscriber && rst.members) return true;
-        if (as.logged_in && rst.auth) return true;
-        return false;
-      }
+      if (last < cur) {
+        _.scroll_dir = 'down';
+        $head.stop().animate({
+          top: 0
+        });
+      } else if (last > cur) {
+        _.scroll_dir = 'up';
+        $head.stop().animate({
+          top: -$head.innerHeight() - 10
+        });
+      } else _.scroll_dir = 'none';
 
-      return !episode.redirect;
-    },
-    sayAction: function sayAction(episode, trans) {
-      return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'view';
-    },
-    cardClasses: function cardClasses(episode) {
-      if (!episode || !episode.restrictions) return {};
-      return {
-        private: episode.restrictions.private,
-        public: episode.restrictions.public,
-        auth: episode.restrictions.auth,
-        payperview: episode.restrictions.payperview,
-        members: episode.restrictions.members,
-        hidden: !episode.restrictions.show && !episode.restrictions.public
-      };
-    },
-    needsSubscription: function needsSubscription(episode) {
-      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
-      return episode.restrictions.members && (!user.as || !user.as.subscriber);
-    }
-  }
-});
+      var topH = $(top).innerHeight() - $head.innerHeight() + 20;
+      if (cur > topH) $head.removeClass('bg-clear').addClass('bg-dark');else $head.removeClass('bg-dark').addClass('bg-clear');
+    });
+  };
+
+  ScrollHeader.destroy = function () {
+    $("#app>.page").off('scroll');
+  };
+})(jQuery);
+
+/* harmony default export */ __webpack_exports__["default"] = (ScrollHeader);
 
 /***/ })
 
