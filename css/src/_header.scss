@@ -6,6 +6,7 @@
 // Header container
 #masthead {
   position: absolute;
+  top: 0;
   width: 100%;
   z-index: 10;
 }
@@ -54,7 +55,7 @@
     padding-right: 3em;
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
-    width: 30px;
+    width: 86px;
     opacity: 0;
     animation: close-search-input 1s ease;
   }
@@ -101,6 +102,9 @@
 }
 
 // Logo
+#site-brand {
+  width: 10em;
+}
 .logo {
   float: left;
   @include breakpoint( $max-phone ) {
@@ -248,7 +252,7 @@
 }
 @keyframes open-search-input {
   from {
-    width: 30px;
+    width: 86px;
     opacity: 0;
   }
 }

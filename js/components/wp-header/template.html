@@ -6,9 +6,11 @@
     <user-block></user-block>
     <search-form></search-form>
   </div>
-  <div class="logo">
-    <router-link to="/"><img :src="logo" class="logo-img"/></router-link>
+  <div id="site-brand">
+    <div class="logo">
+      <router-link to="/"><img :src="logo" class="logo-img"/></router-link>
+    </div>
+    <h1 class="site-title"><router-link to="/">{{ title }}</router-link></h1>
+    <p class="site-description">{{ description }}</p>
   </div>
-  <h1 class="site-title"><router-link to="/">{{ title }}</router-link></h1>
-  <p class="site-description">{{ description }}</p>
 </header>

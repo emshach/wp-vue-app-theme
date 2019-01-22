@@ -186,6 +186,7 @@ main {
  */
 #masthead {
   position: absolute;
+  top: 0;
   width: 100%;
   z-index: 10; }
 
@@ -233,7 +234,7 @@ main {
   padding-right: 3em;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
-  width: 30px;
+  width: 86px;
   opacity: 0;
   animation: close-search-input 1s ease; }
 
@@ -274,6 +275,9 @@ main {
 
 #bg-image-new {
   display: none; }
+
+#site-brand {
+  width: 10em; }
 
 .logo {
   float: left; }
@@ -416,7 +420,7 @@ main {
 
 @keyframes open-search-input {
   from {
-    width: 30px;
+    width: 86px;
     opacity: 0; } }
 
 @keyframes close-search-input {
