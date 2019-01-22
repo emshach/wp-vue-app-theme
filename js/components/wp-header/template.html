@@ -1,11 +1,11 @@
 <header id="masthead" class="header clear">
   <div id="banner-notices"></div>
   <div class="action-bar">
+    <view-switcher></view-switcher>
     <b-btn v-if="!isSubscriber && !isMembersRoute" class="member-cta"
            variant="warning" to="/members">Become A VIP Today!</b-btn>
     <user-block></user-block>
     <search-form></search-form>
-    <view-switcher></view-switcher>
   </div>
   <div id="site-brand">
     <div class="logo">
