@@ -1,5 +1,6 @@
 import store from '../../lib/store';
 import _wpapix from '../../lib/wpapix';
+import ScrollHeader from '../../lib/scroll-header';
 import he from 'he';
 export default {
   template: require( './template.html' ),
@@ -26,6 +27,9 @@ export default {
         this.title = rpost.title.rendered;
         this.img = rpost.background_image || '';
       });
+    });
+    this.$nextTick(() => {
+      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
     });
   },
   methods: {

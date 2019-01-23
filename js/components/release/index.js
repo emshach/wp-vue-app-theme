@@ -1,6 +1,7 @@
 import routeEvents from '../../lib/route-events';
 import store from '../../lib/store';
 import media_actions from '../../mixins/media-actions';
+import ScrollHeader from '../../lib/scroll-header';
 import he from 'he';
 import _ from 'lodash';
 export default {
@@ -24,6 +25,9 @@ export default {
   mounted() {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
+    this.$nextTick(() => {
+      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
+    });
   },
   methods: {
     showImg() {

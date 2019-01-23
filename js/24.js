@@ -1,32 +1,28 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[24],{
 
-/***/ "./js/components/page/index.js":
-/*!*************************************!*\
-  !*** ./js/components/page/index.js ***!
-  \*************************************/
+/***/ "./js/components/page-not-found/index.js":
+/*!***********************************************!*\
+  !*** ./js/components/page-not-found/index.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/route-events */ "./js/lib/route-events.js");
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/page/template.html"),
-  props: ['post'],
-  beforeRouteUpdate: _lib_route_events__WEBPACK_IMPORTED_MODULE_0__["default"].toPath
+  template: __webpack_require__(/*! ./template.html */ "./js/components/page-not-found/template.html")
 });
 
 /***/ }),
 
-/***/ "./js/components/page/template.html":
-/*!******************************************!*\
-  !*** ./js/components/page/template.html ***!
-  \******************************************/
+/***/ "./js/components/page-not-found/template.html":
+/*!****************************************************!*\
+  !*** ./js/components/page-not-found/template.html ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <wp-header></wp-header>\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <div v-if=\"post[0]\">\n          <h1>{{ post[0].title.rendered }}</h1>\n          <div class=\"content\" v-html=\"post[0].content.rendered\"></div>\n        </div>\n        <div v-else>\n          <nopost></nopost>\n        </div>\n      </div><!--end col-lg-12-->\n    </div><!--end row-->\n  </div><!--end container-->\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"not-found page\">\n  <div id=\"bg-image-wrapper\">\n    <!-- <transition name=\"fade-in\"> -->\n    <!--   <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/> -->\n    <!-- </transition> -->\n  </div>\n  <div class=\"featured-outer small\"></div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">Page Not Found</h1>\n    <div class=\"message\">Very sorry! We couldn't find that page.</div>\n    <!-- TODO: search -->\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ })
 

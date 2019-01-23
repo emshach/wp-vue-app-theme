@@ -1,4 +1,5 @@
 import store from '../../lib/store';
+import ScrollHeader from '../../lib/scroll-header';
 import he from 'he';
 export default {
   template: require( './template.html' ),
@@ -17,6 +18,9 @@ export default {
     window.setTimeout(() => {
       this.promos = this.promo_reel;
     }, 1500 );
+    this.$nextTick(() => {
+      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
+    });
   },
   methods: {
     showImg() {

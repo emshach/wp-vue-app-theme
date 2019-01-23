@@ -1,6 +1,7 @@
 import routeEvents from '../../lib/route-events';
 import store from '../../lib/store';
 import media_actions from '../../mixins/media-actions';
+import ScrollHeader from '../../lib/scroll-header';
 export default {
   template: require( './template.html' ),
   mixins: [ media_actions ],
@@ -21,6 +22,9 @@ export default {
   beforeRouteUpdate: routeEvents.toPreviewRelease,
   mounted() {
     this.storedPost = Object.assign( {}, this.sstate.nextpost );
+    this.$nextTick(() => {
+      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
+    });
   },
   methods: {
     showImg() {
