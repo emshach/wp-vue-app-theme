@@ -569,7 +569,8 @@ main {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
     position: relative;
     z-index: 2; }
-  #menu-nav > .menu-item.current-menu-item img, #menu-nav > .menu-item .router-link-active img {
+  #menu-nav > .menu-item.current-menu-item img, #menu-nav > .menu-item .router-link-active:not(.home) img,
+  #menu-nav > .menu-item .router-link-exact-active img {
     border: 1px solid rgba(50, 205, 255, 0.2);
     box-shadow: 0 0 20px rgba(50, 205, 255, 0.5); }
   #menu-nav > .menu-item:hover img {

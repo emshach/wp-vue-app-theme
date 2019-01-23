@@ -35,6 +35,15 @@ export default {
     },
     closeMenu() {
       navSlider.toggleMenu( this.menuOpen = false, 150 );
+    },
+    slug( item ) {
+      var slug = item.url;
+      if ( slug == '/' ) return 'home';
+      if ( slug.startsWith("/") )
+        slug = slug.substr(1);
+      if ( slug.endsWith("/") )
+        slug = slug.slice( 0, -1 );
+      return slug;
     }
   },
   watch: {
