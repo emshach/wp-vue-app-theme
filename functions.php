@@ -154,7 +154,10 @@ function mrk_filter_menu_items( $menu ) {
  * get current user info
  */
 function mrk_get_user_info( $user ) {
-    if (! $user->ID ) return '';
+    if ( empty( $user )) return '';
+    if ( is_int( $user ))
+        $user = get_userdata( $user );
+    if ( !$user || !$user->ID ) return '';
     return [
         'id'           => $user->ID,
         'name'         => $user->user_login,
@@ -1161,7 +1164,7 @@ function mrk_ajax_login() {
                 } else {
                     // success, logged in
                     $res[ 'next' ] = 'success';
-                    $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
+                    $res[ 'user' ] = mrk_get_user_info( $user );
                 }
             } else {
                 // wrong password
@@ -1185,7 +1188,7 @@ function mrk_ajax_login() {
                 } else {
                     // success, logged in
                     $res[ 'next' ] = 'success';
-                    $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
+                    $res[ 'user' ] = mrk_get_user_info( $user );
                 }
             } else {
                 // wrong password
@@ -1226,7 +1229,7 @@ function mrk_ajax_register() {
             } else {
                 // success, logged in
                 $res[ 'next' ] = 'success';
-                $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
+                $res[ 'user' ] = mrk_get_user_info( $user );
             }
         } elseif ( $token ) {
             if ( $confirm )
@@ -1251,7 +1254,7 @@ function mrk_ajax_register() {
                                 'remember'      => true ], false );
             $res[ 'next' ] = 'success-email';
             if (! is_wp_error( $user ))
-                $res[ 'user' ] = mrk_get_user_info( get_userdata( $user ));
+                $res[ 'user' ] = mrk_get_user_info( $user );
         }
     } else {
         // register default
