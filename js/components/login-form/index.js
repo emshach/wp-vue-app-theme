@@ -29,11 +29,11 @@ export default {
       passwordWrong: false,
       emailTaken: false,
       feedbackStyle: {
-        minHeight: 'auto',
-        minWidth: 'auto'
+        minHeight: '',
+        minWidth: ''
       },
       messageStyle: {
-        minHeight: 'auto'
+        minHeight: ''
       },
       formData: {
         action: 'mrklogin',
@@ -195,7 +195,9 @@ export default {
       this.tokenLogin = false;
     },
     reload() {
-      window.location.reload();
+      window.setTimeout(() => {
+        window.location.reload();
+      }, 2000 );
     },
     goBack(e) {
       e.stopPropagation();

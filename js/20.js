@@ -47,11 +47,11 @@ __webpack_require__.r(__webpack_exports__);
       passwordWrong: false,
       emailTaken: false,
       feedbackStyle: {
-        minHeight: 'auto',
-        minWidth: 'auto'
+        minHeight: '',
+        minWidth: ''
       },
       messageStyle: {
-        minHeight: 'auto'
+        minHeight: ''
       },
       formData: {
         action: 'mrklogin',
@@ -242,7 +242,9 @@ __webpack_require__.r(__webpack_exports__);
       this.tokenLogin = false;
     },
     reload: function reload() {
-      window.location.reload();
+      window.setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     },
     goBack: function goBack(e) {
       e.stopPropagation();
