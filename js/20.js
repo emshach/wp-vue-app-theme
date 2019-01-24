@@ -242,9 +242,7 @@ __webpack_require__.r(__webpack_exports__);
       this.tokenLogin = false;
     },
     reload: function reload() {
-      window.setTimeout(function () {
-        window.location.reload();
-      }, 2000);
+      window.location.reload();
     },
     goBack: function goBack(e) {
       e.stopPropagation();

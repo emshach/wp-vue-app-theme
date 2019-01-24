@@ -195,9 +195,7 @@ export default {
       this.tokenLogin = false;
     },
     reload() {
-      window.setTimeout(() => {
-        window.location.reload();
-      }, 2000 );
+      window.location.reload();
     },
     goBack(e) {
       e.stopPropagation();

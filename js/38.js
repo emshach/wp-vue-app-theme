@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header id=\"masthead\" class=\"header clear\">\n  <div id=\"banner-notices\"></div>\n  <div class=\"action-bar\">\n    <view-switcher></view-switcher>\n    <b-btn v-if=\"!isSubscriber && !isMembersRoute\" class=\"member-cta\"\n           variant=\"warning\" to=\"/members\">Become A VIP Today!</b-btn>\n    <user-block></user-block>\n    <search-form></search-form>\n  </div>\n  <div id=\"site-brand\">\n    <div class=\"logo\">\n      <router-link to=\"/\"><img :src=\"logo\" class=\"logo-img\"/></router-link>\n    </div>\n    <h1 class=\"site-title\"><router-link to=\"/\">{{ title }}</router-link></h1>\n    <p class=\"site-description\">{{ description }}</p>\n  </div>\n</header>\n";
+module.exports = "<header id=\"masthead\" class=\"header clear\">\n  <div id=\"banner-notices\"></div>\n  <div class=\"action-bar\">\n    <b-btn v-if=\"!isSubscriber && !isMembersRoute\" class=\"member-cta\"\n           variant=\"warning\" to=\"/members\">Become A VIP Today!</b-btn>\n    <view-switcher></view-switcher>\n    <user-block></user-block>\n    <search-form></search-form>\n  </div>\n  <div id=\"site-brand\">\n    <div class=\"logo\">\n      <router-link to=\"/\"><img :src=\"logo\" class=\"logo-img\"/></router-link>\n    </div>\n    <h1 class=\"site-title\"><router-link to=\"/\">{{ title }}</router-link></h1>\n    <p class=\"site-description\">{{ description }}</p>\n  </div>\n</header>\n";
 
 /***/ })
 
