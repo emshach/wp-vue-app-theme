@@ -11,11 +11,12 @@
                  class="media" />
             <video v-else-if="slide.mime_type.indexOf( 'video' ) == 0"
                    :src="slide.source_url" class="media"
-                   controls autoplay>
+                   controls autoplay playsinline controlsList="nodownload">
               {{ slide.alt_text }}
             </video>
             <audio v-else-if="slide.mime_type.indexOf( 'audio' ) == 0"
-                   :src="slide.source_url" class="media" controls>
+                   :src="slide.source_url" class="media" controls
+                   controlsList="nodownload">
               {{ slide.alt_text }}
             </audio>
           </template>

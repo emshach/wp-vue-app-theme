@@ -11,7 +11,7 @@
           <div :class="[ 'media-wrapper', 'col-12', wideMode ? '' : 'col-md-8']">
             <video v-if="postData.release_type == 'video'"
                    :src="postData.source_url" class="media" autoplay controls
-                   controlsList="nodownload">
+                   playsinline controlsList="nodownload">
               {{ postData.alt_text }}
             </video>
             <audio v-if="postData.release_type == 'audio'"
