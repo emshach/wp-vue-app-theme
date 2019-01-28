@@ -152,7 +152,10 @@ NavSlider = {
            .animate({ top: -12 }, t_ease_in )
            .find( ".text" ).stop()
            .animate({ bottom: "95%" }, tt_ease_in )
-           .animate({ opacity: 1 }, tt_ease_in1 );
+           .animate({ opacity: 1 }, tt_ease_in1 )
+           .end()
+           .find( ".message" ).stop()
+           .animate({ bottom: 12 }, t_ease_in );
       },
       function(){ //mouse out
         if ( !self.wide ) return;
@@ -161,7 +164,10 @@ NavSlider = {
            .animate({ top: 0 }, t_ease_out )
            .find( ".text" ).stop()
            .animate({ bottom: 0 }, tt_ease_out1 )
-           .animate({ opacity: 0 }, tt_ease_out );
+           .animate({ opacity: 0 }, tt_ease_out )
+           .end()
+           .find( ".message" ).stop()
+           .animate({ bottom: 0 }, t_ease_out );
       }
     );
     t_current.hover(
@@ -172,7 +178,10 @@ NavSlider = {
            .animate({ top: -12 }, t_ease_in )
            .find(".text").stop()
            .animate({ bottom: "95%" }, tt_ease_in )
-           .animate({ opacity: 1 }, tt_ease_in1 );
+           .animate({ opacity: 1 }, tt_ease_in1 )
+           .end()
+           .find( ".message" ).stop()
+           .animate({ bottom: 12 }, t_ease_in );
       },
       function(){ //mouse out
         if ( !self.wide ) return;
@@ -181,7 +190,10 @@ NavSlider = {
            .animate({ top: 0 }, t_ease_out )
            .find( ".text" ).stop()
            .animate({ bottom: 0 }, tt_ease_out1 )
-           .animate({ opacity: 0 }, tt_ease_out );
+           .animate({ opacity: 0 }, tt_ease_out )
+           .end()
+           .find( ".message" ).stop()
+           .animate({ bottom: 0 }, t_ease_out );
       }
     );
 
