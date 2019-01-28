@@ -35,6 +35,10 @@
             <router-link :to="item.url" @click.native="closeMenu">
               <img :src="item.thumb" />
               <span class="text" v-html="item.title"></span>
+              <div v-if="item.message" class="message"
+                   v-html="item.message"></div>
+              <div v-if="item.message_mobile" class="message mobile"
+                   v-html="item.message_mobile"></div>
             </router-link>
           </li>
         </ul>

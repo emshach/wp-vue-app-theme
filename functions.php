@@ -133,18 +133,20 @@ function mrk_filter_menu_items( $menu ) {
     foreach( $menu as $item ) {
         if ( $item->post_status != 'publish' )
             continue;
-        if ( get_field( 'content_page', $item->object_id )
-            && get_field( 'free', $item->object_id ))
+        $oid = $item->object_id;
+        if ( get_field( 'content_page', $oid ) && get_field( 'free', $oid ))
             $item->classes[] = 'free';
-        $img = get_field('menu_thumbnail', $item->object_id);
+        $img = get_field( 'menu_thumbnail', $oid);
         $output[] = [
-            'id' => $item->ID,
-            'classes' => $item->classes,
-            'title' => $item->title,
-            'object' => $item->object,
-            'object_id' => $item->object_id,
-            'url' => wp_make_link_relative( $item->url ),
-            'thumb' => $img
+            'id'             => $item->ID,
+            'classes'        => $item->classes,
+            'title'          => $item->title,
+            'object'         => $item->object,
+            'object_id'      => $oid,
+            'url'            => wp_make_link_relative( $item->url ),
+            'message'        => get_field( 'thumbnail_message', $oid ),
+            'message_mobile' => get_field( 'thumbnail_message_mobile', $oid ),
+            'thumb'          => $img
         ];
     }
     return $output;
