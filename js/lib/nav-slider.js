@@ -155,7 +155,7 @@ NavSlider = {
            .animate({ opacity: 1 }, tt_ease_in1 )
            .end()
            .find( ".message" ).stop()
-           .animate({ bottom: 12 }, t_ease_in );
+           .animate({ bottom: 20 }, t_ease_in );
       },
       function(){ //mouse out
         if ( !self.wide ) return;
@@ -181,7 +181,7 @@ NavSlider = {
            .animate({ opacity: 1 }, tt_ease_in1 )
            .end()
            .find( ".message" ).stop()
-           .animate({ bottom: 12 }, t_ease_in );
+           .animate({ bottom: 20 }, t_ease_in );
       },
       function(){ //mouse out
         if ( !self.wide ) return;

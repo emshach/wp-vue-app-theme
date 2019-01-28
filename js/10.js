@@ -304,7 +304,7 @@ NavSlider = {
         }, tt_ease_in).animate({
           opacity: 1
         }, tt_ease_in1).end().find(".message").stop().animate({
-          bottom: 12
+          bottom: 20
         }, t_ease_in);
       }, function () {
         //mouse out
@@ -329,7 +329,7 @@ NavSlider = {
         }, tt_ease_in).animate({
           opacity: 1
         }, tt_ease_in1).end().find(".message").stop().animate({
-          bottom: 12
+          bottom: 20
         }, t_ease_in);
       }, function () {
         //mouse out
