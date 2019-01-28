@@ -652,7 +652,16 @@ main {
 
 @media (max-width: 600px), (max-height: 600px) {
   #menu-nav .menu-item .message.mobile {
-    display: inline; } }
+    display: inline;
+    float: right;
+    /* background: cornflowerblue; */
+    color: #5bf;
+    /* padding: 4px 20px; */
+    /* margin-top: -3px; */
+    /* margin-left: 2em; */
+    /* border-radius: 8px; */
+    /* text-shadow: 0 0 4px lightblue; */
+    font-weight: bold; } }
 
 @media (max-width: 600px), (max-height: 600px) {
   .mobile-logo {

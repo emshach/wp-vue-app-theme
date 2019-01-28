@@ -217,6 +217,15 @@
     @include breakpoint( $max-phone-wh ) {
       &.mobile {
         display: inline;
+        float: right;
+        /* background: cornflowerblue; */
+        color: #5bf;
+        /* padding: 4px 20px; */
+        /* margin-top: -3px; */
+        /* margin-left: 2em; */
+        /* border-radius: 8px; */
+        /* text-shadow: 0 0 4px lightblue; */
+        font-weight: bold;
       }}
   }}
 
