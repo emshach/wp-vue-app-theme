@@ -1101,7 +1101,6 @@ function mrk_enqueue_scripts() {
         'ajax'          => [
             'url' => admin_url( 'admin-ajax.php' ),
             'sec' => wp_create_nonce( 'wp-bsh-ajax-security' )],
-        'video_formats' => kgvid_video_formats(),
     ];
     wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 }
