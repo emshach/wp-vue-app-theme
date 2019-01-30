@@ -353,6 +353,18 @@ function mrk_rest_add_postmeta( $data ) {
  *
  * @return post array
  */
+function mrk_rest_add_encoding_info( $data ) {
+    if ( empty( $data[ 'id' ]))
+        return $data;
+    $data[ 'encoding_info' ] = kgvid_encodevideo_info(
+        $data[ 'source_url' ], $data[ 'id' ]);
+    return $data;
+}
+/**
+ * Add stats for (media) posts
+ *
+ * @return post array
+ */
 function mrk_rest_add_stats( $data ) {
     $data[ 'stats' ] = [
         'seen'     => 0,
@@ -1299,6 +1311,7 @@ add_filter( 'mrk_rest_process_media',        'mrk_rest_add_rel_path',        10,
 add_filter( 'mrk_rest_process_media',        'mrk_rest_restrictions',       999, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_kgvid_meta',      10, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_stats',           10, 1 );
+add_filter( 'mrk_rest_process_media',        'mrk_rest_add_encoding_info',   10, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_thumbnail',       11, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_show_text',       11, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_set_release_type',    10, 1 );
