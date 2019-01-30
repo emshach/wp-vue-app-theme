@@ -363,9 +363,10 @@ function mrk_rest_add_encoding_info( $data ) {
             if ( $val[ 'exists' ])
                 $data[ 'sources' ][ $key ] = $val[ 'url' ];
         }
-        else
-            $data[ 'encoding_info' ][ $key ] = $val;
     }
+    $data[ 'sources'][ 'default' ] = $data[ 'source_url' ];
+    if (! empty( $info[ 'moviefilebasename' ]))
+        $data[ 'basename' ] = $info[ 'moviefilebasename' ];
     return $data;
 }
 /**
