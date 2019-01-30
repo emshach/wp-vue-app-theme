@@ -356,8 +356,16 @@ function mrk_rest_add_postmeta( $data ) {
 function mrk_rest_add_encoding_info( $data ) {
     if ( empty( $data[ 'id' ]))
         return $data;
-    $data[ 'encoding_info' ] = kgvid_encodevideo_info(
-        $data[ 'source_url' ], $data[ 'id' ]);
+    $formats = kgvid_video_formats();
+    $info = kgvid_encodevideo_info( $data[ 'source_url' ], $data[ 'id' ]);
+    foreach ( $info as $key => $val ) {
+        if ( array_key_exists( $key, $formats )) {
+            if ( $val[ 'exists' ])
+                $data[ 'sources' ][ $key ] = $val[ 'url' ];
+        }
+        else
+            $data[ 'encoding_info' ][ $key ] = $val;
+    }
     return $data;
 }
 /**
@@ -1091,7 +1099,8 @@ function mrk_enqueue_scripts() {
         'register'      => LoginWithAjax::$url_register,
         'ajax'          => [
             'url' => admin_url( 'admin-ajax.php' ),
-            'sec' => wp_create_nonce( 'wp-bsh-ajax-security' )]
+            'sec' => wp_create_nonce( 'wp-bsh-ajax-security' )],
+        'video_formats' => kgvid_video_formats(),
     ];
     wp_localize_script( 'moonraker', 'moonraker_local_vars', $moonraker_local_vars );
 }
