@@ -84,8 +84,7 @@ __webpack_require__.r(__webpack_exports__);
         autoplay: 'play',
         playsinline: true,
         aspectRatio: "16:9",
-        controlBar: {
-          // children: [
+        controlBar: {// children: [
           //   'playToggle',
           //   'volumeMenuButton',
           //   'currentTimeDisplay',
@@ -97,9 +96,6 @@ __webpack_require__.r(__webpack_exports__);
           //   'captionsButton',
           //   'fullscreenToggle'
           // ],
-          volumePanel: {
-            inline: false
-          }
         }
       }, defaults || {});
       if (episode.kgvid_meta && episode.kgvid_meta.poster) opts.poster = episode.kgvid_meta.poster;

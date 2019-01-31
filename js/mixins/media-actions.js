@@ -60,9 +60,6 @@ export default {
           //   'captionsButton',
           //   'fullscreenToggle'
           // ],
-          volumePanel: {
-            inline: false
-          }
         }
       }, defaults || {});
       if ( episode.kgvid_meta && episode.kgvid_meta.poster )
