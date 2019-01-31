@@ -38,10 +38,13 @@ export default {
       const user = store.state.user;
       return ( episode.restrictions.members && ( !user.as || !user.as.subscriber ));
     },
+    getSources( episode ) {
+      return Object.values( episode.sources );
+    },
     videoPlayerOptions( episode, defaults ) {
       var opts = Object.assign( {
         controls: true,
-        autoplay: true,
+        autoplay: 'play',
         playsinline: true,
         aspectRatio: "16:9",
         // controlBar: {
@@ -51,7 +54,7 @@ export default {
         //   }
         // }
       }, defaults || {});
-      opts.sources = episode.sources;
+      opts.sources = this.getSources( episode );
       return opts;
   }
   }
