@@ -197,7 +197,7 @@ __webpack_require__.r(__webpack_exports__);
     videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
       var opts = Object.assign({
         controls: true,
-        autoplay: 'play',
+        autoplay: true,
         playsinline: true,
         aspectRatio: "16:9",
         controlBar: {
