@@ -38,16 +38,11 @@ export default {
       const user = store.state.user;
       return ( episode.restrictions.members && ( !user.as || !user.as.subscriber ));
     },
-    getSources( episode ) {
-      return Object.values( episode.sources ).concat([{
-        src: episode.source_url,
-        type: episode.mime_type
-      }]);
-    },
     videoPlayerOptions( episode, defaults ) {
       var opts = Object.assign( {
         controls: true,
         autoplay: true,
+        playsinline: true,
         aspectRatio: "16:9",
         // controlBar: {
         //   volumeMenuButton: {
@@ -56,7 +51,7 @@ export default {
         //   }
         // }
       }, defaults || {});
-      opts.sources = this.getSources( episode );
+      opts.sources = episode.sources;
       return opts;
   }
   }

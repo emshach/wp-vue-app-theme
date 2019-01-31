@@ -367,7 +367,10 @@ function mrk_rest_add_encoding_info( $data ) {
                 ];
         }
     }
-    $data[ 'sources'][ 'default' ] = $data[ 'source_url' ];
+    $data[ 'sources'][ 'default' ] = [
+        'src' => $data[ 'source_url' ],
+        'type' => $data[ 'mime_type' ]
+    ];
     if (! empty( $info[ 'moviefilebasename' ]))
         $data[ 'basename' ] = $info[ 'moviefilebasename' ];
     return $data;
