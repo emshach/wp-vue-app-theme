@@ -59,16 +59,13 @@ export default {
             'subtitlesButton',
             'captionsButton',
             'fullscreenToggle'
-          ],
-          volumeMenuButton: {
-            inline: true
-          }
+          ]
         }
       }, defaults || {});
       if ( episode.kgvid_meta && episode.kgvid_meta.poster )
         opts.poster = episode.kgvid_meta.poster;
       opts.sources = this.getSources( episode );
       return opts;
-  }
+    }
   }
 };

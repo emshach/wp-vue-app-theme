@@ -37,22 +37,27 @@
   .mrk-media-wrapper {
     padding: 0;
   }
-  .video-js .vjs-big-play-button {
-    font-size: 12em;
-    background: rgba(0,0,0,0.6);
-    /* border: 0 none; */
-    /* text-shadow: 0 4px 17px rgba(0,0,0,0.5); */
-    border-radius: 30em;
-    border-width: 2px;
-    width: 1.2em;
-    margin-left: -.6em;
-    margin-top: -.6em;
-    height: 1.2em;
-    line-height: 1.2em;
-    &:hover {
-      color: black;
-      background: white;
-    }}
+  .video-js {
+    .vjs-big-play-button {
+      font-size: 12em;
+      background: rgba(0,0,0,0.6);
+      /* border: 0 none; */
+      /* text-shadow: 0 4px 17px rgba(0,0,0,0.5); */
+      border-radius: 30em;
+      border-width: 2px;
+      width: 1.2em;
+      margin-left: -.6em;
+      margin-top: -.6em;
+      height: 1.2em;
+      line-height: 1.2em;
+      &:hover {
+        color: black;
+        background: white;
+      }}
+    .vjs-play-progress:after {
+      background-color: transparent;
+    }
+  }
 }
 #featured {
   height: 100%;

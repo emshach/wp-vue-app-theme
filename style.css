@@ -126,6 +126,9 @@ h1 {
   color: black;
   background: white; }
 
+.featured-wrapper .video-js .vjs-play-progress:after {
+  background-color: transparent; }
+
 #featured {
   height: 100%; }
 
