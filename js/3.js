@@ -169,7 +169,15 @@ __webpack_require__.r(__webpack_exports__);
       var opts = Object.assign({
         controls: true,
         autoplay: 'play',
-        aspectRatio: "16:9"
+        aspectRatio: "16:9",
+        children: {
+          controlBar: {
+            volumeMenuButton: {
+              inline: false,
+              vertical: true
+            }
+          }
+        }
       }, defaults || {});
       opts.sources = this.getSources(episode);
       return opts;
