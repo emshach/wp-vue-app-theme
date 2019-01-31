@@ -101,12 +101,12 @@ h1 {
 .featured-wrapper .caption, .featured-wrapper .description, .featured-wrapper .excerpt {
   text-align: justify; }
 
-.featured-wrapper .media {
+.featured-wrapper .mrk-media {
   max-width: 100%;
   margin: 0 auto;
   height: 100%; }
 
-.featured-wrapper .media-wrapper {
+.featured-wrapper .mrk-media-wrapper {
   padding: 0; }
 
 #featured {

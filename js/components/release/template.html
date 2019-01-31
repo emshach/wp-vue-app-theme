@@ -8,13 +8,13 @@
     <div class="featured-wrapper">
       <div class="container">
         <div class="row">
-          <div :class="[ 'media-wrapper', 'col-12', wideMode ? '' : 'col-md-8']">
+          <div :class="[ 'mrk-media-wrapper', 'col-12', wideMode ? '' : 'col-md-8']">
             <video-player v-if="postData.release_type == 'video'"
-                          class="media video-player-box"
+                          class="mrk-media video-player-box"
                           :options="videoPlayerOptions( postData )">
             </video-player>
             <audio v-if="postData.release_type == 'audio'"
-                   :src="postData.source_url" class="media" autoplay controls
+                   :src="postData.source_url" class="mrk-media" autoplay controls
                    controlsList="nodownload">
               {{ postData.alt_text }}
             </audio>
