@@ -121,7 +121,7 @@ __webpack_require__.r(__webpack_exports__);
           //   'fullscreenToggle'
           // ],
           volumePanel: {
-            inline: true
+            inline: false
           }
         }
       }, defaults || {});

@@ -61,7 +61,7 @@ export default {
           //   'fullscreenToggle'
           // ],
           volumePanel: {
-            inline: true
+            inline: false
           }
         }
       }, defaults || {});
