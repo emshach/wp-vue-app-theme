@@ -48,7 +48,7 @@ export default {
       var opts = Object.assign( {
         controls: true,
         autoplay: 'play',
-        fluid: true
+        aspectRatio: "16:9",
       }, defaults || {});
       opts.sources = this.getSources( episode );
       return opts;
