@@ -363,7 +363,7 @@ function mrk_rest_add_encoding_info( $data ) {
             if ( $val[ 'exists' ])
                 $data[ 'sources' ][ $key ] = [
                     'src'  => $val[ 'url' ],
-                    'type' => $formats[ 'key' ][ 'mime' ]
+                    'type' => $formats[ $key ][ 'mime' ]
                 ];
         }
     }

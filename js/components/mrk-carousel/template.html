@@ -10,7 +10,7 @@
             <img v-if="slide.media_type == 'image'" :src="slide.source_url"
                  class="mrk-media" />
             <video-player v-else-if="slide.release_type == 'video'"
-                          class="mrk-media video-player-box"
+                          class="mrk-media video-player-box vjs-big-play-centered"
                           :playsinline="true"
                           :options="videoPlayerOptions( slide )">
             </video-player>
