@@ -83,10 +83,21 @@ __webpack_require__.r(__webpack_exports__);
         controls: true,
         autoplay: true,
         playsinline: true,
-        aspectRatio: "16:9",
-        controlBar: {
-          children: ['playToggle', 'volumeMenuButton', 'currentTimeDisplay', 'durationDisplay', 'progressControl', 'remainingTimeDisplay', 'playbackRateMenuButton', 'subtitlesButton', 'captionsButton', 'fullscreenToggle']
-        }
+        aspectRatio: "16:9" // controlBar: {
+        //   children: [
+        //     'playToggle',
+        //     'volumeMenuButton',
+        //     'currentTimeDisplay',
+        //     'durationDisplay',
+        //     'progressControl',
+        //     'remainingTimeDisplay',
+        //     'playbackRateMenuButton',
+        //     'subtitlesButton',
+        //     'captionsButton',
+        //     'fullscreenToggle'
+        //   ]
+        // }
+
       }, defaults || {});
       if (episode.kgvid_meta && episode.kgvid_meta.poster) opts.poster = episode.kgvid_meta.poster;
       opts.sources = this.getSources(episode);
