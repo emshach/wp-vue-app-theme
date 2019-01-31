@@ -47,7 +47,8 @@ export default {
     videoPlayerOptions( episode, defaults ) {
       var opts = Object.assign( {
         controls: true,
-        autoplay: 'play'
+        autoplay: 'play',
+        fluid: true
       }, defaults || {});
       opts.sources = this.getSources( episode );
       return opts;
