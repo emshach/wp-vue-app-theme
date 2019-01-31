@@ -104,23 +104,26 @@ __webpack_require__.r(__webpack_exports__);
     videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
       var opts = Object.assign({
         controls: true,
-        autoplay: true,
+        autoplay: 'play',
         playsinline: true,
-        aspectRatio: "16:9" // controlBar: {
-        //   children: [
-        //     'playToggle',
-        //     'volumeMenuButton',
-        //     'currentTimeDisplay',
-        //     'durationDisplay',
-        //     'progressControl',
-        //     'remainingTimeDisplay',
-        //     'playbackRateMenuButton',
-        //     'subtitlesButton',
-        //     'captionsButton',
-        //     'fullscreenToggle'
-        //   ]
-        // }
-
+        aspectRatio: "16:9",
+        controlBar: {
+          // children: [
+          //   'playToggle',
+          //   'volumeMenuButton',
+          //   'currentTimeDisplay',
+          //   'durationDisplay',
+          //   'progressControl',
+          //   'remainingTimeDisplay',
+          //   'playbackRateMenuButton',
+          //   'subtitlesButton',
+          //   'captionsButton',
+          //   'fullscreenToggle'
+          // ],
+          volumePanel: {
+            inline: true
+          }
+        }
       }, defaults || {});
       if (episode.kgvid_meta && episode.kgvid_meta.poster) opts.poster = episode.kgvid_meta.poster;
       opts.sources = this.getSources(episode);
