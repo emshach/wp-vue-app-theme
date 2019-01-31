@@ -48,7 +48,22 @@ export default {
         playsinline: true,
         aspectRatio: "16:9",
         controlBar: {
-          volumeMenuButton: false
+          children: [
+            'playToggle',
+            'volumeMenuButton',
+            'currentTimeDisplay',
+            'timeDivider',
+            'durationDisplay',
+            'progressControl',
+            'remainingTimeDisplay',
+            'playbackRateMenuButton',
+            'subtitlesButton',
+            'captionsButton',
+            'fullscreenToggle'
+          ],
+          volumeMenuButton: {
+            inline: false
+          }
         }
       }, defaults || {});
       if ( episode.kgvid_meta && episode.kgvid_meta.poster )
