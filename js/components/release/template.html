@@ -12,7 +12,7 @@
             <video-player v-if="postData.release_type == 'video'"
                    :options="videoPlayerOptions( postData )">
               {{ postData.alt_text }}
-            </video>
+            </video-player>
             <audio v-if="postData.release_type == 'audio'"
                    :src="postData.source_url" class="media" autoplay controls
                    controlsList="nodownload">

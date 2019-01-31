@@ -15,7 +15,7 @@
                       :src="source.src" :type="source.type" />
               <source :src="slide.source_url" :type="slide.mime_type" />
               {{ slide.alt_text }}
-            </video>
+            </video-player>
             <audio  v-else-if="slide.release_type == 'audio'"
                    :src="slide.source_url" class="media" controls
                    controlsList="nodownload">
