@@ -52,7 +52,6 @@ export default {
             'playToggle',
             'volumeMenuButton',
             'currentTimeDisplay',
-            'timeDivider',
             'durationDisplay',
             'progressControl',
             'remainingTimeDisplay',
@@ -62,7 +61,7 @@ export default {
             'fullscreenToggle'
           ],
           volumeMenuButton: {
-            inline: false
+            inline: true
           }
         }
       }, defaults || {});

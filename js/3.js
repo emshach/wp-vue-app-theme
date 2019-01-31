@@ -169,9 +169,9 @@ __webpack_require__.r(__webpack_exports__);
         playsinline: true,
         aspectRatio: "16:9",
         controlBar: {
-          children: ['playToggle', 'volumeMenuButton', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'remainingTimeDisplay', 'playbackRateMenuButton', 'subtitlesButton', 'captionsButton', 'fullscreenToggle'],
+          children: ['playToggle', 'volumeMenuButton', 'currentTimeDisplay', 'durationDisplay', 'progressControl', 'remainingTimeDisplay', 'playbackRateMenuButton', 'subtitlesButton', 'captionsButton', 'fullscreenToggle'],
           volumeMenuButton: {
-            inline: false
+            inline: true
           }
         }
       }, defaults || {});
