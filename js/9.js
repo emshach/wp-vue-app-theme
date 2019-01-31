@@ -130,21 +130,21 @@ __webpack_require__.r(__webpack_exports__);
     needsSubscription: function needsSubscription(episode) {
       var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
       return episode.restrictions.members && (!user.as || !user.as.subscriber);
+    },
+    getSources: function getSources(episode) {
+      return Object.values(episode.sources).concat([{
+        src: episode.source_url,
+        type: episode.mime_type
+      }]);
+    },
+    videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
+      var opts = Object.assign({
+        controls: true,
+        autoplay: 'muted'
+      }, defaults || {});
+      opts.sources = this.getSources(episode);
+      return opts;
     }
-  },
-  getSources: function getSources(episode) {
-    return Object.values(episode.sources).concat([{
-      src: episode.source_url,
-      type: episode.mime_type
-    }]);
-  },
-  videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
-    var opts = Object.assign({
-      controls: true,
-      autoplay: 'muted'
-    }, defaults || {});
-    opts.sources = this.getSources(episode);
-    return opts;
   }
 });
 
