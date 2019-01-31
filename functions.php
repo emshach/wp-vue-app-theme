@@ -361,7 +361,10 @@ function mrk_rest_add_encoding_info( $data ) {
     foreach ( $info as $key => $val ) {
         if ( array_key_exists( $key, $formats )) {
             if ( $val[ 'exists' ])
-                $data[ 'sources' ][ $key ] = $val[ 'url' ];
+                $data[ 'sources' ][ $key ] = [
+                    'src'  => $val[ 'url' ],
+                    'type' => $formats[ 'key' ][ 'mime' ]
+                ];
         }
     }
     $data[ 'sources'][ 'default' ] = $data[ 'source_url' ];

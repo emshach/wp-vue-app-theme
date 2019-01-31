@@ -9,9 +9,8 @@
       <div class="container">
         <div class="row">
           <div :class="[ 'media-wrapper', 'col-12', wideMode ? '' : 'col-md-8']">
-            <video v-if="postData.release_type == 'video'"
-                   :src="postData.source_url" class="media" autoplay controls
-                   playsinline controlsList="nodownload">
+            <video-player v-if="postData.release_type == 'video'"
+                   :options="videoPlayerOptions( postData )">
               {{ postData.alt_text }}
             </video>
             <audio v-if="postData.release_type == 'audio'"

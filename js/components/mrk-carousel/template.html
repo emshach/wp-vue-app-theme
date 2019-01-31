@@ -9,12 +9,14 @@
           <template v-if="slide.type == 'attachment'">
             <img v-if="slide.media_type == 'image'" :src="slide.source_url"
                  class="media" />
-            <video v-else-if="slide.mime_type.indexOf( 'video' ) == 0"
-                   :src="slide.source_url" class="media"
-                   controls autoplay playsinline controlsList="nodownload">
+            <video-player v-else-if="slide.release_type == 'video'"
+                          class="media" :options="videoPlayerOptions( slide )">
+              <source v-for="( source, key ) in slide.sources"
+                      :src="source.src" :type="source.type" />
+              <source :src="slide.source_url" :type="slide.mime_type" />
               {{ slide.alt_text }}
             </video>
-            <audio v-else-if="slide.mime_type.indexOf( 'audio' ) == 0"
+            <audio  v-else-if="slide.release_type == 'audio'"
                    :src="slide.source_url" class="media" controls
                    controlsList="nodownload">
               {{ slide.alt_text }}

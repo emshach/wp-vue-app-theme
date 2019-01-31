@@ -5,6 +5,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import { FlowerSpinner } from 'epic-spinners';
+import VueVideoPlayer from 'vue-video-player';
 import VueCarousel from 'vue-carousel';
 import VueLazyload from 'vue-lazyload-img';
 import VueScrollto from 'vue-scrollto';
@@ -15,6 +16,7 @@ import routeEvents from './lib/route-events';
 
 // styles
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'video.js/dist/video-js.css';
 
 //partial components
 const TheLoop          = () => import( './components/the-loop'          );
@@ -65,6 +67,7 @@ Vue.config.devtools = true;
 // Vue.use( Vuex );
 Vue.use( VueRouter );
 Vue.use( BootstrapVue );
+Vue.use( VueVideoPlayer );
 Vue.use( VueCarousel );
 Vue.use( VueLazyload, { fade: true });
 Vue.use( VueScrollto );
