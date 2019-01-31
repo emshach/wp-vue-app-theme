@@ -202,12 +202,10 @@ __webpack_require__.r(__webpack_exports__);
         controls: true,
         autoplay: 'play',
         aspectRatio: "16:9",
-        children: {
-          controlBar: {
-            volumeMenuButton: {
-              inline: false,
-              vertical: true
-            }
+        controlBar: {
+          volumeMenuButton: {
+            inline: false,
+            vertical: true
           }
         }
       }, defaults || {});
