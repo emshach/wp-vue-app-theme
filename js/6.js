@@ -107,7 +107,7 @@ __webpack_require__.r(__webpack_exports__);
     videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
       var opts = Object.assign({
         controls: true,
-        autoplay: 'muted'
+        autoplay: 'play'
       }, defaults || {});
       opts.sources = this.getSources(episode);
       return opts;
