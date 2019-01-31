@@ -49,12 +49,12 @@ export default {
         controls: true,
         autoplay: 'play',
         aspectRatio: "16:9",
-        controlBar: {
-          volumeMenuButton: {
-            inline: false,
-            vertical: true
-          }
-        }
+        // controlBar: {
+        //   volumeMenuButton: {
+        //     inline: false,
+        //     vertical: true
+        //   }
+        // }
       }, defaults || {});
       opts.sources = this.getSources( episode );
       return opts;
