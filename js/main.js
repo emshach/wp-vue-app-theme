@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import 'es6-promise/auto';
+import videojs from 'video.js';
 import axios from 'axios';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -117,6 +118,8 @@ const VUpload         = Vue.component( 'upload',          Upload         );
 const VShop           = Vue.component( 'shop',            Shop           );
 
 window.store = store;
+window.videojs = videojs;
+videojs.log.level('debug');
 
 // Define some routes
 const routes = [
