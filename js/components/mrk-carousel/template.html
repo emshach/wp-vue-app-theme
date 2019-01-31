@@ -10,11 +10,8 @@
             <img v-if="slide.media_type == 'image'" :src="slide.source_url"
                  class="media" />
             <video-player v-else-if="slide.release_type == 'video'"
-                          class="media" :options="videoPlayerOptions( slide )">
-              <source v-for="( source, key ) in slide.sources"
-                      :src="source.src" :type="source.type" />
-              <source :src="slide.source_url" :type="slide.mime_type" />
-              {{ slide.alt_text }}
+                          class="media video-player-box"
+                          :options="videoPlayerOptions( slide )">
             </video-player>
             <audio  v-else-if="slide.release_type == 'audio'"
                    :src="slide.source_url" class="media" controls
