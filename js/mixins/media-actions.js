@@ -47,7 +47,7 @@ export default {
     videoPlayerOptions( episode, defaults ) {
       var opts = Object.assign( {
         controls: true,
-        autoplay: 'play',
+        autoplay: true,
         aspectRatio: "16:9",
         // controlBar: {
         //   volumeMenuButton: {
