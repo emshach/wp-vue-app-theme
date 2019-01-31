@@ -11,6 +11,7 @@
                  class="mrk-media" />
             <video-player v-else-if="slide.release_type == 'video'"
                           class="mrk-media video-player-box"
+                          :playsinline="true"
                           :options="videoPlayerOptions( slide )">
             </video-player>
             <audio  v-else-if="slide.release_type == 'audio'"
