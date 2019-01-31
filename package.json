@@ -12,6 +12,7 @@
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "sweetalert2": "^7.32.4",
+    "video.js": "^7.4.1",
     "vue-carousel": "^0.17.0",
     "vue-lazyload": "^1.2.6",
     "vue-lazyload-img": "^2.1.3",
