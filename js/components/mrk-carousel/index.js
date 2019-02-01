@@ -58,8 +58,8 @@ export default {
     pageChanged( page ) {
       console.log( 'pageChanged', page );
       var slide = this.slide;
-      var oldPlayer = this.$refs[ 'videoPlayer' + slide ];
-      var newPlayer = this.$refs[ 'videoPlayer' + page ];
+      var oldPlayer = this.$refs[ 'player' + slide ];
+      var newPlayer = this.$refs[ 'player' + page ];
       if ( oldPlayer ) oldPlayer = oldPlayer[0];
       if ( newPlayer ) newPlayer = newPlayer[0];
       console.log( 'oldPlayer', slide, oldPlayer );
@@ -72,7 +72,7 @@ export default {
     },
     transitionEnded() {
       console.log( 'transitionEnded' );
-      var player = this.$refs[ 'videoPlayer' + this.slide ];
+      var player = this.$refs[ 'player' + this.slide ];
       if ( !player || !player[0] ) return;    // only play present players
       player = player[0];
       console.log( 'player', this.slide, player );
@@ -112,7 +112,7 @@ export default {
     playerPlayEnabled( player ) {
       console.log( 'playerPlayEnabled', player );
       this.ready[ player.id_ ] = true;
-      var slidePlayer = this.$refs[ 'videoPlayer'+ this.slide ];
+      var slidePlayer = this.$refs[ 'player'+ this.slide ];
       if ( !slidePlayer || !slidePlayer[0] || slidePlayer[0].player != player )
         return;
       if ( this.waiting[ player.id_ ] && !this.played[ player.id_ ]) {
@@ -128,6 +128,13 @@ export default {
     },
     playerReadied( player ) {
       console.log( 'playerReadied', player );
+    }
+  },
+  computed: {
+    currentPlaying() {
+      var player = this.$refs[ 'player' + this.slide ];
+      if ( player && player[0] ) return this.playing[ player[0].player.id_ ];
+      return false;
     }
   }
 };

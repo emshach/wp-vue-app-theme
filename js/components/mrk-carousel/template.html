@@ -1,7 +1,12 @@
-<carousel :autoplay="true" :per-page="1" :autoplay-timeout="15000" :loop="true"
-          pagination-color="#000" pagination-active-color="#fff"
+<carousel :autoplay="!currentPlaying"
+          :per-page="1"
+          :autoplay-timeout="15000"
+          :loop="true"
+          pagination-color="#000"
+          pagination-active-color="#fff"
           id="featured"
-          @pageChange="pageChanged" @transitionEnd="transitionEnded">
+          @pageChange="pageChanged"
+          @transitionEnd="transitionEnded">
   <slide v-for="( slide, index ) in slides" :key="slide.id">
     <div class="container">
       <div class="row">
@@ -11,7 +16,7 @@
             <img v-if="slide.release_type == 'image'" :src="slide.source_url"
                  class="mrk-media" />
             <video-player v-else-if="slide.release_type == 'video'"
-                          :ref="'videoPlayer'+index"
+                          :ref="'player'+index"
                           class="mrk-media video-player-box vjs-big-play-centered"
                           :playsinline="true"
                           :options="videoPlayerOptions( slide )"
