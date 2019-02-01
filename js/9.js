@@ -52,7 +52,8 @@ var carousels = 0;
       played: {},
       ready: {},
       waiting: {},
-      playing: {} // options: {
+      playing: {},
+      currentPlaying: false // options: {
       //   pagination: {
       //     direction: 'horizontal',
       //     el: '.swiper-pagination',
@@ -96,6 +97,7 @@ var carousels = 0;
       if (this.playing[oldPlayer.player.id_]) {
         oldPlayer.player.pause();
         this.playing[oldPlayer.player.id_] = false;
+        this.currentPlaying = false;
       }
     },
     transitionEnded: function transitionEnded() {
@@ -119,17 +121,17 @@ var carousels = 0;
       console.log('playerPlayed', player, player.id_);
       this.played[player.id_] = true;
       this.playing[player.id_] = true;
-      this.autoplayTimeout = 9999999999;
+      this.currentPlaying = true;
     },
     playerPaused: function playerPaused(player) {
       console.log('playerPaused', player, player.id_);
       this.playing[player.id_] = false;
-      this.autoplayTimeout = 2000;
+      this.currentPlaying = false;
     },
     playerEnded: function playerEnded(player) {
       console.log('playerEnded', player, player.id_);
       this.playing[player.id_] = false;
-      this.autoplayTimeout = 2000;
+      this.currentPlaying = false;
     },
     playerWaiting: function playerWaiting(player) {// console.log( 'playerWaiting', player, player.id_ );
     },
@@ -156,13 +158,6 @@ var carousels = 0;
     },
     playerReadied: function playerReadied(player) {
       console.log('playerReadied', player, player.id_);
-    }
-  },
-  computed: {
-    currentPlaying: function currentPlaying() {
-      var player = this.$refs['player' + this.slide];
-      if (player && player[0] && player[0].player) return this.playing[player[0].player.id_];
-      return false;
     }
   }
 });
