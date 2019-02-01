@@ -133,8 +133,9 @@ export default {
   computed: {
     currentPlaying() {
       var player = this.$refs[ 'player' + this.slide ];
-      return player && player[0] && player[0].player
-         && this.playing[ player[0].player.id_ ] || false;
+      if ( player && player[0] && player[0].player )
+        return this.playing[ player[0].player.id_ ];
+      return false;
     }
   }
 };
