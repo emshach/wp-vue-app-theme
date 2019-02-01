@@ -76,18 +76,18 @@ var carousels = 0;
       var newPlayer = this.$refs['videoPlayer' + page];
       if (oldPlayer) oldPlayer = oldPlayer[0];
       if (newPlayer) newPlayer = newPlayer[0];
-      console.log('oldPlayer', oldPlayer);
-      console.log('newPlayer', newPlayer);
+      console.log('oldPlayer', slide, oldPlayer);
+      console.log('newPlayer', page, newPlayer);
       this.slide = page;
-      if (this.playing[newPlayer.player.id_]) newPlayer.player.pause();
+      if (this.playing[oldPlayer.player.id_]) oldPlayer.player.pause();
     },
     transitionEnded: function transitionEnded() {
       console.log('transitionEnded');
       var player = this.$refs['videoPlayer' + this.slide];
-      console.log('player', player);
       if (!player || !player[0]) return; // only play present players
 
       player = player[0];
+      console.log('player', this.slide, player);
       if (this.ready[player.player.id_] && !this.played[player.player.id_]) player.player.play();
     },
     // event handlers
