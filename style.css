@@ -715,7 +715,7 @@ button.nav-menu .navbar-toggle-icon {
 @media (min-width: 600px) and (min-height: 600px) {
   button.nav-menu.menu-wide {
     display: block;
-    right: 0;
+    right: 12px;
     top: -28px; }
   button.nav-menu.menu-wide.open {
     top: 0; } }

@@ -269,7 +269,7 @@ button.nav-menu {
   &.menu-wide {
     @include breakpoint( $bp-phone-wh ) {
       display: block;
-      right: 0;
+      right: 12px;
       top: -28px;
       &.open {
         top: 0;

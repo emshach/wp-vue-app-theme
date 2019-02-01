@@ -7,9 +7,10 @@
         <div :class="[ 'mrk-media-wrapper', 'col', 'col-12',
                        { 'col-md-8': slide.show_text }]">
           <template v-if="slide.type == 'attachment'">
-            <img v-if="slide.media_type == 'image'" :src="slide.source_url"
+            <img v-if="slide.release_type == 'image'" :src="slide.source_url"
                  class="mrk-media" />
             <video-player v-else-if="slide.release_type == 'video'"
+                          :ref="'mainVideo'+index"
                           class="mrk-media video-player-box vjs-big-play-centered"
                           :playsinline="true"
                           :options="videoPlayerOptions( slide )">

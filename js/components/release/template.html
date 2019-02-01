@@ -10,10 +10,11 @@
         <div class="row">
           <div :class="[ 'mrk-media-wrapper', 'col-12', wideMode ? '' : 'col-md-8']">
             <video-player v-if="postData.release_type == 'video'"
-                          class="mrk-media video-player-box"
+                          class="mrk-media video-player-box vjs-big-play-centered"
+                          :playsinline="true"
                           :options="videoPlayerOptions( postData )">
             </video-player>
-            <audio v-if="postData.release_type == 'audio'"
+            <audio v-else-if="postData.release_type == 'audio'"
                    :src="postData.source_url" class="mrk-media" autoplay controls
                    controlsList="nodownload">
               {{ postData.alt_text }}
