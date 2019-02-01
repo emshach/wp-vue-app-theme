@@ -103,21 +103,21 @@ export default {
       // console.log( 'playerTimeupdated', player );
     },
     playerPlayEnabled( player ) {
-      // console.log( 'playerPlayEnabled', player );
+      console.log( 'playerPlayEnabled', player );
+      this.ready[ player.id_ ] = true;
+      var slidePlayer = this.$refs[ 'videoPlayer'+ this.slide ];
+      if ( slidePlayer && slidePlayer[0] && slidePlayer[0].player == player
+           && !this.played[ player.player.id_ ])
+        player.play();
     },
     playerPlaythroughEnabled( player ) {
-      console.log( 'playerPlaythroughEnabled', player );
+      // console.log( 'playerPlaythroughEnabled', player );
     },
     playerStateChanged( player ) {
       // console.log( 'playerStateChanged', player );
     },
     playerReadied( player ) {
       console.log( 'playerReadied', player );
-      this.ready[ player.id_ ] = true;
-      var slidePlayer = this.$refs[ 'videoPlayer'+ this.slide ];
-      if ( slidePlayer && slidePlayer[0] && slidePlayer[0].player == player
-           && !this.played[ player.player.id_ ])
-        player.play();
     }
   }
 };

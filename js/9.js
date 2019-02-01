@@ -113,18 +113,18 @@ var carousels = 0;
     },
     playerTimeupdated: function playerTimeupdated(player) {// console.log( 'playerTimeupdated', player );
     },
-    playerPlayEnabled: function playerPlayEnabled(player) {// console.log( 'playerPlayEnabled', player );
+    playerPlayEnabled: function playerPlayEnabled(player) {
+      console.log('playerPlayEnabled', player);
+      this.ready[player.id_] = true;
+      var slidePlayer = this.$refs['videoPlayer' + this.slide];
+      if (slidePlayer && slidePlayer[0] && slidePlayer[0].player == player && !this.played[player.player.id_]) player.play();
     },
-    playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {
-      console.log('playerPlaythroughEnabled', player);
+    playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {// console.log( 'playerPlaythroughEnabled', player );
     },
     playerStateChanged: function playerStateChanged(player) {// console.log( 'playerStateChanged', player );
     },
     playerReadied: function playerReadied(player) {
       console.log('playerReadied', player);
-      this.ready[player.id_] = true;
-      var slidePlayer = this.$refs['videoPlayer' + this.slide];
-      if (slidePlayer && slidePlayer[0] && slidePlayer[0].player == player && !this.played[player.player.id_]) player.play();
     }
   }
 });
