@@ -145,5 +145,10 @@ export default {
     playerReadied( player ) {
       console.log( 'playerReadied', player, player.id_ );
     }
+  },
+  watch: {
+    goto( slide ) {
+      this.pageChanged( slide );
+    }
   }
 };
