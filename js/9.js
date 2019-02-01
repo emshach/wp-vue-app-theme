@@ -126,7 +126,6 @@ var carousels = 0;
     playerPaused: function playerPaused(player) {
       console.log('playerPaused', player, player.id_);
       this.playing[player.id_] = false;
-      this.currentPlaying = false;
     },
     playerEnded: function playerEnded(player) {
       console.log('playerEnded', player, player.id_);
