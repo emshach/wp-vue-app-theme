@@ -77,8 +77,8 @@ var carousels = 0;
       var newPlayer = this.$refs['player' + page];
       if (oldPlayer) oldPlayer = oldPlayer[0];
       if (newPlayer) newPlayer = newPlayer[0];
-      console.log('oldPlayer', slide, oldPlayer);
-      console.log('newPlayer', page, newPlayer);
+      console.log('oldPlayer', slide, oldPlayer, oldPlayer.player.id_);
+      console.log('newPlayer', page, newPlayer, newPlayer.player.id_);
       this.slide = page;
 
       if (this.playing[oldPlayer.player.id_]) {
@@ -92,7 +92,7 @@ var carousels = 0;
       if (!player || !player[0]) return; // only play present players
 
       player = player[0];
-      console.log('player', this.slide, player);
+      console.log('player', this.slide, player, player.id_);
 
       if (this.ready[player.player.id_]) {
         if (!this.played[player.player.id_]) player.player.play();
@@ -102,29 +102,28 @@ var carousels = 0;
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {
-      console.log('playerPlayed', player);
+      console.log('playerPlayed', player, player.id_);
       this.played[player.id_] = true;
       this.playing[player.id_] = true;
     },
     playerPaused: function playerPaused(player) {
-      console.log('playerPaused', player);
+      console.log('playerPaused', player, player.id_);
       this.playing[player.id_] = false;
     },
     playerEnded: function playerEnded(player) {
-      console.log('playerEnded', player);
+      console.log('playerEnded', player, player.id_);
       this.playing[player.id_] = false;
     },
-    playerWaiting: function playerWaiting(player) {// console.log( 'playerWaiting', player );
+    playerWaiting: function playerWaiting(player) {// console.log( 'playerWaiting', player, player.id_ );
     },
-    playerPlaying: function playerPlaying(player) {
-      console.log('playerPlaying', player);
+    playerPlaying: function playerPlaying(player) {// console.log( 'playerPlaying', player, player.id_ );
     },
-    playerDataLoaded: function playerDataLoaded(player) {// console.log( 'playerDataLoaded', player );
+    playerDataLoaded: function playerDataLoaded(player) {// console.log( 'playerDataLoaded', player, player.id_ );
     },
-    playerTimeupdated: function playerTimeupdated(player) {// console.log( 'playerTimeupdated', player );
+    playerTimeupdated: function playerTimeupdated(player) {// console.log( 'playerTimeupdated', player, player.id_ );
     },
     playerPlayEnabled: function playerPlayEnabled(player) {
-      console.log('playerPlayEnabled', player);
+      console.log('playerPlayEnabled', player, player.id_);
       this.ready[player.id_] = true;
       var slidePlayer = this.$refs['player' + this.slide];
       if (!slidePlayer || !slidePlayer[0] || slidePlayer[0].player != player) return;
@@ -134,19 +133,17 @@ var carousels = 0;
         player.play();
       }
     },
-    playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {// console.log( 'playerPlaythroughEnabled', player );
+    playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {// console.log( 'playerPlaythroughEnabled', player, player.id_ );
     },
-    playerStateChanged: function playerStateChanged(player) {// console.log( 'playerStateChanged', player );
+    playerStateChanged: function playerStateChanged(player) {// console.log( 'playerStateChanged', player, player.id_ );
     },
-    playerReadied: function playerReadied(player) {
-      console.log('playerReadied', player);
+    playerReadied: function playerReadied(player) {// console.log( 'playerReadied', player, player.id_ );
     }
   },
   computed: {
     currentPlaying: function currentPlaying() {
       var player = this.$refs['player' + this.slide];
-      if (player && player[0]) return this.playing[player[0].player.id_];
-      return false;
+      return player && player[0] && player[0].player && this.playing[player[0].player.id_] || false;
     }
   }
 });
