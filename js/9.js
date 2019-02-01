@@ -92,15 +92,15 @@ var carousels = 0;
       var player = this.$refs['player' + this.slide];
       if (!player || !player[0]) return; // only play present players
 
-      player = player[0];
+      player = player[0].player;
       console.log('player', this.slide, player, player.id_);
 
-      if (this.ready[player.player.id_]) {
-        if (!this.played[player.player.id_]) this.$nextTick(function () {
-          player.player.play();
-        });
+      if (this.ready[player.id_]) {
+        if (!this.played[player.id_]) window.setTimeout(function () {
+          player.play();
+        }, 100);
       } else {
-        this.waiting[player.player.id_] = true;
+        this.waiting[player.id_] = true;
       }
     },
     // event handlers
@@ -143,7 +143,8 @@ var carousels = 0;
     },
     playerStateChanged: function playerStateChanged(player) {// console.log( 'playerStateChanged', player, player.id_ );
     },
-    playerReadied: function playerReadied(player) {// console.log( 'playerReadied', player, player.id_ );
+    playerReadied: function playerReadied(player) {
+      console.log('playerReadied', player, player.id_);
     }
   },
   computed: {
