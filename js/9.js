@@ -49,6 +49,7 @@ var carousels = 0;
       players: [],
       played: {},
       ready: {},
+      waiting: {},
       playing: {} // options: {
       //   pagination: {
       //     direction: 'horizontal',
@@ -92,12 +93,18 @@ var carousels = 0;
 
       player = player[0];
       console.log('player', this.slide, player);
-      if (this.ready[player.player.id_] && !this.played[player.player.id_]) player.player.play();
+
+      if (this.ready[player.player.id_]) {
+        if (!this.played[player.player.id_]) player.player.play();
+      } else {
+        this.waiting[player.player.id_] = true;
+      }
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {
       console.log('playerPlayed', player);
-      this.played[player.id_] = this.playing[player.id_] = true;
+      this.played[player.id_] = true;
+      this.playing[player.id_] = true;
     },
     playerPaused: function playerPaused(player) {
       console.log('playerPaused', player);
@@ -120,7 +127,12 @@ var carousels = 0;
       console.log('playerPlayEnabled', player);
       this.ready[player.id_] = true;
       var slidePlayer = this.$refs['videoPlayer' + this.slide];
-      if (slidePlayer && slidePlayer[0] && slidePlayer[0].player == player && !this.played[player.player.id_]) player.play();
+      if (!slidePlayer || !slidePlayer[0] || slidePlayer[0].player != player) return;
+
+      if (this.waiting[player.id_] && !this.played[player.id_]) {
+        this.waiting[player.id_] = false;
+        player.play();
+      }
     },
     playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {// console.log( 'playerPlaythroughEnabled', player );
     },

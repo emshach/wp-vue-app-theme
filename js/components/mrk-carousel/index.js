@@ -33,6 +33,7 @@ export default {
       players: [],
       played: {},
       ready: {},
+      waiting: {},
       playing: {},
       // options: {
       //   pagination: {
@@ -75,13 +76,18 @@ export default {
       if ( !player || !player[0] ) return;    // only play present players
       player = player[0];
       console.log( 'player', this.slide, player );
-      if ( this.ready[ player.player.id_ ] && !this.played[ player.player.id_ ]) 
-        player.player.play();
+      if ( this.ready[ player.player.id_ ] ) {
+        if ( !this.played[ player.player.id_ ]) 
+          player.player.play();
+      } else {
+        this.waiting[ player.player.id_ ] = true;
+      }
     },
     // event handlers
     playerPlayed( player ) {
       console.log( 'playerPlayed', player );
-      this.played[ player.id_ ] = this.playing[ player.id_ ] = true;
+      this.played[ player.id_ ] = true;
+      this.playing[ player.id_ ] = true;
     },
     playerPaused( player ) {
       console.log( 'playerPaused', player );
@@ -107,9 +113,12 @@ export default {
       console.log( 'playerPlayEnabled', player );
       this.ready[ player.id_ ] = true;
       var slidePlayer = this.$refs[ 'videoPlayer'+ this.slide ];
-      if ( slidePlayer && slidePlayer[0] && slidePlayer[0].player == player
-           && !this.played[ player.player.id_ ])
+      if ( !slidePlayer || !slidePlayer[0] || slidePlayer[0].player != player )
+        return;
+      if ( this.waiting[ player.id_ ] && !this.played[ player.id_ ]) {
+        this.waiting[ player.id_ ] = false;
         player.play();
+      }
     },
     playerPlaythroughEnabled( player ) {
       // console.log( 'playerPlaythroughEnabled', player );
