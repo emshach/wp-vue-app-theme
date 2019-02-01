@@ -74,6 +74,8 @@ var carousels = 0;
       var slide = this.slide;
       var oldPlayer = this.$refs['videoPlayer' + slide];
       var newPlayer = this.$refs['videoPlayer' + page];
+      if (oldPlayer) oldPlayer = oldPlayer[0];
+      if (newPlayer) newPlayer = newPlayer[0];
       console.log('oldPlayer', oldPlayer);
       console.log('newPlayer', newPlayer);
       this.slide = page;
@@ -83,8 +85,9 @@ var carousels = 0;
       console.log('transitionEnded');
       var player = this.$refs['videoPlayer' + this.slide];
       console.log('player', player);
-      if (!player) return; // only play present players
+      if (!player || !player[0]) return; // only play present players
 
+      player = player[0];
       if (this.ready[player.player.id_] && !this.played[player.player.id_]) player.player.play();
     },
     // event handlers
@@ -121,7 +124,7 @@ var carousels = 0;
       console.log('playerReadied', player);
       this.ready[player.id_] = true;
       var slidePlayer = this.$refs['videoPlayer' + this.slide];
-      if (slidePlayer && slidePlayer.player == player && !this.played[player.player.id_]) player.play();
+      if (slidePlayer && slidePlayer[0] && slidePlayer[0].player == player && !this.played[player.player.id_]) player.play();
     }
   }
 });
