@@ -106,14 +106,17 @@ var carousels = 0;
       console.log('playerPlayed', player, player.id_);
       this.played[player.id_] = true;
       this.playing[player.id_] = true;
+      this.autoplay = false;
     },
     playerPaused: function playerPaused(player) {
       console.log('playerPaused', player, player.id_);
       this.playing[player.id_] = false;
+      this.autoplay = true;
     },
     playerEnded: function playerEnded(player) {
       console.log('playerEnded', player, player.id_);
       this.playing[player.id_] = false;
+      this.autoplay = true;
     },
     playerWaiting: function playerWaiting(player) {// console.log( 'playerWaiting', player, player.id_ );
     },
