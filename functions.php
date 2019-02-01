@@ -1120,7 +1120,8 @@ function mrk_enqueue_styles() {
     wp_enqueue_style( 'mrk-bootstrap', $uri . '/css/dist/bootstrap.css' );
     wp_enqueue_style( 'mrk-bootstrap-grid', $uri . '/css/dist/bootstrap-grid.css' );
     wp_enqueue_style( 'mrk-bootstrap-reboot', $uri . '/css/dist/bootstrap-reboot.css' );
-    wp_enqueue_style( 'moonraker-dependencies', $uri . '/js/moonraker.css' );
+    wp_enqueue_style( 'moonraker-dependencies', $uri . '/js/moonraker.css', [],
+                      filemtime( get_template_directory() . '/js/moonraker.css' ));
     wp_enqueue_style( 'main-styles', $uri . '/style.css', [],
                       filemtime( get_template_directory() . '/style.css' ), false);
 }

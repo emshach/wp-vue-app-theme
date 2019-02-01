@@ -60,15 +60,47 @@ var carousels = 0;
     this.getSlides();
   },
   methods: {
-    onSlideStart: function onSlideStart(slide) {
-      this.sliding = true;
-    },
-    onSlideEnd: function onSlideEnd(slide) {
-      this.sliding = false;
-    },
     getSlides: function getSlides() {
       if (!this.slides.length && this.topic) {// TODO: search using topic, get posts
       }
+    },
+    pageChanged: function pageChanged(page) {
+      console.log('pageChanged', page);
+    },
+    transitionEnded: function transitionEnded() {
+      console.log('transitionEnded');
+    },
+    // event handlers
+    playerPlayed: function playerPlayed(player) {
+      console.log('playerPlayed', player);
+    },
+    playerPaused: function playerPaused(player) {
+      console.log('playerPaused', player);
+    },
+    playerEnded: function playerEnded(player) {
+      console.log('playerEnded', player);
+    },
+    playerWaiting: function playerWaiting(player) {
+      console.log('playerWaiting', player);
+    },
+    playerPlaying: function playerPlaying(player) {
+      console.log('playerPlaying', player);
+    },
+    playerDataLoaded: function playerDataLoaded(player) {
+      console.log('playerDataLoaded', player);
+    },
+    playerTimeupdated: function playerTimeupdated(player) {},
+    playerPlayEnabled: function playerPlayEnabled(player) {
+      console.log('playerPlayEnabled', player);
+    },
+    playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {
+      console.log('playerPlaythroughEnabled', player);
+    },
+    playerStateChanged: function playerStateChanged(player) {
+      console.log('playerStateChanged', player);
+    },
+    playerReadied: function playerReadied(player) {
+      console.log('playerReadied', player);
     }
   }
 });
@@ -82,7 +114,7 @@ var carousels = 0;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<carousel :autoplay=\"true\" :per-page=\"1\" :autoplay-timeout=\"15000\" :loop=\"true\"\n          pagination-color=\"#000\" pagination-active-color=\"#fff\"\n          id=\"featured\">\n  <slide v-for=\"( slide, index ) in slides\" :key=\"slide.id\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div :class=\"[ 'mrk-media-wrapper', 'col', 'col-12',\n                       { 'col-md-8': slide.show_text }]\">\n          <template v-if=\"slide.type == 'attachment'\">\n            <img v-if=\"slide.release_type == 'image'\" :src=\"slide.source_url\"\n                 class=\"mrk-media\" />\n            <video-player v-else-if=\"slide.release_type == 'video'\"\n                          :ref=\"'mainVideo'+index\"\n                          class=\"mrk-media video-player-box vjs-big-play-centered\"\n                          :playsinline=\"true\"\n                          :options=\"videoPlayerOptions( slide )\">\n            </video-player>\n            <audio  v-else-if=\"slide.release_type == 'audio'\"\n                   :src=\"slide.source_url\" class=\"mrk-media\" controls\n                   controlsList=\"nodownload\">\n              {{ slide.alt_text }}\n            </audio>\n          </template>\n        </div>\n        <div v-if=\"slide.show_text\" class=\"col col-12 col-md-4\">\n          <h2 v-if=\"slide.title\" v-html=\"slide.title.rendered\"></h2>\n          <div v-if=\"slide.excerpt\" class=\"excerpt\"\n               v-html=\"slide.excerpt.rendered\"></div>\n          <div v-else-if=\"slide.caption\" class=\"caption\"\n               v-html=\"slide.caption.rendered\"></div>\n          <!-- <div v-if=\"slide.description\" class=\"description\" -->\n          <!--      v-html=\"slide.description.rendered\"></div> -->\n          <router-link v-if=\"slide.read_more\"\n                       :to=\"slide.full_content.path\"\n                       class=\"read-more\">read_more</router-link>\n          <b-btn v-if=\"slide.full_content\n                       && canWatchNow( slide.full_content )\"\n                 variant=\"primary\" :to=\"slide.full_content.path\" size=\"lg\"\n                 class=\"float-right\">{{\n            sayAction( slide.full_content )}} now</b-btn>\n          <b-btn v-else variant=\"warning\"\n                 size=\"lg\" class=\"float-right\"\n                 v-scroll-to=\"{ el: 'main', container: '.page',\n                              x: false, y: true }\">\n            subscribe for full content</b-btn>\n        </div>\n        <!-- TODO: if paid content, this link should be different, maybe it's\n             own component -->\n      </div>\n    </div>\n  </slide>\n  <slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </slide>\n</carousel>\n";
+module.exports = "<carousel :autoplay=\"true\" :per-page=\"1\" :autoplay-timeout=\"15000\" :loop=\"true\"\n          pagination-color=\"#000\" pagination-active-color=\"#fff\"\n          id=\"featured\"\n          @pageChange=\"pageChanged\" @transitionEnd=\"transitionEnded\">\n  <slide v-for=\"( slide, index ) in slides\" :key=\"slide.id\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div :class=\"[ 'mrk-media-wrapper', 'col', 'col-12',\n                       { 'col-md-8': slide.show_text }]\">\n          <template v-if=\"slide.type == 'attachment'\">\n            <img v-if=\"slide.release_type == 'image'\" :src=\"slide.source_url\"\n                 class=\"mrk-media\" />\n            <video-player v-else-if=\"slide.release_type == 'video'\"\n                          :ref=\"'videoPlayer'+index\"\n                          class=\"mrk-media video-player-box vjs-big-play-centered\"\n                          :playsinline=\"true\"\n                          :options=\"videoPlayerOptions( slide )\"\n                          @play=\"playerPlayed\"\n                          @pause=\"playerPaused\"\n                          @ended=\"playerEnded\"\n                          @waiting=\"playerWaiting\"\n                          @playing=\"playerPlaying\"\n                          @loadeddata=\"playerDataLoaded\"\n                          @timeupdate=\"playerTimeupdated\"\n                          @canplay=\"playerPlayEnabled\"\n                          @canplaythrough=\"playerPlaythroughEnabled\"\n                          @statechanged=\"playerStateChanged\"\n                          @ready=\"playerReadied\">\n            </video-player>\n            <audio  v-else-if=\"slide.release_type == 'audio'\"\n                   :src=\"slide.source_url\" class=\"mrk-media\" controls\n                   controlsList=\"nodownload\">\n              {{ slide.alt_text }}\n            </audio>\n          </template>\n        </div>\n        <div v-if=\"slide.show_text\" class=\"col col-12 col-md-4\">\n          <h2 v-if=\"slide.title\" v-html=\"slide.title.rendered\"></h2>\n          <div v-if=\"slide.excerpt\" class=\"excerpt\"\n               v-html=\"slide.excerpt.rendered\"></div>\n          <div v-else-if=\"slide.caption\" class=\"caption\"\n               v-html=\"slide.caption.rendered\"></div>\n          <!-- <div v-if=\"slide.description\" class=\"description\" -->\n          <!--      v-html=\"slide.description.rendered\"></div> -->\n          <router-link v-if=\"slide.read_more\"\n                       :to=\"slide.full_content.path\"\n                       class=\"read-more\">read_more</router-link>\n          <b-btn v-if=\"slide.full_content\n                       && canWatchNow( slide.full_content )\"\n                 variant=\"primary\" :to=\"slide.full_content.path\" size=\"lg\"\n                 class=\"float-right\">{{\n            sayAction( slide.full_content )}} now</b-btn>\n          <b-btn v-else variant=\"warning\"\n                 size=\"lg\" class=\"float-right\"\n                 v-scroll-to=\"{ el: 'main', container: '.page',\n                              x: false, y: true }\">\n            subscribe for full content</b-btn>\n        </div>\n        <!-- TODO: if paid content, this link should be different, maybe it's\n             own component -->\n      </div>\n    </div>\n  </slide>\n  <slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </slide>\n</carousel>\n";
 
 /***/ }),
 

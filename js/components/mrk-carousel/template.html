@@ -1,6 +1,7 @@
 <carousel :autoplay="true" :per-page="1" :autoplay-timeout="15000" :loop="true"
           pagination-color="#000" pagination-active-color="#fff"
-          id="featured">
+          id="featured"
+          @pageChange="pageChanged" @transitionEnd="transitionEnded">
   <slide v-for="( slide, index ) in slides" :key="slide.id">
     <div class="container">
       <div class="row">
@@ -10,10 +11,21 @@
             <img v-if="slide.release_type == 'image'" :src="slide.source_url"
                  class="mrk-media" />
             <video-player v-else-if="slide.release_type == 'video'"
-                          :ref="'mainVideo'+index"
+                          :ref="'videoPlayer'+index"
                           class="mrk-media video-player-box vjs-big-play-centered"
                           :playsinline="true"
-                          :options="videoPlayerOptions( slide )">
+                          :options="videoPlayerOptions( slide )"
+                          @play="playerPlayed"
+                          @pause="playerPaused"
+                          @ended="playerEnded"
+                          @waiting="playerWaiting"
+                          @playing="playerPlaying"
+                          @loadeddata="playerDataLoaded"
+                          @timeupdate="playerTimeupdated"
+                          @canplay="playerPlayEnabled"
+                          @canplaythrough="playerPlaythroughEnabled"
+                          @statechanged="playerStateChanged"
+                          @ready="playerReadied">
             </video-player>
             <audio  v-else-if="slide.release_type == 'audio'"
                    :src="slide.source_url" class="mrk-media" controls

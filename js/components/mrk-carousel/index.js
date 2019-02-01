@@ -44,16 +44,48 @@ export default {
     this.getSlides();
   },
   methods: {
-    onSlideStart ( slide ) {
-      this.sliding = true;
-    },
-    onSlideEnd ( slide ) {
-      this.sliding = false;
-    },
     getSlides() {
       if (! this.slides.length && this.topic ) {
         // TODO: search using topic, get posts
       }
+    },
+    pageChanged( page ) {
+      console.log( 'pageChanged', page );
+    },
+    transitionEnded() {
+      console.log( 'transitionEnded' );
+    },
+    // event handlers
+    playerPlayed( player ) {
+      console.log( 'playerPlayed', player );
+    },
+    playerPaused( player ) {
+      console.log( 'playerPaused', player );
+    },
+    playerEnded( player ) {
+      console.log( 'playerEnded', player );
+    },
+    playerWaiting( player ) {
+      console.log( 'playerWaiting', player );
+    },
+    playerPlaying( player ) {
+      console.log( 'playerPlaying', player );
+    },
+    playerDataLoaded( player ) {
+      console.log( 'playerDataLoaded', player );
+    },
+    playerTimeupdated( player ) {},
+    playerPlayEnabled( player ) {
+      console.log( 'playerPlayEnabled', player );
+    },
+    playerPlaythroughEnabled( player ) {
+      console.log( 'playerPlaythroughEnabled', player );
+    },
+    playerStateChanged( player ) {
+      console.log( 'playerStateChanged', player );
+    },
+    playerReadied( player ) {
+      console.log( 'playerReadied', player );
     }
   }
 };
