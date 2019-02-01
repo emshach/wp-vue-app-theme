@@ -30,6 +30,10 @@ export default {
       loading: true,
       slide: 0,
       sliding: null,
+      players: [],
+      played: {},
+      ready: {},
+      playing: {},
       // options: {
       //   pagination: {
       //     direction: 'horizontal',
@@ -42,6 +46,7 @@ export default {
   },
   mounted() {
     this.getSlides();
+    console.log( this.$refs );
   },
   methods: {
     getSlides() {
@@ -51,41 +56,65 @@ export default {
     },
     pageChanged( page ) {
       console.log( 'pageChanged', page );
+      var slide = this.slide;
+      var oldPlayer = this.$refs[ 'videoPlayer' + slide ];
+      var newPlayer = this.$refs[ 'videoPlayer' + page ];
+      console.log( 'oldPlayer', oldPlayer );
+      console.log( 'newPlayer', newPlayer );
+      this.slide = page;
+      if ( this.playing[ newPlayer.player.id_ ])
+        newPlayer.player.pause();
     },
     transitionEnded() {
       console.log( 'transitionEnded' );
+      var player = this.$refs[ 'videoPlayer' + this.slide ];
+      console.log( 'player', player );
+      if ( !player ) return;    // only play present players
+      if ( this.ready[ player.player.id_ ] && !this.played[ player.player.id_ ])
+        player.player.play();
     },
     // event handlers
     playerPlayed( player ) {
       console.log( 'playerPlayed', player );
+      this.played[ player.id_ ] = true;
     },
     playerPaused( player ) {
       console.log( 'playerPaused', player );
+      this.playing[ player.id_ ] = false;
     },
     playerEnded( player ) {
       console.log( 'playerEnded', player );
+      this.playing[ player.id_ ] = false;
     },
     playerWaiting( player ) {
-      console.log( 'playerWaiting', player );
+      // console.log( 'playerWaiting', player );
     },
     playerPlaying( player ) {
       console.log( 'playerPlaying', player );
+      this.playing[ player.id_ ] = true;
     },
     playerDataLoaded( player ) {
-      console.log( 'playerDataLoaded', player );
+      // console.log( 'playerDataLoaded', player );
     },
-    playerTimeupdated( player ) {},
+    playerTimeupdated( player ) {
+      // console.log( 'playerTimeupdated', player );
+    },
     playerPlayEnabled( player ) {
-      console.log( 'playerPlayEnabled', player );
+      // console.log( 'playerPlayEnabled', player );
     },
     playerPlaythroughEnabled( player ) {
       console.log( 'playerPlaythroughEnabled', player );
     },
     playerStateChanged( player ) {
-      console.log( 'playerStateChanged', player );
+      // console.log( 'playerStateChanged', player );
     },
     playerReadied( player ) {
       console.log( 'playerReadied', player );
+      this.ready[ player.id_ ] = true;
+      var slidePlayer = this.$refs[ 'videoPlayer'+ this.slide ];
+      if ( slidePlayer && slidePlayer.player == player
+           && !this.played[ player.player.id_ ])
+        player.play();
     }
   }
 };

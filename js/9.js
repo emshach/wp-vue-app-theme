@@ -45,7 +45,11 @@ var carousels = 0;
     return {
       loading: true,
       slide: 0,
-      sliding: null // options: {
+      sliding: null,
+      players: [],
+      played: {},
+      ready: {},
+      playing: {} // options: {
       //   pagination: {
       //     direction: 'horizontal',
       //     el: '.swiper-pagination',
@@ -58,6 +62,7 @@ var carousels = 0;
   },
   mounted: function mounted() {
     this.getSlides();
+    console.log(this.$refs);
   },
   methods: {
     getSlides: function getSlides() {
@@ -66,41 +71,57 @@ var carousels = 0;
     },
     pageChanged: function pageChanged(page) {
       console.log('pageChanged', page);
+      var slide = this.slide;
+      var oldPlayer = this.$refs['videoPlayer' + slide];
+      var newPlayer = this.$refs['videoPlayer' + page];
+      console.log('oldPlayer', oldPlayer);
+      console.log('newPlayer', newPlayer);
+      this.slide = page;
+      if (this.playing[newPlayer.player.id_]) newPlayer.player.pause();
     },
     transitionEnded: function transitionEnded() {
       console.log('transitionEnded');
+      var player = this.$refs['videoPlayer' + this.slide];
+      console.log('player', player);
+      if (!player) return; // only play present players
+
+      if (this.ready[player.player.id_] && !this.played[player.player.id_]) player.player.play();
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {
       console.log('playerPlayed', player);
+      this.played[player.id_] = true;
     },
     playerPaused: function playerPaused(player) {
       console.log('playerPaused', player);
+      this.playing[player.id_] = false;
     },
     playerEnded: function playerEnded(player) {
       console.log('playerEnded', player);
+      this.playing[player.id_] = false;
     },
-    playerWaiting: function playerWaiting(player) {
-      console.log('playerWaiting', player);
+    playerWaiting: function playerWaiting(player) {// console.log( 'playerWaiting', player );
     },
     playerPlaying: function playerPlaying(player) {
       console.log('playerPlaying', player);
+      this.playing[player.id_] = true;
     },
-    playerDataLoaded: function playerDataLoaded(player) {
-      console.log('playerDataLoaded', player);
+    playerDataLoaded: function playerDataLoaded(player) {// console.log( 'playerDataLoaded', player );
     },
-    playerTimeupdated: function playerTimeupdated(player) {},
-    playerPlayEnabled: function playerPlayEnabled(player) {
-      console.log('playerPlayEnabled', player);
+    playerTimeupdated: function playerTimeupdated(player) {// console.log( 'playerTimeupdated', player );
+    },
+    playerPlayEnabled: function playerPlayEnabled(player) {// console.log( 'playerPlayEnabled', player );
     },
     playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {
       console.log('playerPlaythroughEnabled', player);
     },
-    playerStateChanged: function playerStateChanged(player) {
-      console.log('playerStateChanged', player);
+    playerStateChanged: function playerStateChanged(player) {// console.log( 'playerStateChanged', player );
     },
     playerReadied: function playerReadied(player) {
       console.log('playerReadied', player);
+      this.ready[player.id_] = true;
+      var slidePlayer = this.$refs['videoPlayer' + this.slide];
+      if (slidePlayer && slidePlayer.player == player && !this.played[player.player.id_]) player.play();
     }
   }
 });
@@ -169,7 +190,7 @@ __webpack_require__.r(__webpack_exports__);
     videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
       var opts = Object.assign({
         controls: true,
-        autoplay: 'play',
+        autoplay: false,
         playsinline: true,
         aspectRatio: "16:9",
         controlBar: {// children: [
