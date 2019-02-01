@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       loading: true,
+      autoplay: true,
       slide: 0,
       sliding: null,
       players: [],
