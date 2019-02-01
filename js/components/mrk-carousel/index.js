@@ -29,6 +29,7 @@ export default {
     return {
       loading: true,
       autoplayTimeout: 15000,
+      goto: 0,
       slide: 0,
       sliding: null,
       players: [],
@@ -49,6 +50,13 @@ export default {
   mounted() {
     this.getSlides();
     console.log( this.$refs );
+    if ( this.slides.length > 1 ) {
+      window.setInterval(() => {
+        if ( !this.currentPlaying ) {
+          this.goto = ( this.goto + 1 ) % this.slides.length;
+        }
+      }, this.interval );
+    }
   },
   methods: {
     getSlides() {
