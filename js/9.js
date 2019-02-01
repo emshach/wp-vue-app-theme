@@ -96,7 +96,9 @@ var carousels = 0;
       console.log('player', this.slide, player, player.id_);
 
       if (this.ready[player.player.id_]) {
-        if (!this.played[player.player.id_]) player.player.play();
+        if (!this.played[player.player.id_]) this.$nextTick(function () {
+          player.player.play();
+        });
       } else {
         this.waiting[player.player.id_] = true;
       }
