@@ -79,7 +79,11 @@ var carousels = 0;
       console.log('oldPlayer', slide, oldPlayer);
       console.log('newPlayer', page, newPlayer);
       this.slide = page;
-      if (this.playing[oldPlayer.player.id_]) oldPlayer.player.pause();
+
+      if (this.playing[oldPlayer.player.id_]) {
+        oldPlayer.player.pause();
+        this.playing[oldPlayer.player.id_] = false;
+      }
     },
     transitionEnded: function transitionEnded() {
       console.log('transitionEnded');
@@ -93,7 +97,7 @@ var carousels = 0;
     // event handlers
     playerPlayed: function playerPlayed(player) {
       console.log('playerPlayed', player);
-      this.played[player.id_] = true;
+      this.played[player.id_] = this.playing[player.id_] = true;
     },
     playerPaused: function playerPaused(player) {
       console.log('playerPaused', player);
@@ -107,7 +111,6 @@ var carousels = 0;
     },
     playerPlaying: function playerPlaying(player) {
       console.log('playerPlaying', player);
-      this.playing[player.id_] = true;
     },
     playerDataLoaded: function playerDataLoaded(player) {// console.log( 'playerDataLoaded', player );
     },

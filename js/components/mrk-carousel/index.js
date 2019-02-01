@@ -64,8 +64,10 @@ export default {
       console.log( 'oldPlayer', slide, oldPlayer );
       console.log( 'newPlayer', page, newPlayer );
       this.slide = page;
-      if ( this.playing[ oldPlayer.player.id_ ])
+      if ( this.playing[ oldPlayer.player.id_ ]) {
         oldPlayer.player.pause();
+        this.playing[ oldPlayer.player.id_ ] = false;
+      }
     },
     transitionEnded() {
       console.log( 'transitionEnded' );
@@ -73,13 +75,13 @@ export default {
       if ( !player || !player[0] ) return;    // only play present players
       player = player[0];
       console.log( 'player', this.slide, player );
-      if ( this.ready[ player.player.id_ ] && !this.played[ player.player.id_ ])
+      if ( this.ready[ player.player.id_ ] && !this.played[ player.player.id_ ]) 
         player.player.play();
     },
     // event handlers
     playerPlayed( player ) {
       console.log( 'playerPlayed', player );
-      this.played[ player.id_ ] = true;
+      this.played[ player.id_ ] = this.playing[ player.id_ ] = true;
     },
     playerPaused( player ) {
       console.log( 'playerPaused', player );
@@ -94,7 +96,6 @@ export default {
     },
     playerPlaying( player ) {
       console.log( 'playerPlaying', player );
-      this.playing[ player.id_ ] = true;
     },
     playerDataLoaded( player ) {
       // console.log( 'playerDataLoaded', player );
