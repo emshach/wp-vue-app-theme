@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       loading: true,
-      autoplay: true,
+      autoplayTimeout: 15000,
       slide: 0,
       sliding: null,
       players: [],
@@ -91,17 +91,17 @@ export default {
       console.log( 'playerPlayed', player, player.id_ );
       this.played[ player.id_ ] = true;
       this.playing[ player.id_ ] = true;
-      this.autoplay = false;
+      this.autoplayTimeout = 9999999999;
     },
     playerPaused( player ) {
       console.log( 'playerPaused', player, player.id_ );
       this.playing[ player.id_ ] = false;
-      this.autoplay = true;
+      this.autoplayTimeout = 2000;
     },
     playerEnded( player ) {
       console.log( 'playerEnded', player, player.id_ );
       this.playing[ player.id_ ] = false;
-      this.autoplay = true;
+      this.autoplayTimeout = 2000;
     },
     playerWaiting( player ) {
       // console.log( 'playerWaiting', player, player.id_ );
