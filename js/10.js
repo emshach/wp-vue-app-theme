@@ -75,7 +75,11 @@ var carousels = 0;
     this.updatePlayers();
   },
   updated: function updated() {
-    this.updatePlayers();
+    var _this2 = this;
+
+    this.$nextTick(function () {
+      _this2.updatePlayers();
+    });
   },
   methods: {
     getSlides: function getSlides() {
@@ -136,23 +140,23 @@ var carousels = 0;
       }
     },
     transitionEnded: function transitionEnded() {
-      var _this2 = this;
+      var _this3 = this;
 
       // console.log( 'transitionEnded' );
       this.sliding = false;
       if (this.trying) window.clearInterval(this.trying);
       this.trying = window.setInterval(function () {
-        var player = _this2.$refs['player' + _this2.slide];
+        var player = _this3.$refs['player' + _this3.slide];
         if (!player || !player[0]) return; // only play present players
 
         player = player[0].player;
-        var id = "" + _this2.slide; // console.log( 'playing', this.slide, id );
+        var id = "" + _this3.slide; // console.log( 'playing', this.slide, id );
 
-        if (_this2.ready[id]) {
-          if (_this2.played[id]) {
-            if (_this2.trying) {
-              window.clearInterval(_this2.trying);
-              _this2.trying = null;
+        if (_this3.ready[id]) {
+          if (_this3.played[id]) {
+            if (_this3.trying) {
+              window.clearInterval(_this3.trying);
+              _this3.trying = null;
             }
 
             return;

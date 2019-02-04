@@ -56,7 +56,9 @@ export default {
     this.updatePlayers();
   },
   updated() {
-    this.updatePlayers();
+    this.$nextTick(() => {
+      this.updatePlayers();
+    });
   },
   methods: {
     getSlides() {
