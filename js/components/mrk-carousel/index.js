@@ -113,40 +113,29 @@ export default {
     transitionEnded() {
       console.log( 'transitionEnded' );
       this.sliding = false;
-      // window.setTimeout(() => {
-      //   var player = this.$refs[ 'player' + this.slide ];
-      //   if ( !player || !player[0] ) return;    // only play present players
-      //   player = player[0].player;
-      //   console.log( 'player', this.slide, player, player.id_ );
-      //   if ( this.ready[ player.id_ ]) {
-      //     if ( !this.played[ player.id_ ]) {
-      //       var retries = 0;
-      //       var tryplay;
-      //       tryplay = error => {
-      //         if ( ++retries > 3 ) return;
-      //         console.warn( 'playback error', error );
-      //         console.log( player.id_, 'retry #', retries );
-      //         window.setTimeout(() => {
-      //           player.play().catch( tryplay );
-      //         }, 1500 );
-      //       };
-      //       player.play();
-      //     }
-      //   } else {
-      //     this.waiting[ player.id_ ] = true;
-      //   }
-      // }, 3000 );
-      var player = this.$refs[ 'player' + this.slide ];
-      if ( !player || !player[0] ) return;    // only play present players
-      player = player[0].player;
-      console.log( 'player', this.slide, player, player.id_ );
-      if ( this.ready[ player.id_ ]) {
-        if ( !this.played[ player.id_ ]) {
-          player.ready(() => {
+      window.setTimeout(() => {
+        var player = this.$refs[ 'player' + this.slide ];
+        if ( !player || !player[0] ) return;    // only play present players
+        player = player[0].player;
+        console.log( 'player', this.slide, player, player.id_ );
+        if ( this.ready[ player.id_ ]) {
+          if ( !this.played[ player.id_ ]) {
+            var retries = 0;
+            var tryplay;
+            tryplay = error => {
+              if ( ++retries > 3 ) return;
+              console.warn( 'playback error', error );
+              console.log( player.id_, 'retry #', retries );
+              window.setTimeout(() => {
+                player.play().catch( tryplay );
+              }, 1500 );
+            };
             player.play();
-          });
+          }
+        } else {
+          this.waiting[ player.id_ ] = true;
         }
-      }
+      }, 3000 );
     },
     // event handlers
     playerPlayed( player ) {

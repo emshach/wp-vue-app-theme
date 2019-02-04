@@ -132,44 +132,38 @@ var carousels = 0;
       }
     },
     transitionEnded: function transitionEnded() {
+      var _this2 = this;
+
       console.log('transitionEnded');
-      this.sliding = false; // window.setTimeout(() => {
-      //   var player = this.$refs[ 'player' + this.slide ];
-      //   if ( !player || !player[0] ) return;    // only play present players
-      //   player = player[0].player;
-      //   console.log( 'player', this.slide, player, player.id_ );
-      //   if ( this.ready[ player.id_ ]) {
-      //     if ( !this.played[ player.id_ ]) {
-      //       var retries = 0;
-      //       var tryplay;
-      //       tryplay = error => {
-      //         if ( ++retries > 3 ) return;
-      //         console.warn( 'playback error', error );
-      //         console.log( player.id_, 'retry #', retries );
-      //         window.setTimeout(() => {
-      //           player.play().catch( tryplay );
-      //         }, 1500 );
-      //       };
-      //       player.play();
-      //     }
-      //   } else {
-      //     this.waiting[ player.id_ ] = true;
-      //   }
-      // }, 3000 );
+      this.sliding = false;
+      window.setTimeout(function () {
+        var player = _this2.$refs['player' + _this2.slide];
+        if (!player || !player[0]) return; // only play present players
 
-      var player = this.$refs['player' + this.slide];
-      if (!player || !player[0]) return; // only play present players
+        player = player[0].player;
+        console.log('player', _this2.slide, player, player.id_);
 
-      player = player[0].player;
-      console.log('player', this.slide, player, player.id_);
+        if (_this2.ready[player.id_]) {
+          if (!_this2.played[player.id_]) {
+            var retries = 0;
 
-      if (this.ready[player.id_]) {
-        if (!this.played[player.id_]) {
-          player.ready(function () {
+            var _tryplay;
+
+            _tryplay = function tryplay(error) {
+              if (++retries > 3) return;
+              console.warn('playback error', error);
+              console.log(player.id_, 'retry #', retries);
+              window.setTimeout(function () {
+                player.play().catch(_tryplay);
+              }, 1500);
+            };
+
             player.play();
-          });
+          }
+        } else {
+          _this2.waiting[player.id_] = true;
         }
-      }
+      }, 3000);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {
