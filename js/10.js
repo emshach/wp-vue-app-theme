@@ -144,11 +144,11 @@ var carousels = 0;
         console.log('player', _this2.slide, player, player.id_);
 
         if (_this2.ready[player.id_]) {
-          if (!_this2.played[player.id_]) player.play();
+          if (!_this2.played[player.id_]) console.log('play result', player.play());
         } else {
           _this2.waiting[player.id_] = true;
         }
-      }, 3000);
+      }, 1500);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {

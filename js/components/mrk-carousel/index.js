@@ -120,11 +120,11 @@ export default {
         console.log( 'player', this.slide, player, player.id_ );
         if ( this.ready[ player.id_ ]) {
           if ( !this.played[ player.id_ ])
-            player.play();
+            console.log( 'play result', player.play() );
         } else {
           this.waiting[ player.id_ ] = true;
         }
-      }, 3000 );
+      }, 1500 );
     },
     // event handlers
     playerPlayed( player ) {
