@@ -97,17 +97,6 @@ var carousels = 0;
         players[player.id_] = index;
       }
 
-      for (p in this.players) {
-        if (!(p in players)) {
-          // then it got drawn-over
-          delete this.waiting[p];
-          delete this.ready[p];
-          delete this.playing[p];
-          delete this.played[p];
-          if (this.currentPlaying == p) this.currentPlaying = false;
-        }
-      }
-
       this.players = players;
     },
     getPlayerSlide: function getPlayerSlide(player) {
