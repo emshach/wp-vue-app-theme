@@ -4,7 +4,7 @@ const ScrollHeader = {
 };
 
 (function ($) {
-  ScrollHeader.init = ( header, top ) => {
+  ScrollHeader.init = ( header, container ) => {
     var _ = ScrollHeader;
     var $el = $( "#app>.page" );
     _.last_scroll = $el.scrollTop();
@@ -22,7 +22,7 @@ const ScrollHeader = {
           $head.stop().animate( { top: 0 }, 'slow' );
       } else
         _.scroll_dir = 'none';
-      var topH = $( top ).innerHeight() - $head.innerHeight() + 20;
+      var topH = $( container ).innerHeight() - $head.innerHeight() + 20;
       if ( cur > topH ) 
         $head.removeClass( 'mrk-bg-clear' ).addClass( 'mrk-bg-dark' );
       else

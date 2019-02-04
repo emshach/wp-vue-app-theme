@@ -122,7 +122,7 @@ var ScrollHeader = {
 };
 
 (function ($) {
-  ScrollHeader.init = function (header, top) {
+  ScrollHeader.init = function (header, container) {
     var _ = ScrollHeader;
     var $el = $("#app>.page");
     _.last_scroll = $el.scrollTop();
@@ -142,7 +142,7 @@ var ScrollHeader = {
         }, 'slow');
       } else _.scroll_dir = 'none';
 
-      var topH = $(top).innerHeight() - $head.innerHeight() + 20;
+      var topH = $(container).innerHeight() - $head.innerHeight() + 20;
       if (cur > topH) $head.removeClass('mrk-bg-clear').addClass('mrk-bg-dark');else $head.removeClass('mrk-bg-dark').addClass('mrk-bg-clear');
     });
   };
