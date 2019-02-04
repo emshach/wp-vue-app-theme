@@ -144,11 +144,24 @@ var carousels = 0;
         console.log('player', _this2.slide, player, player.id_);
 
         if (_this2.ready[player.id_]) {
-          if (!_this2.played[player.id_]) console.log('play result', player.play());
+          if (!_this2.played[player.id_]) {
+            var retries = 0;
+
+            var _tryplay;
+
+            _tryplay = function tryplay() {
+              if (++retries > 3) return;
+              window.setTimeout(function () {
+                player.play(_tryplay);
+              }, 1000);
+            };
+
+            player.play().catch();
+          }
         } else {
           _this2.waiting[player.id_] = true;
         }
-      }, 1500);
+      }, 1000);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {

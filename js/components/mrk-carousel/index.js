@@ -119,12 +119,21 @@ export default {
         player = player[0].player;
         console.log( 'player', this.slide, player, player.id_ );
         if ( this.ready[ player.id_ ]) {
-          if ( !this.played[ player.id_ ])
-            console.log( 'play result', player.play() );
+          if ( !this.played[ player.id_ ]) {
+            var retries = 0;
+            var tryplay;
+            tryplay = () => {
+              if ( ++retries > 3 ) return;
+              window.setTimeout(() => {
+                player.play( tryplay );
+              }, 1000 );
+            };
+            player.play().catch();
+          }
         } else {
           this.waiting[ player.id_ ] = true;
         }
-      }, 1500 );
+      }, 1000 );
     },
     // event handlers
     playerPlayed( player ) {
