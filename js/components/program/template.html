@@ -1,11 +1,11 @@
 <div class="program post page" :key="postData.id">
-  <div id="bg-image-wrapper" :class="classes">
+  <div id="bg-image-wrapper">
     <transition name="fade-in" appear>
       <img id="bg-image" :src="img" :key="img" @load="showImg" v-show="show"/>
     </transition>
   </div>
   <down-arrow></down-arrow>
-  <div class="featured-outer">
+  <div class="featured-outer" :class="classes">
     <transition name="fade-slow">
       <div v-if="promos.length" class="featured-wrapper">
         <mrk-carousel id="featured" :slides="promos"></mrk-carousel>
