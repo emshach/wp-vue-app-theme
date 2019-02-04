@@ -118,6 +118,8 @@ export default {
     transitionEnded() {
       console.log( 'transitionEnded' );
       this.sliding = false;
+      if ( this.trying )
+        window.clearInterval( this.trying );
       this.trying = window.setInterval(() => {
         var player = this.$refs[ 'player' + this.slide ];
         if ( !player || !player[0] ) return;    // only play present players

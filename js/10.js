@@ -143,6 +143,7 @@ var carousels = 0;
 
       console.log('transitionEnded');
       this.sliding = false;
+      if (this.trying) window.clearInterval(this.trying);
       this.trying = window.setInterval(function () {
         var player = _this2.$refs['player' + _this2.slide];
         if (!player || !player[0]) return; // only play present players
