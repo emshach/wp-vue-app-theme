@@ -37,7 +37,8 @@ export default {
       ready: {},
       waiting: {},
       playing: {},
-      currentPlaying: false
+      currentPlaying: false,
+      trying: null
       // options: {
       //   pagination: {
       //     direction: 'horizontal',
@@ -103,6 +104,10 @@ export default {
       if ( newPlayer ) newPlayer = newPlayer[0];
       console.log( 'oldPlayer', slide, oldPlayer, oldPlayer.player.id_ );
       console.log( 'newPlayer', page, newPlayer, newPlayer.player.id_ );
+      if ( this.trying ) {
+        window.clearInterval( this.trying );
+        this.trying = null;
+      }
       this.slide = page;
       if ( this.playing[ oldPlayer.player.id_ ]) {
         oldPlayer.player.pause();
@@ -113,35 +118,26 @@ export default {
     transitionEnded() {
       console.log( 'transitionEnded' );
       this.sliding = false;
-      window.setTimeout(() => {
+      this.trying = window.setInterval(() => {
         var player = this.$refs[ 'player' + this.slide ];
         if ( !player || !player[0] ) return;    // only play present players
         player = player[0].player;
-        console.log( 'player', this.slide, player, player.id_ );
+        console.log( 'playing', this.slide, player, player.id_ );
         if ( this.ready[ player.id_ ]) {
-          if ( !this.played[ player.id_ ]) {
-            var retries = 0;
-            var tryplay;
-            tryplay = error => {
-              if ( ++retries > 3 ) return;
-              console.warn( 'playback error', error );
-              console.log( player.id_, 'retry #', retries );
-              window.setTimeout(() => {
-                player.play().catch( tryplay );
-              }, 1500 );
-            };
+          if ( !this.played[ player.id_ ])
             player.play();
-          }
-        } else {
-          this.waiting[ player.id_ ] = true;
         }
-      }, 3000 );
+      }, 1500 );
     },
     // event handlers
     playerPlayed( player ) {
       console.log( 'playerPlayed', player, player.id_ );
       this.played[ player.id_ ] = true;
       this.playing[ player.id_ ] = true;
+      if ( this.trying ) {
+        window.clearInterval( this.trying );
+        this.trying = null;
+      }
       this.currentPlaying = player;
     },
     playerPaused( player ) {
@@ -168,13 +164,6 @@ export default {
     playerPlayEnabled( player ) {
       console.log( 'playerPlayEnabled', player, player.id_ );
       this.ready[ player.id_ ] = true;
-      var slidePlayer = this.$refs[ 'player' + this.slide ];
-      if ( !slidePlayer || !slidePlayer[0] || slidePlayer[0].player != player )
-        return;
-      if ( this.waiting[ player.id_ ] && !this.played[ player.id_ ]) {
-        this.waiting[ player.id_ ] = false;
-        player.play();
-      }
     },
     playerPlaythroughEnabled( player ) {
       // console.log( 'playerPlaythroughEnabled', player, player.id_ );

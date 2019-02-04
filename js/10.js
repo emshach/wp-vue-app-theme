@@ -53,7 +53,8 @@ var carousels = 0;
       ready: {},
       waiting: {},
       playing: {},
-      currentPlaying: false // options: {
+      currentPlaying: false,
+      trying: null // options: {
       //   pagination: {
       //     direction: 'horizontal',
       //     el: '.swiper-pagination',
@@ -123,6 +124,12 @@ var carousels = 0;
       if (newPlayer) newPlayer = newPlayer[0];
       console.log('oldPlayer', slide, oldPlayer, oldPlayer.player.id_);
       console.log('newPlayer', page, newPlayer, newPlayer.player.id_);
+
+      if (this.trying) {
+        window.clearInterval(this.trying);
+        this.trying = null;
+      }
+
       this.slide = page;
 
       if (this.playing[oldPlayer.player.id_]) {
@@ -136,40 +143,29 @@ var carousels = 0;
 
       console.log('transitionEnded');
       this.sliding = false;
-      window.setTimeout(function () {
+      this.trying = window.setInterval(function () {
         var player = _this2.$refs['player' + _this2.slide];
         if (!player || !player[0]) return; // only play present players
 
         player = player[0].player;
-        console.log('player', _this2.slide, player, player.id_);
+        console.log('playing', _this2.slide, player, player.id_);
 
         if (_this2.ready[player.id_]) {
-          if (!_this2.played[player.id_]) {
-            var retries = 0;
-
-            var _tryplay;
-
-            _tryplay = function tryplay(error) {
-              if (++retries > 3) return;
-              console.warn('playback error', error);
-              console.log(player.id_, 'retry #', retries);
-              window.setTimeout(function () {
-                player.play().catch(_tryplay);
-              }, 1500);
-            };
-
-            player.play();
-          }
-        } else {
-          _this2.waiting[player.id_] = true;
+          if (!_this2.played[player.id_]) player.play();
         }
-      }, 3000);
+      }, 1500);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {
       console.log('playerPlayed', player, player.id_);
       this.played[player.id_] = true;
       this.playing[player.id_] = true;
+
+      if (this.trying) {
+        window.clearInterval(this.trying);
+        this.trying = null;
+      }
+
       this.currentPlaying = player;
     },
     playerPaused: function playerPaused(player) {
@@ -192,13 +188,6 @@ var carousels = 0;
     playerPlayEnabled: function playerPlayEnabled(player) {
       console.log('playerPlayEnabled', player, player.id_);
       this.ready[player.id_] = true;
-      var slidePlayer = this.$refs['player' + this.slide];
-      if (!slidePlayer || !slidePlayer[0] || slidePlayer[0].player != player) return;
-
-      if (this.waiting[player.id_] && !this.played[player.id_]) {
-        this.waiting[player.id_] = false;
-        player.play();
-      }
     },
     playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {// console.log( 'playerPlaythroughEnabled', player, player.id_ );
     },
