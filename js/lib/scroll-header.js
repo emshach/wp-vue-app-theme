@@ -8,7 +8,8 @@ const ScrollHeader = {
     var _ = ScrollHeader;
     var $el = $( "#app>.page" );
     _.last_scroll = $el.scrollTop();
-    $el.off( 'scroll' ).scroll( e => {
+    $el.off( 'scroll' );
+    $el.on( 'scroll', e => {
       var last = _.last_scroll;
       var dir = _.scroll_dir;
       var cur = _.last_scroll = $el.scrollTop();

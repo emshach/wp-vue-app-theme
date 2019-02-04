@@ -126,7 +126,8 @@ var ScrollHeader = {
     var _ = ScrollHeader;
     var $el = $("#app>.page");
     _.last_scroll = $el.scrollTop();
-    $el.off('scroll').scroll(function (e) {
+    $el.off('scroll');
+    $el.on('scroll', function (e) {
       var last = _.last_scroll;
       var dir = _.scroll_dir;
       var cur = _.last_scroll = $el.scrollTop();
