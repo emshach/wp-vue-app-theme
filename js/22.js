@@ -41,7 +41,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.storedPost = rpost;
         document.title = he__WEBPACK_IMPORTED_MODULE_2___default.a.decode(rpost.title.rendered + ' | ' + _this.sstate.site.title);
         window.setTimeout(function () {
-          _this.promos = rpost.promo_reel;
+          _this.promos = rpost.promo_reel || [];
         }, 3000);
       });
     });

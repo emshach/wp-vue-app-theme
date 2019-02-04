@@ -22,7 +22,7 @@ export default {
         document.title = he.decode( rpost.title.rendered + ' | '
                                     + this.sstate.site.title );
         window.setTimeout(() => {
-          this.promos = rpost.promo_reel;
+          this.promos = rpost.promo_reel || [];
         }, 3000 );
       });
     });
