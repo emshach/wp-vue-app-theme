@@ -124,6 +124,7 @@ export default {
             var tryplay;
             tryplay = () => {
               if ( ++retries > 3 ) return;
+              console.log( 'try #', retries );
               window.setTimeout(() => {
                 player.play().catch( tryplay );
               }, 1000 );
