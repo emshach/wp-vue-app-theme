@@ -118,9 +118,6 @@ export default {
     transitionEnded() {
       // console.log( 'transitionEnded' );
       this.sliding = false;
-      window.setTimeout(() => {
-        this.updatePlayers();
-      }, 150);
       if ( this.trying )
         window.clearInterval( this.trying );
       this.trying = window.setInterval(() => {

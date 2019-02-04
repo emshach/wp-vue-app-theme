@@ -145,9 +145,6 @@ var carousels = 0;
 
       // console.log( 'transitionEnded' );
       this.sliding = false;
-      window.setTimeout(function () {
-        _this3.updatePlayers();
-      }, 150);
       if (this.trying) window.clearInterval(this.trying);
       this.trying = window.setInterval(function () {
         var player = _this3.$refs['player' + _this3.slide];
