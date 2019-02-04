@@ -25,7 +25,8 @@ __webpack_require__.r(__webpack_exports__);
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       storedPost: {},
       promos: [],
-      show: false
+      show: false,
+      scrollheader: null
     };
   },
   mounted: function mounted() {
@@ -49,6 +50,7 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     this.$nextTick(function () {
+      _this.scrollheader = Scrollheader;
       _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
     });
   },

@@ -9,7 +9,8 @@ export default {
       sstate: store.state,
       storedPost: {},
       promos: [],
-      show: false
+      show: false,
+      scrollheader: null
     };
   },
   mounted() {
@@ -28,6 +29,7 @@ export default {
       });
     });
     this.$nextTick(() => {
+      this.scrollheader = Scrollheader;
       ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
     });
   },
