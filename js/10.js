@@ -141,7 +141,7 @@ var carousels = 0;
     transitionEnded: function transitionEnded() {
       var _this2 = this;
 
-      console.log('transitionEnded');
+      // console.log( 'transitionEnded' );
       this.sliding = false;
       if (this.trying) window.clearInterval(this.trying);
       this.trying = window.setInterval(function () {
@@ -149,8 +149,7 @@ var carousels = 0;
         if (!player || !player[0]) return; // only play present players
 
         player = player[0].player;
-        var id = player.id_;
-        console.log('playing', _this2.slide, id);
+        var id = player.id_; // console.log( 'playing', this.slide, id );
 
         if (_this2.ready[id]) {
           if (_this2.played[id]) {

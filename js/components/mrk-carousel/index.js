@@ -116,7 +116,7 @@ export default {
       }
     },
     transitionEnded() {
-      console.log( 'transitionEnded' );
+      // console.log( 'transitionEnded' );
       this.sliding = false;
       if ( this.trying )
         window.clearInterval( this.trying );
@@ -125,7 +125,7 @@ export default {
         if ( !player || !player[0] ) return;    // only play present players
         player = player[0].player;
         var id = player.id_;
-        console.log( 'playing', this.slide, id );
+        // console.log( 'playing', this.slide, id );
         if ( this.ready[ id ]) {
           if ( this.played[ id ]) {
             if ( this.trying ) {
