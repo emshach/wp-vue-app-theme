@@ -48,7 +48,7 @@ export default {
       if (! this.user ) {
         // redirect to login, then continue
       }
-      if ( this.currentLevel == level )
+      if ( this.currentLevel && this.currentLevel.id == level.id )
         return;
       this.selectedLevel = level;
       this.order = [{ item: level.name, amount: level.billing_amount },
