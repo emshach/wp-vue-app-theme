@@ -31,7 +31,7 @@ export default {
     window.setTimeout(() => {
       this.scrollheader = ScrollHeader;
       ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
-    }, 150 );
+    }, 500 );
   },
   updated() {
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
