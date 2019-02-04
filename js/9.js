@@ -48,9 +48,12 @@ __webpack_require__.r(__webpack_exports__);
         }, 3000);
       });
     });
+  },
+  rendered: function rendered() {
+    var _this2 = this;
 
     window.setTimeout(function () {
-      _this.scrollheader = _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"];
+      _this2.scrollheader = _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"];
       _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
     }, 500);
   },

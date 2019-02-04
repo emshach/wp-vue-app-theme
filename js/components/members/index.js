@@ -28,6 +28,8 @@ export default {
         }, 3000 );
       });
     });
+  },
+  rendered() {
     window.setTimeout(() => {
       this.scrollheader = ScrollHeader;
       ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
