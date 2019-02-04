@@ -29,7 +29,7 @@ export default {
       });
     });
     this.$nextTick(() => {
-      this.scrollheader = Scrollheader;
+      this.scrollheader = ScrollHeader;
       ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
     });
   },
