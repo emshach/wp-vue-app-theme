@@ -152,11 +152,11 @@ var carousels = 0;
             _tryplay = function tryplay() {
               if (++retries > 3) return;
               window.setTimeout(function () {
-                player.play(_tryplay);
+                player.play().catch(_tryplay);
               }, 1000);
             };
 
-            player.play().catch();
+            player.play().catch(_tryplay);
           }
         } else {
           _this2.waiting[player.id_] = true;

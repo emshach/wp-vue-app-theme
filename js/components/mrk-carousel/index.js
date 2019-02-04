@@ -125,10 +125,10 @@ export default {
             tryplay = () => {
               if ( ++retries > 3 ) return;
               window.setTimeout(() => {
-                player.play( tryplay );
+                player.play().catch( tryplay );
               }, 1000 );
             };
-            player.play().catch();
+            player.play().catch( tryplay );
           }
         } else {
           this.waiting[ player.id_ ] = true;
