@@ -32,7 +32,7 @@ export default {
       goto: 0,
       slide: 0,
       sliding: null,
-      players: [],
+      players: {},
       played: {},
       ready: {},
       waiting: {},
@@ -59,12 +59,40 @@ export default {
       }, this.interval );
     }
   },
+  rendered() {
+    this.updatePlayers();
+  },
+  updated() {
+    this.updatePlayers();
+  },
   methods: {
     getSlides() {
       if (! this.slides.length && this.topic ) {
         // TODO: search using topic, get posts
       }
     },
+    updatePlayers() {
+      var players = {};
+      for ( var p in this.$refs ) {
+        if ( p.indexOf( 'player' ) != 0 )
+          continue;
+        var player = this.$refs[p][0];
+        var index = p.substr(6);
+        players[ player.id_ ] = index;
+      }
+      for ( p in this.players ) {
+        if (!( p in players )) { // then it got drawn-over
+          delete this.waiting[p];
+          delete this.ready[p];
+          delete this.playing[p];
+          delete this.played[p];
+          if ( this.currentPlaying == p )
+            this.currentPlaying = false;
+        }
+      }
+      this.players = players;
+    },
+    // events
     pageChanged( page ) {
       console.log( 'pageChanged', page );
       var slide = this.slide;
@@ -83,25 +111,25 @@ export default {
     },
     transitionEnded() {
       console.log( 'transitionEnded' );
-      var player = this.$refs[ 'player' + this.slide ];
-      if ( !player || !player[0] ) return;    // only play present players
-      player = player[0].player;
-      console.log( 'player', this.slide, player, player.id_ );
-      if ( this.ready[ player.id_ ] ) {
-        if ( !this.played[ player.id_ ])
-          window.setTimeout(() => {
+      window.setTimeout(() => {
+        var player = this.$refs[ 'player' + this.slide ];
+        if ( !player || !player[0] ) return;    // only play present players
+        player = player[0].player;
+        console.log( 'player', this.slide, player, player.id_ );
+        if ( this.ready[ player.id_ ]) {
+          if ( !this.played[ player.id_ ])
             player.play();
-          }, 100 );
-      } else {
-        this.waiting[ player.id_ ] = true;
-      }
+        } else {
+          this.waiting[ player.id_ ] = true;
+        }
+      }, 250 );
     },
     // event handlers
     playerPlayed( player ) {
       console.log( 'playerPlayed', player, player.id_ );
       this.played[ player.id_ ] = true;
       this.playing[ player.id_ ] = true;
-      this.currentPlaying = true;
+      this.currentPlaying = player;
     },
     playerPaused( player ) {
       console.log( 'playerPaused', player, player.id_ );
@@ -142,7 +170,7 @@ export default {
       // console.log( 'playerStateChanged', player, player.id_ );
     },
     playerReadied( player ) {
-      console.log( 'playerReadied', player, player.id_ );
+      // console.log( 'playerReadied', player, player.id_ );
     }
   },
   watch: {

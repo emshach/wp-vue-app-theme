@@ -48,7 +48,7 @@ var carousels = 0;
       goto: 0,
       slide: 0,
       sliding: null,
-      players: [],
+      players: {},
       played: {},
       ready: {},
       waiting: {},
@@ -78,11 +78,41 @@ var carousels = 0;
       }, this.interval);
     }
   },
+  rendered: function rendered() {
+    this.updatePlayers();
+  },
+  updated: function updated() {
+    this.updatePlayers();
+  },
   methods: {
     getSlides: function getSlides() {
       if (!this.slides.length && this.topic) {// TODO: search using topic, get posts
       }
     },
+    updatePlayers: function updatePlayers() {
+      var players = {};
+
+      for (var p in this.$refs) {
+        if (p.indexOf('player') != 0) continue;
+        var player = this.$refs[p][0];
+        var index = p.substr(6);
+        players[player.id_] = index;
+      }
+
+      for (p in this.players) {
+        if (!(p in players)) {
+          // then it got drawn-over
+          delete this.waiting[p];
+          delete this.ready[p];
+          delete this.playing[p];
+          delete this.played[p];
+          if (this.currentPlaying == p) this.currentPlaying = false;
+        }
+      }
+
+      this.players = players;
+    },
+    // events
     pageChanged: function pageChanged(page) {
       console.log('pageChanged', page);
       var slide = this.slide;
@@ -101,27 +131,29 @@ var carousels = 0;
       }
     },
     transitionEnded: function transitionEnded() {
+      var _this2 = this;
+
       console.log('transitionEnded');
-      var player = this.$refs['player' + this.slide];
-      if (!player || !player[0]) return; // only play present players
+      window.setTimeout(function () {
+        var player = _this2.$refs['player' + _this2.slide];
+        if (!player || !player[0]) return; // only play present players
 
-      player = player[0].player;
-      console.log('player', this.slide, player, player.id_);
+        player = player[0].player;
+        console.log('player', _this2.slide, player, player.id_);
 
-      if (this.ready[player.id_]) {
-        if (!this.played[player.id_]) window.setTimeout(function () {
-          player.play();
-        }, 100);
-      } else {
-        this.waiting[player.id_] = true;
-      }
+        if (_this2.ready[player.id_]) {
+          if (!_this2.played[player.id_]) player.play();
+        } else {
+          _this2.waiting[player.id_] = true;
+        }
+      }, 250);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {
       console.log('playerPlayed', player, player.id_);
       this.played[player.id_] = true;
       this.playing[player.id_] = true;
-      this.currentPlaying = true;
+      this.currentPlaying = player;
     },
     playerPaused: function playerPaused(player) {
       console.log('playerPaused', player, player.id_);
@@ -155,8 +187,7 @@ var carousels = 0;
     },
     playerStateChanged: function playerStateChanged(player) {// console.log( 'playerStateChanged', player, player.id_ );
     },
-    playerReadied: function playerReadied(player) {
-      console.log('playerReadied', player, player.id_);
+    playerReadied: function playerReadied(player) {// console.log( 'playerReadied', player, player.id_ );
     }
   },
   watch: {
