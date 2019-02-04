@@ -1,4 +1,5 @@
 import store from '../../lib/store';
+import ScrollHeader from '../../lib/scroll-header';
 import _wpapix from '../../lib/wpapix';
 import he from 'he';
 export default {
@@ -25,6 +26,9 @@ export default {
           this.promos = rpost.promo_reel || [];
         }, 3000 );
       });
+    });
+    this.$nextTick(() => {
+      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
     });
   },
   updated() {
