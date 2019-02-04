@@ -161,6 +161,7 @@ var carousels = 0;
             return;
           }
 
+          jQuery(player.el_).click();
           player.play();
         }
       }, 3000);

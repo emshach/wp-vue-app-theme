@@ -134,6 +134,7 @@ export default {
             }
             return;
           }
+          jQuery( player.el_ ).click();
           player.play();
         }
       }, 3000 );
