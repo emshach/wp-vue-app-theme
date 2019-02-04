@@ -158,7 +158,7 @@ var carousels = 0;
               }, 1500);
             };
 
-            player.play().catch(_tryplay);
+            player.play();
           }
         } else {
           _this2.waiting[player.id_] = true;

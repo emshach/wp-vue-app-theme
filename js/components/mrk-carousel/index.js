@@ -130,7 +130,7 @@ export default {
                 player.play().catch( tryplay );
               }, 1500 );
             };
-            player.play().catch( tryplay );
+            player.play();
           }
         } else {
           this.waiting[ player.id_ ] = true;
