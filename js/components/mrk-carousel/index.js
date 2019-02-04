@@ -134,8 +134,12 @@ export default {
             }
             return;
           }
-          jQuery( player.el_ ).click();
-          player.play();
+          player.play().catch(() => {
+            player.volume(0);
+            player.play().then(() => {
+              player.volume(1);
+            });
+          });
         }
       }, 3000 );
     },

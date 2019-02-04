@@ -161,8 +161,12 @@ var carousels = 0;
             return;
           }
 
-          jQuery(player.el_).click();
-          player.play();
+          player.play().catch(function () {
+            player.volume(0);
+            player.play().then(function () {
+              player.volume(1);
+            });
+          });
         }
       }, 3000);
     },
