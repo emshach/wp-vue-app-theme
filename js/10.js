@@ -115,6 +115,7 @@ var carousels = 0;
     // events
     pageChanged: function pageChanged(page) {
       console.log('pageChanged', page);
+      this.sliding = true;
       var slide = this.slide;
       var oldPlayer = this.$refs['player' + slide];
       var newPlayer = this.$refs['player' + page];
@@ -134,6 +135,7 @@ var carousels = 0;
       var _this2 = this;
 
       console.log('transitionEnded');
+      this.sliding = false;
       window.setTimeout(function () {
         var player = _this2.$refs['player' + _this2.slide];
         if (!player || !player[0]) return; // only play present players

@@ -78,7 +78,8 @@ h1 {
   padding: 0; }
 
 .featured-outer.small {
-  height: 25em; }
+  height: 25em;
+  animation: shrink-featured ease-out 1; }
 
 .featured-wrapper {
   position: relative;
@@ -158,6 +159,10 @@ h1 {
   #featured .VueCarousel-slide > .container > .row.col-md-4,
   #featured .featured-wrapper > .container > .row.col-md-4 {
     height: 30%; } }
+
+@keyframes shrink-featured {
+  from {
+    height: 100%; } }
 
 /**
  * parallax

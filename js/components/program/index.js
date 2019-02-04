@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       sstate: store.state,
+      loading: true,
       storedPost: {},
       promos: [],
       show: false
@@ -17,6 +18,7 @@ export default {
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
     window.setTimeout(() => {
       this.promos = this.promo_reel;
+      this.loading=false;
     }, 1500 );
     this.$nextTick(() => {
       ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
@@ -60,7 +62,8 @@ export default {
       return this.postData.content && this.postData.content.rendered || '';
     },
     classes() {
-      return { small: !this.promos.length };
+      // return { small: !this.loading && !this.promos.length };
+      return {};
     }
   },
   watch: {

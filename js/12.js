@@ -22,6 +22,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      loading: true,
       storedPost: {},
       promos: [],
       show: false
@@ -34,6 +35,7 @@ __webpack_require__.r(__webpack_exports__);
     document.title = he__WEBPACK_IMPORTED_MODULE_2___default.a.decode(this.title + ' | ' + this.sstate.site.title);
     window.setTimeout(function () {
       _this.promos = _this.promo_reel;
+      _this.loading = false;
     }, 1500);
     this.$nextTick(function () {
       _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
@@ -75,9 +77,8 @@ __webpack_require__.r(__webpack_exports__);
       return this.postData.content && this.postData.content.rendered || '';
     },
     classes: function classes() {
-      return {
-        small: !this.promos.length
-      };
+      // return { small: !this.loading && !this.promos.length };
+      return {};
     }
   },
   watch: {

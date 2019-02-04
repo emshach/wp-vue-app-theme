@@ -5,6 +5,7 @@
   padding: 0;
   &.small {
     height: 25em;
+    animation: shrink-featured ease-out 1;
   }
 }
 .featured-wrapper{
@@ -85,5 +86,10 @@
         }
       }
     }
+  }
+}
+@keyframes shrink-featured {
+  from {
+    height: 100%;
   }
 }

@@ -95,6 +95,7 @@ export default {
     // events
     pageChanged( page ) {
       console.log( 'pageChanged', page );
+      this.sliding = true;
       var slide = this.slide;
       var oldPlayer = this.$refs[ 'player' + slide ];
       var newPlayer = this.$refs[ 'player' + page ];
@@ -111,6 +112,7 @@ export default {
     },
     transitionEnded() {
       console.log( 'transitionEnded' );
+      this.sliding = false;
       window.setTimeout(() => {
         var player = this.$refs[ 'player' + this.slide ];
         if ( !player || !player[0] ) return;    // only play present players
@@ -155,7 +157,7 @@ export default {
     playerPlayEnabled( player ) {
       console.log( 'playerPlayEnabled', player, player.id_ );
       this.ready[ player.id_ ] = true;
-      var slidePlayer = this.$refs[ 'player'+ this.slide ];
+      var slidePlayer = this.$refs[ 'player' + this.slide ];
       if ( !slidePlayer || !slidePlayer[0] || slidePlayer[0].player != player )
         return;
       if ( this.waiting[ player.id_ ] && !this.played[ player.id_ ]) {

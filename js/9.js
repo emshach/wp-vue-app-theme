@@ -86,9 +86,8 @@ __webpack_require__.r(__webpack_exports__);
       return this.sstate.user;
     },
     classes: function classes() {
-      return {
-        small: !this.promos.length
-      };
+      // return { small: !this.promos.length };
+      return {};
     }
   }
 });

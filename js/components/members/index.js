@@ -67,7 +67,8 @@ export default {
       return this.sstate.user;
     },
     classes() {
-      return { small: !this.promos.length };
+      // return { small: !this.promos.length };
+      return {};
     }
   }
 };
