@@ -151,10 +151,10 @@ var carousels = 0;
 
             _tryplay = function tryplay() {
               if (++retries > 3) return;
-              console.log('try #', retries);
+              console.log('try #', retries, player.id_);
               window.setTimeout(function () {
                 player.play().catch(_tryplay);
-              }, 1000);
+              }, 1500);
             };
 
             player.play().catch(_tryplay);
@@ -162,7 +162,7 @@ var carousels = 0;
         } else {
           _this2.waiting[player.id_] = true;
         }
-      }, 1000);
+      }, 1500);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {

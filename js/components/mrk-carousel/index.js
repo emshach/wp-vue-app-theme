@@ -124,17 +124,17 @@ export default {
             var tryplay;
             tryplay = () => {
               if ( ++retries > 3 ) return;
-              console.log( 'try #', retries );
+              console.log( 'try #', retries, player.id_ );
               window.setTimeout(() => {
                 player.play().catch( tryplay );
-              }, 1000 );
+              }, 1500 );
             };
             player.play().catch( tryplay );
           }
         } else {
           this.waiting[ player.id_ ] = true;
         }
-      }, 1000 );
+      }, 1500 );
     },
     // event handlers
     playerPlayed( player ) {
