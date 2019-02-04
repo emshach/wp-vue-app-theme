@@ -148,7 +148,7 @@ var carousels = 0;
         } else {
           _this2.waiting[player.id_] = true;
         }
-      }, 500);
+      }, 1000);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {

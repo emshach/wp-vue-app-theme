@@ -124,7 +124,7 @@ export default {
         } else {
           this.waiting[ player.id_ ] = true;
         }
-      }, 500 );
+      }, 1000 );
     },
     // event handlers
     playerPlayed( player ) {
