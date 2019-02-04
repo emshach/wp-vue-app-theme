@@ -54,15 +54,7 @@ var carousels = 0;
       waiting: {},
       playing: {},
       currentPlaying: false,
-      trying: null // options: {
-      //   pagination: {
-      //     direction: 'horizontal',
-      //     el: '.swiper-pagination',
-      //     speed: 15000,
-      //     loop: true
-      //   }
-      // }
-
+      trying: null
     };
   },
   mounted: function mounted() {
@@ -95,7 +87,7 @@ var carousels = 0;
 
       for (var p in this.$refs) {
         if (p.indexOf('player') != 0) continue;
-        var player = this.$refs[p][0];
+        var player = this.$refs[p][0].player;
         var index = p.substr(6);
         players[player.id_] = index;
       }
@@ -112,6 +104,10 @@ var carousels = 0;
       }
 
       this.players = players;
+    },
+    getPlayerSlide: function getPlayerSlide(player) {
+      if (!player.id_ in this.players) this.updatePlayers();
+      return this.players[player.id_];
     },
     // events
     pageChanged: function pageChanged(page) {
@@ -131,10 +127,11 @@ var carousels = 0;
       }
 
       this.slide = page;
+      var old = "" + slide;
 
-      if (this.playing[oldPlayer.player.id_]) {
+      if (this.playing[old]) {
         oldPlayer.player.pause();
-        this.playing[oldPlayer.player.id_] = false;
+        this.playing[old] = false;
         this.currentPlaying = false;
       }
     },
@@ -149,7 +146,7 @@ var carousels = 0;
         if (!player || !player[0]) return; // only play present players
 
         player = player[0].player;
-        var id = player.id_; // console.log( 'playing', this.slide, id );
+        var id = "" + _this2.slide; // console.log( 'playing', this.slide, id );
 
         if (_this2.ready[id]) {
           if (_this2.played[id]) {
@@ -161,20 +158,16 @@ var carousels = 0;
             return;
           }
 
-          player.play().catch(function () {
-            player.volume(0);
-            player.play().then(function () {
-              player.volume(1);
-            });
-          });
+          player.play().catch(function () {});
         }
-      }, 3000);
+      }, 1000);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {
       console.log('playerPlayed', player, player.id_);
-      this.played[player.id_] = true;
-      this.playing[player.id_] = true;
+      var id = this.getPlayerSlide(player);
+      this.played[id] = true;
+      this.playing[id] = true;
 
       if (this.trying) {
         window.clearInterval(this.trying);
@@ -185,11 +178,13 @@ var carousels = 0;
     },
     playerPaused: function playerPaused(player) {
       console.log('playerPaused', player, player.id_);
-      this.playing[player.id_] = false;
+      var id = this.getPlayerSlide(player);
+      this.playing[id] = false;
     },
     playerEnded: function playerEnded(player) {
       console.log('playerEnded', player, player.id_);
-      this.playing[player.id_] = false;
+      var id = this.getPlayerSlide(player);
+      this.playing[id] = false;
       this.currentPlaying = false;
     },
     playerWaiting: function playerWaiting(player) {// console.log( 'playerWaiting', player, player.id_ );
@@ -202,7 +197,8 @@ var carousels = 0;
     },
     playerPlayEnabled: function playerPlayEnabled(player) {
       console.log('playerPlayEnabled', player, player.id_);
-      this.ready[player.id_] = true;
+      var id = this.getPlayerSlide(player);
+      this.ready[id] = true;
     },
     playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {// console.log( 'playerPlaythroughEnabled', player, player.id_ );
     },

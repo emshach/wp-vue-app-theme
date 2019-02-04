@@ -39,14 +39,6 @@ export default {
       playing: {},
       currentPlaying: false,
       trying: null
-      // options: {
-      //   pagination: {
-      //     direction: 'horizontal',
-      //     el: '.swiper-pagination',
-      //     speed: 15000,
-      //     loop: true
-      //   }
-      // }
     };
   },
   mounted() {
@@ -77,7 +69,7 @@ export default {
       for ( var p in this.$refs ) {
         if ( p.indexOf( 'player' ) != 0 )
           continue;
-        var player = this.$refs[p][0];
+        var player = this.$refs[p][0].player;
         var index = p.substr(6);
         players[ player.id_ ] = index;
       }
@@ -92,6 +84,11 @@ export default {
         }
       }
       this.players = players;
+    },
+    getPlayerSlide( player ) {
+      if (! player.id_ in this.players )
+        this.updatePlayers();
+      return this.players[ player.id_ ];
     },
     // events
     pageChanged( page ) {
@@ -109,9 +106,10 @@ export default {
         this.trying = null;
       }
       this.slide = page;
-      if ( this.playing[ oldPlayer.player.id_ ]) {
+      var old = "" + slide;
+      if ( this.playing[ old ]) {
         oldPlayer.player.pause();
-        this.playing[ oldPlayer.player.id_ ] = false;
+        this.playing[ old ] = false;
         this.currentPlaying = false;
       }
     },
@@ -124,7 +122,7 @@ export default {
         var player = this.$refs[ 'player' + this.slide ];
         if ( !player || !player[0] ) return;    // only play present players
         player = player[0].player;
-        var id = player.id_;
+        var id = "" + this.slide;
         // console.log( 'playing', this.slide, id );
         if ( this.ready[ id ]) {
           if ( this.played[ id ]) {
@@ -134,20 +132,16 @@ export default {
             }
             return;
           }
-          player.play().catch(() => {
-            player.volume(0);
-            player.play().then(() => {
-              player.volume(1);
-            });
-          });
+          player.play().catch(()=>{});
         }
-      }, 3000 );
+      }, 1000 );
     },
     // event handlers
     playerPlayed( player ) {
       console.log( 'playerPlayed', player, player.id_ );
-      this.played[ player.id_ ] = true;
-      this.playing[ player.id_ ] = true;
+      var id = this.getPlayerSlide( player);
+      this.played[ id ] = true;
+      this.playing[ id ] = true;
       if ( this.trying ) {
         window.clearInterval( this.trying );
         this.trying = null;
@@ -156,11 +150,13 @@ export default {
     },
     playerPaused( player ) {
       console.log( 'playerPaused', player, player.id_ );
-      this.playing[ player.id_ ] = false;
+      var id = this.getPlayerSlide( player);
+      this.playing[ id ] = false;
     },
     playerEnded( player ) {
       console.log( 'playerEnded', player, player.id_ );
-      this.playing[ player.id_ ] = false;
+      var id = this.getPlayerSlide( player);
+      this.playing[ id ] = false;
       this.currentPlaying = false;
     },
     playerWaiting( player ) {
@@ -177,7 +173,8 @@ export default {
     },
     playerPlayEnabled( player ) {
       console.log( 'playerPlayEnabled', player, player.id_ );
-      this.ready[ player.id_ ] = true;
+      var id = this.getPlayerSlide( player);
+      this.ready[ id ] = true;
     },
     playerPlaythroughEnabled( player ) {
       // console.log( 'playerPlaythroughEnabled', player, player.id_ );
