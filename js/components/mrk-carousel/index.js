@@ -122,12 +122,19 @@ export default {
         var player = this.$refs[ 'player' + this.slide ];
         if ( !player || !player[0] ) return;    // only play present players
         player = player[0].player;
-        console.log( 'playing', this.slide, player, player.id_ );
-        if ( this.ready[ player.id_ ]) {
-          if ( !this.played[ player.id_ ])
-            player.play();
+        var id = player.id_;
+        console.log( 'playing', this.slide, id );
+        if ( this.ready[ id ]) {
+          if ( this.played[ id ]) {
+            if ( this.trying ) {
+              window.clearInterval( this.trying );
+              this.trying = null;
+            }
+            return;
+          }
+          player.play();
         }
-      }, 1500 );
+      }, 3000 );
     },
     // event handlers
     playerPlayed( player ) {

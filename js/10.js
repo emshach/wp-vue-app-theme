@@ -148,12 +148,22 @@ var carousels = 0;
         if (!player || !player[0]) return; // only play present players
 
         player = player[0].player;
-        console.log('playing', _this2.slide, player, player.id_);
+        var id = player.id_;
+        console.log('playing', _this2.slide, id);
 
-        if (_this2.ready[player.id_]) {
-          if (!_this2.played[player.id_]) player.play();
+        if (_this2.ready[id]) {
+          if (_this2.played[id]) {
+            if (_this2.trying) {
+              window.clearInterval(_this2.trying);
+              _this2.trying = null;
+            }
+
+            return;
+          }
+
+          player.play();
         }
-      }, 1500);
+      }, 3000);
     },
     // event handlers
     playerPlayed: function playerPlayed(player) {
