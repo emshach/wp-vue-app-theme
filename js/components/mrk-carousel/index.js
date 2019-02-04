@@ -51,9 +51,9 @@ export default {
         }
       }, this.interval );
     }
-  },
-  rendered() {
-    this.updatePlayers();
+    window.setTimeout(() => {
+      this.updatePlayers();
+    }, 150);
   },
   updated() {
     window.setTimeout(() => {

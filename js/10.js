@@ -70,9 +70,10 @@ var carousels = 0;
         }
       }, this.interval);
     }
-  },
-  rendered: function rendered() {
-    this.updatePlayers();
+
+    window.setTimeout(function () {
+      _this.updatePlayers();
+    }, 150);
   },
   updated: function updated() {
     var _this2 = this;
