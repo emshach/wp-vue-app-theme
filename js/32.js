@@ -67,7 +67,7 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.user) {// redirect to login, then continue
       }
 
-      if (this.selectedLevel == level) return false;
+      if (this.currentLevel == level) return;
       this.selectedLevel = level;
       this.order = [{
         item: level.name,
