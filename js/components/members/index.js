@@ -7,7 +7,6 @@ export default {
     return {
       sstate: store.state,
       storedPost: {},
-      classes: [],
       promos: [],
       show: false
     };
@@ -58,6 +57,9 @@ export default {
     },
     user() {
       return this.sstate.user;
+    },
+    classes() {
+      return { small: !this.promos.length };
     }
   }
 };

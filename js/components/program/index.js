@@ -60,7 +60,7 @@ export default {
       return this.postData.content && this.postData.content.rendered || '';
     },
     classes() {
-      return { small: !!this.promos.length };
+      return { small: !this.promos.length };
     }
   },
   watch: {

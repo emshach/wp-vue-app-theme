@@ -76,7 +76,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     classes: function classes() {
       return {
-        small: !!this.promos.length
+        small: !this.promos.length
       };
     }
   },

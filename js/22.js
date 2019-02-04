@@ -22,7 +22,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       storedPost: {},
-      classes: [],
       promos: [],
       show: false
     };
@@ -75,6 +74,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     user: function user() {
       return this.sstate.user;
+    },
+    classes: function classes() {
+      return {
+        small: !this.promos.length
+      };
     }
   }
 });
