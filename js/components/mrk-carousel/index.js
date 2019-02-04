@@ -122,7 +122,7 @@ export default {
         } else {
           this.waiting[ player.id_ ] = true;
         }
-      }, 250 );
+      }, 500 );
     },
     // event handlers
     playerPlayed( player ) {
