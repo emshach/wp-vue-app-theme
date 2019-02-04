@@ -29,10 +29,10 @@ export default {
       });
     });
     this.$nextTick(() => {
-    window.setTimeout(() => {
-      this.scrollheader = ScrollHeader;
-      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
-    }, 500 );
+      window.setTimeout(() => {
+        this.scrollheader = ScrollHeader;
+        ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
+      }, 500 );
     });
   },
   updated() {
