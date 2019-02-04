@@ -56,9 +56,9 @@ export default {
     this.updatePlayers();
   },
   updated() {
-    this.$nextTick(() => {
+    window.setTimeout(() => {
       this.updatePlayers();
-    });
+    }, 150);
   },
   methods: {
     getSlides() {

@@ -77,9 +77,9 @@ var carousels = 0;
   updated: function updated() {
     var _this2 = this;
 
-    this.$nextTick(function () {
+    window.setTimeout(function () {
       _this2.updatePlayers();
-    });
+    }, 150);
   },
   methods: {
     getSlides: function getSlides() {
