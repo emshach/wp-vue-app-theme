@@ -149,9 +149,10 @@ var carousels = 0;
 
             var _tryplay;
 
-            _tryplay = function tryplay() {
+            _tryplay = function tryplay(error) {
               if (++retries > 3) return;
-              console.log('try #', retries, player.id_);
+              console.warn('playback error', error);
+              console.log(player.id_, 'retry #', retries);
               window.setTimeout(function () {
                 player.play().catch(_tryplay);
               }, 1500);

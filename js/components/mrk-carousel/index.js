@@ -122,9 +122,10 @@ export default {
           if ( !this.played[ player.id_ ]) {
             var retries = 0;
             var tryplay;
-            tryplay = () => {
+            tryplay = error => {
               if ( ++retries > 3 ) return;
-              console.log( 'try #', retries, player.id_ );
+              console.warn( 'playback error', error );
+              console.log( player.id_, 'retry #', retries );
               window.setTimeout(() => {
                 player.play().catch( tryplay );
               }, 1500 );
