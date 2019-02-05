@@ -171,9 +171,16 @@ main .login-container {
 }
 .page.about {
   h2 {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
   }
   p {
     margin-bottom: 1em;
   }
+}
+section.post {
+  @include breakpoint( $bp-phone ) {
+    margin-left: 3em;
+  }
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 3em;
 }

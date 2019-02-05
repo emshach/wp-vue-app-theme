@@ -6,6 +6,10 @@
     <view-switcher></view-switcher>
     <user-block></user-block>
     <search-form></search-form>
+    <nav v-if="store.menus.site" class="site-menu">
+      <router-link
+        v-for="item in store.menu.site" :key="item.id"
+        :to="item.url" v-html="item.title"></router-link></nav>
   </div>
   <div id="site-brand">
     <div class="logo">

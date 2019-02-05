@@ -1127,7 +1127,8 @@ function mrk_enqueue_scripts() {
             'description' => get_option('blogdescription'),
         ],
         'menus' => [
-            'nav' => mrk_filter_menu_items( wp_get_nav_menu_items( 'nav' ))
+            'nav' => mrk_filter_menu_items( wp_get_nav_menu_items( 'nav' )),
+            'site' => mrk_filter_menu_items( wp_get_nav_menu_items( 'site-links' ))
         ],
         'user'          =>  mrk_get_current_user_info(),
         'recaptcha_key' => get_option( 'wr_no_captcha_site_key' ),
@@ -1170,7 +1171,7 @@ function mrk_register_menus() {
     array(
       'nav'    => __( 'Main Nav Menu' ),
       'coming' => __( 'Upcoming Content' ),
-      'links'  => __( 'Site Link' )
+      'links'  => __( 'Site Links' )
     )
   );
 }

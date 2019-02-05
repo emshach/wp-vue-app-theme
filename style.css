@@ -903,10 +903,18 @@ main #login .login-actions span {
     width: 13.5%; } }
 
 .page.about h2 {
-  margin-bottom: 1em; }
+  margin-bottom: 1.5em; }
 
 .page.about p {
   margin-bottom: 1em; }
+
+section.post {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 3em; }
+
+@media (min-width: 600px) {
+  section.post {
+    margin-left: 3em; } }
 
 /**
  * inserts: excerpt and preview-card elements
