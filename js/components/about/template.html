@@ -9,11 +9,11 @@
   </div>
 
   <main role="main">
-    <h1 class="title fancy-title" v-html="title"></h1>
+    <h1 class="title" v-html="title"></h1>
     <section class="description" v-html="content"></section>
     <section v-for="( post, index ) in posts" :key="post.id"
              class="post">
-      <h2 class="title" v-html="postTitle( post )"></h2>
+      <h2 class="title fancy-title" v-html="postTitle( post )"></h2>
       <div class="content" v-html="postContent( post )"></div>
     </section>
   </main>
