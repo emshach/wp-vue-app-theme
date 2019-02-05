@@ -494,20 +494,6 @@ main {
   from {
     background-color: rgba(0, 0, 0, 0.8); } }
 
-nav.site-menu {
-  position: absolute;
-  top: 3.2em;
-  right: 20px; }
-
-nav.site-menu a, nav.site-menu a:link, nav.site-menu a:hover, nav.site-menu a:visited {
-  color: white;
-  text-shadow: 0 0 2px black;
-  padding: 1px 1em;
-  border-radius: 2px; }
-
-nav.site-menu a:hover {
-  background: rgba(255, 255, 255, 0.2); }
-
 /**
  * partials/nav
  * ---
@@ -746,6 +732,26 @@ button.nav-menu .navbar-toggle-icon {
     top: 50%;
     margin-top: -24px;
     right: -40px; } }
+
+nav.site-menu {
+  position: absolute;
+  top: 3.5em;
+  right: 20px; }
+
+nav.site-menu a, nav.site-menu a:link, nav.site-menu a:hover, nav.site-menu a:visited {
+  color: white;
+  text-shadow: 0 0 2px black;
+  text-decoration: none !important;
+  padding: 5px 1em;
+  border-radius: 2px;
+  margin-left: 10px;
+  margin-top: 2px; }
+
+nav.site-menu a.router-link-exact-active, nav.site-menu a:link.router-link-exact-active, nav.site-menu a:hover.router-link-exact-active, nav.site-menu a:visited.router-link-exact-active {
+  background: rgba(0, 0, 0, 0.8); }
+
+nav.site-menu a:hover {
+  background: rgba(255, 255, 255, 0.2); }
 
 /**
  * main
