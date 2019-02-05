@@ -1128,7 +1128,7 @@ function mrk_enqueue_scripts() {
         ],
         'menus' => [
             'nav' => mrk_filter_menu_items( wp_get_nav_menu_items( 'nav' )),
-            'site' => mrk_filter_menu_items( wp_get_nav_menu_items( 'site-links' ))
+            'site' => mrk_filter_menu_items( wp_get_nav_menu_items( 'links' ))
         ],
         'user'          =>  mrk_get_current_user_info(),
         'recaptcha_key' => get_option( 'wr_no_captcha_site_key' ),

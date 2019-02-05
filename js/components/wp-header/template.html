@@ -6,11 +6,11 @@
     <view-switcher></view-switcher>
     <user-block></user-block>
     <search-form></search-form>
-    <nav v-if="sstate.menus.site" class="site-menu">
-      <router-link
-        v-for="item in sstate.menus.site" :key="item.id"
-        :to="item.url" v-html="item.title"></router-link></nav>
   </div>
+  <nav v-if="sstate.menus.site" class="site-menu">
+    <router-link
+      v-for="item in sstate.menus.site" :key="item.id"
+      :to="item.url" v-html="item.title"></router-link></nav>
   <div id="site-brand">
     <div class="logo">
       <router-link to="/"><img :src="logo" class="logo-img"/></router-link>
