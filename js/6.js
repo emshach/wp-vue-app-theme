@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"about post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer small\">\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <section v-for=\"( post, index ) in posts\" :key=\"post.id\"\n             class=\"post\">\n      <h2 class=\"title\" v-html=\"postTitle( post )\"></h2>\n      <div class=\"content\" v-html=\"postContent( post )\"></div>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"about post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer small\">\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title fancy-title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <section v-for=\"( post, index ) in posts\" :key=\"post.id\"\n             class=\"post\">\n      <h2 class=\"title\" v-html=\"postTitle( post )\"></h2>\n      <div class=\"content\" v-html=\"postContent( post )\"></div>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ }),
 

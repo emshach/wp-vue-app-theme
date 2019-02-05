@@ -902,6 +902,12 @@ main #login .login-actions span {
   main #login .login-actions span {
     width: 13.5%; } }
 
+.page.about h2 {
+  margin-bottom: 1em; }
+
+.page.about p {
+  margin-bottom: 1em; }
+
 /**
  * inserts: excerpt and preview-card elements
  * ---
