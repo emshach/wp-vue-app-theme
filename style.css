@@ -922,6 +922,9 @@ main #login .login-actions span {
   main #login .login-actions span {
     width: 13.5%; } }
 
+.page.about {
+  min-height: 70%; }
+
 .page.about h2 {
   margin-bottom: 1.5em; }
 

@@ -176,6 +176,7 @@ main .login-container {
   p {
     margin-bottom: 1em;
   }
+  min-height: 70%;
 }
 section.post {
   @include breakpoint( $bp-phone ) {

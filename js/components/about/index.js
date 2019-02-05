@@ -23,7 +23,7 @@ export default {
       });
     });
     this.$nextTick(() => {
-      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
+      ScrollHeader.init( '#masthead', "#app>.page>.featured-outer" );
     });
   },
   methods: {

@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     this.$nextTick(function () {
-      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_2__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
+      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_2__["default"].init('#masthead', "#app>.page>.featured-outer");
     });
   },
   methods: {
