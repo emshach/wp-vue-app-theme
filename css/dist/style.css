@@ -747,7 +747,7 @@ nav.site-menu a, nav.site-menu a:link, nav.site-menu a:hover, nav.site-menu a:vi
   margin-left: 10px;
   margin-top: 2px; }
 
-nav.site-menu a.router-link-exact-active, nav.site-menu a:link.router-link-exact-active, nav.site-menu a:hover.router-link-exact-active, nav.site-menu a:visited.router-link-exact-active {
+nav.site-menu a.router-link-active, nav.site-menu a:link.router-link-active, nav.site-menu a:hover.router-link-active, nav.site-menu a:visited.router-link-active {
   background: rgba(0, 0, 0, 0.8); }
 
 nav.site-menu a:hover {
