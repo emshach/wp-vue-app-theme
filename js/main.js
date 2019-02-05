@@ -123,10 +123,10 @@ videojs.log.level('debug');
 
 // Define some routes
 const routes = [
-  { path: '/',                   component: VHome },
-  { path: '/login/:then(.+)?',   component: VLogin,   name: 'login', props: true },
-  { path: '/about/',             component: VAbout,   name: 'about' },
-  { path: '/contact/',           component: VContact, name: 'contact' },
+  { path: '/',                    component: VHome },
+  { path: '/login/:then(.+)?',    component: VLogin,   name: 'login', props: true },
+  { path: '/about-us/:path(.+)?', component: VAbout,   name: 'about', props: true },
+  { path: '/contact/',            component: VContact, name: 'contact' },
 
   { path: '/preview/:program/:release',
     component: VPreviewRelease,

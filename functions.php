@@ -255,13 +255,42 @@ function mrk_rest_add_bg_image( $data ) {
 }
 
 /**
- * Add background image to a post data object
+ * Add a relative path for routing to a post data object
  *
  * @return post array
  */
 function mrk_rest_add_rel_path( $data ) {
     if (! empty( $data[ 'link' ]))
         $data[ 'path' ] = wp_make_link_relative( $data[ 'link' ]);
+    return $data;
+}
+
+/**
+ * Add post object children to a single-page multi-post object
+ *
+ * @return post array
+ */
+function mrk_rest_add_children( $data ) {
+    if ( empty( $data[ 'id' ]))
+        return $data;
+    if (! get_field( 'inline_page', $data[ 'id' ]))
+        return $data;
+
+    $posts = get_posts(
+    [
+        'post_type'   => [ 'page', 'post' ],
+        'post_parent' => $data[ 'id' ],
+        'post_status' => 'publish'
+    ]);
+    if ( empty( $posts )) {
+        $data[ 'posts' ] = [];
+        return $data;
+    }
+    foreach( $posts as $post ) {
+        $postdata = mrk_rest_get_post( $post );
+        $postdata = apply_filters( 'mrk_rest_process_post_child', $postdata );
+        $data[ 'posts' ][] = $postdata;
+    }
     return $data;
 }
 
@@ -1323,6 +1352,7 @@ add_filter( 'excerpt_length',                'mrk_excerpt_length',          999 
 add_filter( 'rest_allow_anonymous_comments', 'allow_anonymous_comments'            );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_add_bg_image',        10, 1 );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_add_rel_path',        10, 1 );
+add_filter( 'mrk_rest_process_post',         'mrk_rest_add_children',       999, 1 );
 add_filter( 'mrk_rest_process_post',         'mrk_rest_restrictions',       999, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_add_rel_path',        10, 1 );
 add_filter( 'mrk_rest_process_media',        'mrk_rest_restrictions',       999, 1 );

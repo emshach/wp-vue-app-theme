@@ -1,136 +1,132 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
 
-/***/ "./js/components/home/index.js":
-/*!*************************************!*\
-  !*** ./js/components/home/index.js ***!
-  \*************************************/
+/***/ "./js/components/filmstrip/index.js":
+/*!******************************************!*\
+  !*** ./js/components/filmstrip/index.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
-/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/wpapix */ "./js/lib/wpapix.js");
-/* harmony import */ var _lib_scroll_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/scroll-header */ "./js/lib/scroll-header.js");
-/* harmony import */ var he__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! he */ "./node_modules/he/he.js");
-/* harmony import */ var he__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(he__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
+/* harmony import */ var _mixins_media_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/media-actions */ "./js/mixins/media-actions.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/home/template.html"),
-  data: function data() {
-    return {
-      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      promos: [],
-      latest: [],
-      trending: [],
-      recent: [],
-      history: [],
-      discovery: [],
-      favs: [],
-      img: '',
-      title: '',
-      show: false
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.sstate.site.title);
-
-    _lib_wpapix__WEBPACK_IMPORTED_MODULE_1__["default"].then(function (wpapix) {
-      var path = new wpapix.Path();
-      path.fetch().done(function (rpost) {
-        console.log('got home page', rpost);
-        _this.title = rpost.title.rendered;
-        _this.img = rpost.background_image || '';
-        window.setTimeout(function () {
-          _this.promos = rpost.promo_reel || [];
-        }, 4000);
-      });
-    });
-
-    this.$nextTick(function () {
-      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_2__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
-    });
-  },
-  methods: {
-    showImg: function showImg() {
-      this.show = true;
-    }
-  },
-  computed: {
-    user: function user() {
-      return this.sstate.user;
+  template: __webpack_require__(/*! ./template.html */ "./js/components/filmstrip/template.html"),
+  mixins: [_mixins_media_actions__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  props: {
+    title: {
+      type: String,
+      default: ""
     },
-    isSubscriber: function isSubscriber() {
-      return this.user && (!this.user.as || this.user.as.subscriber) && this.user.membership;
+    contents: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    current: {
+      type: Number,
+      default: 0
+    },
+    query: {
+      type: String,
+      default: ""
+    },
+    more: {
+      type: Boolean,
+      default: false
     }
   }
-});
+}); // TODO: add more
 
 /***/ }),
 
-/***/ "./js/components/home/template.html":
-/*!******************************************!*\
-  !*** ./js/components/home/template.html ***!
-  \******************************************/
+/***/ "./js/components/filmstrip/template.html":
+/*!***********************************************!*\
+  !*** ./js/components/filmstrip/template.html ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home page\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\">\n      <img id=\"bg-image\" :src=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\">\n    <transition name=\"fade-slow\" appear>\n      <div v-if=\"promos.length\" class=\"featured-wrapper\" key=\"featured\">\n        <mrk-carousel id=\"featured\"\n                      :slides=\"promos\"></mrk-carousel>\n      </div>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <content-list title=\"latest\" :contents=\"latest\"></content-list>\n    <filmstrip title=\"trending\" :contents=\"trending\"></filmstrip>\n    <filmstrip title=\"recent activity\" :contents=\"recent\"></filmstrip>\n    <filmstrip title=\"pull up\" :contents=\"history\"></filmstrip>\n    <filmstrip title=\"you might like\" :contents=\"discovery\"></filmstrip>\n    <filmstrip title=\"my faves\" :contents=\"favs\"></filmstrip>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<section class=\"filmstrip\">\n  <h3 class=\"title\" v-if=\"title\">{{ title }}</h3>\n  <div class=\"content\" v-if=\"contents.length > 0\">\n    <carousel :per-page=\"1\"\n              :per-page-custom=\"[[540,2],[780,3],[1020,4],[1220,5],[1500,6],\n                                [2740,7],[1980,8],[2220,9],[2460,11],[2700,12]]\"\n              :navigation-enabled=\"true\"\n              :pagination-enabled=\"false\"\n              :scroll-per-page=\"false\">\n      <slide v-for=\"( item, index ) in contents\" :key=\"index\">\n        <b-card :title=\"item.title ? item.title.rendered: ''\"\n                :img-src=\"item.thumbnail\"\n                :class=\"[ 'item', { current: item.id == current },\n                          cardClasses( item )]\"\n                img-top >\n          <p class=\"card-text\"\n             v-html=\"item.content ? item.content.rendered\n                     : item.caption ? item.caption.rendered : ''\"></p>\n          <b-btn v-if=\"item.id == current\" variant=\"link\"\n                 size=\"lg\" class=\"float-right watching\"\n                 v-scroll-to=\"{ el: '#featured', container: '.page',\n                                x: false, y: true }\">now {{\n            sayAction( item )}}ing</b-btn>\n          <watch-button v-else :target=\"item\"></watch-button>\n        </b-card>\n      </slide>\n      <div class=\"swiper-button-prev\" slot=\"button-prev\"></div>\n      <div class=\"swiper-button-next\" slot=\"button-next\"></div>\n      <div class=\"swiper-scrollbar\"   slot=\"scrollbar\"></div>\n    </carousel>\n  </div>\n  <template v-else>\n    <div class=\"message empty-list\">nothing to show yet</div>\n    <a v-if=\"query\" class=\"loadmore\" href=\"#\"\n       @click.prevent=\"loadMore\">refresh</a>\n  </template>\n</section>\n";
 
 /***/ }),
 
-/***/ "./js/lib/scroll-header.js":
-/*!*********************************!*\
-  !*** ./js/lib/scroll-header.js ***!
-  \*********************************/
+/***/ "./js/mixins/media-actions.js":
+/*!************************************!*\
+  !*** ./js/mixins/media-actions.js ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var ScrollHeader = {
-  last_scroll: 0,
-  scroll_dir: 'none'
-};
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/store */ "./js/lib/store.js");
 
-(function ($) {
-  ScrollHeader.init = function (header, container) {
-    var _ = ScrollHeader;
-    var $el = $("#app>.page");
-    _.last_scroll = $el.scrollTop();
-    $el.off('scroll');
-    $el.on('scroll', function (e) {
-      var last = _.last_scroll;
-      var dir = _.scroll_dir;
-      var cur = _.last_scroll = $el.scrollTop();
-      var $head = $(header);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    canWatchNow: function canWatchNow(episode) {
+      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
 
-      if (last < cur) {
-        if (dir != (_.scroll_dir = 'down')) $head.stop().animate({
-          top: -$head.innerHeight() - 10
-        }, 'slow');
-      } else if (last > cur) {
-        if (dir != (_.scroll_dir = 'up')) $head.stop().animate({
-          top: 0
-        }, 'slow');
-      } else _.scroll_dir = 'none';
+      if (user.as) {
+        var as = user.as;
+        var rst = episode.restrictions;
+        if (as.admin || rst.public) return true;
+        if (as.subscriber && rst.members) return true;
+        if (as.logged_in && rst.auth) return true;
+        return false;
+      }
 
-      var topH = $(container).innerHeight() - $head.innerHeight() + 20;
-      if (cur > topH) $head.removeClass('mrk-bg-clear').addClass('mrk-bg-dark');else $head.removeClass('mrk-bg-dark').addClass('mrk-bg-clear');
-    });
-  };
-
-  ScrollHeader.destroy = function () {
-    $("#app>.page").off('scroll');
-  };
-})(jQuery);
-
-/* harmony default export */ __webpack_exports__["default"] = (ScrollHeader);
+      return !episode.redirect;
+    },
+    sayAction: function sayAction(episode, trans) {
+      return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'view';
+    },
+    cardClasses: function cardClasses(episode) {
+      if (!episode || !episode.restrictions) return {};
+      return {
+        private: episode.restrictions.private,
+        public: episode.restrictions.public,
+        auth: episode.restrictions.auth,
+        payperview: episode.restrictions.payperview,
+        members: episode.restrictions.members,
+        hidden: !episode.restrictions.show && !episode.restrictions.public
+      };
+    },
+    needsSubscription: function needsSubscription(episode) {
+      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
+      return episode.restrictions.members && (!user.as || !user.as.subscriber);
+    },
+    getSources: function getSources(episode) {
+      return Object.values(episode.sources);
+    },
+    videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
+      var opts = Object.assign({
+        controls: true,
+        autoplay: false,
+        playsinline: true,
+        aspectRatio: "16:9",
+        controlBar: {// children: [
+          //   'playToggle',
+          //   'volumeMenuButton',
+          //   'currentTimeDisplay',
+          //   'durationDisplay',
+          //   'progressControl',
+          //   'remainingTimeDisplay',
+          //   'playbackRateMenuButton',
+          //   'subtitlesButton',
+          //   'captionsButton',
+          //   'fullscreenToggle'
+          // ],
+        }
+      }, defaults || {});
+      if (episode.kgvid_meta && episode.kgvid_meta.poster) opts.poster = episode.kgvid_meta.poster;
+      opts.sources = this.getSources(episode);
+      return opts;
+    }
+  }
+});
 
 /***/ })
 
