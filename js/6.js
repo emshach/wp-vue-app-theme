@@ -44,9 +44,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
 
-    this.$nextTick(function () {
+    window.setTimeout(function () {
       _lib_scroll_header__WEBPACK_IMPORTED_MODULE_2__["default"].init('#masthead', "#app>.page>.featured-outer");
-    });
+    }, 500);
   },
   methods: {
     showImg: function showImg() {
