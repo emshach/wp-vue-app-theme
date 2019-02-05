@@ -7,6 +7,7 @@ const ScrollHeader = {
   ScrollHeader.init = ( header, container ) => {
     var _ = ScrollHeader;
     var $el = $( "#app>.page" );
+    console.log( 'scrollheader', $el );
     _.last_scroll = $el.scrollTop();
     $el.off( 'scroll' );
     $el.on( 'scroll', e => {

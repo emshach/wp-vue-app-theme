@@ -22,9 +22,11 @@ export default {
         this.storedPost = rpost;
       });
     });
-    window.setTimeout(() => {
-      ScrollHeader.init( '#masthead', "#app>.page>.featured-outer" );
-    }, 500 );
+    this.$nextTick(() => {
+      window.setTimeout(() => {
+        ScrollHeader.init( '#masthead', "#app>.page>.featured-outer" );
+      }, 500 );
+    });
   },
   methods: {
     showImg() {
