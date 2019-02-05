@@ -23,9 +23,12 @@ export default {
       });
     });
     this.$nextTick(() => {
-      window.setTimeout(() => {
-        ScrollHeader.init( '#masthead', "#app>.page>.featured-outer" );
-      }, 500 );
+      ScrollHeader.init( '#masthead', "#app>.page>.featured-outer" );
+    });
+  },
+  updated() {
+    this.$nextTick(() => {
+      ScrollHeader.init( '#masthead', "#app>.page>.featured-outer" );
     });
   },
   methods: {

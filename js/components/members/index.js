@@ -29,14 +29,15 @@ export default {
       });
     });
     this.$nextTick(() => {
-      window.setTimeout(() => {
-        this.scrollheader = ScrollHeader;
-        ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
-      }, 500 );
+      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
     });
   },
   updated() {
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
+    this.$nextTick(() => {
+      console.log( 'page updated' );
+      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
+    });
   },
   methods: {
     showImg() {

@@ -50,14 +50,15 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     this.$nextTick(function () {
-      window.setTimeout(function () {
-        _this.scrollheader = _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"];
-        _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
-      }, 500);
+      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
     });
   },
   updated: function updated() {
     document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.title + ' | ' + this.sstate.site.title);
+    this.$nextTick(function () {
+      console.log('page updated');
+      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
+    });
   },
   methods: {
     showImg: function showImg() {
