@@ -48,7 +48,7 @@ export default {
       return this.postData.title && this.postData.title.rendered || '';
     },
     posts() {
-      return this.postData.post || [];
+      return this.postData.posts || [];
     },
     img() {
       return this.postData.background_image || '';

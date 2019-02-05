@@ -69,7 +69,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.postData.title && this.postData.title.rendered || '';
     },
     posts: function posts() {
-      return this.postData.post || [];
+      return this.postData.posts || [];
     },
     img: function img() {
       return this.postData.background_image || '';
