@@ -35,7 +35,9 @@ __webpack_require__.r(__webpack_exports__);
     document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.title + ' | ' + this.sstate.site.title);
 
     _lib_wpapix__WEBPACK_IMPORTED_MODULE_1__["default"].then(function (wpapix) {
-      var path = new wpapix.Path('about-us');
+      var path = new wpapix.Path({
+        path: 'about-us'
+      });
       path.fetch().done(function (rpost) {
         console.log('got about page', rpost);
         _this.storedPost = rpost;

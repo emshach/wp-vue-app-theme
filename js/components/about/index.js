@@ -16,7 +16,7 @@ export default {
   mounted() {
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
     _wpapix.then( wpapix => {
-      var path = new wpapix.Path( 'about-us' );
+      var path = new wpapix.Path({ path: 'about-us' });
       path.fetch().done(( rpost ) => {
         console.log( 'got about page', rpost );
         this.storedPost = rpost;
