@@ -945,6 +945,11 @@ section.post {
   padding-bottom: 0;
   color: grey; }
 
+.page.contact .contact-form input {
+  height: 2.5em;
+  font-size: large;
+  width: 100%; }
+
 /**
  * inserts: excerpt and preview-card elements
  * ---
