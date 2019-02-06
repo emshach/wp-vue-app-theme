@@ -1108,7 +1108,15 @@ function mrk_enqueue_scripts() {
         Jetpack::get_file_url_for_environment(
             '_inc/build/contact-form/js/grunion-frontend.min.js',
             'modules/contact-form/js/grunion-frontend.js'
-        ), array( 'jquery', 'jquery-ui-datepicker' ));
+        ), [ 'jquery', 'jquery-ui-datepicker' ]);
+
+    wp_enqueue_script(
+        'grunion',
+        Jetpack::get_file_url_for_environment(
+            '_inc/build/contact-form/js/grunion.min.js',
+            'modules/contact-form/js/grunion.js'
+        ), [ 'grunion' ]);
+
     // fix api settings, re-create rest nonce
     $user = wp_get_current_user();
     $data = $wp_scripts->get_data('wp-api-request', 'data');
@@ -1122,7 +1130,7 @@ function mrk_enqueue_scripts() {
 
     // back to our regularly scheduled programming
     wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
-                       [ 'wp-api', 'jquery', 'jquery-effects-core', 'grunion-frontend' ],
+                       [ 'wp-api', 'jquery', 'jquery-effects-core', 'grunion' ],
                        filemtime( get_template_directory() . '/js/moonraker.js' ),
                        true ); // include in footer
     $moonraker_local_vars = [
@@ -1157,6 +1165,7 @@ function mrk_enqueue_styles() {
     wp_enqueue_style( 'mrk-bootstrap-reboot', $uri . '/css/dist/bootstrap-reboot.css' );
     wp_enqueue_style( 'moonraker-dependencies', $uri . '/js/moonraker.css', [],
                       filemtime( get_template_directory() . '/js/moonraker.css' ));
+    wp_enqueue_style( 'grunion.css' );
     wp_enqueue_style( 'main-styles', $uri . '/style.css', [],
                       filemtime( get_template_directory() . '/style.css' ), false);
 }
