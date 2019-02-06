@@ -876,6 +876,9 @@ main #login .btn-link {
   border: 0 none;
   border-bottom: 2px solid #aaa; }
 
+#login input:focus {
+  border-bottom-color: deepskyblue; }
+
 #login #login-password {
   min-height: 8.5em;
   margin-bottom: 10px; }
@@ -957,6 +960,9 @@ section.post {
   box-shadow: none;
   border: 0 none;
   border-bottom: 2px solid #aaa; }
+
+.page.contact .contact-form input[type="text"]:focus, .page.contact .contact-form input.name:focus, .page.contact .contact-form input.email:focus, .page.contact .contact-form input.url:focus, .page.contact .contact-form input.password:focus {
+  border-bottom-color: deepskyblue; }
 
 .page.contact .contact-form textarea {
   width: 100%; }
@@ -1229,9 +1235,12 @@ section.info .comments.active {
 .comment-form-wrap input {
   border: none;
   border-radius: 0;
-  border-bottom: 2px solid deepskyblue;
+  border-bottom: 2px solid #aaa;
   background: transparent;
   box-shadow: none !important; }
+
+.comment-form-wrap input:focus {
+  border-bottom-color: deepskyblue; }
 
 .comment-form-wrap textarea {
   border-radius: 0;

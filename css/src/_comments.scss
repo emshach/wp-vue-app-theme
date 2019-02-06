@@ -32,9 +32,12 @@
   input {
     border: none;
     border-radius: 0;
-    border-bottom: 2px solid deepskyblue;
+    border-bottom: 2px solid #aaa;
     background: transparent;
-    box-shadow: none !important;  
+    box-shadow: none !important;
+    &:focus {
+      border-bottom-color: deepskyblue;
+    }
   }
   textarea {
     border-radius: 0;
