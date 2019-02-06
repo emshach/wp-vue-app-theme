@@ -877,7 +877,8 @@ main #login .btn-link {
   border-bottom: 2px solid #aaa; }
 
 #login input:focus {
-  border-bottom-color: deepskyblue; }
+  border-bottom-color: deepskyblue;
+  outline: none !important; }
 
 #login #login-password {
   min-height: 8.5em;
@@ -962,7 +963,8 @@ section.post {
   border-bottom: 2px solid #aaa; }
 
 .page.contact .contact-form input[type="text"]:focus, .page.contact .contact-form input.name:focus, .page.contact .contact-form input.email:focus, .page.contact .contact-form input.url:focus, .page.contact .contact-form input.password:focus {
-  border-bottom-color: deepskyblue; }
+  border-bottom-color: deepskyblue;
+  outline: none !important; }
 
 .page.contact .contact-form textarea {
   width: 100%; }
@@ -987,7 +989,8 @@ section.post {
   clear: none; }
 
 .page.contact .contact-form .grunion-field-textarea-wrap {
-  margin-top: 1em; }
+  padding-top: 1em;
+  border: 1px solid #ddd; }
 
 /**
  * inserts: excerpt and preview-card elements

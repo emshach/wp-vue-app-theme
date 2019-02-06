@@ -123,6 +123,7 @@ main .login-container, .page.contact main section.description {
     border-bottom: 2px solid #aaa;
     &:focus {
       border-bottom-color: deepskyblue;
+      outline: none !important;
     }
   }
   #login-password {
@@ -210,6 +211,7 @@ section.post {
     border-bottom: 2px solid #aaa;
     &:focus {
       border-bottom-color: deepskyblue;
+      outline: none !important;
     }
   }
   textarea {
@@ -235,6 +237,7 @@ section.post {
     clear: none;
   }
   .grunion-field-textarea-wrap {
-    margin-top: 1em;
+    padding-top: 1em;
+    border: 1px solid #ddd;
   }
 }
