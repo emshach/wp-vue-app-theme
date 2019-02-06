@@ -1103,6 +1103,7 @@ function mrk_enqueue_scripts() {
         return;
     wp_enqueue_script( 'wp-api-request' );
     wp_enqueue_script( 'wp-api' );
+    wp_enqueue_script( 'grunion' );
 
     // fix api settings, re-create rest nonce
     $user = wp_get_current_user();
