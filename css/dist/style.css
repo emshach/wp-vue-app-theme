@@ -945,7 +945,7 @@ section.post {
   padding-bottom: 0;
   color: grey; }
 
-.page.contact .contact-form input {
+.page.contact .contact-form input[type="text"] {
   height: 2.5em;
   font-size: large;
   width: 100%; }
