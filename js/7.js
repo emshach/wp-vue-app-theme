@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
 
-/***/ "./js/components/contact/index.js":
-/*!****************************************!*\
-  !*** ./js/components/contact/index.js ***!
-  \****************************************/
+/***/ "./js/components/about/index.js":
+/*!**************************************!*\
+  !*** ./js/components/about/index.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -19,7 +19,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/contact/template.html"),
+  template: __webpack_require__(/*! ./template.html */ "./js/components/about/template.html"),
   props: ['post', 'path'],
   data: function data() {
     return {
@@ -36,10 +36,10 @@ __webpack_require__.r(__webpack_exports__);
 
     _lib_wpapix__WEBPACK_IMPORTED_MODULE_1__["default"].then(function (wpapix) {
       var path = new wpapix.Path({
-        path: 'contact-us'
+        path: 'about-us'
       });
       path.fetch().done(function (rpost) {
-        console.log('got contact page', rpost);
+        console.log('got about page', rpost);
         _this.storedPost = rpost;
       });
     });
@@ -93,14 +93,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./js/components/contact/template.html":
-/*!*********************************************!*\
-  !*** ./js/components/contact/template.html ***!
-  \*********************************************/
+/***/ "./js/components/about/template.html":
+/*!*******************************************!*\
+  !*** ./js/components/about/template.html ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"contact post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer small\">\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <section v-for=\"( post, index ) in posts\" :key=\"post.id\"\n             class=\"post\">\n      <h2 class=\"title fancy-title\" v-html=\"postTitle( post )\"></h2>\n      <div class=\"content\" v-html=\"postContent( post )\"></div>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
+module.exports = "<div class=\"about post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer small\">\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <section v-for=\"( post, index ) in posts\" :key=\"post.id\"\n             class=\"post\">\n      <h2 class=\"title fancy-title\" v-html=\"postTitle( post )\"></h2>\n      <div class=\"content\" v-html=\"postContent( post )\"></div>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ }),
 

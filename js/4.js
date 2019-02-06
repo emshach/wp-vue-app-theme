@@ -1,154 +1,116 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./js/components/preview-release/index.js":
+/***/ "../../../../../../../usr/local/lib/node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+
+/***/ "./js/components/content-section/index.js":
 /*!************************************************!*\
-  !*** ./js/components/preview-release/index.js ***!
+  !*** ./js/components/content-section/index.js ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_route_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/route-events */ "./js/lib/route-events.js");
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
-/* harmony import */ var _mixins_media_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/media-actions */ "./js/mixins/media-actions.js");
-/* harmony import */ var _lib_scroll_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../lib/scroll-header */ "./js/lib/scroll-header.js");
-
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var _mixins_media_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/media-actions */ "./js/mixins/media-actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/preview-release/template.html"),
-  mixins: [_mixins_media_actions__WEBPACK_IMPORTED_MODULE_2__["default"]],
-  props: ['post'],
+  template: __webpack_require__(/*! ./template.html */ "./js/components/content-section/template.html"),
+  mixins: [_mixins_media_actions__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: {
+    title: {
+      type: String,
+      default: "Episodes"
+    },
+    episodes: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    showEmpty: {
+      type: Boolean,
+      default: true
+    },
+    coming: {
+      type: String,
+      default: ''
+    },
+    hideComing: {
+      type: Boolean,
+      default: false
+    },
+    labels: {
+      type: Boolean,
+      default: true
+    }
+  },
   data: function data() {
     return {
-      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_1__["default"].state,
-      storedPost: {
-        stats: {},
-        my_xp: {}
-      },
-      show: false,
-      prev: 0,
-      next: 0,
-      wideMode: false
+      user: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user
     };
   },
-  beforeRouteUpdate: _lib_route_events__WEBPACK_IMPORTED_MODULE_0__["default"].toPreviewRelease,
-  mounted: function mounted() {
-    this.storedPost = Object.assign({}, this.sstate.nextpost);
-    this.$nextTick(function () {
-      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_3__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
-    });
-  },
-  updated: function updated() {
-    this.$nextTick(function () {
-      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_3__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
-    });
-  },
-  methods: {
-    showImg: function showImg() {
-      this.show = true;
-    },
-    likePost: function likePost() {},
-    dislikePost: function dislikePost() {},
-    favPost: function favPost() {}
-  },
   computed: {
-    postData: function postData() {
-      return this.post || this.storedPost;
+    filteredEpisodes: function filteredEpisodes() {
+      var _this = this;
+
+      var episodes = lodash__WEBPACK_IMPORTED_MODULE_2___default.a.orderBy(this.episodes, ['release_number'], ['asc']);
+
+      return episodes.filter(function (x) {
+        return _this.canWatchNow(x) || x.restrictions.show;
+      });
     },
-    title: function title() {
-      return this.postData.title && this.postData.title.rendered || '';
-    },
-    img: function img() {
-      return this.postData.background_image || '';
-    },
-    fullContent: function fullContent() {
-      return this.postData.full_content;
-    },
-    promos: function promos() {
-      return [{
-        id: this.postData.id,
-        excerpt: {
-          rendered: this.content
-        }
-      }].concat(this.postData.promo_reel || []);
-    },
-    episodes: function episodes() {
-      return this.postData.releases || [];
-    },
-    content: function content() {
-      return this.postData.content ? this.postData.content.rendered : this.postData.caption ? this.postData.caption.rendered : '';
-    },
-    classes: function classes() {
-      return {
-        small: !!this.promos.length
-      };
+    dateComing: function dateComing() {
+      return this.coming ? 'in ' + this.coming : 'Soon';
     }
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/preview-release/template.html":
+/***/ "./js/components/content-section/template.html":
 /*!*****************************************************!*\
-  !*** ./js/components/preview-release/template.html ***!
+  !*** ./js/components/content-section/template.html ***!
   \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div :class=\"['preview', 'page', postData.release_type]\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\" :class=\"classes\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <div id=\"featured\">\n    <div class=\"featured-wrapper\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div :class=\"[ 'mrk-media-wrapper', 'col', 'col-12',\n                       wideMode ? '' : 'col-md-8']\">\n            <video-player v-if=\"postData.release_type == 'video'\"\n                          class=\"mrk-media video-player-box vjs-big-play-centered\"\n                          :playsinline=\"true\"\n                          :options=\"videoPlayerOptions( postData )\">\n            </video-player>\n            <audio v-else-if=\"postData.release_type == 'audio'\"\n                   :src=\"postData.source_url\" class=\"mrk-media\"\n                   autoplay controls controlsList=\"nodownload\">\n              {{ postData.alt_text }}\n            </audio>\n            <carousel v-else-if=\"postData.release_type == 'gallery'\">\n              <slide v-for=\"( slide, index ) in postData.content\" :key=\"index\"></slide>\n            </carousel>\n          </div>\n          <transition name=\"fade-in\">\n            <div v-if=\"!wideMode\" class=\"col col-12 col-md-4 description\">\n              <div v-html=\"content\"></div>\n              <b-btn v-if=\"postData.full_content\n                           && canWatchNow( postData.full_content )\"\n                     variant=\"primary\" :to=\"postData.full_content.path\" size=\"lg\"\n                     class=\"float-right\">{{\n                sayAction( postData.full_content )}} now</b-btn>\n              <b-btn v-else variant=\"warning\"\n                     size=\"lg\" class=\"float-right\"\n                     v-scroll-to=\"{ el: 'main', container: '.page',\n                                  x: false, y: true }\">\n                subscribe for full content</b-btn>\n            </div>\n          </transition>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"info row\">\n      <div :class=\"[ 'views', 'd-flex',\n                   { active : postData.my_xp.seen }]\">\n        <span class=\"dashicons dashicons-visibility\"></span>\n        <span class=\"count\">{{ postData.stats.views || 0 }}</span>\n      </div>\n      <div :class=\"[ 'likes',  'd-flex',\n                   { active: postData.my_xp.like }]\"\n           @click.stop=\"likePost\">\n        <span class=\"dashicons dashicons-thumbs-up\"></span>\n        <span class=\"count\">{{ postData.stats.likes || 0 }}</span>\n      </div>\n      <div :class=\"[ 'dislikes', 'd-flex',\n                   { active: postData.my_xp.dislike }]\"\n           @click.stop=\"dislikePost\">\n        <span class=\"dashicons dashicons-thumbs-down\"></span>\n        <span class=\"count\">{{ postData.stats.dislikes || 0 }}</span>\n      </div>\n      <div :class=\"[ 'favs', 'd-flex', { active: postData.my_xp.fav }]\"\n           @click.stop=\"favPost\">\n        <span class=\"dashicons dashicons-star-filled\"></span>\n        <span class=\"count\">{{ postData.stats.favs || 0 }}</span>\n      </div>\n      <div :class=\"[ 'comments', 'd-flex',\n                             { active: postData.my_xp.comment }]\">\n        <span class=\"dashicons dashicons-admin-comments\"></span>\n        <span class=\"count\">{{ postData.stats.comments || 0 }}</span>\n      </div>\n    </section>\n    <!-- TODO: strips for related, series -->\n    <section class=\"description\" v-if=\"wideMode\" v-html=\"content\"></section>\n    <b-btn v-if=\"postData.full_content\n                 && canWatchNow( postData.full_content )\"\n           variant=\"primary\" :to=\"postData.full_content.path\" size=\"lg\"\n           class=\"float-right\">{{\n      sayAction( postData.full_content )}} now</b-btn>\n    <section v-else class=\"subscriptions\">\n      <subscription-menu :target=\"postData.path\">\n        Select one of the subscription plans to see the full content.\n      </subscription-menu>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
-
-/***/ }),
-
-/***/ "./js/lib/scroll-header.js":
-/*!*********************************!*\
-  !*** ./js/lib/scroll-header.js ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var ScrollHeader = {
-  last_scroll: 0,
-  scroll_dir: 'none'
-};
-
-(function ($) {
-  ScrollHeader.init = function (header, container) {
-    var _ = ScrollHeader;
-    var $el = $("#app>.page");
-    _.last_scroll = $el.scrollTop();
-    $el.off('scroll');
-    $el.on('scroll', function (e) {
-      var last = _.last_scroll;
-      var dir = _.scroll_dir;
-      var cur = _.last_scroll = $el.scrollTop();
-      var $head = $(header);
-
-      if (last < cur) {
-        if (dir != (_.scroll_dir = 'down')) $head.stop().animate({
-          top: -$head.innerHeight() - 10
-        }, 'slow');
-      } else if (last > cur) {
-        if (dir != (_.scroll_dir = 'up')) $head.stop().animate({
-          top: 0
-        }, 'slow');
-      } else _.scroll_dir = 'none';
-
-      var topH = $(container).innerHeight() - $head.innerHeight() + 20;
-      if (cur > topH) $head.removeClass('mrk-bg-clear').addClass('mrk-bg-dark');else $head.removeClass('mrk-bg-dark').addClass('mrk-bg-clear');
-    });
-  };
-
-  ScrollHeader.destroy = function () {
-    $("#app>.page").off('scroll');
-  };
-})(jQuery);
-
-/* harmony default export */ __webpack_exports__["default"] = (ScrollHeader);
+module.exports = "<section class=\"episodes\">\n  <template v-if=\"filteredEpisodes.length || showEmpty\">\n    <h2 class=\"title\" v-html=\"title\"></h2>\n    <transition-group name=\"fade-fast\">\n      <b-card v-for=\"( episode, index ) in filteredEpisodes\" :key=\"episode.id\"\n              :class=\"[ 'media-insert', cardClasses( episode )]\">\n        <b-media no-body>\n          <b-media-aside>\n            <b-img :src=\"episode.thumbnail\" width=\"128\" height=\"96\" />\n            <div class=\"info length\">{{\n              episode.media_details.length_formatted\n              }}</div>\n          </b-media-aside>\n          <b-media-body>\n            <h5 v-if=\"labels && episode.release_number\n                      && typeof episode.release_number == 'number'\"\n                class=\"mt-0 episode-num\">Programme {{\n              episode.release_number }}</h5>\n            <h5 class=\"mt-0\" v-html=\"episode.title.rendered\"></h5>\n            <div class=\"info row\">\n              <div :class=\"[ 'views', 'd-flex',\n                           { active : episode.my_xp.seen }]\">\n                <span class=\"dashicons dashicons-visibility\"></span>\n                <span class=\"count\">{{ episode.stats.views || 0 }}</span>\n              </div>\n              <div :class=\"[ 'likes',  'd-flex',\n                           { active: episode.my_xp.like }]\">\n                <span class=\"dashicons dashicons-thumbs-up\"></span>\n                <span class=\"count\">{{ episode.stats.likes || 0 }}</span>\n              </div>\n              <div :class=\"[ 'dislikes', 'd-flex',\n                           { active: episode.my_xp.dislike }]\">\n                <span class=\"dashicons dashicons-thumbs-down\"></span>\n                <span class=\"count\">{{ episode.stats.dislikes || 0 }}</span>\n              </div>\n              <div :class=\"[ 'favs', 'd-flex', { active: episode.my_xp.fav }]\">\n                <span class=\"dashicons dashicons-star-filled\"></span>\n                <span class=\"count\">{{ episode.stats.favs || 0 }}</span>\n              </div>\n              <div :class=\"[ 'comments', 'd-flex',\n                           { active: episode.my_xp.comment }]\">\n                <span class=\"dashicons dashicons-admin-comments\"></span>\n                <span class=\"count\">{{ episode.stats.comments || 0 }}</span>\n              </div>\n              <template v-if=\"user.as && user.as.admin\">\n                <div v-if=\"episode.restrictions.private\"\n                     class=\"d-flex admin\">private</div>\n                <div v-if=\"episode.restrictions.public\"\n                     class=\"d-flex admin\">public</div>\n                <div v-if=\"episode.restrictions.auth\"\n                     class=\"d-flex admin\">logged-in</div>\n                <div v-if=\"episode.restrictions.payperview\"\n                     class=\"d-flex admin\">payperview</div>\n                <div v-if=\"episode.restrictions.members\"\n                     class=\"d-flex admin\">subscribers</div>\n                <div v-if=\"!episode.restrictions.show\n                           && !episode.restrictions.public\"\n                     class=\"d-flex admin\">hidden</div>\n                <!-- <div v-if=\"episode.restrictions.premium\"\n                     class=\"d-flex admin\">premium</div> -->\n              </template>\n            </div>\n            <div v-html=\"episode.caption.rendered\"></div>\n            <watch-button :target=\"episode\"></watch-button>\n            <b-btn v-if=\"episode.preview\" class=\"watch watch-preview\" size=\"lg\"\n                   :to=\"episode.preview\" variant=\"link\">\n              {{ sayAction( episode, true ) }} preview</b-btn>\n          </b-media-body>\n        </b-media>\n      </b-card>\n    </transition-group>\n    <div v-if=\"!filteredEpisodes.length && !hideComing\"\n         class=\"message\">Coming {{ dateComing }}!</div>\n  </template>\n</section>\n";
 
 /***/ }),
 

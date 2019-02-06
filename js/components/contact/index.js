@@ -1,6 +1,7 @@
 import store from '../../lib/store';
 import _wpapix from '../../lib/wpapix';
 import ScrollHeader from '../../lib/scroll-header';
+import ContactForm from '../../lib/contact-form';
 import he from 'he';
 export default {
   template: require( './template.html' ),
@@ -24,11 +25,13 @@ export default {
     });
     this.$nextTick(() => {
       ScrollHeader.init( '#masthead', "#app>.page>.featured-outer" );
+      ContactForm.init();
     });
   },
   updated() {
     this.$nextTick(() => {
       ScrollHeader.init( '#masthead', "#app>.page>.featured-outer" );
+      ContactForm.init();
     });
   },
   methods: {

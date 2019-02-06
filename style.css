@@ -950,7 +950,8 @@ section.post {
 
 .page.contact .contact-form {
   border-top: 1px solid #eee;
-  padding-top: 1em; }
+  padding-top: 1em;
+  margin-top: 1em; }
 
 .page.contact .contact-form label {
   font-size: small;
