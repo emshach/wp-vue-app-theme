@@ -823,7 +823,7 @@ section.episodes .card h5 {
   text-decoration: none;
   cursor: default; }
 
-main .login-container, .page.contact main form {
+main .login-container, .page.contact main section.description {
   background: white;
   max-width: 540px;
   margin: -40px auto 20px;
@@ -833,7 +833,7 @@ main .login-container, .page.contact main form {
   box-shadow: 0 2px 13px rgba(0, 0, 0, 0.1); }
 
 @media (max-width: 600px) {
-  main .login-container, .page.contact main form {
+  main .login-container, .page.contact main section.description {
     margin: 20px auto;
     padding: 10px; } }
 
