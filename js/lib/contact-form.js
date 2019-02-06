@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 const ContactForm = {
   last_scroll: 0,
   scroll_dir: 'none'
@@ -16,8 +17,13 @@ const ContactForm = {
         if ( d.name == '_wp_http_referer' )
           d.value = window.location.href;
       });
+      $el.find( 'input,textarea' ).prop( 'disabled', true );
       $.post( $el.attr( 'action' ), data, rsp => {
-        console.log( 'contact form submit response', rsp );
+        // we'll just assume it's okay
+        Swal( "Thank you! We'll be in touch." );
+        $el.find( 'input,textarea' ).prop( 'disabled', false );
+        $el.find( 'textarea' ).val('');
+        $el.find( 'input.radio' ).prop( 'checked', false );
       });
     });
   };

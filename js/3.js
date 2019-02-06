@@ -117,6 +117,9 @@ module.exports = "<div class=\"contact post page\" :key=\"postData.id\">\n  <div
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 var ContactForm = {
   last_scroll: 0,
   scroll_dir: 'none'
@@ -134,8 +137,13 @@ var ContactForm = {
       data.forEach(function (d) {
         if (d.name == '_wp_http_referer') d.value = window.location.href;
       });
+      $el.find('input,textarea').prop('disabled', true);
       $.post($el.attr('action'), data, function (rsp) {
-        console.log('contact form submit response', rsp);
+        // we'll just assume it's okay
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()("Thank you! We'll be in touch.");
+        $el.find('input,textarea').prop('disabled', false);
+        $el.find('textarea').val('');
+        $el.find('input.radio').prop('checked', false);
       });
     });
   };
