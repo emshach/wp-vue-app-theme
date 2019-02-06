@@ -131,7 +131,9 @@ var ContactForm = {
       e.preventDefault();
       var data = $el.serializeArray();
       console.log('contact form submit', data);
-      data['_wp_http_referer'] = window.location.href;
+      data.forEach(function (d) {
+        if (d.name == '_wp_http_referer') d.value = window.location.href;
+      });
       $.post($el.attr('action'), data, function (rsp) {
         console.log('contact form submit response', rsp);
       });
