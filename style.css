@@ -870,7 +870,11 @@ main #login .btn-link {
 
 #login input {
   height: 2.5em;
-  font-size: large; }
+  font-size: large;
+  margin-top: -4px;
+  box-shadow: none;
+  border: 0 none;
+  border-bottom: 2px solid #aaa; }
 
 #login #login-password {
   min-height: 8.5em;
@@ -948,7 +952,11 @@ section.post {
 .page.contact .contact-form input[type="text"], .page.contact .contact-form input.name, .page.contact .contact-form input.email, .page.contact .contact-form input.url, .page.contact .contact-form input.password {
   height: 2.5em;
   font-size: large;
-  width: 100%; }
+  width: 100%;
+  margin-top: -4px;
+  box-shadow: none;
+  border: 0 none;
+  border-bottom: 2px solid #aaa; }
 
 .page.contact .contact-form textarea {
   width: 100%; }
@@ -956,10 +964,18 @@ section.post {
 .page.contact .contact-form .grunion-field-wrap {
   clear: both; }
 
+.page.contact .contact-form .grunion-field-textarea-wrap .grunion-field-label {
+  margin-bottom: 0; }
+
 .page.contact .contact-form .grunion-radio-label.radio {
   float: left;
+  margin: 4px 1px;
   padding-left: 30px;
-  font-weight: normal; }
+  font-weight: normal;
+  border-radius: 3px; }
+
+.page.contact .contact-form .grunion-radio-label.radio:hover {
+  background: rgba(100, 200, 255, 0.1); }
 
 .page.contact .contact-form .clear-form {
   clear: none; }
