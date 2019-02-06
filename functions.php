@@ -1117,7 +1117,7 @@ function mrk_enqueue_scripts() {
 
     // back to our regularly scheduled programming
     wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
-                       [ 'wp-api', 'jquery', 'jquery-effects-core' ],
+                       [ 'wp-api', 'jquery', 'jquery-effects-core', 'grunion' ],
                        filemtime( get_template_directory() . '/js/moonraker.js' ),
                        true ); // include in footer
     $moonraker_local_vars = [
