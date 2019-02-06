@@ -945,10 +945,24 @@ section.post {
   padding-bottom: 0;
   color: grey; }
 
-.page.contact .contact-form input[type="text"] {
+.page.contact .contact-form input.text, .page.contact .contact-form input.email, .page.contact .contact-form input.url, .page.contact .contact-form input.password {
   height: 2.5em;
   font-size: large;
   width: 100%; }
+
+.page.contact .contact-form textarea {
+  width: 100%; }
+
+.page.contact .contact-form .grunion-field-wrap {
+  clear: both; }
+
+.page.contact .contact-form .grunion-radio-label.radio {
+  float: left;
+  padding-left: 30px;
+  font-weight: normal; }
+
+.page.contact .contact-form .grunion-field-textarea-wrap {
+  margin-top: 1em; }
 
 /**
  * inserts: excerpt and preview-card elements
