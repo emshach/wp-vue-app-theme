@@ -1115,7 +1115,7 @@ function mrk_enqueue_scripts() {
         Jetpack::get_file_url_for_environment(
             '_inc/build/contact-form/js/grunion.min.js',
             'modules/contact-form/js/grunion.js'
-        ), [ 'grunion' ]);
+        ), [ 'grunion-frontend' ]);
 
     // fix api settings, re-create rest nonce
     $user = wp_get_current_user();
