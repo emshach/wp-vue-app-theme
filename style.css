@@ -940,6 +940,10 @@ section.post {
   section.post {
     margin-left: 3em; } }
 
+.page.contact .contact-form label {
+  font-size: small;
+  color: grey; }
+
 /**
  * inserts: excerpt and preview-card elements
  * ---
