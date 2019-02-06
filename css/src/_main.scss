@@ -193,7 +193,7 @@ section.post {
     padding-bottom: 0;
     color: grey;
   }
-  input.text, input.email, input.url, input.password {
+  input[type="text"], input.name, input.email, input.url, input.password {
     height: 2.5em;
     font-size: large;
     width: 100%;
@@ -208,6 +208,9 @@ section.post {
     float: left;
     padding-left: 30px;
     font-weight: normal;
+  }
+  .clear-form {
+    clear: none;
   }
   .grunion-field-textarea-wrap {
     margin-top: 1em;

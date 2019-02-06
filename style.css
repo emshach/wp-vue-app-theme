@@ -945,7 +945,7 @@ section.post {
   padding-bottom: 0;
   color: grey; }
 
-.page.contact .contact-form input.text, .page.contact .contact-form input.email, .page.contact .contact-form input.url, .page.contact .contact-form input.password {
+.page.contact .contact-form input[type="text"], .page.contact .contact-form input.name, .page.contact .contact-form input.email, .page.contact .contact-form input.url, .page.contact .contact-form input.password {
   height: 2.5em;
   font-size: large;
   width: 100%; }
@@ -960,6 +960,9 @@ section.post {
   float: left;
   padding-left: 30px;
   font-weight: normal; }
+
+.page.contact .contact-form .clear-form {
+  clear: none; }
 
 .page.contact .contact-form .grunion-field-textarea-wrap {
   margin-top: 1em; }
