@@ -1,428 +1,300 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
-/***/ "./js/components/nav-menu/index.js":
-/*!*****************************************!*\
-  !*** ./js/components/nav-menu/index.js ***!
-  \*****************************************/
+/***/ "./js/components/mrk-carousel/index.js":
+/*!*********************************************!*\
+  !*** ./js/components/mrk-carousel/index.js ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/nav-slider */ "./js/lib/nav-slider.js");
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var _mixins_media_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/media-actions */ "./js/mixins/media-actions.js");
 
-
+var carousels = 0;
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/nav-menu/template.html"),
+  template: __webpack_require__(/*! ./template.html */ "./js/components/mrk-carousel/template.html"),
+  mixins: [_mixins_media_actions__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
-    menu: {
+    topic: {
+      type: String,
+      default: ""
+    },
+    slides: {
       type: Array,
       default: function _default() {
         return [];
       }
     },
-    logo: {
+    id: {
       type: String,
-      default: ""
+      default: function _default() {
+        return "carousel-" + ++carousels;
+      }
     },
-    title: {
+    background: {
       type: String,
-      default: ""
+      default: "transparent"
+    },
+    interval: {
+      type: Number,
+      default: 15000
     }
   },
   data: function data() {
     return {
-      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_1__["default"].state,
-      menuOpen: false,
-      slider: null
+      loading: true,
+      autoplayTimeout: 15000,
+      goto: 0,
+      slide: 0,
+      sliding: null,
+      players: {},
+      played: {},
+      ready: {},
+      waiting: {},
+      playing: {},
+      currentPlaying: false,
+      trying: null
     };
   },
   mounted: function mounted() {
-    this.slider = _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"];
-    this.$nextTick(function () {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].init();
-    });
+    var _this = this;
+
+    this.getSlides();
+    console.log(this.$refs);
+
+    if (this.slides.length > 1) {
+      window.setInterval(function () {
+        if (!_this.currentPlaying) {
+          _this.goto = (_this.goto + 1) % _this.slides.length;
+        }
+      }, this.interval);
+    }
+
+    window.setTimeout(function () {
+      _this.updatePlayers();
+    }, 150);
+  },
+  updated: function updated() {
+    var _this2 = this;
+
+    window.setTimeout(function () {
+      _this2.updatePlayers();
+    }, 150);
   },
   methods: {
-    toggleMenu: function toggleMenu() {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].toggleMenu(this.menuOpen = !this.menuOpen);
+    getSlides: function getSlides() {
+      if (!this.slides.length && this.topic) {// TODO: search using topic, get posts
+      }
     },
-    closeMenu: function closeMenu() {
-      _lib_nav_slider__WEBPACK_IMPORTED_MODULE_0__["default"].toggleMenu(this.menuOpen = false, 150);
+    updatePlayers: function updatePlayers() {
+      var players = {};
+
+      for (var p in this.$refs) {
+        if (p.indexOf('player') != 0) continue;
+        var player = this.$refs[p][0].player;
+        var index = p.substr(6);
+        players[player.id_] = index;
+      }
+
+      this.players = players;
     },
-    slug: function slug(item) {
-      var slug = item.url;
-      if (slug == '/') return 'home';
-      if (slug.startsWith("/")) slug = slug.substr(1);
-      if (slug.endsWith("/")) slug = slug.slice(0, -1);
-      return slug;
+    getPlayerSlide: function getPlayerSlide(player) {
+      if (!player.id_ in this.players) this.updatePlayers();
+      return this.players[player.id_];
+    },
+    // events
+    pageChanged: function pageChanged(page) {
+      // console.log( 'pageChanged', page );
+      this.sliding = true;
+      var slide = this.slide;
+      var oldPlayer = this.$refs['player' + slide];
+      var newPlayer = this.$refs['player' + page];
+      if (oldPlayer) oldPlayer = oldPlayer[0];
+      if (newPlayer) newPlayer = newPlayer[0];
+      console.log('oldPlayer', slide, oldPlayer, oldPlayer.player.id_);
+      console.log('newPlayer', page, newPlayer, newPlayer.player.id_);
+
+      if (this.trying) {
+        window.clearInterval(this.trying);
+        this.trying = null;
+      }
+
+      this.slide = page;
+      var old = "" + slide;
+
+      if (this.playing[old]) {
+        oldPlayer.player.pause();
+        this.playing[old] = false;
+        this.currentPlaying = false;
+      }
+    },
+    transitionEnded: function transitionEnded() {
+      var _this3 = this;
+
+      // console.log( 'transitionEnded' );
+      this.sliding = false;
+      if (this.trying) window.clearInterval(this.trying);
+      this.trying = window.setInterval(function () {
+        var player = _this3.$refs['player' + _this3.slide];
+        if (!player || !player[0]) return; // only play present players
+
+        player = player[0].player;
+        var id = "" + _this3.slide; // console.log( 'playing', this.slide, id );
+
+        if (_this3.ready[id]) {
+          if (_this3.played[id]) {
+            if (_this3.trying) {
+              window.clearInterval(_this3.trying);
+              _this3.trying = null;
+            }
+
+            return;
+          }
+
+          player.play().catch(function () {});
+        }
+      }, 1000);
+    },
+    // event handlers
+    playerPlayed: function playerPlayed(player) {
+      console.log('playerPlayed', player, player.id_);
+      var id = this.getPlayerSlide(player);
+      this.played[id] = true;
+      this.playing[id] = true;
+
+      if (this.trying) {
+        window.clearInterval(this.trying);
+        this.trying = null;
+      }
+
+      this.currentPlaying = player;
+    },
+    playerPaused: function playerPaused(player) {
+      console.log('playerPaused', player, player.id_);
+      var id = this.getPlayerSlide(player);
+      this.playing[id] = false;
+    },
+    playerEnded: function playerEnded(player) {
+      console.log('playerEnded', player, player.id_);
+      var id = this.getPlayerSlide(player);
+      this.playing[id] = false;
+      this.currentPlaying = false;
+    },
+    playerWaiting: function playerWaiting(player) {// console.log( 'playerWaiting', player, player.id_ );
+    },
+    playerPlaying: function playerPlaying(player) {// console.log( 'playerPlaying', player, player.id_ );
+    },
+    playerDataLoaded: function playerDataLoaded(player) {// console.log( 'playerDataLoaded', player, player.id_ );
+    },
+    playerTimeupdated: function playerTimeupdated(player) {// console.log( 'playerTimeupdated', player, player.id_ );
+    },
+    playerPlayEnabled: function playerPlayEnabled(player) {
+      console.log('playerPlayEnabled', player, player.id_);
+      var id = this.getPlayerSlide(player);
+      this.ready[id] = true;
+    },
+    playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {// console.log( 'playerPlaythroughEnabled', player, player.id_ );
+    },
+    playerStateChanged: function playerStateChanged(player) {// console.log( 'playerStateChanged', player, player.id_ );
+    },
+    playerReadied: function playerReadied(player) {// console.log( 'playerReadied', player, player.id_ );
     }
   },
   watch: {
-    'slider.open': function sliderOpen(val) {
-      this.menuOpen = val;
+    goto: function goto(slide) {
+      this.pageChanged(slide);
     }
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/nav-menu/template.html":
-/*!**********************************************!*\
-  !*** ./js/components/nav-menu/template.html ***!
-  \**********************************************/
+/***/ "./js/components/mrk-carousel/template.html":
+/*!**************************************************!*\
+  !*** ./js/components/mrk-carousel/template.html ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"header-menu\"\n     :class=\"['header-menu', { mobile: sstate.window.width < 601 }]\">\n  <div id=\"feature-tray\"><div id=\"feature-tray-inner\"></div></div>\n  <b-btn class=\"menu-toggle menu-wide nav-menu\" variant=\"link\"\n          :class=\"{ open: menuOpen }\"\n          @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n    <transition name=\"fade-fast\" mode=\"out-in\">\n      <span v-if=\"menuOpen\" key=\"menu\"\n            class=\"dashicons dashicons-arrow-down-alt2 navbar-toggle-icon open\"\n            aria-hidden=\"true\"></span>\n      <span v-else key=\"close\"\n            class=\"dashicons dashicons-menu navbar-toggle-icon\"\n            aria-hidden=\"true\"></span>\n    </transition>\n  </b-btn>\n  <!-- nav -->\n  <nav id=\"main-nav\" class=\"nav main-nav\" role=\"navigation\">\n    <div class=\"wrapper\">\n      <div @click.stop=\"closeMenu\" id=\"bg-nav\"></div>\n      <button class=\"menu-toggle toggle-mobile nav-menu\" type=\"button\"\n              @click=\"toggleMenu\" aria-label=\"Toggle Navigation\">\n        <transition name=\"fade-fast\" mode=\"out-in\">\n          <span v-if=\"menuOpen\" key=\"menu\"\n                class=\"dashicons dashicons-arrow-left-alt2 navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n          <span v-else key=\"close\"\n                class=\"dashicons dashicons-menu navbar-toggle-icon\"\n                aria-hidden=\"true\"></span>\n        </transition>\n      </button>\n      <div id=\"nav-main-container\" class=\"menu-nav-container\">\n        <ul id=\"menu-nav\" class=\"menu primary-menu nav navbar-nav\">\n          <li v-for=\"( item, index ) in menu\" :key=\"index\"\n              :class=\"[ 'menu-item', slug( item )]\">\n            <router-link :to=\"item.url\" @click.native=\"closeMenu\">\n              <img :src=\"item.thumb\" />\n              <span class=\"text\" v-html=\"item.title\"></span>\n              <div v-if=\"item.message\" class=\"message wide\"\n                   v-html=\"item.message\"></div>\n              <div v-if=\"item.message_mobile\" class=\"message mobile\"\n                   v-html=\"item.message_mobile\"></div>\n            </router-link>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  <!-- /nav -->\n</div>\n";
+module.exports = "<carousel :autoplay=\"false\"\n          :per-page=\"1\"\n          :loop=\"true\"\n          v-model=\"goto\"\n          pagination-color=\"#000\"\n          pagination-active-color=\"#fff\"\n          id=\"featured\"\n          @pageChange=\"pageChanged\"\n          @transitionEnd=\"transitionEnded\">\n  <slide v-for=\"( slide, index ) in slides\" :key=\"slide.id\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div :class=\"[ 'mrk-media-wrapper', 'col', 'col-12',\n                       { 'col-md-8': slide.show_text }]\">\n          <template v-if=\"slide.type == 'attachment'\">\n            <img v-if=\"slide.release_type == 'image'\" :src=\"slide.source_url\"\n                 class=\"mrk-media\" />\n            <video-player v-else-if=\"slide.release_type == 'video'\"\n                          :ref=\"'player'+index\"\n                          class=\"mrk-media video-player-box vjs-big-play-centered\"\n                          :playsinline=\"true\"\n                          :options=\"videoPlayerOptions( slide )\"\n                          @play=\"playerPlayed\"\n                          @pause=\"playerPaused\"\n                          @ended=\"playerEnded\"\n                          @waiting=\"playerWaiting\"\n                          @playing=\"playerPlaying\"\n                          @loadeddata=\"playerDataLoaded\"\n                          @timeupdate=\"playerTimeupdated\"\n                          @canplay=\"playerPlayEnabled\"\n                          @canplaythrough=\"playerPlaythroughEnabled\"\n                          @statechanged=\"playerStateChanged\"\n                          @ready=\"playerReadied\">\n            </video-player>\n            <audio  v-else-if=\"slide.release_type == 'audio'\"\n                   :src=\"slide.source_url\" class=\"mrk-media\" controls\n                   controlsList=\"nodownload\">\n              {{ slide.alt_text }}\n            </audio>\n          </template>\n        </div>\n        <div v-if=\"slide.show_text\" class=\"col col-12 col-md-4\">\n          <h2 v-if=\"slide.title\" v-html=\"slide.title.rendered\"></h2>\n          <div v-if=\"slide.excerpt\" class=\"excerpt\"\n               v-html=\"slide.excerpt.rendered\"></div>\n          <div v-else-if=\"slide.caption\" class=\"caption\"\n               v-html=\"slide.caption.rendered\"></div>\n          <!-- <div v-if=\"slide.description\" class=\"description\" -->\n          <!--      v-html=\"slide.description.rendered\"></div> -->\n          <router-link v-if=\"slide.read_more\"\n                       :to=\"slide.full_content.path\"\n                       class=\"read-more\">read_more</router-link>\n          <b-btn v-if=\"slide.full_content\n                       && canWatchNow( slide.full_content )\"\n                 variant=\"primary\" :to=\"slide.full_content.path\" size=\"lg\"\n                 class=\"float-right\">{{\n            sayAction( slide.full_content )}} now</b-btn>\n          <b-btn v-else variant=\"warning\"\n                 size=\"lg\" class=\"float-right\"\n                 v-scroll-to=\"{ el: 'main', container: '.page',\n                              x: false, y: true }\">\n            subscribe for full content</b-btn>\n        </div>\n        <!-- TODO: if paid content, this link should be different, maybe it's\n             own component -->\n      </div>\n    </div>\n  </slide>\n  <slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </slide>\n</carousel>\n";
 
 /***/ }),
 
-/***/ "./js/lib/nav-slider.js":
-/*!******************************!*\
-  !*** ./js/lib/nav-slider.js ***!
-  \******************************/
+/***/ "./js/mixins/media-actions.js":
+/*!************************************!*\
+  !*** ./js/mixins/media-actions.js ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function get_pos(obj) {
-  var curleft = 0,
-      curtop = 0;
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/store */ "./js/lib/store.js");
 
-  if (obj.offsetParent) {
-    curleft = obj.offsetLeft;
-    curtop = obj.offsetTop;
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    canWatchNow: function canWatchNow(episode) {
+      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
 
-    while (obj = obj.offsetParent) {
-      curleft += obj.offsetLeft;
-      curtop += obj.offsetTop;
-    }
-  }
-
-  return {
-    top: curtop,
-    left: curleft
-  };
-} // from https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript/4819886#4819886
-
-
-function is_touch_device() {
-  var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
-
-  var mq = function mq(query) {
-    return window.matchMedia(query).matches;
-  };
-
-  if ('ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch) {
-    return true;
-  } // include the 'heartz' as a way to have a non matching MQ to help terminate the join
-  // https://git.io/vznFH
-
-
-  var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
-  return mq(query);
-}
-
-var NavSlider;
-NavSlider = {
-  wide: true,
-  open: true,
-  menu: null,
-  openMenu: null,
-  closeMenu: null,
-  opening: false,
-  closing: false,
-  dragging: false,
-  accel: 0,
-  init: function init() {
-    (function ($) {
-      var self = NavSlider;
-      window.NavSlider = NavSlider; //function to find element Position
-
-      var ts_margin = 30; //first and last thumbnail margin (for better cursor interaction) 
-
-      var ts_easing = {
-        duration: 1000,
-        easing: "easeOutCirc"
-      };
-      var t_opacity = 0.8; //thumbnails default opacity
-
-      var tcur_opacity = 0.9; //thumbnails default opacity for current element
-
-      var tc_opacity_out = 0.075; //thumbnails area opacity on mouse out
-      //cache vars
-
-      var menu = $("#header-menu");
-      var outer = $("#main-nav");
-      var scroll = $("#main-nav > .wrapper");
-      var ts_bg = $("#bg-nav");
-      var ts_container = $("#menu-nav");
-      var thumb = $("#menu-nav > .menu-item");
-      var t_current = $("#menu-nav > .current-menu-item");
-      var main_title = "main > h1.title";
-      var $menu = menu.get(0);
-      var menu_height = menu.innerHeight(); //thumbnail scroller
-
-      var ts_left = ts_container.position().left;
-      var ts_width = outer.width();
-      var t_count = 0;
-      var dur_in = 200;
-      var dur_out = 1000;
-      var t_dur_in = 350;
-      var t_dur_out = 500;
-      var pos = get_pos($menu);
-      var bg_pad = 400;
-      var ease_in = {
-        duration: dur_in,
-        easing: "easeOutBack",
-        queue: false
-      };
-      var ease_out = {
-        duration: dur_out,
-        easing: "easeOutExpo",
-        queue: false
-      };
-      var t_ease_in = {
-        duration: t_dur_in,
-        easing: "easeOutElastic",
-        queue: false
-      };
-      var t_ease_out = {
-        duration: t_dur_out,
-        easing: "easeOutBounce",
-        queue: false
-      };
-      var tt_ease_in = {
-        duration: t_dur_in,
-        easing: "easeOutCubic",
-        queue: false
-      };
-      var tt_ease_out = {
-        duration: t_dur_out,
-        easing: "easeOutCubic",
-        queue: false
-      };
-      var tt_ease_in1 = {
-        duration: t_dur_in,
-        easing: "easeInCubic",
-        queue: false
-      };
-      var tt_ease_out1 = {
-        duration: t_dur_out,
-        easing: "easeInCubic",
-        queue: false
-      };
-
-      var _init = function _init() {
-        self.openMenu();
-        ts_container.css("margingLeft", ts_margin + "px"); //add margin
-
-        scroll.css("width", ts_width);
-        outer.css('right', '').fadeTo(10000, tc_opacity_out, "easeInOutCubic");
-        if (!t_count) thumb.each(function () {
-          var $this = $(this);
-          t_count += $this.innerWidth();
-          $this.children().children().children(".thumb").fadeTo(dur_out, t_opacity);
-        });
-        ts_container.css("width", t_count + 10);
-        ts_bg.css("width", t_count + 2 * bg_pad);
-      };
-
-      self.menu = menu;
-
-      self.openMenu = function (e) {
-        //mouse over
-        if (!self.wide) return;
-        outer.stop().fadeTo(dur_in, 1);
-        if (self.open || self.opening || self.closing) return;
-        self.open = true;
-        self.opening = true;
-        if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
-        window.setTimeout(function () {
-          self.opening = false;
-        }, 100);
-        menu.stop().animate({
-          height: menu_height
-        }, ease_in);
-        var top = $("#app>.page").scrollTop() + $(window).height() - $("#featured,#app>.page>.featured-outer").innerHeight();
-        $(main_title).stop().animate({
-          bottom: 110 - top
-        }, ease_in);
-      };
-
-      self.closeMenu = function (e) {
-        //mouse out
-        if (!self.wide) return;
-        if (self.opening || self.closing) return;
-        self.open = false;
-        self.closing = true;
-        if (window.requestAnimationFrame) window.requestAnimationFrame(function () {});
-        window.setTimeout(function () {
-          self.closing = false;
-        }, 100);
-        menu.stop().animate({
-          height: 15
-        }, ease_out);
-        $(main_title).stop().animate({
-          bottom: 0
-        }, ease_out);
-      };
-
-      scroll.mousemove(function (e) {
-        if (!self.wide) return;
-        var pos0;
-
-        if (ts_container.width() > ts_width) {
-          var cur = e.pageX - pos.left;
-          var m_clamp = cur / ts_width;
-          var dest = -(t_count + 2 * (ts_margin - ts_width)) * m_clamp;
-          pos0 = Math.abs(cur - dest) - ts_margin;
-        } else {
-          pos0 = (t_count + ts_margin * 2 - ts_width) / 2;
-        }
-
-        if (Math.abs(pos0 - ts_container.position().left) > 20) {
-          ts_bg.stop().animate({
-            left: -pos0 / 2 - bg_pad
-          }, ts_easing);
-          ts_container.stop().animate({
-            left: -pos0
-          }, ts_easing);
-        }
-      });
-      menu.hover(self.openMenu, self.closeMenu);
-      thumb.not(t_current).hover(function () {
-        //mouse over
-        if (!self.wide) return;
-        $(this).stop().fadeTo(dur_in, 1).animate({
-          top: -12
-        }, t_ease_in).find(".text").stop().animate({
-          bottom: "95%"
-        }, tt_ease_in).animate({
-          opacity: 1
-        }, tt_ease_in1).end().find(".message").stop().animate({
-          bottom: 20
-        }, t_ease_in);
-      }, function () {
-        //mouse out
-        if (!self.wide) return;
-        $(this).stop().fadeTo(t_dur_out, t_opacity).animate({
-          top: 0
-        }, t_ease_out).find(".text").stop().animate({
-          bottom: 0
-        }, tt_ease_out1).animate({
-          opacity: 0
-        }, tt_ease_out).end().find(".message").stop().animate({
-          bottom: 0
-        }, t_ease_out);
-      });
-      t_current.hover(function () {
-        //mouse over
-        if (!self.wide) return;
-        $(this).stop().fadeTo(t_dur_in, 1).animate({
-          top: -12
-        }, t_ease_in).find(".text").stop().animate({
-          bottom: "95%"
-        }, tt_ease_in).animate({
-          opacity: 1
-        }, tt_ease_in1).end().find(".message").stop().animate({
-          bottom: 20
-        }, t_ease_in);
-      }, function () {
-        //mouse out
-        if (!self.wide) return;
-        $(this).stop().fadeTo(t_dur_out, tcur_opacity).animate({
-          top: 0
-        }, t_ease_out).find(".text").stop().animate({
-          bottom: 0
-        }, tt_ease_out1).animate({
-          opacity: 0
-        }, tt_ease_out).end().find(".message").stop().animate({
-          bottom: 0
-        }, t_ease_out);
-      }); //on window resize scale image and reset thumbnail scroller
-
-      $(window).resize(function () {
-        console.log('window resized');
-        var wwidth = $(window).width();
-        var wheight = $(window).height();
-        var wasWide = self.wide;
-
-        if (!(self.wide = wwidth >= 600 && wheight >= 600)) {
-          ts_container.css('left', '');
-          ts_container.css("width", '');
-          scroll.css('width', '');
-          ts_bg.css("width", '');
-          thumb.css({
-            opacity: '',
-            top: ''
-          }).find(".text").css({
-            opacity: '',
-            top: ''
-          });
-          return;
-        }
-
-        if (!menu_height) menu_height = menu.innerHeight();
-        if (!wasWide) _init(); // FullScreenBackground("#bgimg",$bgimg.data("newImageW"),$bgimg.data("newImageH"));
-
-        ts_container.stop().animate({
-          left: ts_left
-        }, 400, "easeOutCirc");
-        var newWidth = outer.width();
-        scroll.css("width", newWidth);
-        ts_width = newWidth;
-        pos = get_pos($menu);
-      });
-      var wwidth = $(window).width();
-      var wheight = $(window).height();
-
-      if (self.wide = wwidth >= 600 && wheight >= 600) {
-        console.log('window width', $(window).width());
-
-        _init();
-      } else {
-        console.log('window width', $(window).width(), self, self.wide);
-        self.open = false;
-      }
-    })(jQuery);
-  },
-  toggleMenu: function toggleMenu(open, duration) {
-    var self = NavSlider;
-
-    if (self.wide) {
-      if (self.menu) {
-        if (open) {
-          self.openMenu();
-        } else {
-          self.closeMenu();
-        }
+      if (user.as) {
+        var as = user.as;
+        var rst = episode.restrictions;
+        if (as.admin || rst.public) return true;
+        if (as.subscriber && rst.members) return true;
+        if (as.logged_in && rst.auth) return true;
+        return false;
       }
 
-      return;
-    }
-
-    var $ = jQuery;
-    if (!duration) duration = 400;
-    $("#main-nav button.toggle-mobile").blur();
-
-    if (open) {
-      $("#main-nav").stop().animate({
-        right: 40
-      }, duration);
-      $("#bg-nav").stop().fadeIn(duration);
-    } else {
-      $("#main-nav").stop().animate({
-        right: '100%'
-      }, duration);
-      $("#bg-nav").stop().fadeOut(duration);
+      return !episode.redirect;
+    },
+    sayAction: function sayAction(episode, trans) {
+      return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'view';
+    },
+    cardClasses: function cardClasses(episode) {
+      if (!episode || !episode.restrictions) return {};
+      return {
+        private: episode.restrictions.private,
+        public: episode.restrictions.public,
+        auth: episode.restrictions.auth,
+        payperview: episode.restrictions.payperview,
+        members: episode.restrictions.members,
+        hidden: !episode.restrictions.show && !episode.restrictions.public
+      };
+    },
+    needsSubscription: function needsSubscription(episode) {
+      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
+      return episode.restrictions.members && (!user.as || !user.as.subscriber);
+    },
+    getSources: function getSources(episode) {
+      return Object.values(episode.sources);
+    },
+    videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
+      var opts = Object.assign({
+        controls: true,
+        autoplay: false,
+        playsinline: true,
+        aspectRatio: "16:9",
+        controlBar: {// children: [
+          //   'playToggle',
+          //   'volumeMenuButton',
+          //   'currentTimeDisplay',
+          //   'durationDisplay',
+          //   'progressControl',
+          //   'remainingTimeDisplay',
+          //   'playbackRateMenuButton',
+          //   'subtitlesButton',
+          //   'captionsButton',
+          //   'fullscreenToggle'
+          // ],
+        }
+      }, defaults || {});
+      if (episode.kgvid_meta && episode.kgvid_meta.poster) opts.poster = episode.kgvid_meta.poster;
+      opts.sources = this.getSources(episode);
+      return opts;
     }
   }
-};
-/* harmony default export */ __webpack_exports__["default"] = (NavSlider);
+});
 
 /***/ })
 

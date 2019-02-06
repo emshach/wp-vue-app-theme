@@ -1,0 +1,21 @@
+<div class="contact post page" :key="postData.id">
+  <div id="bg-image-wrapper">
+    <transition name="fade-in" appear>
+      <img id="bg-image" :src="img" :key="img" @load="showImg" v-show="show"/>
+    </transition>
+  </div>
+  <down-arrow></down-arrow>
+  <div class="featured-outer small">
+  </div>
+
+  <main role="main">
+    <h1 class="title" v-html="title"></h1>
+    <section class="description" v-html="content"></section>
+    <section v-for="( post, index ) in posts" :key="post.id"
+             class="post">
+      <h2 class="title fancy-title" v-html="postTitle( post )"></h2>
+      <div class="content" v-html="postContent( post )"></div>
+    </section>
+  </main>
+  <wp-footer></wp-footer>
+</div>

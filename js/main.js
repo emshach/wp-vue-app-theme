@@ -126,7 +126,7 @@ const routes = [
   { path: '/',                    component: VHome },
   { path: '/login/:then(.+)?',    component: VLogin,   name: 'login', props: true },
   { path: '/about-us/:path(.+)?', component: VAbout,   name: 'about', props: true },
-  { path: '/contact/',            component: VContact, name: 'contact' },
+  { path: '/contact-us/:path(.+)?', component: VContact, name: 'contact', props: true },
 
   { path: '/preview/:program/:release',
     component: VPreviewRelease,

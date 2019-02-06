@@ -1,300 +1,157 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[11],{
 
-/***/ "./js/components/mrk-carousel/index.js":
-/*!*********************************************!*\
-  !*** ./js/components/mrk-carousel/index.js ***!
-  \*********************************************/
+/***/ "./js/components/members/index.js":
+/*!****************************************!*\
+  !*** ./js/components/members/index.js ***!
+  \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mixins_media_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/media-actions */ "./js/mixins/media-actions.js");
+/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/store */ "./js/lib/store.js");
+/* harmony import */ var _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/scroll-header */ "./js/lib/scroll-header.js");
+/* harmony import */ var _lib_wpapix__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/wpapix */ "./js/lib/wpapix.js");
+/* harmony import */ var he__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! he */ "./node_modules/he/he.js");
+/* harmony import */ var he__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(he__WEBPACK_IMPORTED_MODULE_3__);
 
-var carousels = 0;
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: __webpack_require__(/*! ./template.html */ "./js/components/mrk-carousel/template.html"),
-  mixins: [_mixins_media_actions__WEBPACK_IMPORTED_MODULE_0__["default"]],
-  props: {
-    topic: {
-      type: String,
-      default: ""
-    },
-    slides: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    id: {
-      type: String,
-      default: function _default() {
-        return "carousel-" + ++carousels;
-      }
-    },
-    background: {
-      type: String,
-      default: "transparent"
-    },
-    interval: {
-      type: Number,
-      default: 15000
-    }
-  },
+  template: __webpack_require__(/*! ./template.html */ "./js/components/members/template.html"),
   data: function data() {
     return {
-      loading: true,
-      autoplayTimeout: 15000,
-      goto: 0,
-      slide: 0,
-      sliding: null,
-      players: {},
-      played: {},
-      ready: {},
-      waiting: {},
-      playing: {},
-      currentPlaying: false,
-      trying: null
+      sstate: _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      storedPost: {},
+      promos: [],
+      show: false,
+      scrollheader: null
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.getSlides();
-    console.log(this.$refs);
+    this.storedPost = Object.assign({}, this.sstate.nextpost);
 
-    if (this.slides.length > 1) {
-      window.setInterval(function () {
-        if (!_this.currentPlaying) {
-          _this.goto = (_this.goto + 1) % _this.slides.length;
-        }
-      }, this.interval);
-    }
+    _lib_wpapix__WEBPACK_IMPORTED_MODULE_2__["default"].then(function (wpapix) {
+      var path = new wpapix.Path({
+        path: '/members'
+      });
+      console.log('path object', path);
+      path.fetch().done(function (rpost) {
+        console.log('got members page', rpost);
+        _this.storedPost = rpost;
+        document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(rpost.title.rendered + ' | ' + _this.sstate.site.title);
+        window.setTimeout(function () {
+          _this.promos = rpost.promo_reel || [];
+        }, 3000);
+      });
+    });
 
-    window.setTimeout(function () {
-      _this.updatePlayers();
-    }, 150);
+    this.$nextTick(function () {
+      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
+    });
   },
   updated: function updated() {
-    var _this2 = this;
-
-    window.setTimeout(function () {
-      _this2.updatePlayers();
-    }, 150);
+    document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.title + ' | ' + this.sstate.site.title);
+    this.$nextTick(function () {
+      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
+    });
   },
   methods: {
-    getSlides: function getSlides() {
-      if (!this.slides.length && this.topic) {// TODO: search using topic, get posts
-      }
-    },
-    updatePlayers: function updatePlayers() {
-      var players = {};
-
-      for (var p in this.$refs) {
-        if (p.indexOf('player') != 0) continue;
-        var player = this.$refs[p][0].player;
-        var index = p.substr(6);
-        players[player.id_] = index;
-      }
-
-      this.players = players;
-    },
-    getPlayerSlide: function getPlayerSlide(player) {
-      if (!player.id_ in this.players) this.updatePlayers();
-      return this.players[player.id_];
-    },
-    // events
-    pageChanged: function pageChanged(page) {
-      // console.log( 'pageChanged', page );
-      this.sliding = true;
-      var slide = this.slide;
-      var oldPlayer = this.$refs['player' + slide];
-      var newPlayer = this.$refs['player' + page];
-      if (oldPlayer) oldPlayer = oldPlayer[0];
-      if (newPlayer) newPlayer = newPlayer[0];
-      console.log('oldPlayer', slide, oldPlayer, oldPlayer.player.id_);
-      console.log('newPlayer', page, newPlayer, newPlayer.player.id_);
-
-      if (this.trying) {
-        window.clearInterval(this.trying);
-        this.trying = null;
-      }
-
-      this.slide = page;
-      var old = "" + slide;
-
-      if (this.playing[old]) {
-        oldPlayer.player.pause();
-        this.playing[old] = false;
-        this.currentPlaying = false;
-      }
-    },
-    transitionEnded: function transitionEnded() {
-      var _this3 = this;
-
-      // console.log( 'transitionEnded' );
-      this.sliding = false;
-      if (this.trying) window.clearInterval(this.trying);
-      this.trying = window.setInterval(function () {
-        var player = _this3.$refs['player' + _this3.slide];
-        if (!player || !player[0]) return; // only play present players
-
-        player = player[0].player;
-        var id = "" + _this3.slide; // console.log( 'playing', this.slide, id );
-
-        if (_this3.ready[id]) {
-          if (_this3.played[id]) {
-            if (_this3.trying) {
-              window.clearInterval(_this3.trying);
-              _this3.trying = null;
-            }
-
-            return;
-          }
-
-          player.play().catch(function () {});
-        }
-      }, 1000);
-    },
-    // event handlers
-    playerPlayed: function playerPlayed(player) {
-      console.log('playerPlayed', player, player.id_);
-      var id = this.getPlayerSlide(player);
-      this.played[id] = true;
-      this.playing[id] = true;
-
-      if (this.trying) {
-        window.clearInterval(this.trying);
-        this.trying = null;
-      }
-
-      this.currentPlaying = player;
-    },
-    playerPaused: function playerPaused(player) {
-      console.log('playerPaused', player, player.id_);
-      var id = this.getPlayerSlide(player);
-      this.playing[id] = false;
-    },
-    playerEnded: function playerEnded(player) {
-      console.log('playerEnded', player, player.id_);
-      var id = this.getPlayerSlide(player);
-      this.playing[id] = false;
-      this.currentPlaying = false;
-    },
-    playerWaiting: function playerWaiting(player) {// console.log( 'playerWaiting', player, player.id_ );
-    },
-    playerPlaying: function playerPlaying(player) {// console.log( 'playerPlaying', player, player.id_ );
-    },
-    playerDataLoaded: function playerDataLoaded(player) {// console.log( 'playerDataLoaded', player, player.id_ );
-    },
-    playerTimeupdated: function playerTimeupdated(player) {// console.log( 'playerTimeupdated', player, player.id_ );
-    },
-    playerPlayEnabled: function playerPlayEnabled(player) {
-      console.log('playerPlayEnabled', player, player.id_);
-      var id = this.getPlayerSlide(player);
-      this.ready[id] = true;
-    },
-    playerPlaythroughEnabled: function playerPlaythroughEnabled(player) {// console.log( 'playerPlaythroughEnabled', player, player.id_ );
-    },
-    playerStateChanged: function playerStateChanged(player) {// console.log( 'playerStateChanged', player, player.id_ );
-    },
-    playerReadied: function playerReadied(player) {// console.log( 'playerReadied', player, player.id_ );
+    showImg: function showImg() {
+      this.show = true;
     }
   },
-  watch: {
-    goto: function goto(slide) {
-      this.pageChanged(slide);
+  computed: {
+    postData: function postData() {
+      return this.post || this.storedPost;
+    },
+    title: function title() {
+      return this.postData.title && this.postData.title.rendered || '';
+    },
+    img: function img() {
+      return this.postData.background_image || '';
+    },
+    promo_reel: function promo_reel() {
+      return this.postData.promo_reel || [];
+    },
+    content: function content() {
+      var user = this.sstate.user;
+      if (this.postData.member_content && (user.as ? user.as.subscriber : user.membership)) return this.postData.member_content;
+      return this.postData.content && this.postData.content.rendered || '';
+    },
+    user: function user() {
+      return this.sstate.user;
+    },
+    classes: function classes() {
+      // return { small: !this.promos.length };
+      return {};
     }
   }
 });
 
 /***/ }),
 
-/***/ "./js/components/mrk-carousel/template.html":
-/*!**************************************************!*\
-  !*** ./js/components/mrk-carousel/template.html ***!
-  \**************************************************/
+/***/ "./js/components/members/template.html":
+/*!*********************************************!*\
+  !*** ./js/components/members/template.html ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<carousel :autoplay=\"false\"\n          :per-page=\"1\"\n          :loop=\"true\"\n          v-model=\"goto\"\n          pagination-color=\"#000\"\n          pagination-active-color=\"#fff\"\n          id=\"featured\"\n          @pageChange=\"pageChanged\"\n          @transitionEnd=\"transitionEnded\">\n  <slide v-for=\"( slide, index ) in slides\" :key=\"slide.id\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div :class=\"[ 'mrk-media-wrapper', 'col', 'col-12',\n                       { 'col-md-8': slide.show_text }]\">\n          <template v-if=\"slide.type == 'attachment'\">\n            <img v-if=\"slide.release_type == 'image'\" :src=\"slide.source_url\"\n                 class=\"mrk-media\" />\n            <video-player v-else-if=\"slide.release_type == 'video'\"\n                          :ref=\"'player'+index\"\n                          class=\"mrk-media video-player-box vjs-big-play-centered\"\n                          :playsinline=\"true\"\n                          :options=\"videoPlayerOptions( slide )\"\n                          @play=\"playerPlayed\"\n                          @pause=\"playerPaused\"\n                          @ended=\"playerEnded\"\n                          @waiting=\"playerWaiting\"\n                          @playing=\"playerPlaying\"\n                          @loadeddata=\"playerDataLoaded\"\n                          @timeupdate=\"playerTimeupdated\"\n                          @canplay=\"playerPlayEnabled\"\n                          @canplaythrough=\"playerPlaythroughEnabled\"\n                          @statechanged=\"playerStateChanged\"\n                          @ready=\"playerReadied\">\n            </video-player>\n            <audio  v-else-if=\"slide.release_type == 'audio'\"\n                   :src=\"slide.source_url\" class=\"mrk-media\" controls\n                   controlsList=\"nodownload\">\n              {{ slide.alt_text }}\n            </audio>\n          </template>\n        </div>\n        <div v-if=\"slide.show_text\" class=\"col col-12 col-md-4\">\n          <h2 v-if=\"slide.title\" v-html=\"slide.title.rendered\"></h2>\n          <div v-if=\"slide.excerpt\" class=\"excerpt\"\n               v-html=\"slide.excerpt.rendered\"></div>\n          <div v-else-if=\"slide.caption\" class=\"caption\"\n               v-html=\"slide.caption.rendered\"></div>\n          <!-- <div v-if=\"slide.description\" class=\"description\" -->\n          <!--      v-html=\"slide.description.rendered\"></div> -->\n          <router-link v-if=\"slide.read_more\"\n                       :to=\"slide.full_content.path\"\n                       class=\"read-more\">read_more</router-link>\n          <b-btn v-if=\"slide.full_content\n                       && canWatchNow( slide.full_content )\"\n                 variant=\"primary\" :to=\"slide.full_content.path\" size=\"lg\"\n                 class=\"float-right\">{{\n            sayAction( slide.full_content )}} now</b-btn>\n          <b-btn v-else variant=\"warning\"\n                 size=\"lg\" class=\"float-right\"\n                 v-scroll-to=\"{ el: 'main', container: '.page',\n                              x: false, y: true }\">\n            subscribe for full content</b-btn>\n        </div>\n        <!-- TODO: if paid content, this link should be different, maybe it's\n             own component -->\n      </div>\n    </div>\n  </slide>\n  <slide v-if=\"slides.length == 0\">\n    <flower-spinner :animation-duration=\"2500\" :size=\"70\" color=\"#025\">\n    </flower-spinner>\n  </slide>\n</carousel>\n";
+module.exports = "<div class=\"members post page\" :key=\"postData.id\">\n  <div id=\"bg-image-wrapper\">\n    <transition name=\"fade-in\" appear>\n      <img id=\"bg-image\" :src=\"img\" :key=\"img\" @load=\"showImg\" v-show=\"show\"/>\n    </transition>\n  </div>\n  <down-arrow></down-arrow>\n  <div class=\"featured-outer\" :class=\"classes\">\n    <transition name=\"fade-in\">\n      <div v-if=\"promos.length\" class=\"featured-wrapper\">\n        <mrk-carousel id=\"featured\" :slides=\"promos\"></mrk-carousel>\n      </div>\n    </transition>\n  </div>\n\n  <main role=\"main\">\n    <h1 class=\"title\" v-html=\"title\"></h1>\n    <section class=\"description\" v-html=\"content\"></section>\n    <section class=\"subscriptions\">\n      <subscription-menu\n        v-if=\"user && (!user.as || user.as.subscriber) && user.membership\"\n        :target=\"postData.path\">\n        Change your subscription plan below.\n      </subscription-menu>\n      <subscription-menu v-else :target=\"postData.path\">\n        Select one of the subscription plans to become a member.\n      </subscription-menu>\n    </section>\n  </main>\n  <wp-footer></wp-footer>\n</div>\n";
 
 /***/ }),
 
-/***/ "./js/mixins/media-actions.js":
-/*!************************************!*\
-  !*** ./js/mixins/media-actions.js ***!
-  \************************************/
+/***/ "./js/lib/scroll-header.js":
+/*!*********************************!*\
+  !*** ./js/lib/scroll-header.js ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/store */ "./js/lib/store.js");
+var ScrollHeader = {
+  last_scroll: 0,
+  scroll_dir: 'none'
+};
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  methods: {
-    canWatchNow: function canWatchNow(episode) {
-      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
+(function ($) {
+  ScrollHeader.init = function (header, container) {
+    var _ = ScrollHeader;
+    var $el = $("#app>.page");
+    _.last_scroll = $el.scrollTop();
+    $el.off('scroll');
+    $el.on('scroll', function (e) {
+      var last = _.last_scroll;
+      var dir = _.scroll_dir;
+      var cur = _.last_scroll = $el.scrollTop();
+      var $head = $(header);
 
-      if (user.as) {
-        var as = user.as;
-        var rst = episode.restrictions;
-        if (as.admin || rst.public) return true;
-        if (as.subscriber && rst.members) return true;
-        if (as.logged_in && rst.auth) return true;
-        return false;
-      }
+      if (last < cur) {
+        if (dir != (_.scroll_dir = 'down')) $head.stop().animate({
+          top: -$head.innerHeight() - 10
+        }, 'slow');
+      } else if (last > cur) {
+        if (dir != (_.scroll_dir = 'up')) $head.stop().animate({
+          top: 0
+        }, 'slow');
+      } else _.scroll_dir = 'none';
 
-      return !episode.redirect;
-    },
-    sayAction: function sayAction(episode, trans) {
-      return episode.release_type == 'video' ? 'watch' : episode.release_type == 'audio' ? trans ? 'listen to' : 'listen' : 'view';
-    },
-    cardClasses: function cardClasses(episode) {
-      if (!episode || !episode.restrictions) return {};
-      return {
-        private: episode.restrictions.private,
-        public: episode.restrictions.public,
-        auth: episode.restrictions.auth,
-        payperview: episode.restrictions.payperview,
-        members: episode.restrictions.members,
-        hidden: !episode.restrictions.show && !episode.restrictions.public
-      };
-    },
-    needsSubscription: function needsSubscription(episode) {
-      var user = _lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.user;
-      return episode.restrictions.members && (!user.as || !user.as.subscriber);
-    },
-    getSources: function getSources(episode) {
-      return Object.values(episode.sources);
-    },
-    videoPlayerOptions: function videoPlayerOptions(episode, defaults) {
-      var opts = Object.assign({
-        controls: true,
-        autoplay: false,
-        playsinline: true,
-        aspectRatio: "16:9",
-        controlBar: {// children: [
-          //   'playToggle',
-          //   'volumeMenuButton',
-          //   'currentTimeDisplay',
-          //   'durationDisplay',
-          //   'progressControl',
-          //   'remainingTimeDisplay',
-          //   'playbackRateMenuButton',
-          //   'subtitlesButton',
-          //   'captionsButton',
-          //   'fullscreenToggle'
-          // ],
-        }
-      }, defaults || {});
-      if (episode.kgvid_meta && episode.kgvid_meta.poster) opts.poster = episode.kgvid_meta.poster;
-      opts.sources = this.getSources(episode);
-      return opts;
-    }
-  }
-});
+      var topH = $(container).innerHeight() - $head.innerHeight() + 20;
+      if (cur > topH) $head.removeClass('mrk-bg-clear').addClass('mrk-bg-dark');else $head.removeClass('mrk-bg-dark').addClass('mrk-bg-clear');
+    });
+  };
+
+  ScrollHeader.destroy = function () {
+    $("#app>.page").off('scroll');
+  };
+})(jQuery);
+
+/* harmony default export */ __webpack_exports__["default"] = (ScrollHeader);
 
 /***/ })
 
