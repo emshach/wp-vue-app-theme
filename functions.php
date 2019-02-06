@@ -1103,8 +1103,12 @@ function mrk_enqueue_scripts() {
         return;
     wp_enqueue_script( 'wp-api-request' );
     wp_enqueue_script( 'wp-api' );
-    // wp_enqueue_script( 'grunion-frontend' );
-
+    wp_enqueue_script(
+        'grunion-frontend',
+        Jetpack::get_file_url_for_environment(
+            '_inc/build/contact-form/js/grunion-frontend.min.js',
+            'modules/contact-form/js/grunion-frontend.js'
+        ), array( 'jquery', 'jquery-ui-datepicker' ));
     // fix api settings, re-create rest nonce
     $user = wp_get_current_user();
     $data = $wp_scripts->get_data('wp-api-request', 'data');
