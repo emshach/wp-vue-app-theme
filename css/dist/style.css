@@ -1016,6 +1016,9 @@ section.post {
   color: white;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4); }
 
+.page.about #down-arrow, .page.contact #down-arrow {
+  display: none; }
+
 /**
  * inserts: excerpt and preview-card elements
  * ---

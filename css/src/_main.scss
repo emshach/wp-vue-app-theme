@@ -263,3 +263,8 @@ section.post {
     }
   }
 }
+.page.about, .page.contact {
+  #down-arrow {
+    display: none;
+  }
+}
