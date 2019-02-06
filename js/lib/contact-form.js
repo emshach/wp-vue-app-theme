@@ -10,8 +10,11 @@ const ContactForm = {
     $el.off( 'submit' );
     $el.on( 'submit', e => {
       e.preventDefault();
-      var data = $( this ).serialize();
+      var data = $el.serialize();
       console.log( 'contact form submit', data );
+      $.post( $el.attr( 'action' ), data, rsp => {
+        console.log( 'contact form submit response', rsp );
+      });
     });
   };
   ContactForm.destroy = () => {

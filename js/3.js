@@ -123,16 +123,17 @@ var ContactForm = {
 };
 
 (function ($) {
-  var _this = this;
-
   ContactForm.init = function () {
     var _ = ContactForm;
     var $el = $(".contact-form");
     $el.off('submit');
     $el.on('submit', function (e) {
       e.preventDefault();
-      var data = $(_this).serialize();
+      var data = $el.serialize();
       console.log('contact form submit', data);
+      $.post($el.attr('action'), data, function (rsp) {
+        console.log('contact form submit response', rsp);
+      });
     });
   };
 
