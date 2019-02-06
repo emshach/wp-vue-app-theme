@@ -970,6 +970,10 @@ section.post {
   width: 100%;
   border: 2px solid #aaa; }
 
+.page.contact .contact-form textarea:focus {
+  border-color: deepskyblue;
+  outline: none !important; }
+
 .page.contact .contact-form .grunion-field-wrap {
   clear: both; }
 

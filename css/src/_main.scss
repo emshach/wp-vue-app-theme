@@ -217,6 +217,10 @@ section.post {
   textarea {
     width: 100%;
     border: 2px solid #aaa;
+    &:focus {
+      border-color: deepskyblue;
+      outline: none !important;
+    }
   }
   .grunion-field-wrap {
     clear: both;
