@@ -942,6 +942,7 @@ section.post {
 
 .page.contact .contact-form label {
   font-size: small;
+  padding-bottom: 0;
   color: grey; }
 
 /**
