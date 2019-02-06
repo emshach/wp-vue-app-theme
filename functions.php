@@ -1103,7 +1103,7 @@ function mrk_enqueue_scripts() {
         return;
     wp_enqueue_script( 'wp-api-request' );
     wp_enqueue_script( 'wp-api' );
-    wp_enqueue_script( 'grunion' );
+    // wp_enqueue_script( 'grunion-frontend' );
 
     // fix api settings, re-create rest nonce
     $user = wp_get_current_user();
@@ -1118,7 +1118,7 @@ function mrk_enqueue_scripts() {
 
     // back to our regularly scheduled programming
     wp_enqueue_script( 'moonraker', get_theme_file_uri( '/js/moonraker.js' ),
-                       [ 'wp-api', 'jquery', 'jquery-effects-core', 'grunion' ],
+                       [ 'wp-api', 'jquery', 'jquery-effects-core', 'grunion-frontend' ],
                        filemtime( get_template_directory() . '/js/moonraker.js' ),
                        true ); // include in footer
     $moonraker_local_vars = [
