@@ -129,8 +129,9 @@ var ContactForm = {
     $el.off('submit');
     $el.on('submit', function (e) {
       e.preventDefault();
-      var data = $el.serialize();
+      var data = $el.serializeArray();
       console.log('contact form submit', data);
+      data['_wp_http_referer'] = window.location.href;
       $.post($el.attr('action'), data, function (rsp) {
         console.log('contact form submit response', rsp);
       });
