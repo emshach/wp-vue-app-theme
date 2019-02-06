@@ -216,6 +216,7 @@ section.post {
   }
   textarea {
     width: 100%;
+    border: 1px solid #ddd;
   }
   .grunion-field-wrap {
     clear: both;
@@ -238,6 +239,5 @@ section.post {
   }
   .grunion-field-textarea-wrap {
     padding-top: 1em;
-    border: 1px solid #ddd;
   }
 }

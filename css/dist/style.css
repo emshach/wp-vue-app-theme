@@ -967,7 +967,8 @@ section.post {
   outline: none !important; }
 
 .page.contact .contact-form textarea {
-  width: 100%; }
+  width: 100%;
+  border: 1px solid #ddd; }
 
 .page.contact .contact-form .grunion-field-wrap {
   clear: both; }
@@ -989,8 +990,7 @@ section.post {
   clear: none; }
 
 .page.contact .contact-form .grunion-field-textarea-wrap {
-  padding-top: 1em;
-  border: 1px solid #ddd; }
+  padding-top: 1em; }
 
 /**
  * inserts: excerpt and preview-card elements
