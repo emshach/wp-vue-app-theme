@@ -35,7 +35,6 @@ export default {
   updated() {
     document.title = he.decode( this.title + ' | ' + this.sstate.site.title );
     this.$nextTick(() => {
-      console.log( 'page updated' );
       ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
     });
   },

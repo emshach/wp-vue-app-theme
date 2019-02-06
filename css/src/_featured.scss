@@ -6,6 +6,7 @@
   &.small {
     height: 25em;
     animation: shrink-featured ease-out 1;
+    background: rgba(0,0,0,0.5);
   }
 }
 .featured-wrapper{

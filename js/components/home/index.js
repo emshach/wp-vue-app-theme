@@ -36,6 +36,11 @@ export default {
       ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
     });
   },
+  updated() {
+    this.$nextTick(() => {
+      ScrollHeader.init( '#masthead', "#featured,#app>.page>.featured-outer" );
+    });
+  },
   methods: {
     showImg() {
       this.show = true;

@@ -48,6 +48,11 @@ __webpack_require__.r(__webpack_exports__);
       _lib_scroll_header__WEBPACK_IMPORTED_MODULE_3__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
     });
   },
+  updated: function updated() {
+    this.$nextTick(function () {
+      _lib_scroll_header__WEBPACK_IMPORTED_MODULE_3__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
+    });
+  },
   methods: {
     showImg: function showImg() {
       this.show = true;
@@ -137,7 +142,6 @@ var ScrollHeader = {
   ScrollHeader.init = function (header, container) {
     var _ = ScrollHeader;
     var $el = $("#app>.page");
-    console.log('scrollheader', $el);
     _.last_scroll = $el.scrollTop();
     $el.off('scroll');
     $el.on('scroll', function (e) {

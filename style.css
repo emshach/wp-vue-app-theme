@@ -79,7 +79,8 @@ h1 {
 
 .featured-outer.small {
   height: 25em;
-  animation: shrink-featured ease-out 1; }
+  animation: shrink-featured ease-out 1;
+  background: rgba(0, 0, 0, 0.5); }
 
 .featured-wrapper {
   position: relative;
@@ -928,7 +929,7 @@ main #login .login-actions span {
 .page.about p {
   margin-bottom: 1em; }
 
-.page.about mair {
+.page.about main {
   min-height: 70%; }
 
 section.post {

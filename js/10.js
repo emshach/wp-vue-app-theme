@@ -56,7 +56,6 @@ __webpack_require__.r(__webpack_exports__);
   updated: function updated() {
     document.title = he__WEBPACK_IMPORTED_MODULE_3___default.a.decode(this.title + ' | ' + this.sstate.site.title);
     this.$nextTick(function () {
-      console.log('page updated');
       _lib_scroll_header__WEBPACK_IMPORTED_MODULE_1__["default"].init('#masthead', "#featured,#app>.page>.featured-outer");
     });
   },
@@ -124,7 +123,6 @@ var ScrollHeader = {
   ScrollHeader.init = function (header, container) {
     var _ = ScrollHeader;
     var $el = $("#app>.page");
-    console.log('scrollheader', $el);
     _.last_scroll = $el.scrollTop();
     $el.off('scroll');
     $el.on('scroll', function (e) {
