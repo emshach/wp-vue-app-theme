@@ -743,7 +743,7 @@ nav.site-menu a, nav.site-menu a:link, nav.site-menu a:hover, nav.site-menu a:vi
   color: white;
   text-shadow: 0 0 2px black;
   text-decoration: none !important;
-  padding: 5px 1em;
+  padding: 5px 0.5em;
   border-radius: 2px;
   margin-left: 10px;
   margin-top: 2px; }

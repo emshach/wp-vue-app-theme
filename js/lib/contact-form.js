@@ -20,7 +20,7 @@ const ContactForm = {
       $el.find( 'input,textarea' ).prop( 'disabled', true );
       $.post( $el.attr( 'action' ), data, rsp => {
         // we'll just assume it's okay
-        Swal( "Thank you! We'll be in touch." );
+        Swal( "Thank you! We'll be in touch soon." );
         $el.find( 'input,textarea' ).prop( 'disabled', false );
         $el.find( 'textarea' ).val('');
         $el.find( 'input.radio' ).prop( 'checked', false );
