@@ -1355,6 +1355,16 @@ function mrk_get_email_template() {
     return get_stylesheet_directory() . '/templates/email/default.php';
 }
 
+/**
+   strip any previous html wrapping from message to avoid double-html-izing
+   @return email string
+ */
+function mrk_clean_email_body( $message ) {
+    $msg = preg_replace( '/.*<body[^>]*>', '', $message );
+    $msg = preg_replace( '</body.*$', '', $message );
+    return $msg;
+}
+
 add_theme_support( 'post-thumbnails'                                            );
 add_action( 'rest_api_init',                 'mrk_register_endpoint'            );
 add_action( 'wp_enqueue_scripts',            'mrk_enqueue_scripts'              );
@@ -1394,5 +1404,6 @@ add_filter( 'mrk_rest_process_release',      'mrk_rest_add_release_series'      
 add_filter( 'mrk_rest_process_preview',      'mrk_rest_rm_preview_redirect'     );
 add_filter( 'mrk_rest_process_preview',      'mrk_rest_add_full_content'        );
 add_filter( 'mailtpl/customizer_template',   'mrk_get_email_template'           );
+add_filter( 'mailtpl/email_content',         'mrk_clean_email_body'             );
 
 ?>
