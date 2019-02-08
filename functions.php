@@ -1360,8 +1360,8 @@ function mrk_get_email_template() {
    @return email string
  */
 function mrk_clean_email_body( $message ) {
-    $msg = preg_replace( '/.*<body[^>]*>', '', $message );
-    $msg = preg_replace( '</body.*$', '', $message );
+    $msg = preg_replace( '/.*\<body[^\>]*\>/', '', $message );
+    $msg = preg_replace( '/\<\/body.*$/', '', $message );
     return $msg;
 }
 
