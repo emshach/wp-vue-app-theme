@@ -58,7 +58,6 @@ $header_content_h1 = "
 	font-size: ".$settings['header_text_size']."px;
 	font-weight:bold;
 	text-align:".$settings['header_aligment'].";
-	line-height: 150%;
 ";
 $header_content_h1_a = "
 	color: ".$settings['header_text_color'].";

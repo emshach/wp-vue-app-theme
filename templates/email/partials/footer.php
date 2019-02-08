@@ -44,7 +44,7 @@ $credit = "
               <tr>
                 <td align="center" valign="top">
                   <!-- Footer -->
-        	  <table border="0" cellpadding="10" cellspacing="0"
+                  <table border="0" cellpadding="10" cellspacing="0"
                          width="100%" id="template_footer"
                          style="<?php echo $template_footer; ?>">
                     <tr>

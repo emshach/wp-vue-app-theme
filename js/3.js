@@ -140,7 +140,7 @@ var ContactForm = {
       $el.find('input,textarea').prop('disabled', true);
       $.post($el.attr('action'), data, function (rsp) {
         // we'll just assume it's okay
-        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()("Thank you! We'll be in touch.");
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()("Thank you! We'll be in touch soon.");
         $el.find('input,textarea').prop('disabled', false);
         $el.find('textarea').val('');
         $el.find('input.radio').prop('checked', false);
