@@ -102,7 +102,7 @@ var ScrollHeader = {
 
       if (last < cur) {
         if (dir != (_.scroll_dir = 'down')) $head.stop().animate({
-          top: -$head.innerHeight() - 10
+          top: -$head.innerHeight() + 40
         }, 'slow');
       } else if (last > cur) {
         if (dir != (_.scroll_dir = 'up')) $head.stop().animate({

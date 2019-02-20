@@ -217,7 +217,7 @@
       <b-form-group class="login-actions">
         <b-btn v-if="action != 'register'" type="submit" variant="primary"
                name="wp-submit" class="login-button" value="Log in"
-               @click="actionLogin">login</b-btn>
+               @click="actionLogin">{{ tokenLogin ? 'send link' : 'login' }}</b-btn>
         <b-btn v-else variant="link" @click="clearForm"
                class="login-button">cancel</b-btn>
         <span v-if="action != 'register'">or</span>
