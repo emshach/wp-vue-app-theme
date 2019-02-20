@@ -98,6 +98,10 @@ export default {
              this.messageStyle.minHeight = $el.clientHeight - 60 + 'px';
              this.feedbackStyle.minWidth = $el.clientWidth + 'px';
              this.action = d.next;
+             this.$nextTick(() => {
+               if ( !this.formData.email )
+                 this.action = 'login';
+             });
              break;
            case 'link-sent':
              this.action = 'link-sent';

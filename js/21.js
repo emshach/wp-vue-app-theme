@@ -127,6 +127,11 @@ __webpack_require__.r(__webpack_exports__);
             _this.messageStyle.minHeight = $el.clientHeight - 60 + 'px';
             _this.feedbackStyle.minWidth = $el.clientWidth + 'px';
             _this.action = d.next;
+
+            _this.$nextTick(function () {
+              if (!_this.formData.email) _this.action = 'login';
+            });
+
             break;
 
           case 'link-sent':
