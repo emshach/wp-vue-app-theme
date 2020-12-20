@@ -3245,11 +3245,14 @@ video::-webkit-media-text-track-display {
 
 .jln-link {
   position: fixed;
-  top: 200px;
+  top: 120px;
   right: -50px;
   border-radius: 100%;
-  height: 200px;
-  background: yellow
+  height: 5.5em;
+  background: yellow;
+  z-index: 100;
+  padding: 30px;
+  padding-right: 56px;
 }
 
 /*# sourceMappingURL=moonraker.css.map*/
